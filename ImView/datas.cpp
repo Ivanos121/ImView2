@@ -22,7 +22,7 @@ datas::datas(QWidget *parent) :
     ui->setupUi(this);
 
     sdb = QSqlDatabase::addDatabase("QSQLITE");
-    sdb.setDatabaseName(QFileInfo("/home/elf/ImView/data/base_db/mydb.db").absoluteFilePath());
+    sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
 
     table();
 }
