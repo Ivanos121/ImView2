@@ -1,0 +1,10 @@
+build-*
+*.pro.user
+*.pro.user.*
+*.o
+moc_*
+ImView/.qmake.stash
+*.txt
+*.csv
+*.odt
+
