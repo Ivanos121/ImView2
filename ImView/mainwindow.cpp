@@ -83,6 +83,9 @@ double Nsv,N, dNptk, dNvpk, dNvk,dNsvp, dNkd;
 bool isNablLaunched = false;
 QString currentTabText;
 
+QVector<double> tepl_ident_t;
+QVector<double> tepl_ident_StatorTemp;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -8382,18 +8385,18 @@ void MainWindow::on_action_31_triggered()
     ui->widget_10->ui->plot->addDataLine(QColor(Qt::red), 0);
     ui->widget_10->ui->plot->addDataLine(QColor(Qt::green), 0);
 
-    double t=0;
+    /*double t=0;
     double y_0;
-    while(t<20000)
+    while(t<2)
     {
         t+=0.1;
         y_0=20*(1-exp(-t/20)) + item28->text().toDouble();
         ui->widget_10->ui->plot->addPoint(0, t, y_0);
-    }
-    //ui->widget_10->raschet_el();
+    }*/
+    ui->widget_3->raschet_el();
     //ui->widget_5->ui->widget_4->startTeplo();
 
-   // connect(timer, &QTimer::timeout, this, &MainWindow::TimeOut);
+
     timer->start(1000);
 
     double teta_1=0, teta_2=0, T_1=0, T_2=0, C_1=0, C_2=0, lambda10=0, lambda12=0,
@@ -8421,14 +8424,38 @@ void MainWindow::on_action_32_triggered()
     ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
     ui->action_32->setEnabled(false);
     timer->stop();
+    ui->widget_3->stop();
 }
 
 void MainWindow::TimeOut()
 {
-    timer->stop();
-    QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
-    ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex(8);
+    double t;
+    if (tepl_ident_t.size() == 0)
+    {
+        t = 0.0;
+    }
+    else
+    {
+        t = tepl_ident_t[tepl_ident_t.size() - 1] + 60.0;
+    }
+
+    double Temp = 80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
+    tepl_ident_t.append(t);
+    tepl_ident_StatorTemp.append(Temp);
+
+    ui->widget_10->ui->plot->addPoint(0, t, Temp);
+
+    if (tepl_ident_StatorTemp.size() >= 4)
+    {
+        isNablLaunched = false;
+        timer->stop();
+        ui->widget_3->stop();
+        ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
+        ui->action_32->setEnabled(false);
+        QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(8);
+    }
 }
 
 
