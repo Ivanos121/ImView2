@@ -44,8 +44,8 @@ static double getPosValue(double M)
         if (momentInterpArray[i].M <= M)
         {
             pos_interpolated = (momentInterpArray[i+1].pos - momentInterpArray[i].pos) /
-                    (momentInterpArray[i+1].M - momentInterpArray[i].M) *
-                    (M - momentInterpArray[i].M) + momentInterpArray[i].pos;
+                                   (momentInterpArray[i+1].M - momentInterpArray[i].M) *
+                                   (M - momentInterpArray[i].M) + momentInterpArray[i].pos;
         }
     }
     return pos_interpolated;
@@ -64,8 +64,6 @@ electromagn::electromagn(QWidget *parent) :
     ui->plot->reset();
     time=new QElapsedTimer();
     this->showMaximized();
-
-   // connect(wf->ui->horizontalSlider, &QSlider::valueChanged, this, &electromagn::realtimeSlot);
 }
 
 
@@ -85,10 +83,8 @@ void electromagn::realtimeDataSlot()
 
     if(wf->item80->text() == "Внутренний источник данных")
     {
-        base.Mc_n = wf->item132->text().toDouble();
-        base.Um = wf->item130->text().toDouble();
-        wf->ui->horizontalSlider->setValue(base.Mc_n);
-        wf->ui->horizontalSlider_2->setValue(base.Um) ;
+        base.Mc_n = wf->ui->horizontalSlider->value();
+        base.Um = wf->ui->horizontalSlider_2->value();
 
         for (int i = 0; i < 1000; i++)
         {
@@ -501,7 +497,6 @@ void electromagn::realtimeDataSlot()
 
         //Считывание значения времени работы Mc
         //double Mc_n = wf->item90->text().toDouble();
-        base.Mc_n = wf->ui->horizontalSlider->value() / 99.0 * 30.0;
 
         QString S = wf->item20->text();
 
@@ -1163,12 +1158,17 @@ void electromagn::raschet_el()
     //Внутренний источник данных
     if (wf->item80->text() == "Внутренний источник данных")
     {
+        base.Mc_n = wf->item132->text().toDouble();
+        base.Um = wf->item130->text().toDouble();
+
+        wf->ui->horizontalSlider->setValue(base.Mc_n);
+        wf->ui->horizontalSlider_2->setValue(base.Um);
 
         Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
                          Model_el.Tc=wf->item22->text().toDouble(),
                          Model_el.tp=wf->item24->text().toDouble());
 
-      /*  Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
+        /*  Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
                          Model_el.Tc=wf->item22->text().toDouble(),
                          Model_el.tp=wf->item24->text().toDouble(),
                          Model_el.Mc=wf->item90->text().toDouble());
@@ -1295,10 +1295,5 @@ void electromagn::bvasFailureSlot()
     wf->ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
     wf->ui->action_21->setEnabled(false);
     QMessageBox::critical(this, "Ошибка!", "Ошибка подключения BVAS!");
-}
-
-void electromagn::realtimeSlot(int m)
-{
-    wf->ui->horizontalSlider->setValue(m);
 }
 

@@ -8455,6 +8455,15 @@ void MainWindow::TimeOut()
         QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(8);
+
+        double u1 = tepl_ident_StatorTemp[0];
+        double u2 = tepl_ident_StatorTemp[1];
+        double u3 = tepl_ident_StatorTemp[2];
+        double u4 = tepl_ident_StatorTemp[3];
+        ui->tableWidget_16->item(14,2)->setText(QString::number(u1,'f',3));
+        ui->tableWidget_16->item(15,2)->setText(QString::number(u2,'f',3));
+        ui->tableWidget_16->item(16,2)->setText(QString::number(u3,'f',3));
+        ui->tableWidget_16->item(17,2)->setText(QString::number(u4,'f',3));
     }
 }
 
