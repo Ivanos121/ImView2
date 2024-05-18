@@ -30,6 +30,7 @@
 #include <QPixmap>
 #include <QSvgRenderer>
 #include <iostream>
+#include <QString>
 
 #include "base.h"
 #include "model.h"
@@ -104,6 +105,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_6->ui->plot->margin_bottom = 40;
     ui->widget_6->ui->plot->margin_left = 100;
     ui->widget_6->ui->plot->reset();
+
+    connect(ui->action_26, &QAction::triggered, this, &MainWindow::create_new);
+    connect(ui->action, &QAction::triggered, this, &MainWindow::open_file);
+    connect(ui->action_2, &QAction::triggered, this, &MainWindow::save_file);
+    connect(ui->action_6, &QAction::triggered, this, &MainWindow::save_as_file);
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
@@ -8467,4 +8473,29 @@ void MainWindow::TimeOut()
     }
 }
 
+void MainWindow::create_new()
+{
+    QMessageBox::critical(this, "начало нового сеанса", "Введите исходные данные");
+}
 
+void MainWindow::open_file()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+                                                      "/home",
+                                                      tr("Images (*.png *.xpm *.jpg)"));
+
+}
+
+void MainWindow::save_file()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+        tr("Сохранение данных"), "",
+        tr(".imview (*.*);;All Files (*)"));
+}
+
+void MainWindow::save_as_file()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+        tr("Сохранение данных как"), "",
+        tr(".imview (*.*);;All Files (*)"));
+}

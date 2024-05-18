@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QIcon>
 #include <QuaZip-Qt5-1.4/quazip/JlCompress.h>
 
 int main(int argc, char *argv[])
@@ -11,6 +12,7 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setOrganizationName("ImView");
     QCoreApplication::setApplicationName("ImView");
+    QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
 
     MainWindow w;
     QDir dir("/tmp/imview");
@@ -23,6 +25,8 @@ int main(int argc, char *argv[])
         QString filename(argv[1]);
         w.LoadProject(filename);
     }
+
     w.show();
+
     return a.exec();
 }

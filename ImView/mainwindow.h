@@ -107,6 +107,12 @@ private slots:
     void on_action_25_triggered();
     void on_action_31_triggered();
     void on_action_32_triggered();
+
+    void open_file();
+    void create_new();
+    void save_file();
+    void save_as_file();
+
     void tabClicked();
     void tabClicked_2();
     void tabClicked_3();
