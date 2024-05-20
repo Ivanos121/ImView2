@@ -112,6 +112,10 @@ private slots:
     void create_new();
     void save_file();
     void save_as_file();
+    void print_preview_file();
+    void printPreview(QPrinter *printer);
+    void printTable(QPrinter *printer, bool isPreview);
+    void pagePrint();
 
     void tabClicked();
     void tabClicked_2();

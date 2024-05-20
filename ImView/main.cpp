@@ -12,7 +12,19 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setOrganizationName("ImView");
     QCoreApplication::setApplicationName("ImView");
-    QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
+
+    if(QGuiApplication::platformName() == QLatin1String("xcb"))
+    {
+        QGuiApplication::setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_24_blue.png"));
+    }
+    else if(QGuiApplication::platformName() == QLatin1String("wayland"))
+    {
+        QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
+    }
+    else
+    {}
+
+    //QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
 
     MainWindow w;
     QDir dir("/tmp/imview");

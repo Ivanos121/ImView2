@@ -1685,7 +1685,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1116</width>
-     <height>30</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -1697,6 +1697,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="action_2"/>
     <addaction name="action_6"/>
     <addaction name="separator"/>
+    <addaction name="print_preview"/>
     <addaction name="action_3"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
@@ -1781,6 +1782,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="action_6"/>
    <addaction name="separator"/>
    <addaction name="action_3"/>
+   <addaction name="separator"/>
+   <addaction name="action_7"/>
+   <addaction name="action_8"/>
    <addaction name="separator"/>
    <addaction name="actioncut"/>
    <addaction name="action_10"/>
@@ -2216,6 +2220,15 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="print_preview">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-preview-archive.svg</normaloff>:/system_icons/data/img/system_icons/document-preview-archive.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Предварительный просмотр</string>
    </property>
   </action>
  </widget>

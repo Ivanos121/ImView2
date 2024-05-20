@@ -110,6 +110,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->action, &QAction::triggered, this, &MainWindow::open_file);
     connect(ui->action_2, &QAction::triggered, this, &MainWindow::save_file);
     connect(ui->action_6, &QAction::triggered, this, &MainWindow::save_as_file);
+    connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
+    connect(ui->action_3, &QAction::triggered, this, &MainWindow::pagePrint);
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
@@ -8498,4 +8500,93 @@ void MainWindow::save_as_file()
     QString fileName = QFileDialog::getSaveFileName(this,
         tr("Сохранение данных как"), "",
         tr(".imview (*.*);;All Files (*)"));
+}
+
+void MainWindow::print_preview_file()
+{
+    QPrinter *printer = new QPrinter(QPrinter::HighResolution);
+    printer->setPageSize(QPageSize(QPageSize::A4));
+    printer->setPageOrientation(QPageLayout::Landscape);
+    printer->setFullPage(true);
+
+    QPrintPreviewDialog *printPreview = new QPrintPreviewDialog(printer);
+    connect(printPreview, SIGNAL(paintRequested(QPrinter*)), this, SLOT(printPreview(QPrinter*)));
+    printPreview->setWindowTitle("Preview Dialog");
+    Qt::WindowFlags flags(Qt::WindowTitleHint);
+    printPreview->setWindowFlags(flags);
+    printPreview->showMaximized();
+    printPreview->exec();
+}
+
+void MainWindow::printPreview(QPrinter *printer)
+{
+    printTable(printer, true);
+}
+
+void MainWindow::printTable(QPrinter *printer, bool isPreview)
+{
+    printer->setPageSize(QPageSize(QPageSize::A4));
+    printer->setPageOrientation(QPageLayout::Landscape);
+    printer->setFullPage(true);
+
+    QString strStream;
+    QTextStream out(&strStream);
+
+    const int rowCount = ui->treeView->model()->rowCount();
+    const int columnCount = ui->treeView->model()->columnCount();
+
+    out <<  "<html>\n"
+            "<head>\n"
+            "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+            <<  QString("<title>%1</title>\n").arg(dirName)
+            <<  "</head>\n"
+            "<body bgcolor=#ffffff link=#5000A0>\n"
+            "<table border=1 cellspacing=0 cellpadding=2>\n";
+
+        // headers
+    out << "<thead><tr bgcolor=#f0f0f0>";
+    for (int column = 0; column < columnCount; column++)
+        if (!ui->treeView->isColumnHidden(column))
+            out << QString("<th>%1</th>").arg(ui->treeView->model()->headerData(column, Qt::Horizontal).toString());
+
+    out << "</tr></thead>\n";
+
+    // data table
+    for (int row = 0; row < rowCount; row++)
+    {
+        out << "<tr>";
+            for (int column = 0; column < columnCount; column++)
+            {
+                if (!ui->treeView->isColumnHidden(column))
+                {
+                    QString data = ui->treeView->model()->data(ui->treeView->model()->index(row, column)).toString().simplified();
+                    out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                }
+            }
+            out << "</tr>\n";
+        }
+    out <<  "</table>\n"
+            "</body>\n"
+            "</html>\n";
+
+    QTextDocument document;
+    document.setHtml(strStream);
+
+    if (isPreview)
+    {
+        document.print(printer);
+    }
+    else
+    {
+        QPrintDialog dialog(printer, NULL);
+        if (dialog.exec() == QDialog::Accepted) {
+            document.print(printer);
+        }
+    }
+}
+
+void MainWindow::pagePrint()
+{
+    QPrinter printer;
+    printTable(&printer, false);
 }
