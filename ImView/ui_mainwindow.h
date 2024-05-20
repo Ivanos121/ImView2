@@ -85,6 +85,7 @@ public:
     QAction *action_30;
     QAction *action_31;
     QAction *action_32;
+    QAction *print_preview;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     QTabWidget *tabWidget;
@@ -482,6 +483,11 @@ public:
         icon30.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/media-playback-stop_3.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_32->setIcon(icon30);
         action_32->setMenuRole(QAction::MenuRole::NoRole);
+        print_preview = new QAction(MainWindow);
+        print_preview->setObjectName(QString::fromUtf8("print_preview"));
+        QIcon icon31;
+        icon31.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/document-preview-archive.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        print_preview->setIcon(icon31);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout = new QHBoxLayout(centralwidget);
@@ -619,9 +625,9 @@ public:
         sizePolicy1.setHeightForWidth(pushButton_5->sizePolicy().hasHeightForWidth());
         pushButton_5->setSizePolicy(sizePolicy1);
         pushButton_5->setMaximumSize(QSize(15, 16777215));
-        QIcon icon31;
-        icon31.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/go-next.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_5->setIcon(icon31);
+        QIcon icon32;
+        icon32.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/go-next.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon32);
         pushButton_5->setCheckable(true);
 
         horizontalLayout->addWidget(pushButton_5);
@@ -1532,6 +1538,7 @@ public:
         menufile->addAction(action_2);
         menufile->addAction(action_6);
         menufile->addSeparator();
+        menufile->addAction(print_preview);
         menufile->addAction(action_3);
         menufile->addSeparator();
         menufile->addAction(actionExit);
@@ -1565,7 +1572,11 @@ public:
         toolBar->addAction(action_2);
         toolBar->addAction(action_6);
         toolBar->addSeparator();
+        toolBar->addAction(print_preview);
         toolBar->addAction(action_3);
+        toolBar->addSeparator();
+        toolBar->addAction(action_7);
+        toolBar->addAction(action_8);
         toolBar->addSeparator();
         toolBar->addAction(actioncut);
         toolBar->addAction(action_10);
@@ -1705,6 +1716,10 @@ public:
         action_31->setToolTip(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\277\321\203\321\201\320\272 \320\270\320\264\320\265\320\275\321\202\320\270\321\204\320\270\320\272\320\260\321\206\320\270\320\270 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\320\276\320\262 \321\202\320\265\320\277\320\273\320\276\320\262\320\276\320\271 \320\274\320\276\320\264\320\265\320\273\320\270", nullptr));
 #endif // QT_CONFIG(tooltip)
         action_32->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\276\320\2772", nullptr));
+        print_preview->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\265\320\264\320\262\320\260\321\200\320\270\321\202\320\265\320\273\321\214\320\275\321\213\320\271 \320\277\321\200\320\276\321\201\320\274\320\276\321\202\321\200", nullptr));
+#if QT_CONFIG(shortcut)
+        print_preview->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+O", nullptr));
+#endif // QT_CONFIG(shortcut)
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "\320\230\321\201\321\205\320\276\320\264\320\275\321\213\320\265 \320\264\320\260\320\275\320\275\321\213\320\265", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "\320\237\321\200\320\265\320\264\320\262\320\260\321\200\320\270\321\202\320\265\320\273\321\214\320\275\320\260\321\217 \320\270\320\264\320\265\320\275\321\202\320\270\321\204\320\270\320\272\320\260\321\206\320\270\321\217 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\320\276\320\262 \321\201\321\205\320\265\320\274\321\213 \320\267\320\260\320\274\320\265\321\211\320\265\320\275\320\270\321\217", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_14), QCoreApplication::translate("MainWindow", "\320\237\321\200\320\265\320\264\320\262\320\260\321\200\320\270\321\202\320\265\320\273\321\214\320\275\320\260\321\217 \320\270\320\264\320\265\320\275\321\202\320\270\321\204\320\270\320\272\320\260\321\206\320\270\321\217 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\320\276\320\262 \321\202\320\265\320\277\320\273\320\276\320\262\320\276\320\271 \320\274\320\276\320\264\320\265\320\273\320\270", nullptr));

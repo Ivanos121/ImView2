@@ -1781,6 +1781,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="action_2"/>
    <addaction name="action_6"/>
    <addaction name="separator"/>
+   <addaction name="print_preview"/>
    <addaction name="action_3"/>
    <addaction name="separator"/>
    <addaction name="action_7"/>
@@ -2229,6 +2230,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="text">
     <string>Предварительный просмотр</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
    </property>
   </action>
  </widget>
