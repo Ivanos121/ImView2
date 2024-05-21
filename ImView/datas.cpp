@@ -1,14 +1,12 @@
 #include "datas.h"
 #include "ui_datas.h"
 #include "base.h"
-#include "myproxymodel.h"
 
 #include <QMessageBox>
 #include <QDebug>
 #include <QSqlError>
 #include "QStandardItemModel"
 #include "QStandardItem"
-#include <stdio.h>
 #include <QTableView>
 #include <QStyle>
 #include <QDesktopWidget>
@@ -43,17 +41,32 @@ datas::~datas()
 void datas::table()
 {
     model = new QSqlTableModel;
-
     model->setTable("dvigatels");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
-    MyProxyModel *proxy;
-    proxy->setSourceModel(model);
-    ui->tableView->setModel(proxy);
+
+    QSortFilterProxyModel *proxy1=new QSortFilterProxyModel();
+    proxy1->setSourceModel(model);
+
+    QStandardItemModel *modd=new QStandardItemModel();
+
+    for (int z =0; z< proxy1->rowCount(); ++z)
+    {
+        for (int y =0; y< proxy1->columnCount(); ++y)
+        {
+            QStandardItem *item= new QStandardItem();
+            item->setText(proxy1->index(z,y).data().toString());
+            item->setTextAlignment(Qt::AlignCenter);
+            modd->setItem(z,y,item);
+        }
+    }
+
+    ui->tableView->setModel(modd);
     //ui->tableView->setModel(model);
     ui->tableView->setColumnHidden(0, true); //скрытие колонки id
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); //выделение строки
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
+
 
 
 

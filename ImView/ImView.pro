@@ -53,7 +53,6 @@ SOURCES += \
     model_el.cpp \
     modelidentf.cpp \
     modell.cpp \
-    myproxymodel.cpp \
     nabludatel.cpp \
     nabludatel_part.cpp \
     paintdelegate.cpp \
@@ -110,7 +109,6 @@ HEADERS += \
     model_el.h \
     modelidentf.h \
     modell.h \
-    myproxymodel.h \
     nabludatel.h \
     nabludatel_base.h \
     nabludatel_part.h \
