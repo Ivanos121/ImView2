@@ -84,6 +84,9 @@ public:
     QVector<QColor> dataLineColors;
     void setcolorincell(int row, int column);
 
+private:
+    QString sessionFileName;
+
 private slots:
     void on_actionabout_triggered();
     void on_actionExit_triggered();
@@ -116,6 +119,8 @@ private slots:
     void printPreview(QPrinter *printer);
     void printTable(QPrinter *printer, bool isPreview);
     void pagePrint();
+    void button_visible();
+    void button_visible_2();
 
     void tabClicked();
     void tabClicked_2();

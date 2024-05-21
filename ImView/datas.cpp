@@ -1,6 +1,8 @@
 #include "datas.h"
 #include "ui_datas.h"
 #include "base.h"
+#include "myproxymodel.h"
+
 #include <QMessageBox>
 #include <QDebug>
 #include <QSqlError>
@@ -45,10 +47,14 @@ void datas::table()
     model->setTable("dvigatels");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
-    ui->tableView->setModel(model);
+    MyProxyModel *proxy;
+    proxy->setSourceModel(model);
+    ui->tableView->setModel(proxy);
+    //ui->tableView->setModel(model);
     ui->tableView->setColumnHidden(0, true); //скрытие колонки id
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); //выделение строки
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
+
 
 
 }

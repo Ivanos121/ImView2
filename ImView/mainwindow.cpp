@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 
+
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QClipboard>
@@ -102,6 +103,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->LoadProgect->setVisible(false);
     ui->SaveProgectToFile->setVisible(false);
+    ui->action_2->setEnabled(false);
+    ui->action_6->setEnabled(false);
 
     ui->widget_6->ui->plot->t_max = 0.01;
     ui->widget_6->ui->plot->U_max = 500.0;
@@ -173,6 +176,8 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     QStandardItemModel* model=new QStandardItemModel(ui->treeView);
+
+
     model->setHorizontalHeaderLabels (QStringList () << QStringLiteral ("Наименование") << QStringLiteral ("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
@@ -2602,6 +2607,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
     connect(ui->tabWidget_3, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_5);
     connect(ui->widget_7->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_6);
+    connect(model, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible);
+    connect(model, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible_2);
 
 }
 
@@ -3829,9 +3836,13 @@ void MainWindow::LoadProject(QString str)
         }
         file.close(); // Закрываем файл
     }
-    QString str1 = QFileInfo(str).fileName();
-    item4->setText(str1);
+
+    sessionFileName = QFileInfo(str).fileName();
+
+    item4->setText(sessionFileName);
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+    ui->action_2->setEnabled(false);
+    ui->action_6->setEnabled(false);
 }
 
 void MainWindow::on_pushButton_5_clicked(bool checked)
@@ -8493,6 +8504,19 @@ void MainWindow::open_file()
 
 void MainWindow::save_file()
 {
+    QString filename;
+    QDir dir("../Output");
+    if (!dir.exists())
+    {
+        QMessageBox::critical(this, "dd","Cannot find the example directory");
+    }
+    else
+    {
+        if (!QFile(sessionFileName).exists()) {
+          QMessageBox::critical(this, "dd","The file does not exist"); // если файл не найден, то выводим предупреждение и завершаем работу программы
+        }
+
+    }
     QFile file(QString("../save/project.xml"));
     file.open(QIODevice::WriteOnly);
 
@@ -8627,8 +8651,8 @@ void MainWindow::save_file()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
-    QString str = item4->text();
-    JlCompress::compressDir(str + QString(".imview"), "../save/");
+    JlCompress::compressDir(QString("../Output/") + sessionFileName, "../save/");
+    ui->action_2->setEnabled(false);
 }
 
 void MainWindow::save_as_file()
@@ -8723,4 +8747,14 @@ void MainWindow::pagePrint()
 {
     QPrinter printer;
     printTable(&printer, false);
+}
+
+void MainWindow::button_visible()
+{
+    ui->action_2->setEnabled(true);
+}
+
+void MainWindow::button_visible_2()
+{
+    ui->action_6->setEnabled(true);
 }

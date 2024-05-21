@@ -1505,7 +1505,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1116, 26));
+        menubar->setGeometry(QRect(0, 0, 1116, 30));
         menufile = new QMenu(menubar);
         menufile->setObjectName(QString::fromUtf8("menufile"));
         menuabout = new QMenu(menubar);
@@ -1607,7 +1607,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(0);
         stackedWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
