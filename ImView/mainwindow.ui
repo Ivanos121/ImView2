@@ -211,7 +211,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -258,6 +258,9 @@
         </item>
         <item row="3" column="0">
          <widget class="QPushButton" name="SaveProgectToFile">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -271,6 +274,9 @@
         </item>
         <item row="2" column="0">
          <widget class="QPushButton" name="LoadProgect">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>

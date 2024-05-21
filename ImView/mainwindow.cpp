@@ -100,6 +100,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_4->wf=this;
     ui->widget->wf=this;
 
+    ui->LoadProgect->setVisible(false);
+    ui->SaveProgectToFile->setVisible(false);
+
     ui->widget_6->ui->plot->t_max = 0.01;
     ui->widget_6->ui->plot->U_max = 500.0;
     ui->widget_6->ui->plot->margin_bottom = 40;
@@ -3457,6 +3460,7 @@ void MainWindow::on_LoadProgect_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
+    //QString str = QFileInfo(QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter)).fileName();
     LoadProject(str);
 }
 
@@ -3825,6 +3829,8 @@ void MainWindow::LoadProject(QString str)
         }
         file.close(); // Закрываем файл
     }
+    QString str1 = QFileInfo(str).fileName();
+    item4->setText(str1);
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
 }
 
@@ -8482,24 +8488,152 @@ void MainWindow::create_new()
 
 void MainWindow::open_file()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                      "/home",
-                                                      tr("Images (*.png *.xpm *.jpg)"));
-
+    on_LoadProgect_clicked();
 }
 
 void MainWindow::save_file()
 {
-    QString fileName = QFileDialog::getSaveFileName(this,
-        tr("Сохранение данных"), "",
-        tr(".imview (*.*);;All Files (*)"));
+    QFile file(QString("../save/project.xml"));
+    file.open(QIODevice::WriteOnly);
+
+    //Создаем объект, с помощью которого осуществляется запись в файл
+    QXmlStreamWriter xmlWriter(&file);
+    xmlWriter.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
+    xmlWriter.writeStartDocument();     // Запускаем запись в документ
+    xmlWriter.writeStartElement("resources");   // Записываем первый элемент с его именем
+    xmlWriter.writeStartElement("project");  // Записываем тег с именем для первого итема
+
+    xmlWriter.writeStartElement("general_settings");
+
+    xmlWriter.writeStartElement("project_name");
+    xmlWriter.writeAttribute("value", (item4->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_1");
+    xmlWriter.writeAttribute("value", (item88->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("project_path");
+    xmlWriter.writeAttribute("value", (item106->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_2");
+    xmlWriter.writeAttribute("value", (item80->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("project_path_2");
+    xmlWriter.writeAttribute("value", (item82->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_1");
+    xmlWriter.writeAttribute("boolean", (item68->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_2");
+    xmlWriter.writeAttribute("boolean", (item70->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_3");
+    xmlWriter.writeAttribute("boolean", (item72->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_4");
+    xmlWriter.writeAttribute("boolean", (item74->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_5");
+    xmlWriter.writeAttribute("boolean", (item76->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("checkbox_6");
+    xmlWriter.writeAttribute("boolean", (item78->checkState()? "true" : "false"));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_3");
+    xmlWriter.writeAttribute("value", (item14->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_1");
+    xmlWriter.writeAttribute("value", (item94->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_2");
+    xmlWriter.writeAttribute("value", (item96->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_3");
+    xmlWriter.writeAttribute("value", (item98->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_4");
+    xmlWriter.writeAttribute("value", (item100->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_5");
+    xmlWriter.writeAttribute("value", (item102->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("coeff_6");
+    xmlWriter.writeAttribute("value", (item104->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_4");
+    xmlWriter.writeAttribute("value", (item20->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("time_cikle");
+    xmlWriter.writeAttribute("value", (item22->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("time_raboty");
+    xmlWriter.writeAttribute("value", (item24->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_5");
+    xmlWriter.writeAttribute("value", (item92->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("moment2");
+    xmlWriter.writeAttribute("value", (item130->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("napragenie");
+    xmlWriter.writeAttribute("value", (item132->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("start_temp");
+    xmlWriter.writeAttribute("value", (item28->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_6");
+    xmlWriter.writeAttribute("value", (item30->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("time_step");
+    xmlWriter.writeAttribute("value", (item107->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_7");
+    xmlWriter.writeAttribute("value", (item34->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_8");
+    xmlWriter.writeAttribute("value", (item36->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndDocument();
+    file.close();   // Закрываем файл
+
+    QString str = item4->text();
+    JlCompress::compressDir(str + QString(".imview"), "../save/");
 }
 
 void MainWindow::save_as_file()
 {
-    QString fileName = QFileDialog::getSaveFileName(this,
-        tr("Сохранение данных как"), "",
-        tr(".imview (*.*);;All Files (*)"));
+    on_SaveProgectToFile_clicked();
 }
 
 void MainWindow::print_preview_file()

@@ -2,7 +2,7 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="demo"/>
+            <project_name value="new.imview"/>
             <combobox_1 value="Внутренний источник данных"/>
             <project_path value="Указать каталог"/>
             <combobox_2 value="Внутренний источник данных"/>
@@ -21,8 +21,8 @@
             <coeff_5 value="0"/>
             <coeff_6 value="0"/>
             <combobox_4 value="Режим S1"/>
-            <time_cikle value="0"/>
-            <time_raboty value="0"/>
+            <time_cikle value="5"/>
+            <time_raboty value="5"/>
             <combobox_5 value="Прямой пуск"/>
             <moment2 value="311"/>
             <napragenie value="20"/>

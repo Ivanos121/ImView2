@@ -671,6 +671,7 @@ public:
 
         SaveProgectToFile = new QPushButton(page);
         SaveProgectToFile->setObjectName(QString::fromUtf8("SaveProgectToFile"));
+        SaveProgectToFile->setEnabled(false);
         sizePolicy4.setHeightForWidth(SaveProgectToFile->sizePolicy().hasHeightForWidth());
         SaveProgectToFile->setSizePolicy(sizePolicy4);
 
@@ -678,6 +679,7 @@ public:
 
         LoadProgect = new QPushButton(page);
         LoadProgect->setObjectName(QString::fromUtf8("LoadProgect"));
+        LoadProgect->setEnabled(false);
         sizePolicy4.setHeightForWidth(LoadProgect->sizePolicy().hasHeightForWidth());
         LoadProgect->setSizePolicy(sizePolicy4);
 
@@ -1572,6 +1574,7 @@ public:
         toolBar->addAction(action_2);
         toolBar->addAction(action_6);
         toolBar->addSeparator();
+        toolBar->addAction(print_preview);
         toolBar->addAction(action_3);
         toolBar->addSeparator();
         toolBar->addAction(action_7);
@@ -1606,7 +1609,7 @@ public:
 
         tabWidget->setCurrentIndex(5);
         tabWidget_3->setCurrentIndex(0);
-        stackedWidget->setCurrentIndex(9);
+        stackedWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
 
 
@@ -1716,6 +1719,9 @@ public:
 #endif // QT_CONFIG(tooltip)
         action_32->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\276\320\2772", nullptr));
         print_preview->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\265\320\264\320\262\320\260\321\200\320\270\321\202\320\265\320\273\321\214\320\275\321\213\320\271 \320\277\321\200\320\276\321\201\320\274\320\276\321\202\321\200", nullptr));
+#if QT_CONFIG(shortcut)
+        print_preview->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+O", nullptr));
+#endif // QT_CONFIG(shortcut)
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "\320\230\321\201\321\205\320\276\320\264\320\275\321\213\320\265 \320\264\320\260\320\275\320\275\321\213\320\265", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "\320\237\321\200\320\265\320\264\320\262\320\260\321\200\320\270\321\202\320\265\320\273\321\214\320\275\320\260\321\217 \320\270\320\264\320\265\320\275\321\202\320\270\321\204\320\270\320\272\320\260\321\206\320\270\321\217 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\320\276\320\262 \321\201\321\205\320\265\320\274\321\213 \320\267\320\260\320\274\320\265\321\211\320\265\320\275\320\270\321\217", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_14), QCoreApplication::translate("MainWindow", "\320\237\321\200\320\265\320\264\320\262\320\260\321\200\320\270\321\202\320\265\320\273\321\214\320\275\320\260\321\217 \320\270\320\264\320\265\320\275\321\202\320\270\321\204\320\270\320\272\320\260\321\206\320\270\321\217 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\320\276\320\262 \321\202\320\265\320\277\320\273\320\276\320\262\320\276\320\271 \320\274\320\276\320\264\320\265\320\273\320\270", nullptr));
