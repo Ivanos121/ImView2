@@ -89,6 +89,7 @@ SOURCES       = ../ImView/archiverchannel.cpp \
 		../ImView/model_el.cpp \
 		../ImView/modelidentf.cpp \
 		../ImView/modell.cpp \
+		../ImView/multilinedelegate.cpp \
 		../ImView/nabludatel.cpp \
 		../ImView/nabludatel_part.cpp \
 		../ImView/paintdelegate.cpp \
@@ -128,6 +129,7 @@ SOURCES       = ../ImView/archiverchannel.cpp \
 		moc_mainwindow.cpp \
 		moc_model_el.cpp \
 		moc_modelidentf.cpp \
+		moc_multilinedelegate.cpp \
 		moc_plot.cpp \
 		moc_pushbuttondelegate.cpp \
 		moc_settings.cpp \
@@ -177,6 +179,7 @@ OBJECTS       = archiverchannel.o \
 		model_el.o \
 		modelidentf.o \
 		modell.o \
+		multilinedelegate.o \
 		nabludatel.o \
 		nabludatel_part.o \
 		paintdelegate.o \
@@ -217,6 +220,7 @@ OBJECTS       = archiverchannel.o \
 		moc_mainwindow.o \
 		moc_model_el.o \
 		moc_modelidentf.o \
+		moc_multilinedelegate.o \
 		moc_plot.o \
 		moc_pushbuttondelegate.o \
 		moc_settings.o \
@@ -576,6 +580,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../ImView/model_el.h \
 		../ImView/modelidentf.h \
 		../ImView/modell.h \
+		../ImView/multilinedelegate.h \
 		../ImView/nabludatel.h \
 		../ImView/nabludatel_base.h \
 		../ImView/nabludatel_part.h \
@@ -630,6 +635,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../ImView/model_el.cpp \
 		../ImView/modelidentf.cpp \
 		../ImView/modell.cpp \
+		../ImView/multilinedelegate.cpp \
 		../ImView/nabludatel.cpp \
 		../ImView/nabludatel_part.cpp \
 		../ImView/paintdelegate.cpp \
@@ -1296,8 +1302,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../ImView/Images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ImView/archiverchannel.h ../ImView/base.h ../ImView/base_tepl.h ../ImView/bvasthread.h ../ImView/bvas.h ../ImView/checkboxdelegate.h ../ImView/checkboxheader.h ../ImView/comboboxbitdelegate.h ../ImView/comboboxcurrentdelegate.h ../ImView/comboboxdelegate.h ../ImView/comboboxerrorarchivedelegate.h ../ImView/comboboxmodbusdelegate.h ../ImView/comboboxvardelegate.h ../ImView/crc.h ../ImView/customhelpdelegate.h ../ImView/datas.h ../ImView/datasource.h ../ImView/datasource_el.h ../ImView/datasource_file.h ../ImView/datasourcebvas.h ../ImView/datasourcebvasw.h ../ImView/datasourcedigitosc.h ../ImView/device.h ../ImView/devicedigitosc.h ../ImView/digitoscthread.h ../ImView/draw_line.h ../ImView/draw_poper.h ../ImView/electromagn.h ../ImView/gridlinedelegate.h ../ImView/identf.h ../ImView/ischodn_dannie.h ../ImView/itogs.h ../ImView/kalibr.h ../ImView/mainwindow.h ../ImView/model.h ../ImView/model_el.h ../ImView/modelidentf.h ../ImView/modell.h ../ImView/nabludatel.h ../ImView/nabludatel_base.h ../ImView/nabludatel_part.h ../ImView/paintdelegate.h ../ImView/plot.h ../ImView/pushbuttondelegate.h ../ImView/settings.h ../ImView/settingscanals.h ../ImView/tepl_dannie.h ../ImView/tepl_identf.h ../ImView/tepl_nabludatel.h ../ImView/tepl_struct.h ../ImView/teplovent.h ../ImView/teplschem.h ../ImView/trend.h ../ImView/vent_model.h ../ImView/vent_tract.h ../ImView/zerocorrector.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ImView/archiverchannel.cpp ../ImView/base.cpp ../ImView/bvasthread.cpp ../ImView/bvas.cpp ../ImView/checkboxdelegate.cpp ../ImView/checkboxheader.cpp ../ImView/comboboxbitdelegate.cpp ../ImView/comboboxcurrentdelegate.cpp ../ImView/comboboxdelegate.cpp ../ImView/comboboxerrorarchivedelegate.cpp ../ImView/comboboxmodbusdelegate.cpp ../ImView/comboboxvardelegate.cpp ../ImView/customhelpdelegate.cpp ../ImView/datas.cpp ../ImView/datasource.cpp ../ImView/datasource_el.cpp ../ImView/datasource_file.cpp ../ImView/datasourcebvas.cpp ../ImView/datasourcebvasw.cpp ../ImView/datasourcedigitosc.cpp ../ImView/device.cpp ../ImView/devicedigitosc.cpp ../ImView/digitoscthread.cpp ../ImView/draw_line.cpp ../ImView/draw_poper.cpp ../ImView/electromagn.cpp ../ImView/gridlinedelegate.cpp ../ImView/identf.cpp ../ImView/ischodn_dannie.cpp ../ImView/itogs.cpp ../ImView/kalibr.cpp ../ImView/main.cpp ../ImView/mainwindow.cpp ../ImView/model.cpp ../ImView/model_el.cpp ../ImView/modelidentf.cpp ../ImView/modell.cpp ../ImView/nabludatel.cpp ../ImView/nabludatel_part.cpp ../ImView/paintdelegate.cpp ../ImView/plot.cpp ../ImView/pushbuttondelegate.cpp ../ImView/settings.cpp ../ImView/settingscanals.cpp ../ImView/tepl_dannie.cpp ../ImView/tepl_identf.cpp ../ImView/tepl_nabludatel.cpp ../ImView/teplovent.cpp ../ImView/teplschem.cpp ../ImView/trend.cpp ../ImView/vent_model.cpp ../ImView/vent_tract.cpp ../ImView/zerocorrector.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ImView/archiverchannel.h ../ImView/base.h ../ImView/base_tepl.h ../ImView/bvasthread.h ../ImView/bvas.h ../ImView/checkboxdelegate.h ../ImView/checkboxheader.h ../ImView/comboboxbitdelegate.h ../ImView/comboboxcurrentdelegate.h ../ImView/comboboxdelegate.h ../ImView/comboboxerrorarchivedelegate.h ../ImView/comboboxmodbusdelegate.h ../ImView/comboboxvardelegate.h ../ImView/crc.h ../ImView/customhelpdelegate.h ../ImView/datas.h ../ImView/datasource.h ../ImView/datasource_el.h ../ImView/datasource_file.h ../ImView/datasourcebvas.h ../ImView/datasourcebvasw.h ../ImView/datasourcedigitosc.h ../ImView/device.h ../ImView/devicedigitosc.h ../ImView/digitoscthread.h ../ImView/draw_line.h ../ImView/draw_poper.h ../ImView/electromagn.h ../ImView/gridlinedelegate.h ../ImView/identf.h ../ImView/ischodn_dannie.h ../ImView/itogs.h ../ImView/kalibr.h ../ImView/mainwindow.h ../ImView/model.h ../ImView/model_el.h ../ImView/modelidentf.h ../ImView/modell.h ../ImView/multilinedelegate.h ../ImView/nabludatel.h ../ImView/nabludatel_base.h ../ImView/nabludatel_part.h ../ImView/paintdelegate.h ../ImView/plot.h ../ImView/pushbuttondelegate.h ../ImView/settings.h ../ImView/settingscanals.h ../ImView/tepl_dannie.h ../ImView/tepl_identf.h ../ImView/tepl_nabludatel.h ../ImView/tepl_struct.h ../ImView/teplovent.h ../ImView/teplschem.h ../ImView/trend.h ../ImView/vent_model.h ../ImView/vent_tract.h ../ImView/zerocorrector.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ImView/archiverchannel.cpp ../ImView/base.cpp ../ImView/bvasthread.cpp ../ImView/bvas.cpp ../ImView/checkboxdelegate.cpp ../ImView/checkboxheader.cpp ../ImView/comboboxbitdelegate.cpp ../ImView/comboboxcurrentdelegate.cpp ../ImView/comboboxdelegate.cpp ../ImView/comboboxerrorarchivedelegate.cpp ../ImView/comboboxmodbusdelegate.cpp ../ImView/comboboxvardelegate.cpp ../ImView/customhelpdelegate.cpp ../ImView/datas.cpp ../ImView/datasource.cpp ../ImView/datasource_el.cpp ../ImView/datasource_file.cpp ../ImView/datasourcebvas.cpp ../ImView/datasourcebvasw.cpp ../ImView/datasourcedigitosc.cpp ../ImView/device.cpp ../ImView/devicedigitosc.cpp ../ImView/digitoscthread.cpp ../ImView/draw_line.cpp ../ImView/draw_poper.cpp ../ImView/electromagn.cpp ../ImView/gridlinedelegate.cpp ../ImView/identf.cpp ../ImView/ischodn_dannie.cpp ../ImView/itogs.cpp ../ImView/kalibr.cpp ../ImView/main.cpp ../ImView/mainwindow.cpp ../ImView/model.cpp ../ImView/model_el.cpp ../ImView/modelidentf.cpp ../ImView/modell.cpp ../ImView/multilinedelegate.cpp ../ImView/nabludatel.cpp ../ImView/nabludatel_part.cpp ../ImView/paintdelegate.cpp ../ImView/plot.cpp ../ImView/pushbuttondelegate.cpp ../ImView/settings.cpp ../ImView/settingscanals.cpp ../ImView/tepl_dannie.cpp ../ImView/tepl_identf.cpp ../ImView/tepl_nabludatel.cpp ../ImView/teplovent.cpp ../ImView/teplschem.cpp ../ImView/trend.cpp ../ImView/vent_model.cpp ../ImView/vent_tract.cpp ../ImView/zerocorrector.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ImView/about_dialog.ui ../ImView/datas.ui ../ImView/draw_line.ui ../ImView/draw_poper.ui ../ImView/electromagn.ui ../ImView/graph_Settings.ui ../ImView/identf.ui ../ImView/ischodn_dannie.ui ../ImView/itogs.ui ../ImView/kalibr.ui ../ImView/mainwindow.ui ../ImView/settings.ui ../ImView/settingscanals.ui ../ImView/settinsKanals.ui ../ImView/tepl_dannie.ui ../ImView/tepl_identf.ui ../ImView/tepl_nabludatel.ui ../ImView/teplovent.ui ../ImView/teplschem.ui ../ImView/trend.ui ../ImView/vent_model.ui ../ImView/vent_tract.ui $(DISTDIR)/
 
 
@@ -1416,9 +1422,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_bvasthread.cpp moc_checkboxheader.cpp moc_customhelpdelegate.cpp moc_datas.cpp moc_datasource.cpp moc_datasource_el.cpp moc_datasource_file.cpp moc_datasourcebvas.cpp moc_datasourcebvasw.cpp moc_datasourcedigitosc.cpp moc_device.cpp moc_devicedigitosc.cpp moc_digitoscthread.cpp moc_draw_line.cpp moc_draw_poper.cpp moc_electromagn.cpp moc_identf.cpp moc_ischodn_dannie.cpp moc_itogs.cpp moc_kalibr.cpp moc_mainwindow.cpp moc_model_el.cpp moc_modelidentf.cpp moc_plot.cpp moc_pushbuttondelegate.cpp moc_settings.cpp moc_settingscanals.cpp moc_tepl_dannie.cpp moc_tepl_identf.cpp moc_tepl_nabludatel.cpp moc_teplovent.cpp moc_teplschem.cpp moc_trend.cpp moc_vent_model.cpp moc_vent_tract.cpp
+compiler_moc_header_make_all: moc_bvasthread.cpp moc_checkboxheader.cpp moc_customhelpdelegate.cpp moc_datas.cpp moc_datasource.cpp moc_datasource_el.cpp moc_datasource_file.cpp moc_datasourcebvas.cpp moc_datasourcebvasw.cpp moc_datasourcedigitosc.cpp moc_device.cpp moc_devicedigitosc.cpp moc_digitoscthread.cpp moc_draw_line.cpp moc_draw_poper.cpp moc_electromagn.cpp moc_identf.cpp moc_ischodn_dannie.cpp moc_itogs.cpp moc_kalibr.cpp moc_mainwindow.cpp moc_model_el.cpp moc_modelidentf.cpp moc_multilinedelegate.cpp moc_plot.cpp moc_pushbuttondelegate.cpp moc_settings.cpp moc_settingscanals.cpp moc_tepl_dannie.cpp moc_tepl_identf.cpp moc_tepl_nabludatel.cpp moc_teplovent.cpp moc_teplschem.cpp moc_trend.cpp moc_vent_model.cpp moc_vent_tract.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_bvasthread.cpp moc_checkboxheader.cpp moc_customhelpdelegate.cpp moc_datas.cpp moc_datasource.cpp moc_datasource_el.cpp moc_datasource_file.cpp moc_datasourcebvas.cpp moc_datasourcebvasw.cpp moc_datasourcedigitosc.cpp moc_device.cpp moc_devicedigitosc.cpp moc_digitoscthread.cpp moc_draw_line.cpp moc_draw_poper.cpp moc_electromagn.cpp moc_identf.cpp moc_ischodn_dannie.cpp moc_itogs.cpp moc_kalibr.cpp moc_mainwindow.cpp moc_model_el.cpp moc_modelidentf.cpp moc_plot.cpp moc_pushbuttondelegate.cpp moc_settings.cpp moc_settingscanals.cpp moc_tepl_dannie.cpp moc_tepl_identf.cpp moc_tepl_nabludatel.cpp moc_teplovent.cpp moc_teplschem.cpp moc_trend.cpp moc_vent_model.cpp moc_vent_tract.cpp
+	-$(DEL_FILE) moc_bvasthread.cpp moc_checkboxheader.cpp moc_customhelpdelegate.cpp moc_datas.cpp moc_datasource.cpp moc_datasource_el.cpp moc_datasource_file.cpp moc_datasourcebvas.cpp moc_datasourcebvasw.cpp moc_datasourcedigitosc.cpp moc_device.cpp moc_devicedigitosc.cpp moc_digitoscthread.cpp moc_draw_line.cpp moc_draw_poper.cpp moc_electromagn.cpp moc_identf.cpp moc_ischodn_dannie.cpp moc_itogs.cpp moc_kalibr.cpp moc_mainwindow.cpp moc_model_el.cpp moc_modelidentf.cpp moc_multilinedelegate.cpp moc_plot.cpp moc_pushbuttondelegate.cpp moc_settings.cpp moc_settingscanals.cpp moc_tepl_dannie.cpp moc_tepl_identf.cpp moc_tepl_nabludatel.cpp moc_teplovent.cpp moc_teplschem.cpp moc_trend.cpp moc_vent_model.cpp moc_vent_tract.cpp
 moc_bvasthread.cpp: ../ImView/bvasthread.h \
 		../ImView/device.h \
 		moc_predefs.h \
@@ -1637,6 +1643,11 @@ moc_modelidentf.cpp: ../ImView/modelidentf.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/elf/ImView2/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/ImView2/ImView -I/usr/include/qt -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtSvg -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtXml -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include-fixed -I/usr/include ../ImView/modelidentf.h -o moc_modelidentf.cpp
+
+moc_multilinedelegate.cpp: ../ImView/multilinedelegate.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include /home/elf/ImView2/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/ImView2/ImView -I/usr/include/qt -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtSvg -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtXml -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include-fixed -I/usr/include ../ImView/multilinedelegate.h -o moc_multilinedelegate.cpp
 
 moc_plot.cpp: ../ImView/plot.h \
 		moc_predefs.h \
@@ -2106,7 +2117,8 @@ datas.o: ../ImView/datas.cpp ../ImView/datas.h \
 		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
-		ui_datas.h
+		ui_datas.h \
+		../ImView/multilinedelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o datas.o ../ImView/datas.cpp
 
 datasource.o: ../ImView/datasource.cpp ../ImView/datasource.h
@@ -2486,6 +2498,9 @@ modelidentf.o: ../ImView/modelidentf.cpp ../ImView/modelidentf.h \
 modell.o: ../ImView/modell.cpp ../ImView/modell.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o modell.o ../ImView/modell.cpp
 
+multilinedelegate.o: ../ImView/multilinedelegate.cpp ../ImView/multilinedelegate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o multilinedelegate.o ../ImView/multilinedelegate.cpp
+
 nabludatel.o: ../ImView/nabludatel.cpp ../ImView/nabludatel.h \
 		../ImView/datasource.h \
 		../ImView/nabludatel_base.h \
@@ -2752,6 +2767,9 @@ moc_model_el.o: moc_model_el.cpp
 
 moc_modelidentf.o: moc_modelidentf.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_modelidentf.o moc_modelidentf.cpp
+
+moc_multilinedelegate.o: moc_multilinedelegate.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_multilinedelegate.o moc_multilinedelegate.cpp
 
 moc_plot.o: moc_plot.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_plot.o moc_plot.cpp

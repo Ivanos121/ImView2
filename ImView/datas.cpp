@@ -1,4 +1,5 @@
 #include "datas.h"
+#include "qtextedit.h"
 #include "ui_datas.h"
 #include "base.h"
 
@@ -14,6 +15,7 @@
 #include <QIntValidator>
 #include <QFileDialog>
 #include <QScreen>
+#include "multilinedelegate.h"
 
 datas::datas(QWidget *parent) :
     QWidget(parent),
@@ -68,8 +70,35 @@ void datas::table()
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
 
 
+    modd->setHeaderData(1, Qt::Horizontal, "Марка двигателя", Qt::DisplayRole);
+    modd->setHeaderData(2, Qt::Horizontal, "Номинальная мощность двигателя, кВтeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", Qt::DisplayRole);
+    modd->setHeaderData(3, Qt::Horizontal, "Номинальная частота вращения, об/мин", Qt::DisplayRole);
+    modd->setHeaderData(4, Qt::Horizontal, "Номинальное напряжение фазы, В", Qt::DisplayRole);
+    modd->setHeaderData(5, Qt::Horizontal, "Номинальный коэффициент мощности", Qt::DisplayRole);
+    modd->setHeaderData(6, Qt::Horizontal, "Номинальный коэффициент полезного действия", Qt::DisplayRole);
+    modd->setHeaderData(7, Qt::Horizontal, "Кратность максимального момента", Qt::DisplayRole);
+    modd->setHeaderData(8, Qt::Horizontal, "Номинальное напряжение питания", Qt::DisplayRole);
+    modd->setHeaderData(9, Qt::Horizontal, "Синхронная частота вращения, об/мин", Qt::DisplayRole);
+
+    QHeaderView *header=ui->tableView->horizontalHeader();
+    for(int i=1;i<=8;i++)
+    {
+        header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
+    }
+
+    ui->tableView->setWordWrap(true);
+    ui->tableView->setTextElideMode(Qt::ElideMiddle);
+    ui->tableView->resizeRowsToContents();
+   // header=ui->tableView->verticalHeader();
+   // for(int j=1;j<=8;j++)ui->tableView->verticalHeader()->setSectionResizeMode(j,QHeaderView::ResizeToContents);
+   ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
+   MultilineDelegate* multilineDelegate = new MultilineDelegate(this); //создание делегата для создания комбобоксов
+   for(int i=1;i<=8;i++)
+   {
+        ui->tableView->setItemDelegateForColumn(i, multilineDelegate);
+   }
 }
 
 void datas::zapis()
@@ -111,21 +140,6 @@ void datas::on_deleteDannie_clicked()
     table();
     }
 }
-
-//void datas::on_dannieIdent_clicked()
-//{
-//    QSettings settings;
-//    dataSourceFilename = QFileDialog::getOpenFileName(this,
-//                                QString::fromUtf8("Открыть файл"),
-
-//                                settings.value("dataSource/LastPath", "").toString(),
-//                                "txt files (*.txt);;All files (*.*)");
-
-//    if (!dataSourceFilename.isEmpty())
-//    {
-//        settings.setValue("dataSource/LastPath",  QFileInfo(dataSourceFilename).absoluteDir().absolutePath());
-//    }
-//}
 
 void datas::on_saveDannie_clicked()
 {

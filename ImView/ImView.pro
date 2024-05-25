@@ -53,6 +53,7 @@ SOURCES += \
     model_el.cpp \
     modelidentf.cpp \
     modell.cpp \
+    multilinedelegate.cpp \
     nabludatel.cpp \
     nabludatel_part.cpp \
     paintdelegate.cpp \
@@ -109,6 +110,7 @@ HEADERS += \
     model_el.h \
     modelidentf.h \
     modell.h \
+    multilinedelegate.h \
     nabludatel.h \
     nabludatel_base.h \
     nabludatel_part.h \
