@@ -16,6 +16,7 @@
 #include <QFileDialog>
 #include <QScreen>
 #include "multilinedelegate.h"
+#include "resizedelegate.h"
 
 datas::datas(QWidget *parent) :
     QWidget(parent),
@@ -89,16 +90,22 @@ void datas::table()
     ui->tableView->setWordWrap(true);
     ui->tableView->setTextElideMode(Qt::ElideMiddle);
     ui->tableView->resizeRowsToContents();
-   // header=ui->tableView->verticalHeader();
-   // for(int j=1;j<=8;j++)ui->tableView->verticalHeader()->setSectionResizeMode(j,QHeaderView::ResizeToContents);
-   ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->tableView->verticalHeader()->setDefaultSectionSize(ui->tableView->rowHeight(0));
+    ui->tableView->verticalHeader()->hide();
 
 
-   MultilineDelegate* multilineDelegate = new MultilineDelegate(this); //создание делегата для создания комбобоксов
+
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
+   TextEditDelegate* textEditdelegate = new TextEditDelegate(this); //создание делегата для создания комбобоксов
    for(int i=1;i<=8;i++)
    {
-        ui->tableView->setItemDelegateForColumn(i, multilineDelegate);
+        ui->tableView->setItemDelegateForColumn(i, textEditdelegate);
    }
+   ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter | (Qt::Alignment)Qt::TextWordWrap);
+   ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 void datas::zapis()

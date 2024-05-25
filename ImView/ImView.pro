@@ -59,6 +59,7 @@ SOURCES += \
     paintdelegate.cpp \
     plot.cpp \
     pushbuttondelegate.cpp \
+    resizedelegate.cpp \
     settings.cpp \
     settingscanals.cpp \
     tepl_dannie.cpp \
@@ -117,6 +118,7 @@ HEADERS += \
     paintdelegate.h \
     plot.h \
     pushbuttondelegate.h \
+    resizedelegate.h \
     settings.h \
     settingscanals.h \
     tepl_dannie.h \
