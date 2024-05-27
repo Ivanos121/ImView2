@@ -53,13 +53,11 @@ SOURCES += \
     model_el.cpp \
     modelidentf.cpp \
     modell.cpp \
-    multilinedelegate.cpp \
     nabludatel.cpp \
     nabludatel_part.cpp \
     paintdelegate.cpp \
     plot.cpp \
     pushbuttondelegate.cpp \
-    resizedelegate.cpp \
     settings.cpp \
     settingscanals.cpp \
     tepl_dannie.cpp \
@@ -111,14 +109,12 @@ HEADERS += \
     model_el.h \
     modelidentf.h \
     modell.h \
-    multilinedelegate.h \
     nabludatel.h \
     nabludatel_base.h \
     nabludatel_part.h \
     paintdelegate.h \
     plot.h \
     pushbuttondelegate.h \
-    resizedelegate.h \
     settings.h \
     settingscanals.h \
     tepl_dannie.h \
@@ -156,6 +152,8 @@ FORMS += \
     vent_model.ui \
     vent_tract.ui
 
+TRANSLATIONS += QtLanguage_ru.ts QtLanguage_en.ts
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -167,3 +165,5 @@ LIBS += -lquazip1-qt5 -lgsl -lgslcblas
 
 RESOURCES += \
     Images.qrc 
+
+CODECFORSRC     = UTF-8

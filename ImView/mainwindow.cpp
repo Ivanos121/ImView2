@@ -1,7 +1,8 @@
 #include "qimagewriter.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
-
+#include <QEvent>
+#include <QSettings>
 
 #include <QStyle>
 #include <QDesktopWidget>
@@ -64,6 +65,8 @@
 #include "model_el.h"
 #include "tepl_struct.h"
 #include "tepl_identf.h"
+#include "settings.h"
+#include "ui_settings.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -91,8 +94,20 @@ QVector<double> tepl_ident_StatorTemp;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , cleanState(true)
+    , undoOperation(false)
 {
     ui->setupUi(this);
+
+    undoStack = new QUndoStack(this);
+    undoStack->setUndoLimit(100);
+
+    ui->actionundo->setEnabled(false);
+    ui->actionredo->setEnabled(false);
+
+
+
+    createUndoView();
 
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -178,7 +193,7 @@ MainWindow::MainWindow(QWidget *parent)
     QStandardItemModel* model=new QStandardItemModel(ui->treeView);
 
 
-    model->setHorizontalHeaderLabels (QStringList () << QStringLiteral ("Наименование") << QStringLiteral ("Свойство")); // Установить заголовок столбца
+    model->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
     ui->treeView->setStyleSheet(
@@ -215,7 +230,7 @@ MainWindow::MainWindow(QWidget *parent)
                                     );
 
     QList<QStandardItem*> items1;
-    item1 = new QStandardItem(QStringLiteral ("Общее название сеанса"));
+    item1 = new QStandardItem(tr("Общее название сеанса"));
     QString w0=item1->text();
     item1->setToolTip(w0);
     item2 = new QStandardItem();
@@ -230,11 +245,11 @@ MainWindow::MainWindow(QWidget *parent)
     item1->setFont(newFont);
 
     QList<QStandardItem*> items2;
-    item3 = new QStandardItem(QStringLiteral ("Название сеанса"));
+    item3 = new QStandardItem(tr("Название сеанса"));
     item3->setEditable(false);
     QString w1=item3->text();
     item3->setToolTip(w1);
-    item4 = new QStandardItem(QStringLiteral ("Имя сеанса"));
+    item4 = new QStandardItem(tr("Имя сеанса"));
     QString w2=item4->text();
     item4->setToolTip(w2);
     items2.append(item3);
@@ -242,7 +257,7 @@ MainWindow::MainWindow(QWidget *parent)
     item1->appendRow(items2);
     items2.clear();
 
-    item7 = new QStandardItem(QStringLiteral ("Тип эксперимента"));
+    item7 = new QStandardItem(tr("Тип эксперимента"));
     item7->setEditable(false);
     QString w9=item7->text();
     item7->setToolTip(w9);
@@ -255,11 +270,11 @@ MainWindow::MainWindow(QWidget *parent)
     item1->appendRow(items2);
     items2.clear();
 
-    item87 = new QStandardItem(QStringLiteral ("Идентификация данных схемы замещения"));
+    item87 = new QStandardItem(tr("Идентификация данных схемы замещения"));
     item87->setEditable(false);
     QString w10=item87->text();
     item87->setToolTip(w10);
-    item88 = new QStandardItem(QStringLiteral ("Выбрать тип эксперимента"));
+    item88 = new QStandardItem(tr("Выбрать тип эксперимента"));
     QString w11=item88->text();
     item88->setToolTip(w11);
     items2.append(item87);
@@ -267,12 +282,12 @@ MainWindow::MainWindow(QWidget *parent)
     item7->appendRow(items2);
     items2.clear();
 
-    item105 = new QStandardItem(QStringLiteral ("Загрузка данных ручной идентификации"));
+    item105 = new QStandardItem(tr("Загрузка данных ручной идентификации"));
     item105->setEditable(false);
     item105->setEnabled(false);
     QString w12=item105->text();
     item105->setToolTip(w12);
-    item106 = new QStandardItem(QStringLiteral ("Указать каталог"));
+    item106 = new QStandardItem(tr("Указать каталог"));
     item106->setEnabled(false);
     QString w13=item106->text();
     item106->setToolTip(w13);
@@ -2610,6 +2625,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(model, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible);
     connect(model, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible_2);
 
+    connect(ui->lineEdit_13,&QLineEdit::textEdited, this, &MainWindow::edit);
+    connect(ui->lineEdit_16,&QLineEdit::textEdited, this, &MainWindow::edit_2);
+    connect(ui->lineEdit_14,&QLineEdit::textEdited, this, &MainWindow::edit_3);
+    connect(ui->lineEdit_17,&QLineEdit::textEdited, this, &MainWindow::edit_4);
+    connect(ui->lineEdit_15,&QLineEdit::textEdited, this, &MainWindow::edit_5);
+    connect(ui->lineEdit_18,&QLineEdit::textEdited, this, &MainWindow::edit_6);
+    connect(model,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
+
 }
 
 QImage fromSvg(const QString &path, int size)
@@ -2646,8 +2669,8 @@ void MainWindow::itemEdit()
 void MainWindow::createUndoStackAndActions()
 {
     undoStack = new QUndoStack(this);
-    undoAction = ui->action_7;
-    redoAction =  ui->action_8;
+    undoAction = ui->actionundo;
+    redoAction =  ui->actionredo;
 }
 
 void MainWindow::closeEvent (QCloseEvent *event)
@@ -3009,8 +3032,9 @@ void AboutDialog::on_pushButton_clicked()
 
 Settings::Settings(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::settings)
+    ui(new Ui::settings)  
 {
+    wf = (MainWindow*)parent;
     ui->setupUi(this);
     QListWidgetItem *item_1=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/folder.svg"), "Интерфейс");
     ui->listWidget->addItem(item_1);
@@ -3034,17 +3058,75 @@ Settings::Settings(QWidget *parent) :
 
     connect(ui->listWidget, &QListWidget::itemSelectionChanged, this, &Settings::on_listWidget_itemSelectionChanged);
 
+
     ui->stackedWidget->setCurrentIndex(0);
+    ui->comboBox->addItem(tr("Русский язык"));
+    ui->comboBox->addItem(tr("English language"));
+    ui->comboBox->setCurrentIndex(0);
+
+    connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
+                [=](const QString &text){
+            qtLanguageTranslator.load("QtLanguage_" + text, ".");   // Загружаем перевод
+            qApp->installTranslator(&qtLanguageTranslator);        // Устанавливаем перевод в приложение
+        });
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+            ui->retranslateUi(this);
+    }
+}
+
+void MainWindow::translate_en()
+{
+    qtLanguageTranslator.load(QString("QtLanguage_") + QString("en_US"));
+    qApp->installTranslator(&qtLanguageTranslator);
+
+
+}
+
+void MainWindow::translate_ru()
+{
+    qtLanguageTranslator.load(QString("QtLanguage_") + QString("ru_RU"));
+    qApp->installTranslator(&qtLanguageTranslator);
 }
 
 void Settings::on_pushButton_clicked()
 {
+
+    if(ui->comboBox->currentText() == "Русский язык")
+    {
+        ui->comboBox->setCurrentIndex(1);
+        wf->translate_ru();
+        QSettings settings( "BRU", "IM View");
+            settings.beginGroup( "language interface" );
+            settings.setValue( "QtLanguage_", "ru_RU");
+        settings.endGroup();
+
+    }
+    else if(ui->comboBox->currentText()  == "English language")
+    {
+        ui->comboBox->setCurrentIndex(0);
+        wf->translate_en();
+        QSettings settings( "BRU", "IM View");
+            settings.beginGroup( "language interface" );
+            settings.setValue( "QtLanguage_", "en_US");
+        settings.endGroup();
+
+    }
     close();
 }
 
 void Settings::on_pushButton_3_clicked()
 {
     close();
+}
+
+void Settings::on_pushButton_4_clicked()
+{
+    ui->label_9->setText(ui->comboBox->currentText());
 }
 
 void Settings::on_listWidget_itemSelectionChanged()
@@ -3059,6 +3141,16 @@ void MainWindow::on_action_15_triggered()
     ui->pushButton_5->setIcon(ButtonIcon_2);
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(0);
+
+    QScreen *screen = QGuiApplication::primaryScreen();
+    settings=new Settings(this);
+    settings->exec();
+    settings->setGeometry(
+    QStyle::alignedRect(
+    Qt::LeftToRight,
+    Qt::AlignCenter,
+    settings->size(),
+    screen->geometry()));
 }
 
 void MainWindow::modelItemChangedSlot(QStandardItem *item)
@@ -8758,3 +8850,527 @@ void MainWindow::button_visible_2()
 {
     ui->action_6->setEnabled(true);
 }
+
+void MainWindow::createUndoView()
+{
+    undoView = new QUndoView(undoStack);
+    undoView->setWindowTitle(tr("Command List"));
+    undoView->show();
+    undoView->setAttribute(Qt::WA_QuitOnClose, false);
+}
+
+void MainWindow::edit()
+{
+    cleanState = false;
+    if (undoOperation)
+        return;
+    QUndoCommand *cutCommand = new QUndoCommand();
+    cutCommand->setText("lineEdit_13");
+    undoStack->push(cutCommand);
+
+    ui->actionundo->setEnabled(true);
+    ui->actionredo->setEnabled(true);
+}
+
+void MainWindow::edit_2()
+{
+    cleanState = false;
+    if (undoOperation)
+        return;
+    QUndoCommand *cutCommand = new QUndoCommand();
+    cutCommand->setText("lineEdit_16");
+    undoStack->push(cutCommand);
+
+    ui->actionundo->setEnabled(true);
+    ui->actionredo->setEnabled(true);
+}
+void MainWindow::edit_3()
+{
+    cleanState = false;
+    if (undoOperation)
+        return;
+    QUndoCommand *cutCommand = new QUndoCommand();
+    cutCommand->setText("lineEdit_14");
+    undoStack->push(cutCommand);
+
+    ui->actionundo->setEnabled(true);
+    ui->actionredo->setEnabled(true);
+}
+void MainWindow::edit_4()
+{
+    cleanState = false;
+    if (undoOperation)
+        return;
+    QUndoCommand *cutCommand = new QUndoCommand();
+    cutCommand->setText("lineEdit_17");
+    undoStack->push(cutCommand);
+
+    ui->actionundo->setEnabled(true);
+    ui->actionredo->setEnabled(true);
+}
+
+void MainWindow::edit_5()
+{
+    cleanState = false;
+    if (undoOperation)
+        return;
+    QUndoCommand *cutCommand = new QUndoCommand();
+    cutCommand->setText("lineEdit_15");
+    undoStack->push(cutCommand);
+
+    ui->actionundo->setEnabled(true);
+    ui->actionredo->setEnabled(true);
+}
+
+void MainWindow::edit_6()
+{
+    cleanState = false;
+    if (undoOperation)
+        return;
+    QUndoCommand *cutCommand = new QUndoCommand();
+    cutCommand->setText("lineEdit_18");
+    undoStack->push(cutCommand);
+
+    ui->actionundo->setEnabled(true);
+    ui->actionredo->setEnabled(true);
+}
+
+void MainWindow::on_actioncopy_triggered()
+{
+    if(ui->lineEdit_13->text().isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        if(ui->lineEdit_13->hasFocus())
+        {
+            QUndoCommand *copyCommand = new QUndoCommand();
+            QClipboard *clipboard = QApplication::clipboard();
+            QString s1 = ui->lineEdit_13->text();
+            clipboard->setText(s1);
+            copyCommand->setText("lineEdit");
+            ui->lineEdit_13->paste();
+            undoStack->push(copyCommand);
+        }
+    }
+    if(ui->lineEdit_16->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_16->hasFocus())
+        {
+            QUndoCommand *copyCommand = new QUndoCommand();
+            QClipboard *clipboard = QApplication::clipboard();
+            QString s1 = ui->lineEdit_16->text();
+            clipboard->setText(s1);
+            copyCommand->setText("lineEdit_16");
+            ui->lineEdit_16->paste();
+            undoStack->push(copyCommand);
+        }
+    }
+    if(ui->lineEdit_14->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_14->hasFocus())
+        {
+            QUndoCommand *copyCommand = new QUndoCommand();
+            QClipboard *clipboard = QApplication::clipboard();
+            QString s1 = ui->lineEdit_14->text();
+            clipboard->setText(s1);
+            copyCommand->setText("lineEdit_14");
+            ui->lineEdit_14->paste();
+            undoStack->push(copyCommand);
+        }
+    }
+    if(ui->lineEdit_17->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_17->hasFocus())
+        {
+            QUndoCommand *copyCommand = new QUndoCommand();
+            QClipboard *clipboard = QApplication::clipboard();
+            QString s1 = ui->lineEdit_17->text();
+            clipboard->setText(s1);
+            copyCommand->setText("lineEdit_17");
+            ui->lineEdit_17->paste();
+            undoStack->push(copyCommand);
+        }
+    }
+    if(ui->lineEdit_15->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_15->hasFocus())
+        {
+            QUndoCommand *copyCommand = new QUndoCommand();
+            QClipboard *clipboard = QApplication::clipboard();
+            QString s1 = ui->lineEdit_15->text();
+            clipboard->setText(s1);
+            copyCommand->setText("lineEdit_15");
+            ui->lineEdit_15->paste();
+            undoStack->push(copyCommand);
+        }
+    }
+    if(ui->lineEdit_18->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_18->hasFocus())
+        {
+            QUndoCommand *copyCommand = new QUndoCommand();
+            QClipboard *clipboard = QApplication::clipboard();
+            QString s1 = ui->lineEdit_18->text();
+            clipboard->setText(s1);
+            copyCommand->setText("lineEdit_18");
+            ui->lineEdit_18->paste();
+            undoStack->push(copyCommand);
+        }
+    }
+    if(item4->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(item4->isSelectable())
+        {
+            QUndoCommand *copyCommand = new QUndoCommand();
+            QClipboard *clipboard = QApplication::clipboard();
+            QString s1 = item4->text();
+            clipboard->setText(s1);
+            copyCommand->setText("lineEdit_18");
+            //item4->paste();
+            undoStack->push(copyCommand);
+        }
+    }
+}
+
+
+void MainWindow::on_actionpaste_triggered()
+{
+    if(ui->lineEdit_13->hasFocus())
+    {
+        QUndoCommand *addCommand = new QUndoCommand();
+        addCommand->setText("lineEdit_13");
+        ui->lineEdit_13->paste();
+        undoStack->push(addCommand);
+    }
+    if(ui->lineEdit_13->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_16->hasFocus())
+        {
+            QUndoCommand *addCommand = new QUndoCommand();
+            addCommand->setText("lineEdit_16");
+            ui->lineEdit_16->paste();
+            undoStack->push(addCommand);
+        }
+    }
+    if(ui->lineEdit_16->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_14->hasFocus())
+        {
+            QUndoCommand *addCommand = new QUndoCommand();
+            addCommand->setText("lineEdit_14");
+            ui->lineEdit_14->paste();
+            undoStack->push(addCommand);
+        }
+    }
+    if(ui->lineEdit_14->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_17->hasFocus())
+        {
+            QUndoCommand *addCommand = new QUndoCommand();
+            addCommand->setText("lineEdit_17");
+            ui->lineEdit_17->paste();
+            undoStack->push(addCommand);
+        }
+    }
+    if(ui->lineEdit_17->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_15->hasFocus())
+        {
+            QUndoCommand *addCommand = new QUndoCommand();
+            addCommand->setText("lineEdit_15");
+            ui->lineEdit_15->paste();
+            undoStack->push(addCommand);
+        }
+    }
+    if(ui->lineEdit_15->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(ui->lineEdit_18->hasFocus())
+        {
+            QUndoCommand *addCommand = new QUndoCommand();
+            addCommand->setText("lineEdit_18");
+            ui->lineEdit_18->paste();
+            undoStack->push(addCommand);
+        }
+    }
+    if(ui->lineEdit_18->text().isEmpty())
+    {
+    return;
+    }
+    else
+    {
+        if(item4->isSelectable())
+        {
+            QUndoCommand *addCommand = new QUndoCommand();
+            addCommand->setText("item4");
+            //item4->paste();
+            undoStack->push(addCommand);
+        }
+    }
+    if(item4->text().isEmpty())
+    {
+    return;
+    }
+}
+
+void MainWindow::on_actionundo_triggered()
+{
+    QString undoText = undoStack->undoText();
+    ui->actionredo->setEnabled(true);
+
+    if(undoText == "lineEdit_13")
+    {
+        undoOperation = true;
+        ui->lineEdit_13->undo();
+        undoOperation = false;
+    }
+    if(undoText == "lineEdit_16")
+    {
+        undoOperation = true;
+        ui->lineEdit_16->undo();
+        undoOperation = false;
+    }
+    if(undoText == "lineEdit_14")
+    {
+        undoOperation = true;
+        ui->lineEdit_14->undo();
+        undoOperation = false;
+    }
+    if(undoText == "lineEdit_14")
+    {
+        undoOperation = true;
+        ui->lineEdit_14->undo();
+        undoOperation = false;
+    }
+    if(undoText == "lineEdit_15")
+    {
+        undoOperation = true;
+        ui->lineEdit_15->undo();
+        undoOperation = false;
+    }
+    if(undoText == "lineEdit_18")
+    {
+        undoOperation = true;
+        ui->lineEdit_18->undo();
+        undoOperation = false;
+    }
+    if(undoText == "item4")
+    {
+        undoOperation = true;
+        //item4->undo();
+        undoOperation = false;
+    }
+
+    undoStack->undo();
+    if (undoStack->index() == 0)
+    {
+        ui->actionundo->setEnabled(false);
+    }
+}
+
+void MainWindow::on_actionredo_triggered()
+{
+    QString redoText = undoStack->redoText();
+    ui->actionundo->setEnabled(true);
+
+    if(redoText == "lineEdit_13")
+    {
+        undoOperation = true;
+        ui->lineEdit_13->redo();
+        undoOperation = false;
+    }
+    if(redoText == "lineEdit_16")
+    {
+        undoOperation = true;
+        ui->lineEdit_16->redo();
+        undoOperation = false;
+    }
+    if(redoText == "lineEdit_14")
+    {
+        undoOperation = true;
+        ui->lineEdit_14->redo();
+        undoOperation = false;
+    }
+    if(redoText == "lineEdit_17")
+    {
+        undoOperation = true;
+        ui->lineEdit_17->redo();
+        undoOperation = false;
+    }
+    if(redoText == "lineEdit_15")
+    {
+        undoOperation = true;
+        ui->lineEdit_15->redo();
+        undoOperation = false;
+    }
+    if(redoText == "lineEdit_18")
+    {
+        undoOperation = true;
+        ui->lineEdit_18->redo();
+        undoOperation = false;
+    }
+   /* if(redoText == "tablewidget")
+    {
+        undoOperation = true;
+        ui->tableWidget->redo();
+        undoOperation = false;
+    }*/
+    undoStack->redo();
+    if (undoStack->index() == undoStack->count())
+    {
+        ui->actionredo->setEnabled(false);
+    }
+}
+
+void MainWindow::on_actioncut_triggered()
+{
+    if(ui->lineEdit_13->text().isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        if(ui->lineEdit_13->hasFocus())
+        {
+            QUndoCommand *cutCommand = new QUndoCommand();
+            cutCommand->setText("lineEdit_13");
+            ui->lineEdit_13->cut();
+            undoStack->push(cutCommand);
+        }
+    }
+    if(ui->lineEdit_16->text().isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        if(ui->lineEdit_16->hasFocus())
+        {
+            QUndoCommand *cutCommand = new QUndoCommand();
+            cutCommand->setText("lineEdit_16");
+            ui->lineEdit_16->cut();
+            undoStack->push(cutCommand);
+        }
+    }
+    if(ui->lineEdit_14->text().isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        if(ui->lineEdit_14->hasFocus())
+        {
+            QUndoCommand *cutCommand = new QUndoCommand();
+            cutCommand->setText("lineEdit_14");
+            ui->lineEdit_14->cut();
+            undoStack->push(cutCommand);
+        }
+    }
+    if(ui->lineEdit_17->text().isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        if(ui->lineEdit_17->hasFocus())
+        {
+            QUndoCommand *cutCommand = new QUndoCommand();
+            cutCommand->setText("lineEdit_17");
+            ui->lineEdit_17->cut();
+            undoStack->push(cutCommand);
+        }
+    }
+    if(ui->lineEdit_15->text().isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        if(ui->lineEdit_15->hasFocus())
+        {
+            QUndoCommand *cutCommand = new QUndoCommand();
+            cutCommand->setText("lineEdit_15");
+            ui->lineEdit_15->cut();
+            undoStack->push(cutCommand);
+        }
+    }
+    if(ui->lineEdit_18->text().isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        if(ui->lineEdit_18->hasFocus())
+        {
+            QUndoCommand *cutCommand = new QUndoCommand();
+            cutCommand->setText("lineEdit_18");
+            ui->lineEdit_18->cut();
+            undoStack->push(cutCommand);
+        }
+    }
+    /*if(ui->tableWidget->hasFocus())
+    {
+        ui->tableWidget->cut();
+    }*/
+}
+
+void MainWindow::edit_treeview()
+{
+    cleanState = false;
+    if (undoOperation)
+        return;
+    QUndoCommand *cutCommand = new QUndoCommand();
+    cutCommand->setText("treeview");
+    undoStack->push(cutCommand);
+
+    ui->actionundo->setEnabled(true);
+    ui->actionredo->setEnabled(true);
+}
+
+
+

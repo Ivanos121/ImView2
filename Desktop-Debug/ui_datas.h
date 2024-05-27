@@ -91,8 +91,8 @@ public:
         sizePolicy.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
         tableView->setSizePolicy(sizePolicy);
         tableView->horizontalHeader()->setCascadingSectionResizes(true);
-        tableView->horizontalHeader()->setMinimumSectionSize(60);
-        tableView->horizontalHeader()->setDefaultSectionSize(100);
+        tableView->horizontalHeader()->setMinimumSectionSize(30);
+        tableView->horizontalHeader()->setDefaultSectionSize(50);
         tableView->verticalHeader()->setMinimumSectionSize(30);
         tableView->verticalHeader()->setDefaultSectionSize(50);
 

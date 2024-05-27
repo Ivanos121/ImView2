@@ -15,8 +15,6 @@
 #include <QIntValidator>
 #include <QFileDialog>
 #include <QScreen>
-#include "multilinedelegate.h"
-#include "resizedelegate.h"
 
 datas::datas(QWidget *parent) :
     QWidget(parent),
@@ -34,12 +32,6 @@ datas::~datas()
 {
     delete ui;
 }
-
-//void datas::on_pushButton_clicked()
-//{
-//    zapis();
-//    table();
-//}
 
 void datas::table()
 {
@@ -65,21 +57,18 @@ void datas::table()
     }
 
     ui->tableView->setModel(modd);
-    //ui->tableView->setModel(model);
     ui->tableView->setColumnHidden(0, true); //скрытие колонки id
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); //выделение строки
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
 
-
     modd->setHeaderData(1, Qt::Horizontal, "Марка двигателя", Qt::DisplayRole);
-    modd->setHeaderData(2, Qt::Horizontal, "Номинальная мощность двигателя, кВтeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", Qt::DisplayRole);
+    modd->setHeaderData(2, Qt::Horizontal, "Номинальная мощность двигателя, кВт", Qt::DisplayRole);
     modd->setHeaderData(3, Qt::Horizontal, "Номинальная частота вращения, об/мин", Qt::DisplayRole);
     modd->setHeaderData(4, Qt::Horizontal, "Номинальное напряжение фазы, В", Qt::DisplayRole);
     modd->setHeaderData(5, Qt::Horizontal, "Номинальный коэффициент мощности", Qt::DisplayRole);
     modd->setHeaderData(6, Qt::Horizontal, "Номинальный коэффициент полезного действия", Qt::DisplayRole);
     modd->setHeaderData(7, Qt::Horizontal, "Кратность максимального момента", Qt::DisplayRole);
-    modd->setHeaderData(8, Qt::Horizontal, "Номинальное напряжение питания", Qt::DisplayRole);
-    modd->setHeaderData(9, Qt::Horizontal, "Синхронная частота вращения, об/мин", Qt::DisplayRole);
+    modd->setHeaderData(8, Qt::Horizontal, "Синхронная частота вращения, об/мин", Qt::DisplayRole);
 
     QHeaderView *header=ui->tableView->horizontalHeader();
     for(int i=1;i<=8;i++)
@@ -87,25 +76,12 @@ void datas::table()
         header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
     }
 
-    ui->tableView->setWordWrap(true);
-    ui->tableView->setTextElideMode(Qt::ElideMiddle);
     ui->tableView->resizeRowsToContents();
-
-    ui->tableView->verticalHeader()->setDefaultSectionSize(ui->tableView->rowHeight(0));
     ui->tableView->verticalHeader()->hide();
-
-
-
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-
-   TextEditDelegate* textEditdelegate = new TextEditDelegate(this); //создание делегата для создания комбобоксов
-   for(int i=1;i<=8;i++)
-   {
-        ui->tableView->setItemDelegateForColumn(i, textEditdelegate);
-   }
-   ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter | (Qt::Alignment)Qt::TextWordWrap);
-   ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter | (Qt::Alignment)Qt::TextWordWrap);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->horizontalHeader()->setFixedHeight(100);
 }
 
 void datas::zapis()

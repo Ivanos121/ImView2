@@ -9,8 +9,10 @@
 #include <QTreeWidgetItem>
 #include <QStandardItem>
 #include "plot.h"
+#include "settings.h"
 
 #include "qundostack.h"
+#include "qundoview.h"
 #include "ui_about_dialog.h"
 #include "ui_settings.h"
 #include "pushbuttondelegate.h"
@@ -41,6 +43,8 @@ private:
     Ui::aboutDialog *ui;
 };
 
+class MainWindow;
+
 class Settings : public QDialog
 {
     Q_OBJECT
@@ -53,8 +57,12 @@ private slots:
     void on_pushButton_3_clicked();
     void on_listWidget_itemSelectionChanged();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::settings *ui;
+    QTranslator qtLanguageTranslator;
+    MainWindow *wf;
 };
 
 class SettinsKanals : public QDialog
@@ -79,10 +87,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void closeEvent (QCloseEvent *event);
+    void closeEvent (QCloseEvent *event) override;
     void LoadProject(QString str);
     QVector<QColor> dataLineColors;
     void setcolorincell(int row, int column);
+    void translate_en();
+    void translate_ru();
+
+protected:
+
+    void changeEvent(QEvent * event) override;
 
 private:
     QString sessionFileName;
@@ -130,6 +144,21 @@ private slots:
     void tabClicked_6();
     void itemEdit();
     void TimeOut();
+    void createUndoView();
+    void edit();
+    void edit_2();
+    void edit_3();
+    void edit_4();
+    void edit_5();
+    void edit_6();
+    void edit_treeview();
+    void on_actioncopy_triggered();
+    void on_actionpaste_triggered();
+    void on_actionundo_triggered();
+    void on_actionredo_triggered();
+    void on_actioncut_triggered();
+
+
 
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);
@@ -186,14 +215,14 @@ public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
     Kalibr *kalibr;
-    Settings *rsc2;
+    Settings *settings;
     //SettinsKanals *rsc3;
     QString dataSourceFilename;
     QString dirName;
     bool isChanged = false;
+    QTranslator qtLanguageTranslator;
 
     QTimer *timer;
-    QUndoStack *undoStack;
     QAction *undoAction;
     QAction *redoAction;
     QProgressBar *progress;
@@ -204,6 +233,12 @@ public:
     QTreeWidgetItem *treeItem, *child3, *child, *child2;
     QTreeWidgetItem *currentItem;
     int currentColumn;
+
+    bool cleanState;
+    bool undoOperation;
+    QUndoStack *undoStack;
+    QUndoView *undoView;
+    QString *document;
 
     QStandardItem *item1,  *item2,  *item3,  *item4,  *item5,  *item6,  *item7,  *item8;
     QStandardItem *item9,  *item10, *item11, *item12, *item13, *item14, *item15, *item16;
@@ -222,6 +257,7 @@ public:
     QStandardItem *item113,*item114, *item115, *item116, *item117, *item118, *item119, *item120;
     QStandardItem *item121,*item122,*item123,*item124,*item125,*item126,*item127,*item128;
     QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;
+
 };
 
 #endif // MAINWINDOW_H

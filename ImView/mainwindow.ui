@@ -211,7 +211,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -295,7 +295,7 @@
         <item>
          <widget class="QGroupBox" name="groupBox">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -1691,7 +1691,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1116</width>
-     <height>30</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -1726,12 +1726,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>&amp;Правка</string>
     </property>
-    <addaction name="action_7"/>
-    <addaction name="action_8"/>
+    <addaction name="actionundo"/>
+    <addaction name="actionredo"/>
     <addaction name="separator"/>
     <addaction name="actioncut"/>
-    <addaction name="action_10"/>
-    <addaction name="action_11"/>
+    <addaction name="actioncopy"/>
+    <addaction name="actionpaste"/>
     <addaction name="action_4"/>
     <addaction name="separator"/>
     <addaction name="action_13"/>
@@ -1790,12 +1790,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="print_preview"/>
    <addaction name="action_3"/>
    <addaction name="separator"/>
-   <addaction name="action_7"/>
-   <addaction name="action_8"/>
+   <addaction name="actionundo"/>
+   <addaction name="actionredo"/>
    <addaction name="separator"/>
    <addaction name="actioncut"/>
-   <addaction name="action_10"/>
-   <addaction name="action_11"/>
+   <addaction name="actioncopy"/>
+   <addaction name="actionpaste"/>
    <addaction name="separator"/>
    <addaction name="action_5"/>
    <addaction name="action_9"/>
@@ -1899,7 +1899,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-  <action name="action_7">
+  <action name="actionundo">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/edit-undo.svg</normaloff>:/system_icons/data/img/system_icons/edit-undo.svg</iconset>
@@ -1911,7 +1911,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+Z</string>
    </property>
   </action>
-  <action name="action_8">
+  <action name="actionredo">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/edit-redo.svg</normaloff>:/system_icons/data/img/system_icons/edit-redo.svg</iconset>
@@ -1935,7 +1935,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+X</string>
    </property>
   </action>
-  <action name="action_10">
+  <action name="actioncopy">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/edit-copy.svg</normaloff>:/system_icons/data/img/system_icons/edit-copy.svg</iconset>
@@ -1947,7 +1947,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+C</string>
    </property>
   </action>
-  <action name="action_11">
+  <action name="actionpaste">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/edit-paste.svg</normaloff>:/system_icons/data/img/system_icons/edit-paste.svg</iconset>

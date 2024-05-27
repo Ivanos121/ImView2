@@ -5,6 +5,7 @@
 #include <QFileInfo>
 #include <QIcon>
 #include <QuaZip-Qt5-1.4/quazip/JlCompress.h>
+#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +25,14 @@ int main(int argc, char *argv[])
     else
     {}
 
-    //QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
+    QTranslator qtLanguageTranslator;
+    QSettings settings( "BRU", "IM View");
+    settings.beginGroup( "language interface" );
+    QString lokal = settings.value( "QtLanguage_", "").toString();
+    settings.endGroup();
+
+    qtLanguageTranslator.load(QString("QtLanguage_") + lokal);
+    qApp->installTranslator(&qtLanguageTranslator);
 
     MainWindow w;
     QDir dir("/tmp/imview");
