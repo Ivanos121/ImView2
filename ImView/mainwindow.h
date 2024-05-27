@@ -10,6 +10,7 @@
 #include <QStandardItem>
 #include "plot.h"
 #include "settings.h"
+#include "datas.h"
 
 #include "qundostack.h"
 #include "qundoview.h"
@@ -101,6 +102,12 @@ protected:
 private:
     QString sessionFileName;
 
+
+
+    void updateRecentFileActions();
+    void setCurrentFile(const QString &fileName);
+    QString strippedName(const QString &fullFileName);
+    void loadFile(const QString &fileName);
 private slots:
     void on_actionabout_triggered();
     void on_actionExit_triggered();
@@ -211,6 +218,7 @@ private slots:
     void on_radioButton_13_toggled(bool checked);
 
 
+    void openRecentFile();
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
@@ -221,6 +229,16 @@ public:
     QString dirName;
     bool isChanged = false;
     QTranslator qtLanguageTranslator;
+    QAction *separatorAct;
+    QMenu *fileMenu;
+    QString fileName;
+
+    QMenu *recentFilesMenu;
+    QMenu *helpMenu;
+    enum { MaxRecentFiles = 5 };
+    QAction *recentFileActs[MaxRecentFiles];
+    QString curFile;
+    datas *dat;
 
     QTimer *timer;
     QAction *undoAction;

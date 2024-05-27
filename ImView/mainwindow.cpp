@@ -105,6 +105,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionundo->setEnabled(false);
     ui->actionredo->setEnabled(false);
 
+    recentFileActs[0] = ui->actionmy;
+    recentFileActs[1] = ui->actionmy2;
+    recentFileActs[2] = ui->actionmy3;
+    recentFileActs[3] = ui->actionmy4;
+    recentFileActs[4] = ui->actionmy5;
+
+    connect(recentFileActs[MaxRecentFiles-1], &QAction::triggered, this, &MainWindow::openRecentFile);
 
 
     createUndoView();
@@ -2633,6 +2640,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->lineEdit_18,&QLineEdit::textEdited, this, &MainWindow::edit_6);
     connect(model,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
 
+    updateRecentFileActions();
 }
 
 QImage fromSvg(const QString &path, int size)
@@ -3935,6 +3943,7 @@ void MainWindow::LoadProject(QString str)
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
     ui->action_2->setEnabled(false);
     ui->action_6->setEnabled(false);
+    setCurrentFile(fileName);
 }
 
 void MainWindow::on_pushButton_5_clicked(bool checked)
@@ -9372,5 +9381,76 @@ void MainWindow::edit_treeview()
     ui->actionredo->setEnabled(true);
 }
 
+void MainWindow::openRecentFile()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (action)
+    {
+        fileName = action->data().toString();
+        //loadFile(fileName);
+        int index = ui->tabWidget->currentIndex();
+        QString currentTabText = ui->tabWidget->tabText(index);
+        QFileInfo fi(fileName);
+        QString base = fi.baseName();
+        setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
+    }
+}
 
+void MainWindow::setCurrentFile(const QString &fileName)
+{
+    curFile = fileName;
+    setWindowFilePath(curFile);
 
+    QSettings settings("BRU", "IM View2");
+    QStringList files = settings.value("recentFileList").toStringList();
+    files.removeAll(fileName);
+    files.prepend(fileName);
+    while (files.size() > MaxRecentFiles)
+    files.removeLast();
+
+    settings.setValue("recentFileList", files);
+
+    foreach (QWidget *widget, QApplication::topLevelWidgets()) {
+        MainWindow *mainWin = qobject_cast<MainWindow *>(widget);
+        if (mainWin)
+            mainWin->updateRecentFileActions();
+    }
+}
+
+void MainWindow::updateRecentFileActions()
+{
+    QSettings settings("BRU", "IM View2");
+    QStringList files = settings.value("recentFileList").toStringList();
+
+    int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
+
+    for (int i = 0; i < numRecentFiles; ++i) {
+        QString text = tr("&%1 %2").arg(i + 1).arg(strippedName(files[i]));
+        recentFileActs[i]->setText(text);
+        recentFileActs[i]->setData(files[i]);
+        recentFileActs[i]->setVisible(true);
+    }
+    for (int j = numRecentFiles; j < MaxRecentFiles; ++j)
+        recentFileActs[j]->setVisible(false);
+
+    recentFileActs[MaxRecentFiles-1]->setVisible(numRecentFiles > 0);
+}
+
+QString MainWindow::strippedName(const QString &fullFileName)
+{
+    return QFileInfo(fullFileName).fileName();
+}
+
+void MainWindow::loadFile(const QString &fileName)
+{
+    // setWindowTitle(fileName + QString(" - IM View"));
+     dat->table();
+     setCurrentFile(fileName);
+
+     QFileInfo fi(fileName);
+     QString base = fi.baseName();
+     ui->label_9->setText(base);
+     int index = ui->tabWidget->currentIndex();
+     QString currentTabText = ui->tabWidget->tabText(index);
+     setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
+}
