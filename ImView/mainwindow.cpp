@@ -3943,7 +3943,7 @@ void MainWindow::LoadProject(QString str)
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
     ui->action_2->setEnabled(false);
     ui->action_6->setEnabled(false);
-    setCurrentFile(fileName);
+    setCurrentFile(sessionFileName);
 }
 
 void MainWindow::on_pushButton_5_clicked(bool checked)
@@ -9386,7 +9386,7 @@ void MainWindow::openRecentFile()
     QAction *action = qobject_cast<QAction *>(sender());
     if (action)
     {
-        fileName = action->data().toString();
+        QString fileName = action->data().toString();
         //loadFile(fileName);
         int index = ui->tabWidget->currentIndex();
         QString currentTabText = ui->tabWidget->tabText(index);
@@ -9401,7 +9401,7 @@ void MainWindow::setCurrentFile(const QString &fileName)
     curFile = fileName;
     setWindowFilePath(curFile);
 
-    QSettings settings("BRU", "IM View2");
+    QSettings settings("BRU", "IM View");
     QStringList files = settings.value("recentFileList").toStringList();
     files.removeAll(fileName);
     files.prepend(fileName);
@@ -9419,7 +9419,7 @@ void MainWindow::setCurrentFile(const QString &fileName)
 
 void MainWindow::updateRecentFileActions()
 {
-    QSettings settings("BRU", "IM View2");
+    QSettings settings("BRU", "IM View");
     QStringList files = settings.value("recentFileList").toStringList();
 
     int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);

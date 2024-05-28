@@ -22,8 +22,7 @@ int main(int argc, char *argv[])
     {
         QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
     }
-    else
-    {}
+
 
     QTranslator qtLanguageTranslator;
     QSettings settings( "BRU", "IM View");

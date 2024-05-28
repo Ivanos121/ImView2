@@ -231,7 +231,6 @@ public:
     QTranslator qtLanguageTranslator;
     QAction *separatorAct;
     QMenu *fileMenu;
-    QString fileName;
 
     QMenu *recentFilesMenu;
     QMenu *helpMenu;
