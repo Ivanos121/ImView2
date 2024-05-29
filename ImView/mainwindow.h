@@ -46,7 +46,7 @@ private:
 
 class MainWindow;
 
-class Settings : public QDialog
+/*class Settings : public QDialog
 {
     Q_OBJECT
 
@@ -55,16 +55,17 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void on_listWidget_itemSelectionChanged();
-
     void on_pushButton_4_clicked();
 
-private:
+public:
     Ui::settings *ui;
     QTranslator qtLanguageTranslator;
     MainWindow *wf;
-};
+
+};*/
 
 class SettinsKanals : public QDialog
 {
@@ -94,10 +95,6 @@ public:
     void setcolorincell(int row, int column);
     void translate_en();
     void translate_ru();
-
-protected:
-
-    void changeEvent(QEvent * event) override;
 
 private:
     QString sessionFileName;
@@ -202,28 +199,21 @@ private slots:
     void on_radioButton_10_toggled(bool checked);
 
     void on_save_electromagn_graph_file_clicked();
-
     void on_save_electromagn2_file_clicked();
-
     void on_save_tepl_graph_file_clicked();
-
     void on_horizontalSlider_valueChanged(int value);
-
     void on_horizontalSlider_2_valueChanged(int value);
-
     void on_radioButton_11_toggled(bool checked);
-
     void on_radioButton_12_toggled(bool checked);
-
     void on_radioButton_13_toggled(bool checked);
-
-
     void openRecentFile();
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
     Kalibr *kalibr;
-    Settings *settings;
+    settings *set;
+    //Settings *settings;
     //SettinsKanals *rsc3;
     QString dataSourceFilename;
     QString dirName;
@@ -273,8 +263,7 @@ public:
     QStandardItem *item105,*item106, *item107, *item108, *item109, *item110, *item111, *item112;
     QStandardItem *item113,*item114, *item115, *item116, *item117, *item118, *item119, *item120;
     QStandardItem *item121,*item122,*item123,*item124,*item125,*item126,*item127,*item128;
-    QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;
-
+    QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;   
 };
 
 #endif // MAINWINDOW_H

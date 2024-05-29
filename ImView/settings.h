@@ -18,10 +18,14 @@ public:
     explicit settings(QWidget *parent = nullptr);
     ~settings();
 
+    MainWindow *wf;
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
-    Ui::settings *ui;
-    MainWindow *wf;
+    Ui::settings *ui;    
+    settings *set;
 
 
 };

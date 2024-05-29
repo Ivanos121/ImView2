@@ -66,7 +66,6 @@
 #include "tepl_struct.h"
 #include "tepl_identf.h"
 #include "settings.h"
-#include "ui_settings.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -3038,7 +3037,7 @@ void AboutDialog::on_pushButton_clicked()
     close();
 }
 
-Settings::Settings(QWidget *parent) :
+/*Settings::Settings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::settings)  
 {
@@ -3070,13 +3069,16 @@ Settings::Settings(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->comboBox->addItem(tr("Русский язык"));
     ui->comboBox->addItem(tr("English language"));
-    ui->comboBox->setCurrentIndex(0);
+   // ui->comboBox->setCurrentIndex(0);
 
     connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
                 [=](const QString &text){
             qtLanguageTranslator.load("QtLanguage_" + text, ".");   // Загружаем перевод
             qApp->installTranslator(&qtLanguageTranslator);        // Устанавливаем перевод в приложение
         });
+
+    connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
+        [=](int index){ ui->pushButton_2->setEnabled(true); });
 }
 
 void MainWindow::changeEvent(QEvent *event)
@@ -3091,8 +3093,6 @@ void MainWindow::translate_en()
 {
     qtLanguageTranslator.load(QString("QtLanguage_") + QString("en_US"));
     qApp->installTranslator(&qtLanguageTranslator);
-
-
 }
 
 void MainWindow::translate_ru()
@@ -3106,7 +3106,7 @@ void Settings::on_pushButton_clicked()
 
     if(ui->comboBox->currentText() == "Русский язык")
     {
-        ui->comboBox->setCurrentIndex(1);
+        ui->comboBox->setCurrentIndex(0);
         wf->translate_ru();
         QSettings settings( "BRU", "IM View");
             settings.beginGroup( "language interface" );
@@ -3116,7 +3116,7 @@ void Settings::on_pushButton_clicked()
     }
     else if(ui->comboBox->currentText()  == "English language")
     {
-        ui->comboBox->setCurrentIndex(0);
+        ui->comboBox->setCurrentIndex(1);
         wf->translate_en();
         QSettings settings( "BRU", "IM View");
             settings.beginGroup( "language interface" );
@@ -3127,9 +3127,34 @@ void Settings::on_pushButton_clicked()
     close();
 }
 
+void Settings::on_pushButton_2_clicked()
+{
+    if(ui->comboBox->currentText() == "Русский язык")
+    {
+        ui->comboBox->setCurrentIndex(0);
+        wf->translate_ru();
+        QSettings settings( "BRU", "IM View");
+            settings.beginGroup( "language interface" );
+            settings.setValue( "QtLanguage_", "ru_RU");
+        settings.endGroup();
+
+    }
+    else if(ui->comboBox->currentText()  == "English language")
+    {
+        ui->comboBox->setCurrentIndex(1);
+        wf->translate_en();
+        QSettings settings( "BRU", "IM View");
+            settings.beginGroup( "language interface" );
+            settings.setValue( "QtLanguage_", "en_US");
+        settings.endGroup();
+
+    }
+    ui->pushButton_2->setEnabled(false);
+}
+
 void Settings::on_pushButton_3_clicked()
 {
-    close();
+   close();
 }
 
 void Settings::on_pushButton_4_clicked()
@@ -3140,7 +3165,7 @@ void Settings::on_pushButton_4_clicked()
 void Settings::on_listWidget_itemSelectionChanged()
 {
     ui->stackedWidget->setCurrentIndex(ui->listWidget->currentRow());
-}
+}*/
 
 void MainWindow::on_action_15_triggered()
 {
@@ -3150,14 +3175,14 @@ void MainWindow::on_action_15_triggered()
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(0);
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    settings=new Settings(this);
-    settings->exec();
-    settings->setGeometry(
+   QScreen *screen = QGuiApplication::primaryScreen();
+    set = new settings(this);
+    set->exec();
+    set->setGeometry(
     QStyle::alignedRect(
     Qt::LeftToRight,
     Qt::AlignCenter,
-    settings->size(),
+    set->size(),
     screen->geometry()));
 }
 

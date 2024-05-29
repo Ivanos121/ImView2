@@ -19,3 +19,9 @@ settings::~settings()
 {
     delete ui;
 }
+
+void settings::on_pushButton_clicked()
+{
+
+}
+

@@ -1,5 +1,4 @@
 #include "datas.h"
-#include "qtextedit.h"
 #include "ui_datas.h"
 #include "base.h"
 
