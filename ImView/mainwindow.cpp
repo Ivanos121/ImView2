@@ -3087,7 +3087,7 @@ void MainWindow::changeEvent(QEvent *event)
     {
             ui->retranslateUi(this);
     }
-}
+}*/
 
 void MainWindow::translate_en()
 {
@@ -3101,6 +3101,17 @@ void MainWindow::translate_ru()
     qApp->installTranslator(&qtLanguageTranslator);
 }
 
+void MainWindow::translator()
+{
+    QTranslator qtLanguageTranslator;
+    QSettings settings( "BRU", "IM View");
+    settings.beginGroup( "language interface" );
+    QString lokal = settings.value( "QtLanguage_", "").toString();
+    settings.endGroup();
+    qtLanguageTranslator.load("QtLanguage_" + lokal);   // Загружаем перевод
+    qApp->installTranslator(&qtLanguageTranslator);
+}
+/*
 void Settings::on_pushButton_clicked()
 {
 
@@ -3175,14 +3186,15 @@ void MainWindow::on_action_15_triggered()
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(0);
 
-   QScreen *screen = QGuiApplication::primaryScreen();
-    set = new settings(this);
-    set->exec();
-    set->setGeometry(
+    QScreen *screen = QGuiApplication::primaryScreen();
+    nastr = new Nastroiki(this);
+    nastr->wf = this;
+    nastr->exec();
+    nastr->setGeometry(
     QStyle::alignedRect(
     Qt::LeftToRight,
     Qt::AlignCenter,
-    set->size(),
+    nastr->size(),
     screen->geometry()));
 }
 

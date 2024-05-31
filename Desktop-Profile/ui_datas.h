@@ -68,7 +68,7 @@ public:
         deleteDannie->setMinimumSize(QSize(0, 33));
         deleteDannie->setMaximumSize(QSize(150, 33));
 
-        horizontalLayout_2->addWidget(deleteDannie, 0, Qt::AlignVCenter);
+        horizontalLayout_2->addWidget(deleteDannie, 0, Qt::AlignmentFlag::AlignVCenter);
 
 
         gridLayout->addWidget(widget_2, 2, 0, 1, 1);
@@ -90,6 +90,11 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
         tableView->setSizePolicy(sizePolicy);
+        tableView->horizontalHeader()->setCascadingSectionResizes(true);
+        tableView->horizontalHeader()->setMinimumSectionSize(30);
+        tableView->horizontalHeader()->setDefaultSectionSize(50);
+        tableView->verticalHeader()->setMinimumSectionSize(30);
+        tableView->verticalHeader()->setDefaultSectionSize(50);
 
         verticalLayout->addWidget(tableView);
 

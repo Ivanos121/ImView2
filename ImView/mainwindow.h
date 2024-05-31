@@ -8,14 +8,13 @@
 #include <QWebEngineView>
 #include <QTreeWidgetItem>
 #include <QStandardItem>
-#include "plot.h"
 #include "settings.h"
 #include "datas.h"
+#include "nastroiki.h"
 
 #include "qundostack.h"
 #include "qundoview.h"
 #include "ui_about_dialog.h"
-#include "ui_settings.h"
 #include "pushbuttondelegate.h"
 //#include "ui_graph_Settings.h"
 #include "ui_settinsKanals.h"
@@ -95,6 +94,7 @@ public:
     void setcolorincell(int row, int column);
     void translate_en();
     void translate_ru();
+    void translator();
 
 private:
     QString sessionFileName;
@@ -208,11 +208,13 @@ private slots:
     void on_radioButton_13_toggled(bool checked);
     void openRecentFile();
 
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
     Kalibr *kalibr;
-    settings *set;
+    Ksettings *set;
+    Nastroiki *nastr;
     //Settings *settings;
     //SettinsKanals *rsc3;
     QString dataSourceFilename;

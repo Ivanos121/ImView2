@@ -2,7 +2,7 @@
 #define DATAS_H
 
 #include <QWidget>
-#include "QtSql"
+#include "QSqlTableModel"
 #include "QSqlDatabase"
 #include "ischodn_dannie.h"
 #include <QButtonGroup>

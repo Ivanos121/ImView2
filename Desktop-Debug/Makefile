@@ -91,6 +91,7 @@ SOURCES       = ../ImView/archiverchannel.cpp \
 		../ImView/modell.cpp \
 		../ImView/nabludatel.cpp \
 		../ImView/nabludatel_part.cpp \
+		../ImView/nastroiki.cpp \
 		../ImView/paintdelegate.cpp \
 		../ImView/plot.cpp \
 		../ImView/pushbuttondelegate.cpp \
@@ -128,6 +129,7 @@ SOURCES       = ../ImView/archiverchannel.cpp \
 		moc_mainwindow.cpp \
 		moc_model_el.cpp \
 		moc_modelidentf.cpp \
+		moc_nastroiki.cpp \
 		moc_plot.cpp \
 		moc_pushbuttondelegate.cpp \
 		moc_settings.cpp \
@@ -179,6 +181,7 @@ OBJECTS       = archiverchannel.o \
 		modell.o \
 		nabludatel.o \
 		nabludatel_part.o \
+		nastroiki.o \
 		paintdelegate.o \
 		plot.o \
 		pushbuttondelegate.o \
@@ -217,6 +220,7 @@ OBJECTS       = archiverchannel.o \
 		moc_mainwindow.o \
 		moc_model_el.o \
 		moc_modelidentf.o \
+		moc_nastroiki.o \
 		moc_plot.o \
 		moc_pushbuttondelegate.o \
 		moc_settings.o \
@@ -579,6 +583,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../ImView/nabludatel.h \
 		../ImView/nabludatel_base.h \
 		../ImView/nabludatel_part.h \
+		../ImView/nastroiki.h \
 		../ImView/paintdelegate.h \
 		../ImView/plot.h \
 		../ImView/pushbuttondelegate.h \
@@ -632,6 +637,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../ImView/modell.cpp \
 		../ImView/nabludatel.cpp \
 		../ImView/nabludatel_part.cpp \
+		../ImView/nastroiki.cpp \
 		../ImView/paintdelegate.cpp \
 		../ImView/plot.cpp \
 		../ImView/pushbuttondelegate.cpp \
@@ -654,7 +660,7 @@ TARGET        = ImView
 first: all
 ####### Build rules
 
-ImView: ui_about_dialog.h ui_datas.h ui_draw_line.h ui_draw_poper.h ui_electromagn.h ui_graph_Settings.h ui_identf.h ui_ischodn_dannie.h ui_itogs.h ui_kalibr.h ui_mainwindow.h ui_settings.h ui_settingscanals.h ui_settinsKanals.h ui_tepl_dannie.h ui_tepl_identf.h ui_tepl_nabludatel.h ui_teplovent.h ui_teplschem.h ui_trend.h ui_vent_model.h ui_vent_tract.h $(OBJECTS)  
+ImView: ui_about_dialog.h ui_datas.h ui_draw_line.h ui_draw_poper.h ui_electromagn.h ui_graph_Settings.h ui_identf.h ui_ischodn_dannie.h ui_itogs.h ui_kalibr.h ui_mainwindow.h ui_nastroiki.h ui_settings.h ui_settingscanals.h ui_settinsKanals.h ui_tepl_dannie.h ui_tepl_identf.h ui_tepl_nabludatel.h ui_teplovent.h ui_teplschem.h ui_trend.h ui_vent_model.h ui_vent_tract.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../ImView/ImView.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -1296,9 +1302,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../ImView/Images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ImView/archiverchannel.h ../ImView/base.h ../ImView/base_tepl.h ../ImView/bvasthread.h ../ImView/bvas.h ../ImView/checkboxdelegate.h ../ImView/checkboxheader.h ../ImView/comboboxbitdelegate.h ../ImView/comboboxcurrentdelegate.h ../ImView/comboboxdelegate.h ../ImView/comboboxerrorarchivedelegate.h ../ImView/comboboxmodbusdelegate.h ../ImView/comboboxvardelegate.h ../ImView/crc.h ../ImView/customhelpdelegate.h ../ImView/datas.h ../ImView/datasource.h ../ImView/datasource_el.h ../ImView/datasource_file.h ../ImView/datasourcebvas.h ../ImView/datasourcebvasw.h ../ImView/datasourcedigitosc.h ../ImView/device.h ../ImView/devicedigitosc.h ../ImView/digitoscthread.h ../ImView/draw_line.h ../ImView/draw_poper.h ../ImView/electromagn.h ../ImView/gridlinedelegate.h ../ImView/identf.h ../ImView/ischodn_dannie.h ../ImView/itogs.h ../ImView/kalibr.h ../ImView/mainwindow.h ../ImView/model.h ../ImView/model_el.h ../ImView/modelidentf.h ../ImView/modell.h ../ImView/nabludatel.h ../ImView/nabludatel_base.h ../ImView/nabludatel_part.h ../ImView/paintdelegate.h ../ImView/plot.h ../ImView/pushbuttondelegate.h ../ImView/settings.h ../ImView/settingscanals.h ../ImView/tepl_dannie.h ../ImView/tepl_identf.h ../ImView/tepl_nabludatel.h ../ImView/tepl_struct.h ../ImView/teplovent.h ../ImView/teplschem.h ../ImView/trend.h ../ImView/vent_model.h ../ImView/vent_tract.h ../ImView/zerocorrector.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ImView/archiverchannel.cpp ../ImView/base.cpp ../ImView/bvasthread.cpp ../ImView/bvas.cpp ../ImView/checkboxdelegate.cpp ../ImView/checkboxheader.cpp ../ImView/comboboxbitdelegate.cpp ../ImView/comboboxcurrentdelegate.cpp ../ImView/comboboxdelegate.cpp ../ImView/comboboxerrorarchivedelegate.cpp ../ImView/comboboxmodbusdelegate.cpp ../ImView/comboboxvardelegate.cpp ../ImView/customhelpdelegate.cpp ../ImView/datas.cpp ../ImView/datasource.cpp ../ImView/datasource_el.cpp ../ImView/datasource_file.cpp ../ImView/datasourcebvas.cpp ../ImView/datasourcebvasw.cpp ../ImView/datasourcedigitosc.cpp ../ImView/device.cpp ../ImView/devicedigitosc.cpp ../ImView/digitoscthread.cpp ../ImView/draw_line.cpp ../ImView/draw_poper.cpp ../ImView/electromagn.cpp ../ImView/gridlinedelegate.cpp ../ImView/identf.cpp ../ImView/ischodn_dannie.cpp ../ImView/itogs.cpp ../ImView/kalibr.cpp ../ImView/main.cpp ../ImView/mainwindow.cpp ../ImView/model.cpp ../ImView/model_el.cpp ../ImView/modelidentf.cpp ../ImView/modell.cpp ../ImView/nabludatel.cpp ../ImView/nabludatel_part.cpp ../ImView/paintdelegate.cpp ../ImView/plot.cpp ../ImView/pushbuttondelegate.cpp ../ImView/settings.cpp ../ImView/settingscanals.cpp ../ImView/tepl_dannie.cpp ../ImView/tepl_identf.cpp ../ImView/tepl_nabludatel.cpp ../ImView/teplovent.cpp ../ImView/teplschem.cpp ../ImView/trend.cpp ../ImView/vent_model.cpp ../ImView/vent_tract.cpp ../ImView/zerocorrector.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ImView/about_dialog.ui ../ImView/datas.ui ../ImView/draw_line.ui ../ImView/draw_poper.ui ../ImView/electromagn.ui ../ImView/graph_Settings.ui ../ImView/identf.ui ../ImView/ischodn_dannie.ui ../ImView/itogs.ui ../ImView/kalibr.ui ../ImView/mainwindow.ui ../ImView/settings.ui ../ImView/settingscanals.ui ../ImView/settinsKanals.ui ../ImView/tepl_dannie.ui ../ImView/tepl_identf.ui ../ImView/tepl_nabludatel.ui ../ImView/teplovent.ui ../ImView/teplschem.ui ../ImView/trend.ui ../ImView/vent_model.ui ../ImView/vent_tract.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../ImView/archiverchannel.h ../ImView/base.h ../ImView/base_tepl.h ../ImView/bvasthread.h ../ImView/bvas.h ../ImView/checkboxdelegate.h ../ImView/checkboxheader.h ../ImView/comboboxbitdelegate.h ../ImView/comboboxcurrentdelegate.h ../ImView/comboboxdelegate.h ../ImView/comboboxerrorarchivedelegate.h ../ImView/comboboxmodbusdelegate.h ../ImView/comboboxvardelegate.h ../ImView/crc.h ../ImView/customhelpdelegate.h ../ImView/datas.h ../ImView/datasource.h ../ImView/datasource_el.h ../ImView/datasource_file.h ../ImView/datasourcebvas.h ../ImView/datasourcebvasw.h ../ImView/datasourcedigitosc.h ../ImView/device.h ../ImView/devicedigitosc.h ../ImView/digitoscthread.h ../ImView/draw_line.h ../ImView/draw_poper.h ../ImView/electromagn.h ../ImView/gridlinedelegate.h ../ImView/identf.h ../ImView/ischodn_dannie.h ../ImView/itogs.h ../ImView/kalibr.h ../ImView/mainwindow.h ../ImView/model.h ../ImView/model_el.h ../ImView/modelidentf.h ../ImView/modell.h ../ImView/nabludatel.h ../ImView/nabludatel_base.h ../ImView/nabludatel_part.h ../ImView/nastroiki.h ../ImView/paintdelegate.h ../ImView/plot.h ../ImView/pushbuttondelegate.h ../ImView/settings.h ../ImView/settingscanals.h ../ImView/tepl_dannie.h ../ImView/tepl_identf.h ../ImView/tepl_nabludatel.h ../ImView/tepl_struct.h ../ImView/teplovent.h ../ImView/teplschem.h ../ImView/trend.h ../ImView/vent_model.h ../ImView/vent_tract.h ../ImView/zerocorrector.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ImView/archiverchannel.cpp ../ImView/base.cpp ../ImView/bvasthread.cpp ../ImView/bvas.cpp ../ImView/checkboxdelegate.cpp ../ImView/checkboxheader.cpp ../ImView/comboboxbitdelegate.cpp ../ImView/comboboxcurrentdelegate.cpp ../ImView/comboboxdelegate.cpp ../ImView/comboboxerrorarchivedelegate.cpp ../ImView/comboboxmodbusdelegate.cpp ../ImView/comboboxvardelegate.cpp ../ImView/customhelpdelegate.cpp ../ImView/datas.cpp ../ImView/datasource.cpp ../ImView/datasource_el.cpp ../ImView/datasource_file.cpp ../ImView/datasourcebvas.cpp ../ImView/datasourcebvasw.cpp ../ImView/datasourcedigitosc.cpp ../ImView/device.cpp ../ImView/devicedigitosc.cpp ../ImView/digitoscthread.cpp ../ImView/draw_line.cpp ../ImView/draw_poper.cpp ../ImView/electromagn.cpp ../ImView/gridlinedelegate.cpp ../ImView/identf.cpp ../ImView/ischodn_dannie.cpp ../ImView/itogs.cpp ../ImView/kalibr.cpp ../ImView/main.cpp ../ImView/mainwindow.cpp ../ImView/model.cpp ../ImView/model_el.cpp ../ImView/modelidentf.cpp ../ImView/modell.cpp ../ImView/nabludatel.cpp ../ImView/nabludatel_part.cpp ../ImView/nastroiki.cpp ../ImView/paintdelegate.cpp ../ImView/plot.cpp ../ImView/pushbuttondelegate.cpp ../ImView/settings.cpp ../ImView/settingscanals.cpp ../ImView/tepl_dannie.cpp ../ImView/tepl_identf.cpp ../ImView/tepl_nabludatel.cpp ../ImView/teplovent.cpp ../ImView/teplschem.cpp ../ImView/trend.cpp ../ImView/vent_model.cpp ../ImView/vent_tract.cpp ../ImView/zerocorrector.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ImView/about_dialog.ui ../ImView/datas.ui ../ImView/draw_line.ui ../ImView/draw_poper.ui ../ImView/electromagn.ui ../ImView/graph_Settings.ui ../ImView/identf.ui ../ImView/ischodn_dannie.ui ../ImView/itogs.ui ../ImView/kalibr.ui ../ImView/mainwindow.ui ../ImView/nastroiki.ui ../ImView/settings.ui ../ImView/settingscanals.ui ../ImView/settinsKanals.ui ../ImView/tepl_dannie.ui ../ImView/tepl_identf.ui ../ImView/tepl_nabludatel.ui ../ImView/teplovent.ui ../ImView/teplschem.ui ../ImView/trend.ui ../ImView/vent_model.ui ../ImView/vent_tract.ui $(DISTDIR)/
 	$(COPY_FILE) --parents QtLanguage_ru.ts QtLanguage_en.ts $(DISTDIR)/
 
 
@@ -1417,9 +1423,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_bvasthread.cpp moc_checkboxheader.cpp moc_customhelpdelegate.cpp moc_datas.cpp moc_datasource.cpp moc_datasource_el.cpp moc_datasource_file.cpp moc_datasourcebvas.cpp moc_datasourcebvasw.cpp moc_datasourcedigitosc.cpp moc_device.cpp moc_devicedigitosc.cpp moc_digitoscthread.cpp moc_draw_line.cpp moc_draw_poper.cpp moc_electromagn.cpp moc_identf.cpp moc_ischodn_dannie.cpp moc_itogs.cpp moc_kalibr.cpp moc_mainwindow.cpp moc_model_el.cpp moc_modelidentf.cpp moc_plot.cpp moc_pushbuttondelegate.cpp moc_settings.cpp moc_settingscanals.cpp moc_tepl_dannie.cpp moc_tepl_identf.cpp moc_tepl_nabludatel.cpp moc_teplovent.cpp moc_teplschem.cpp moc_trend.cpp moc_vent_model.cpp moc_vent_tract.cpp
+compiler_moc_header_make_all: moc_bvasthread.cpp moc_checkboxheader.cpp moc_customhelpdelegate.cpp moc_datas.cpp moc_datasource.cpp moc_datasource_el.cpp moc_datasource_file.cpp moc_datasourcebvas.cpp moc_datasourcebvasw.cpp moc_datasourcedigitosc.cpp moc_device.cpp moc_devicedigitosc.cpp moc_digitoscthread.cpp moc_draw_line.cpp moc_draw_poper.cpp moc_electromagn.cpp moc_identf.cpp moc_ischodn_dannie.cpp moc_itogs.cpp moc_kalibr.cpp moc_mainwindow.cpp moc_model_el.cpp moc_modelidentf.cpp moc_nastroiki.cpp moc_plot.cpp moc_pushbuttondelegate.cpp moc_settings.cpp moc_settingscanals.cpp moc_tepl_dannie.cpp moc_tepl_identf.cpp moc_tepl_nabludatel.cpp moc_teplovent.cpp moc_teplschem.cpp moc_trend.cpp moc_vent_model.cpp moc_vent_tract.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_bvasthread.cpp moc_checkboxheader.cpp moc_customhelpdelegate.cpp moc_datas.cpp moc_datasource.cpp moc_datasource_el.cpp moc_datasource_file.cpp moc_datasourcebvas.cpp moc_datasourcebvasw.cpp moc_datasourcedigitosc.cpp moc_device.cpp moc_devicedigitosc.cpp moc_digitoscthread.cpp moc_draw_line.cpp moc_draw_poper.cpp moc_electromagn.cpp moc_identf.cpp moc_ischodn_dannie.cpp moc_itogs.cpp moc_kalibr.cpp moc_mainwindow.cpp moc_model_el.cpp moc_modelidentf.cpp moc_plot.cpp moc_pushbuttondelegate.cpp moc_settings.cpp moc_settingscanals.cpp moc_tepl_dannie.cpp moc_tepl_identf.cpp moc_tepl_nabludatel.cpp moc_teplovent.cpp moc_teplschem.cpp moc_trend.cpp moc_vent_model.cpp moc_vent_tract.cpp
+	-$(DEL_FILE) moc_bvasthread.cpp moc_checkboxheader.cpp moc_customhelpdelegate.cpp moc_datas.cpp moc_datasource.cpp moc_datasource_el.cpp moc_datasource_file.cpp moc_datasourcebvas.cpp moc_datasourcebvasw.cpp moc_datasourcedigitosc.cpp moc_device.cpp moc_devicedigitosc.cpp moc_digitoscthread.cpp moc_draw_line.cpp moc_draw_poper.cpp moc_electromagn.cpp moc_identf.cpp moc_ischodn_dannie.cpp moc_itogs.cpp moc_kalibr.cpp moc_mainwindow.cpp moc_model_el.cpp moc_modelidentf.cpp moc_nastroiki.cpp moc_plot.cpp moc_pushbuttondelegate.cpp moc_settings.cpp moc_settingscanals.cpp moc_tepl_dannie.cpp moc_tepl_identf.cpp moc_tepl_nabludatel.cpp moc_teplovent.cpp moc_teplschem.cpp moc_trend.cpp moc_vent_model.cpp moc_vent_tract.cpp
 moc_bvasthread.cpp: ../ImView/bvasthread.h \
 		../ImView/device.h \
 		moc_predefs.h \
@@ -1446,11 +1452,10 @@ moc_datas.cpp: ../ImView/datas.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		moc_predefs.h \
@@ -1472,12 +1477,11 @@ moc_datasource_el.cpp: ../ImView/datasource_el.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		moc_predefs.h \
@@ -1493,12 +1497,11 @@ moc_datasource_file.cpp: ../ImView/datasource_file.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		moc_predefs.h \
@@ -1566,15 +1569,15 @@ moc_electromagn.cpp: ../ImView/electromagn.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/datasourcebvasw.h \
+		../ImView/plot.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/elf/ImView2/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/ImView2/ImView -I/usr/include/qt -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtSvg -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtXml -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include-fixed -I/usr/include ../ImView/electromagn.h -o moc_electromagn.cpp
@@ -1589,17 +1592,17 @@ moc_identf.cpp: ../ImView/identf.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/datasource_el.h \
 		../ImView/modelidentf.h \
 		../ImView/model.h \
+		../ImView/plot.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/elf/ImView2/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/ImView2/ImView -I/usr/include/qt -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtSvg -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtXml -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include-fixed -I/usr/include ../ImView/identf.h -o moc_identf.cpp
@@ -1634,13 +1637,12 @@ moc_mainwindow.cpp: ../ImView/mainwindow.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
 		../ImView/mainwindow.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		moc_predefs.h \
@@ -1656,6 +1658,11 @@ moc_modelidentf.cpp: ../ImView/modelidentf.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/elf/ImView2/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/ImView2/ImView -I/usr/include/qt -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtSvg -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtXml -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include-fixed -I/usr/include ../ImView/modelidentf.h -o moc_modelidentf.cpp
+
+moc_nastroiki.cpp: ../ImView/nastroiki.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include /home/elf/ImView2/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/ImView2/ImView -I/usr/include/qt -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtSvg -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtXml -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include-fixed -I/usr/include ../ImView/nastroiki.h -o moc_nastroiki.cpp
 
 moc_plot.cpp: ../ImView/plot.h \
 		moc_predefs.h \
@@ -1681,12 +1688,11 @@ moc_settingscanals.cpp: ../ImView/settingscanals.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		moc_predefs.h \
@@ -1718,12 +1724,11 @@ moc_teplovent.cpp: ../ImView/teplovent.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		moc_predefs.h \
@@ -1744,8 +1749,8 @@ moc_teplschem.cpp: ../ImView/teplschem.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		moc_predefs.h \
@@ -1765,8 +1770,8 @@ moc_trend.cpp: ../ImView/trend.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		moc_predefs.h \
@@ -1782,14 +1787,14 @@ moc_vent_model.cpp: ../ImView/vent_model.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
+		../ImView/plot.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/elf/ImView2/Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/ImView2/ImView -I/usr/include/qt -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtSvg -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtXml -I/usr/include/qt/QtCore -I. -I/usr/include/c++/14.1.1 -I/usr/include/c++/14.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/14.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include-fixed -I/usr/include ../ImView/vent_model.h -o moc_vent_model.cpp
@@ -1803,9 +1808,9 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_about_dialog.h ui_datas.h ui_draw_line.h ui_draw_poper.h ui_electromagn.h ui_graph_Settings.h ui_identf.h ui_ischodn_dannie.h ui_itogs.h ui_kalibr.h ui_mainwindow.h ui_settings.h ui_settingscanals.h ui_settinsKanals.h ui_tepl_dannie.h ui_tepl_identf.h ui_tepl_nabludatel.h ui_teplovent.h ui_teplschem.h ui_trend.h ui_vent_model.h ui_vent_tract.h
+compiler_uic_make_all: ui_about_dialog.h ui_datas.h ui_draw_line.h ui_draw_poper.h ui_electromagn.h ui_graph_Settings.h ui_identf.h ui_ischodn_dannie.h ui_itogs.h ui_kalibr.h ui_mainwindow.h ui_nastroiki.h ui_settings.h ui_settingscanals.h ui_settinsKanals.h ui_tepl_dannie.h ui_tepl_identf.h ui_tepl_nabludatel.h ui_teplovent.h ui_teplschem.h ui_trend.h ui_vent_model.h ui_vent_tract.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_about_dialog.h ui_datas.h ui_draw_line.h ui_draw_poper.h ui_electromagn.h ui_graph_Settings.h ui_identf.h ui_ischodn_dannie.h ui_itogs.h ui_kalibr.h ui_mainwindow.h ui_settings.h ui_settingscanals.h ui_settinsKanals.h ui_tepl_dannie.h ui_tepl_identf.h ui_tepl_nabludatel.h ui_teplovent.h ui_teplschem.h ui_trend.h ui_vent_model.h ui_vent_tract.h
+	-$(DEL_FILE) ui_about_dialog.h ui_datas.h ui_draw_line.h ui_draw_poper.h ui_electromagn.h ui_graph_Settings.h ui_identf.h ui_ischodn_dannie.h ui_itogs.h ui_kalibr.h ui_mainwindow.h ui_nastroiki.h ui_settings.h ui_settingscanals.h ui_settinsKanals.h ui_tepl_dannie.h ui_tepl_identf.h ui_tepl_nabludatel.h ui_teplovent.h ui_teplschem.h ui_trend.h ui_vent_model.h ui_vent_tract.h
 ui_about_dialog.h: ../ImView/about_dialog.ui \
 		/usr/bin/uic
 	/usr/bin/uic ../ImView/about_dialog.ui -o ui_about_dialog.h
@@ -1870,11 +1875,10 @@ ui_mainwindow.h: ../ImView/mainwindow.ui \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/datasource.h \
@@ -1886,17 +1890,17 @@ ui_mainwindow.h: ../ImView/mainwindow.ui \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/datasource_el.h \
 		../ImView/modelidentf.h \
 		../ImView/model.h \
+		../ImView/plot.h \
 		../ImView/nabludatel.h \
 		../ImView/datasource.h \
 		../ImView/nabludatel_base.h \
@@ -1910,15 +1914,15 @@ ui_mainwindow.h: ../ImView/mainwindow.ui \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/datasourcebvasw.h \
+		../ImView/plot.h \
 		../ImView/base.h \
 		../ImView/mainwindow.h \
 		../ImView/kalibr.h \
@@ -1928,12 +1932,11 @@ ui_mainwindow.h: ../ImView/mainwindow.ui \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/mainwindow.h \
@@ -1944,15 +1947,19 @@ ui_mainwindow.h: ../ImView/mainwindow.ui \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
-		ui_settinsKanals.h
+		ui_settinsKanals.h \
+		../ImView/plot.h
 	/usr/bin/uic ../ImView/mainwindow.ui -o ui_mainwindow.h
+
+ui_nastroiki.h: ../ImView/nastroiki.ui \
+		/usr/bin/uic
+	/usr/bin/uic ../ImView/nastroiki.ui -o ui_nastroiki.h
 
 ui_settings.h: ../ImView/settings.ui \
 		/usr/bin/uic
@@ -2002,8 +2009,8 @@ ui_teplovent.h: ../ImView/teplovent.ui \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/plot.h \
@@ -2018,8 +2025,8 @@ ui_teplovent.h: ../ImView/teplovent.ui \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/base_tepl.h
@@ -2155,10 +2162,9 @@ datas.o: ../ImView/datas.cpp ../ImView/datas.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		ui_datas.h
@@ -2168,74 +2174,43 @@ datasource.o: ../ImView/datasource.cpp ../ImView/datasource.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o datasource.o ../ImView/datasource.cpp
 
 datasource_el.o: ../ImView/datasource_el.cpp ui_mainwindow.h \
-		../ImView/datas.h \
-		../ImView/ischodn_dannie.h \
+		../ImView/datasource_el.h \
+		../ImView/datasource.h \
+		../ImView/modelidentf.h \
 		../ImView/mainwindow.h \
 		../ImView/kalibr.h \
 		../ImView/checkboxheader.h \
 		../ImView/datasourcebvas.h \
-		../ImView/datasource.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
+		../ImView/datas.h \
+		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
-		../ImView/electromagn.h \
-		../ImView/nabludatel.h \
-		../ImView/nabludatel_base.h \
-		../ImView/zerocorrector.h \
-		../ImView/nabludatel_part.h \
-		../ImView/datasource_file.h \
-		../ImView/datasourcebvasw.h \
-		../ImView/identf.h \
-		../ImView/datasource_el.h \
-		../ImView/modelidentf.h \
-		../ImView/model.h \
-		../ImView/itogs.h \
-		../ImView/tepl_identf.h \
-		../ImView/tepl_nabludatel.h \
-		../ImView/teplovent.h \
-		../ImView/vent_model.h \
 		ui_datas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o datasource_el.o ../ImView/datasource_el.cpp
 
 datasource_file.o: ../ImView/datasource_file.cpp ui_mainwindow.h \
-		../ImView/datas.h \
-		../ImView/ischodn_dannie.h \
+		../ImView/datasource_file.h \
+		../ImView/datasource.h \
 		../ImView/mainwindow.h \
 		../ImView/kalibr.h \
 		../ImView/checkboxheader.h \
 		../ImView/datasourcebvas.h \
-		../ImView/datasource.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
+		../ImView/datas.h \
+		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
-		../ImView/electromagn.h \
-		../ImView/nabludatel.h \
-		../ImView/nabludatel_base.h \
-		../ImView/zerocorrector.h \
-		../ImView/nabludatel_part.h \
-		../ImView/datasource_file.h \
-		../ImView/datasourcebvasw.h \
-		../ImView/identf.h \
-		../ImView/datasource_el.h \
-		../ImView/modelidentf.h \
-		../ImView/model.h \
-		../ImView/itogs.h \
-		../ImView/tepl_identf.h \
-		../ImView/tepl_nabludatel.h \
-		../ImView/teplovent.h \
-		../ImView/vent_model.h \
 		ui_datas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o datasource_file.o ../ImView/datasource_file.cpp
 
@@ -2291,29 +2266,20 @@ electromagn.o: ../ImView/electromagn.cpp ../ImView/electromagn.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/datasourcebvasw.h \
+		../ImView/plot.h \
 		ui_electromagn.h \
 		../ImView/model_el.h \
 		../ImView/datasourcedigitosc.h \
 		../ImView/devicedigitosc.h \
 		ui_mainwindow.h \
-		../ImView/identf.h \
-		../ImView/datasource_el.h \
-		../ImView/modelidentf.h \
-		../ImView/model.h \
-		../ImView/itogs.h \
-		../ImView/tepl_identf.h \
-		../ImView/tepl_nabludatel.h \
-		../ImView/teplovent.h \
-		../ImView/vent_model.h \
 		../ImView/tepl_struct.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o electromagn.o ../ImView/electromagn.cpp
 
@@ -2321,38 +2287,27 @@ gridlinedelegate.o: ../ImView/gridlinedelegate.cpp ../ImView/gridlinedelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gridlinedelegate.o ../ImView/gridlinedelegate.cpp
 
 identf.o: ../ImView/identf.cpp ui_mainwindow.h \
-		../ImView/datas.h \
-		../ImView/ischodn_dannie.h \
+		../ImView/identf.h \
+		../ImView/datasource.h \
+		../ImView/datasource_file.h \
 		../ImView/mainwindow.h \
 		../ImView/kalibr.h \
 		../ImView/checkboxheader.h \
 		../ImView/datasourcebvas.h \
-		../ImView/datasource.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
+		../ImView/datas.h \
+		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
-		../ImView/electromagn.h \
-		../ImView/nabludatel.h \
-		../ImView/nabludatel_base.h \
-		../ImView/zerocorrector.h \
-		../ImView/nabludatel_part.h \
-		../ImView/datasource_file.h \
-		../ImView/datasourcebvasw.h \
-		../ImView/identf.h \
 		../ImView/datasource_el.h \
 		../ImView/modelidentf.h \
 		../ImView/model.h \
-		../ImView/itogs.h \
-		../ImView/tepl_identf.h \
-		../ImView/tepl_nabludatel.h \
-		../ImView/teplovent.h \
-		../ImView/vent_model.h \
+		../ImView/plot.h \
 		ui_identf.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o identf.o ../ImView/identf.cpp
 
@@ -2367,30 +2322,13 @@ ischodn_dannie.o: ../ImView/ischodn_dannie.cpp ../ImView/ischodn_dannie.h \
 		../ImView/datasource.h \
 		../ImView/device.h \
 		../ImView/modell.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		ui_datas.h \
-		ui_mainwindow.h \
-		../ImView/electromagn.h \
-		../ImView/nabludatel.h \
-		../ImView/nabludatel_base.h \
-		../ImView/zerocorrector.h \
-		../ImView/nabludatel_part.h \
-		../ImView/datasource_file.h \
-		../ImView/datasourcebvasw.h \
-		../ImView/identf.h \
-		../ImView/datasource_el.h \
-		../ImView/modelidentf.h \
-		../ImView/model.h \
-		../ImView/itogs.h \
-		../ImView/tepl_identf.h \
-		../ImView/tepl_nabludatel.h \
-		../ImView/teplovent.h \
-		../ImView/vent_model.h
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ischodn_dannie.o ../ImView/ischodn_dannie.cpp
 
 itogs.o: ../ImView/itogs.cpp ../ImView/itogs.h \
@@ -2403,30 +2341,14 @@ itogs.o: ../ImView/itogs.cpp ../ImView/itogs.h \
 		../ImView/datasource.h \
 		../ImView/device.h \
 		../ImView/modell.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		ui_mainwindow.h \
-		../ImView/electromagn.h \
-		../ImView/nabludatel.h \
-		../ImView/nabludatel_base.h \
-		../ImView/zerocorrector.h \
-		../ImView/nabludatel_part.h \
-		../ImView/datasource_file.h \
-		../ImView/datasourcebvasw.h \
-		../ImView/identf.h \
-		../ImView/datasource_el.h \
-		../ImView/modelidentf.h \
-		../ImView/model.h \
-		../ImView/tepl_identf.h \
-		../ImView/tepl_nabludatel.h \
-		../ImView/teplovent.h \
-		../ImView/vent_model.h \
 		ui_datas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o itogs.o ../ImView/itogs.cpp
 
@@ -2449,12 +2371,11 @@ kalibr.o: ../ImView/kalibr.cpp ../ImView/kalibr.h \
 		../ImView/archiverchannel.h \
 		../ImView/align.h \
 		../ImView/mainwindow.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		../ImView/datasourcedigitosc.h \
@@ -2469,19 +2390,16 @@ main.o: ../ImView/main.cpp ../ImView/mainwindow.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ImView/main.cpp
 
 mainwindow.o: ../ImView/mainwindow.cpp ui_mainwindow.h \
-		../ImView/datas.h \
-		../ImView/ischodn_dannie.h \
 		../ImView/mainwindow.h \
 		../ImView/kalibr.h \
 		../ImView/checkboxheader.h \
@@ -2490,49 +2408,46 @@ mainwindow.o: ../ImView/mainwindow.cpp ui_mainwindow.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
+		../ImView/datas.h \
+		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
+		../ImView/model.h \
+		ui_datas.h \
+		../ImView/identf.h \
+		../ImView/datasource_file.h \
+		../ImView/datasource_el.h \
+		../ImView/modelidentf.h \
+		../ImView/plot.h \
+		ui_identf.h \
 		../ImView/electromagn.h \
 		../ImView/nabludatel.h \
 		../ImView/nabludatel_base.h \
 		../ImView/zerocorrector.h \
 		../ImView/nabludatel_part.h \
-		../ImView/datasource_file.h \
 		../ImView/datasourcebvasw.h \
-		../ImView/identf.h \
-		../ImView/datasource_el.h \
-		../ImView/modelidentf.h \
-		../ImView/model.h \
-		../ImView/itogs.h \
-		../ImView/tepl_identf.h \
-		../ImView/tepl_nabludatel.h \
 		../ImView/teplovent.h \
-		../ImView/vent_model.h \
-		ui_datas.h \
-		ui_identf.h \
 		../ImView/tepl_dannie.h \
 		../ImView/base_tepl.h \
 		ui_tepl_dannie.h \
 		ui_tepl_identf.h \
 		ui_teplovent.h \
-		../ImView/draw_line.h \
-		../ImView/draw_poper.h \
-		../ImView/teplschem.h \
-		../ImView/trend.h \
 		ui_electromagn.h \
 		ui_draw_line.h \
 		ui_draw_poper.h \
 		ui_teplschem.h \
 		ui_vent_model.h \
 		ui_trend.h \
+		../ImView/vent_model.h \
 		../ImView/customhelpdelegate.h \
+		../ImView/tepl_nabludatel.h \
 		ui_tepl_nabludatel.h \
 		../ImView/model_el.h \
-		../ImView/tepl_struct.h
+		../ImView/tepl_struct.h \
+		../ImView/tepl_identf.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ImView/mainwindow.cpp
 
 model.o: ../ImView/model.cpp ../ImView/model.h \
@@ -2570,6 +2485,24 @@ nabludatel_part.o: ../ImView/nabludatel_part.cpp ../ImView/nabludatel_part.h \
 		../ImView/device.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nabludatel_part.o ../ImView/nabludatel_part.cpp
 
+nastroiki.o: ../ImView/nastroiki.cpp ../ImView/nastroiki.h \
+		ui_nastroiki.h \
+		../ImView/mainwindow.h \
+		../ImView/kalibr.h \
+		../ImView/checkboxheader.h \
+		../ImView/datasourcebvas.h \
+		../ImView/datasource.h \
+		../ImView/device.h \
+		../ImView/modell.h \
+		../ImView/base.h \
+		../ImView/settings.h \
+		../ImView/datas.h \
+		../ImView/ischodn_dannie.h \
+		ui_about_dialog.h \
+		../ImView/pushbuttondelegate.h \
+		ui_settinsKanals.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nastroiki.o ../ImView/nastroiki.cpp
+
 paintdelegate.o: ../ImView/paintdelegate.cpp ../ImView/kalibr.h \
 		../ImView/checkboxheader.h \
 		../ImView/datasourcebvas.h \
@@ -2592,12 +2525,11 @@ pushbuttondelegate.o: ../ImView/pushbuttondelegate.cpp ../ImView/pushbuttondeleg
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		ui_settinsKanals.h \
 		../ImView/settingscanals.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pushbuttondelegate.o ../ImView/pushbuttondelegate.cpp
@@ -2615,12 +2547,11 @@ settingscanals.o: ../ImView/settingscanals.cpp ../ImView/settingscanals.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		ui_settingscanals.h \
@@ -2634,8 +2565,7 @@ tepl_dannie.o: ../ImView/tepl_dannie.cpp ../ImView/tepl_dannie.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tepl_dannie.o ../ImView/tepl_dannie.cpp
 
 tepl_identf.o: ../ImView/tepl_identf.cpp ../ImView/tepl_identf.h \
-		ui_tepl_identf.h \
-		../ImView/plot.h
+		ui_tepl_identf.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tepl_identf.o ../ImView/tepl_identf.cpp
 
 tepl_nabludatel.o: ../ImView/tepl_nabludatel.cpp ../ImView/tepl_nabludatel.h \
@@ -2652,21 +2582,16 @@ teplovent.o: ../ImView/teplovent.cpp ../ImView/teplovent.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		ui_teplovent.h \
-		../ImView/draw_line.h \
-		../ImView/draw_poper.h \
 		../ImView/tepl_dannie.h \
-		../ImView/base_tepl.h \
-		../ImView/teplschem.h \
-		../ImView/trend.h
+		../ImView/base_tepl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o teplovent.o ../ImView/teplovent.cpp
 
 teplschem.o: ../ImView/teplschem.cpp ../ImView/teplschem.h \
@@ -2683,8 +2608,8 @@ teplschem.o: ../ImView/teplschem.cpp ../ImView/teplschem.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		ui_teplschem.h
@@ -2703,38 +2628,17 @@ trend.o: ../ImView/trend.cpp ../ImView/trend.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
 		ui_teplschem.h \
 		ui_trend.h \
 		ui_mainwindow.h \
-		../ImView/electromagn.h \
-		../ImView/nabludatel.h \
-		../ImView/nabludatel_base.h \
-		../ImView/zerocorrector.h \
-		../ImView/nabludatel_part.h \
-		../ImView/datasource_file.h \
-		../ImView/datasourcebvasw.h \
-		../ImView/identf.h \
-		../ImView/datasource_el.h \
-		../ImView/modelidentf.h \
-		../ImView/model.h \
-		../ImView/itogs.h \
-		../ImView/tepl_identf.h \
-		../ImView/tepl_nabludatel.h \
-		../ImView/teplovent.h \
-		../ImView/vent_model.h \
 		ui_draw_poper.h \
 		ui_draw_line.h \
 		ui_vent_tract.h \
 		ui_teplovent.h \
-		../ImView/draw_line.h \
-		../ImView/draw_poper.h \
-		../ImView/tepl_dannie.h \
-		../ImView/base_tepl.h \
-		../ImView/teplschem.h \
 		ui_vent_model.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o trend.o ../ImView/trend.cpp
 
@@ -2747,14 +2651,14 @@ vent_model.o: ../ImView/vent_model.cpp ../ImView/vent_model.h \
 		../ImView/device.h \
 		../ImView/modell.h \
 		../ImView/base.h \
-		../ImView/plot.h \
 		../ImView/settings.h \
 		../ImView/datas.h \
 		../ImView/ischodn_dannie.h \
+		../ImView/nastroiki.h \
 		ui_about_dialog.h \
-		ui_settings.h \
 		../ImView/pushbuttondelegate.h \
 		ui_settinsKanals.h \
+		../ImView/plot.h \
 		ui_vent_model.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o vent_model.o ../ImView/vent_model.cpp
 
@@ -2836,6 +2740,9 @@ moc_model_el.o: moc_model_el.cpp
 
 moc_modelidentf.o: moc_modelidentf.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_modelidentf.o moc_modelidentf.cpp
+
+moc_nastroiki.o: moc_nastroiki.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_nastroiki.o moc_nastroiki.cpp
 
 moc_plot.o: moc_plot.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_plot.o moc_plot.cpp

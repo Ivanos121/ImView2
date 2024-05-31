@@ -11,7 +11,7 @@
     <message>
         <location filename="itogs.ui" line="41"/>
         <source>Печать</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Print</translation>
     </message>
     <message>
         <location filename="itogs.ui" line="54"/>
@@ -39,7 +39,7 @@
     <message>
         <location filename="kalibr.ui" line="14"/>
         <source>Калибровка осциллографа</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Calibrating the oscilloscope</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="80"/>
@@ -167,12 +167,12 @@
     <message>
         <location filename="kalibr.ui" line="345"/>
         <source>Печать</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Print</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="359"/>
         <source>Справка</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Help</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="386"/>
@@ -353,6 +353,91 @@
     </message>
 </context>
 <context>
+    <name>Ksettings</name>
+    <message>
+        <location filename="settings.ui" line="14"/>
+        <source>Параметры - IM View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="47"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="60"/>
+        <source>Применить</source>
+        <translation type="unfinished">Apply</translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="73"/>
+        <source>Отмена</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="106"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Интерфейс&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="129"/>
+        <source>Пользовательский интерфейс</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="142"/>
+        <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="155"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="170"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Исходные данные&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="185"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Идентификация&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="200"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Электро&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="215"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Энергетика&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="230"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Тепловентиляция&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.ui" line="245"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Итоги&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.cpp" line="13"/>
+        <location filename="settings.cpp" line="43"/>
+        <source>Русский язык</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settings.cpp" line="14"/>
+        <location filename="settings.cpp" line="44"/>
+        <source>English language</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
@@ -393,7 +478,7 @@
     <message>
         <location filename="mainwindow.ui" line="100"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation>about:blank</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="113"/>
@@ -717,444 +802,514 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="mainwindow.ui" line="1623"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Энергетическая диаграмма &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;асинхронного электродвигателя&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Energy diagram &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;asynchronous electric motor&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1647"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Энергетическая диаграмма &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;вентилятора&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Energy diagram &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;the fan&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1671"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Расчетные величины вентиляционной сети&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Calculated values of the ventilation network&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1699"/>
         <source>&amp;Файл</source>
-        <translation>File</translation>
+        <translation>&amp;File</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1703"/>
         <source>Недавние файлы</source>
-        <translation type="unfinished"></translation>
+        <translation>Recent files</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1724"/>
         <source>&amp;Справка</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Help</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1731"/>
         <source>&amp;Инструменты</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tools</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1738"/>
         <source>&amp;Правка</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Correction</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1752"/>
         <source>&amp;Идентификация параметров</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Identification of parameters</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1771"/>
         <source>&amp;Энергетические показатели</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Energy Indicators</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1788"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>toolBar</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1838"/>
         <source>Выход</source>
-        <translation type="unfinished"></translation>
+        <translation>Exit</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1841"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1850"/>
         <source>Справка</source>
-        <translation type="unfinished"></translation>
+        <translation>Help</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1853"/>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>F1</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1862"/>
         <source>О программе</source>
-        <translation type="unfinished"></translation>
+        <translation>About the program</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1871"/>
         <source>Открыть</source>
-        <translation type="unfinished"></translation>
+        <translation>Open</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1874"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1886"/>
         <location filename="mainwindow.ui" line="2057"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1895"/>
         <source>Печать</source>
-        <translation type="unfinished"></translation>
+        <translation>Print</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1898"/>
         <location filename="mainwindow.ui" line="2033"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1907"/>
         <source>Сохранить как</source>
-        <translation type="unfinished"></translation>
+        <translation>Save as</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1910"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1919"/>
         <source>Отменить действие</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancel the action</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1922"/>
         <location filename="mainwindow.ui" line="2045"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1931"/>
         <source>Повторить действие</source>
-        <translation type="unfinished"></translation>
+        <translation>Repeat the action</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1934"/>
         <source>Ctrl+Shift+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Z</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1943"/>
         <source>Вырезать</source>
-        <translation type="unfinished"></translation>
+        <translation>Cut</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1946"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1955"/>
         <source>Копировать</source>
-        <translation type="unfinished"></translation>
+        <translation>Copy</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1958"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1967"/>
         <source>Вставить</source>
-        <translation type="unfinished"></translation>
+        <translation>Paste</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1970"/>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+V</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1979"/>
         <source>Поиск/замена</source>
-        <translation type="unfinished"></translation>
+        <translation>Search/Replace</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1988"/>
         <source>Удалить</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1991"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2000"/>
         <source>Пуск</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2003"/>
         <source>Запуск предварительной идентификации параметров схемы замещения</source>
-        <translation type="unfinished"></translation>
+        <translation>Starting the preliminary identification of the substitution scheme parameters</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2012"/>
         <source>Стоп</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2021"/>
         <location filename="mainwindow.ui" line="2030"/>
         <source>Настройки</source>
-        <translation type="unfinished"></translation>
+        <translation>Settings</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2042"/>
         <source>Загрузить данные</source>
-        <translation type="unfinished"></translation>
+        <translation>Upload data</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2054"/>
         <source>Сохранить данные</source>
-        <translation type="unfinished"></translation>
+        <translation>Save data</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2066"/>
         <source>Удалить данные</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete data</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2069"/>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2078"/>
         <source>Очистить данные</source>
-        <translation type="unfinished"></translation>
+        <translation>Clean data</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2081"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+D</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2090"/>
         <source>Принять данные</source>
-        <translation type="unfinished"></translation>
+        <translation>Enter data</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2093"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2108"/>
         <source>Запуск</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2117"/>
         <source>Останов</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2126"/>
         <source>Калибровка осциллографа</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibrating the oscilloscope</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2135"/>
         <source>Настройки графиков</source>
-        <translation type="unfinished"></translation>
+        <translation>Chart Settings</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2144"/>
         <source>Итоги измерений</source>
-        <translation type="unfinished"></translation>
+        <translation>Measurement results</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2153"/>
         <source>Итоги идентификации</source>
-        <translation type="unfinished"></translation>
+        <translation>Identification results</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2162"/>
         <source>Создать</source>
-        <translation type="unfinished"></translation>
+        <translation>Create</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2165"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2177"/>
         <source>Подключение архиватора</source>
-        <translation type="unfinished"></translation>
+        <translation>Connecting the archiver</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2189"/>
         <source>Подключение осциллографа</source>
-        <translation type="unfinished"></translation>
+        <translation>Connecting an oscilloscope</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2201"/>
         <source>Подключение ПЛК</source>
-        <translation type="unfinished"></translation>
+        <translation>PLC connection</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2213"/>
         <source>Подключение управления моментом</source>
-        <translation type="unfinished"></translation>
+        <translation>Connecting the torque control</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2222"/>
         <source>Пуск2</source>
-        <translation type="unfinished"></translation>
+        <translation>Start2</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2225"/>
         <source>Запуск идентификации параметров тепловой модели</source>
-        <translation type="unfinished"></translation>
+        <translation>Starting identification of thermal model parameters</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2237"/>
         <source>Стоп2</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop2</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2249"/>
         <source>Предварительный просмотр</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2252"/>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2257"/>
         <source>recentFileActions1</source>
-        <translation type="unfinished"></translation>
+        <translation>recentFileActions1</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2262"/>
         <source>recentFileActions2</source>
-        <translation type="unfinished"></translation>
+        <translation>recentFileActions2</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2267"/>
         <source>recentFileActions3</source>
-        <translation type="unfinished"></translation>
+        <translation>recentFileActions3</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2272"/>
         <source>recentFileActions4</source>
-        <translation type="unfinished"></translation>
+        <translation>recentFileActions4</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2277"/>
         <source>recentFileActions5</source>
-        <translation type="unfinished"></translation>
+        <translation>recentFileActions5</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="203"/>
+        <location filename="mainwindow.cpp" line="202"/>
         <source>Наименование</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="203"/>
+        <location filename="mainwindow.cpp" line="202"/>
         <source>Свойство</source>
-        <translation type="unfinished"></translation>
+        <translation>Property</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="240"/>
+        <location filename="mainwindow.cpp" line="239"/>
         <source>Общее название сеанса</source>
-        <translation type="unfinished"></translation>
+        <translation>The general name of the session</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="255"/>
+        <location filename="mainwindow.cpp" line="254"/>
         <source>Название сеанса</source>
-        <translation type="unfinished"></translation>
+        <translation>Session name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="259"/>
+        <location filename="mainwindow.cpp" line="258"/>
         <source>Имя сеанса</source>
-        <translation type="unfinished"></translation>
+        <translation>Session Name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="267"/>
+        <location filename="mainwindow.cpp" line="266"/>
         <source>Тип эксперимента</source>
-        <translation type="unfinished"></translation>
+        <translation>Type of experiment</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="280"/>
+        <location filename="mainwindow.cpp" line="279"/>
         <source>Идентификация данных схемы замещения</source>
-        <translation type="unfinished"></translation>
+        <translation>Identification of substitution scheme data</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="284"/>
+        <location filename="mainwindow.cpp" line="283"/>
         <source>Выбрать тип эксперимента</source>
-        <translation type="unfinished"></translation>
+        <translation>Select the type of experiment</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="292"/>
+        <location filename="mainwindow.cpp" line="291"/>
         <source>Загрузка данных ручной идентификации</source>
-        <translation type="unfinished"></translation>
+        <translation>Uploading manual identification data</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="297"/>
+        <location filename="mainwindow.cpp" line="296"/>
         <source>Указать каталог</source>
-        <translation type="unfinished"></translation>
+        <translation>Specify the folder</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8338"/>
-        <location filename="mainwindow.cpp" line="8355"/>
-        <location filename="mainwindow.cpp" line="8372"/>
+        <location filename="mainwindow.cpp" line="8363"/>
+        <location filename="mainwindow.cpp" line="8380"/>
+        <location filename="mainwindow.cpp" line="8397"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8581"/>
+        <location filename="mainwindow.cpp" line="8606"/>
         <source>Сообщение</source>
-        <translation type="unfinished"></translation>
+        <translation>Message</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8581"/>
+        <location filename="mainwindow.cpp" line="8606"/>
         <source>Расчет окончен!</source>
-        <translation type="unfinished"></translation>
+        <translation>The calculation is over!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8866"/>
+        <location filename="mainwindow.cpp" line="8891"/>
         <source>Command List</source>
-        <translation type="unfinished"></translation>
+        <translation>Command List</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9428"/>
+        <location filename="mainwindow.cpp" line="9453"/>
         <source>&amp;%1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;%1 %2</translation>
     </message>
 </context>
 <context>
-    <name>Settings</name>
+    <name>Nastroiki</name>
     <message>
-        <location filename="mainwindow.cpp" line="3071"/>
+        <location filename="nastroiki.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="53"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="66"/>
+        <source>Применить</source>
+        <translation type="unfinished">Apply</translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="79"/>
+        <source>Отмена</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="108"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Интерфейс&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="131"/>
+        <source>Пользовательский интерфейс</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="144"/>
+        <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="157"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="172"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Исходные данные&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="187"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Идентификация&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="202"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Электро&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="217"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Энергетика&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="232"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Тепловентиляция&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.ui" line="247"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Итоги&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="nastroiki.cpp" line="36"/>
         <source>Русский язык</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3072"/>
+        <location filename="nastroiki.cpp" line="37"/>
         <source>English language</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1223,12 +1378,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="trend.cpp" line="1029"/>
         <source>Сообщение</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Message</translation>
     </message>
     <message>
         <location filename="trend.cpp" line="1029"/>
         <source>Расчет окончен!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">The calculation is over!</translation>
     </message>
 </context>
 <context>
@@ -1241,7 +1396,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="vent_tract.ui" line="28"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">about:blank</translation>
     </message>
 </context>
 <context>
@@ -1277,12 +1432,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="datas.ui" line="60"/>
         <source>Сохранить данные</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Save data</translation>
     </message>
     <message>
         <location filename="datas.ui" line="79"/>
         <source>Удалить данные</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Delete data</translation>
     </message>
     <message>
         <location filename="datas.ui" line="98"/>
@@ -1301,7 +1456,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <location filename="draw_line.ui" line="21"/>
         <location filename="draw_line.ui" line="42"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">about:blank</translation>
     </message>
 </context>
 <context>
@@ -1315,7 +1470,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <location filename="draw_poper.ui" line="21"/>
         <location filename="draw_poper.ui" line="42"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">about:blank</translation>
     </message>
 </context>
 <context>
@@ -1354,12 +1509,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="identf.cpp" line="73"/>
         <source>Сообщение</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Message</translation>
     </message>
     <message>
         <location filename="identf.cpp" line="73"/>
         <source>Расчет окончен!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">The calculation is over!</translation>
     </message>
 </context>
 <context>
@@ -1383,84 +1538,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
 <context>
     <name>settings</name>
     <message>
-        <location filename="settings.ui" line="14"/>
-        <source>Параметры - IM View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="47"/>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="60"/>
         <source>Применить</source>
-        <translation type="unfinished">Apply</translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="73"/>
-        <source>Отмена</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="106"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Интерфейс&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="129"/>
-        <source>Пользовательский интерфейс</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="142"/>
-        <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="155"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="170"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Исходные данные&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="185"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Идентификация&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="200"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Электро&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="215"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Энергетика&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="230"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Тепловентиляция&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.ui" line="245"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Итоги&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.cpp" line="12"/>
-        <source>Русский язык</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settings.cpp" line="13"/>
-        <source>English language</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Apply</translation>
     </message>
 </context>
 <context>
@@ -1492,7 +1571,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="tepl_nabludatel.ui" line="31"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">about:blank</translation>
     </message>
     <message>
         <location filename="tepl_nabludatel.ui" line="40"/>
@@ -1532,7 +1611,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <location filename="teplovent.ui" line="91"/>
         <location filename="teplovent.ui" line="107"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">about:blank</translation>
     </message>
     <message>
         <location filename="teplovent.ui" line="74"/>
@@ -1575,7 +1654,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="teplschem.ui" line="21"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">about:blank</translation>
     </message>
 </context>
 <context>
@@ -1602,7 +1681,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <location filename="vent_model.ui" line="103"/>
         <location filename="vent_model.ui" line="133"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">about:blank</translation>
     </message>
     <message>
         <location filename="vent_model.ui" line="50"/>

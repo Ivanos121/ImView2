@@ -55,6 +55,7 @@ SOURCES += \
     modell.cpp \
     nabludatel.cpp \
     nabludatel_part.cpp \
+    nastroiki.cpp \
     paintdelegate.cpp \
     plot.cpp \
     pushbuttondelegate.cpp \
@@ -112,6 +113,7 @@ HEADERS += \
     nabludatel.h \
     nabludatel_base.h \
     nabludatel_part.h \
+    nastroiki.h \
     paintdelegate.h \
     plot.h \
     pushbuttondelegate.h \
@@ -140,6 +142,7 @@ FORMS += \
     itogs.ui \
     kalibr.ui \
     mainwindow.ui \
+    nastroiki.ui \
     settings.ui \
     settingscanals.ui \
     settinsKanals.ui \

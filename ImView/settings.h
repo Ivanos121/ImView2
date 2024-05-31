@@ -7,16 +7,16 @@
 class MainWindow;
 
 namespace Ui {
-class settings;
+class Ksettings;
 }
 
-class settings : public QDialog
+class Ksettings : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit settings(QWidget *parent = nullptr);
-    ~settings();
+    explicit Ksettings(QWidget *parent = nullptr);
+    ~Ksettings();
 
     MainWindow *wf;
 
@@ -24,10 +24,11 @@ private slots:
     void on_pushButton_clicked();
 
 private:
-    Ui::settings *ui;    
-    settings *set;
+    Ui::Ksettings *ui;
+    Ksettings *set;
 
 
+    void on_listWidget_itemSelectionChanged();
 };
 
 #endif // SETTINGS_H

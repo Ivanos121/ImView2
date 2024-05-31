@@ -56,11 +56,11 @@ public:
     QAction *action_2;
     QAction *action_3;
     QAction *action_6;
-    QAction *action_7;
-    QAction *action_8;
+    QAction *actionundo;
+    QAction *actionredo;
     QAction *actioncut;
-    QAction *action_10;
-    QAction *action_11;
+    QAction *actioncopy;
+    QAction *actionpaste;
     QAction *action_13;
     QAction *action_4;
     QAction *action_5;
@@ -86,6 +86,11 @@ public:
     QAction *action_31;
     QAction *action_32;
     QAction *print_preview;
+    QAction *actionmy;
+    QAction *actionmy2;
+    QAction *actionmy3;
+    QAction *actionmy4;
+    QAction *actionmy5;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     QTabWidget *tabWidget;
@@ -291,6 +296,7 @@ public:
     QTableWidget *tableWidget_12;
     QMenuBar *menubar;
     QMenu *menufile;
+    QMenu *menu_6;
     QMenu *menuabout;
     QMenu *menu;
     QMenu *menu_2;
@@ -340,31 +346,31 @@ public:
         QIcon icon6;
         icon6.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/document-save-as.svg"), QSize(), QIcon::Normal, QIcon::Off);
         action_6->setIcon(icon6);
-        action_7 = new QAction(MainWindow);
-        action_7->setObjectName(QString::fromUtf8("action_7"));
+        actionundo = new QAction(MainWindow);
+        actionundo->setObjectName(QString::fromUtf8("actionundo"));
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/edit-undo.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_7->setIcon(icon7);
-        action_8 = new QAction(MainWindow);
-        action_8->setObjectName(QString::fromUtf8("action_8"));
+        actionundo->setIcon(icon7);
+        actionredo = new QAction(MainWindow);
+        actionredo->setObjectName(QString::fromUtf8("actionredo"));
         QIcon icon8;
         icon8.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/edit-redo.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_8->setIcon(icon8);
+        actionredo->setIcon(icon8);
         actioncut = new QAction(MainWindow);
         actioncut->setObjectName(QString::fromUtf8("actioncut"));
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/edit-cut.svg"), QSize(), QIcon::Normal, QIcon::Off);
         actioncut->setIcon(icon9);
-        action_10 = new QAction(MainWindow);
-        action_10->setObjectName(QString::fromUtf8("action_10"));
+        actioncopy = new QAction(MainWindow);
+        actioncopy->setObjectName(QString::fromUtf8("actioncopy"));
         QIcon icon10;
         icon10.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/edit-copy.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_10->setIcon(icon10);
-        action_11 = new QAction(MainWindow);
-        action_11->setObjectName(QString::fromUtf8("action_11"));
+        actioncopy->setIcon(icon10);
+        actionpaste = new QAction(MainWindow);
+        actionpaste->setObjectName(QString::fromUtf8("actionpaste"));
         QIcon icon11;
         icon11.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/edit-paste.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        action_11->setIcon(icon11);
+        actionpaste->setIcon(icon11);
         action_13 = new QAction(MainWindow);
         action_13->setObjectName(QString::fromUtf8("action_13"));
         QIcon icon12;
@@ -488,6 +494,16 @@ public:
         QIcon icon31;
         icon31.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/document-preview-archive.svg"), QSize(), QIcon::Normal, QIcon::Off);
         print_preview->setIcon(icon31);
+        actionmy = new QAction(MainWindow);
+        actionmy->setObjectName(QString::fromUtf8("actionmy"));
+        actionmy2 = new QAction(MainWindow);
+        actionmy2->setObjectName(QString::fromUtf8("actionmy2"));
+        actionmy3 = new QAction(MainWindow);
+        actionmy3->setObjectName(QString::fromUtf8("actionmy3"));
+        actionmy4 = new QAction(MainWindow);
+        actionmy4->setObjectName(QString::fromUtf8("actionmy4"));
+        actionmy5 = new QAction(MainWindow);
+        actionmy5->setObjectName(QString::fromUtf8("actionmy5"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout = new QHBoxLayout(centralwidget);
@@ -692,8 +708,8 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         groupBox = new QGroupBox(page_3);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        sizePolicy3.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
-        groupBox->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
+        groupBox->setSizePolicy(sizePolicy4);
         groupBox->setMinimumSize(QSize(0, 0));
         gridLayout_5 = new QGridLayout(groupBox);
         gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
@@ -1508,6 +1524,8 @@ public:
         menubar->setGeometry(QRect(0, 0, 1116, 26));
         menufile = new QMenu(menubar);
         menufile->setObjectName(QString::fromUtf8("menufile"));
+        menu_6 = new QMenu(menufile);
+        menu_6->setObjectName(QString::fromUtf8("menu_6"));
         menuabout = new QMenu(menubar);
         menuabout->setObjectName(QString::fromUtf8("menuabout"));
         menu = new QMenu(menubar);
@@ -1539,21 +1557,27 @@ public:
         menufile->addAction(action);
         menufile->addAction(action_2);
         menufile->addAction(action_6);
+        menufile->addAction(menu_6->menuAction());
         menufile->addSeparator();
         menufile->addAction(print_preview);
         menufile->addAction(action_3);
         menufile->addSeparator();
         menufile->addAction(actionExit);
+        menu_6->addAction(actionmy);
+        menu_6->addAction(actionmy2);
+        menu_6->addAction(actionmy3);
+        menu_6->addAction(actionmy4);
+        menu_6->addAction(actionmy5);
         menuabout->addAction(actionhelp);
         menuabout->addAction(actionabout);
         menu->addAction(action_15);
         menu->addAction(action_23);
-        menu_2->addAction(action_7);
-        menu_2->addAction(action_8);
+        menu_2->addAction(actionundo);
+        menu_2->addAction(actionredo);
         menu_2->addSeparator();
         menu_2->addAction(actioncut);
-        menu_2->addAction(action_10);
-        menu_2->addAction(action_11);
+        menu_2->addAction(actioncopy);
+        menu_2->addAction(actionpaste);
         menu_2->addAction(action_4);
         menu_2->addSeparator();
         menu_2->addAction(action_13);
@@ -1577,12 +1601,12 @@ public:
         toolBar->addAction(print_preview);
         toolBar->addAction(action_3);
         toolBar->addSeparator();
-        toolBar->addAction(action_7);
-        toolBar->addAction(action_8);
+        toolBar->addAction(actionundo);
+        toolBar->addAction(actionredo);
         toolBar->addSeparator();
         toolBar->addAction(actioncut);
-        toolBar->addAction(action_10);
-        toolBar->addAction(action_11);
+        toolBar->addAction(actioncopy);
+        toolBar->addAction(actionpaste);
         toolBar->addSeparator();
         toolBar->addAction(action_5);
         toolBar->addAction(action_9);
@@ -1607,9 +1631,9 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(0);
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(0);
 
 
@@ -1644,25 +1668,25 @@ public:
 #if QT_CONFIG(shortcut)
         action_6->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+S", nullptr));
 #endif // QT_CONFIG(shortcut)
-        action_7->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\270\321\202\321\214 \320\264\320\265\320\271\321\201\321\202\320\262\320\270\320\265", nullptr));
+        actionundo->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\270\321\202\321\214 \320\264\320\265\320\271\321\201\321\202\320\262\320\270\320\265", nullptr));
 #if QT_CONFIG(shortcut)
-        action_7->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Z", nullptr));
+        actionundo->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Z", nullptr));
 #endif // QT_CONFIG(shortcut)
-        action_8->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\321\214 \320\264\320\265\320\271\321\201\321\202\320\262\320\270\320\265", nullptr));
+        actionredo->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\321\214 \320\264\320\265\320\271\321\201\321\202\320\262\320\270\320\265", nullptr));
 #if QT_CONFIG(shortcut)
-        action_8->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+Z", nullptr));
+        actionredo->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+Z", nullptr));
 #endif // QT_CONFIG(shortcut)
         actioncut->setText(QCoreApplication::translate("MainWindow", "\320\222\321\213\321\200\320\265\320\267\320\260\321\202\321\214", nullptr));
 #if QT_CONFIG(shortcut)
         actioncut->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+X", nullptr));
 #endif // QT_CONFIG(shortcut)
-        action_10->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\320\277\320\270\321\200\320\276\320\262\320\260\321\202\321\214", nullptr));
+        actioncopy->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\320\277\320\270\321\200\320\276\320\262\320\260\321\202\321\214", nullptr));
 #if QT_CONFIG(shortcut)
-        action_10->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+C", nullptr));
+        actioncopy->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+C", nullptr));
 #endif // QT_CONFIG(shortcut)
-        action_11->setText(QCoreApplication::translate("MainWindow", "\320\222\321\201\321\202\320\260\320\262\320\270\321\202\321\214", nullptr));
+        actionpaste->setText(QCoreApplication::translate("MainWindow", "\320\222\321\201\321\202\320\260\320\262\320\270\321\202\321\214", nullptr));
 #if QT_CONFIG(shortcut)
-        action_11->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+V", nullptr));
+        actionpaste->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+V", nullptr));
 #endif // QT_CONFIG(shortcut)
         action_13->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272/\320\267\320\260\320\274\320\265\320\275\320\260", nullptr));
         action_4->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", nullptr));
@@ -1722,6 +1746,11 @@ public:
 #if QT_CONFIG(shortcut)
         print_preview->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+O", nullptr));
 #endif // QT_CONFIG(shortcut)
+        actionmy->setText(QCoreApplication::translate("MainWindow", "recentFileActions1", nullptr));
+        actionmy2->setText(QCoreApplication::translate("MainWindow", "recentFileActions2", nullptr));
+        actionmy3->setText(QCoreApplication::translate("MainWindow", "recentFileActions3", nullptr));
+        actionmy4->setText(QCoreApplication::translate("MainWindow", "recentFileActions4", nullptr));
+        actionmy5->setText(QCoreApplication::translate("MainWindow", "recentFileActions5", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "\320\230\321\201\321\205\320\276\320\264\320\275\321\213\320\265 \320\264\320\260\320\275\320\275\321\213\320\265", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "\320\237\321\200\320\265\320\264\320\262\320\260\321\200\320\270\321\202\320\265\320\273\321\214\320\275\320\260\321\217 \320\270\320\264\320\265\320\275\321\202\320\270\321\204\320\270\320\272\320\260\321\206\320\270\321\217 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\320\276\320\262 \321\201\321\205\320\265\320\274\321\213 \320\267\320\260\320\274\320\265\321\211\320\265\320\275\320\270\321\217", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_14), QCoreApplication::translate("MainWindow", "\320\237\321\200\320\265\320\264\320\262\320\260\321\200\320\270\321\202\320\265\320\273\321\214\320\275\320\260\321\217 \320\270\320\264\320\265\320\275\321\202\320\270\321\204\320\270\320\272\320\260\321\206\320\270\321\217 \320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\320\276\320\262 \321\202\320\265\320\277\320\273\320\276\320\262\320\276\320\271 \320\274\320\276\320\264\320\265\320\273\320\270", nullptr));
@@ -1822,6 +1851,7 @@ public:
         label_29->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">\320\255\320\275\320\265\321\200\320\263\320\265\321\202\320\270\321\207\320\265\321\201\320\272\320\260\321\217 \320\264\320\270\320\260\320\263\321\200\320\260\320\274\320\274\320\260 </span></p><p align=\"center\"><span style=\" font-size:14pt;\">\320\262\320\265\320\275\321\202\320\270\320\273\321\217\321\202\320\276\321\200\320\260</span></p></body></html>", nullptr));
         label_30->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">\320\240\320\260\321\201\321\207\320\265\321\202\320\275\321\213\320\265 \320\262\320\265\320\273\320\270\321\207\320\270\320\275\321\213 \320\262\320\265\320\275\321\202\320\270\320\273\321\217\321\206\320\270\320\276\320\275\320\275\320\276\320\271 \321\201\320\265\321\202\320\270</span></p></body></html>", nullptr));
         menufile->setTitle(QCoreApplication::translate("MainWindow", "&\320\244\320\260\320\271\320\273", nullptr));
+        menu_6->setTitle(QCoreApplication::translate("MainWindow", "\320\235\320\265\320\264\320\260\320\262\320\275\320\270\320\265 \321\204\320\260\320\271\320\273\321\213", nullptr));
         menuabout->setTitle(QCoreApplication::translate("MainWindow", "&\320\241\320\277\321\200\320\260\320\262\320\272\320\260", nullptr));
         menu->setTitle(QCoreApplication::translate("MainWindow", "&\320\230\320\275\321\201\321\202\321\200\321\203\320\274\320\265\320\275\321\202\321\213", nullptr));
         menu_2->setTitle(QCoreApplication::translate("MainWindow", "&\320\237\321\200\320\260\320\262\320\272\320\260", nullptr));

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "settings.h"
-#include "ui_settings.h"
 
 #include <QApplication>
 #include <QFileDialog>
@@ -49,12 +48,6 @@ int main(int argc, char *argv[])
         w.LoadProject(filename);
     }
 
-  /*  Settings *set;
-    if(lokal == "ru_RU")
-    {set->ui->comboBox->setCurrentIndex(0);}
-    else if(lokal == "en_US")
-    {set->ui->comboBox->setCurrentIndex(1);}
-*/
     w.show();
 
     return a.exec();
