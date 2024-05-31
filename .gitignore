@@ -8,4 +8,5 @@ ImView/.qmake.stash
 *.txt
 *.csv
 *.odt
+ImView/.qtc_clangd
 
