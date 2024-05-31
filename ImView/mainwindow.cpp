@@ -90,6 +90,8 @@ QString currentTabText;
 QVector<double> tepl_ident_t;
 QVector<double> tepl_ident_StatorTemp;
 
+QTranslator * qtLanguageTranslator;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -111,7 +113,6 @@ MainWindow::MainWindow(QWidget *parent)
     recentFileActs[4] = ui->actionmy5;
 
     connect(recentFileActs[MaxRecentFiles-1], &QAction::triggered, this, &MainWindow::openRecentFile);
-
 
     createUndoView();
 
@@ -3080,6 +3081,7 @@ void AboutDialog::on_pushButton_clicked()
     connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
         [=](int index){ ui->pushButton_2->setEnabled(true); });
 }
+*/
 
 void MainWindow::changeEvent(QEvent *event)
 {
@@ -3087,18 +3089,20 @@ void MainWindow::changeEvent(QEvent *event)
     {
             ui->retranslateUi(this);
     }
-}*/
+}
 
 void MainWindow::translate_en()
 {
-    qtLanguageTranslator.load(QString("QtLanguage_") + QString("en_US"));
-    qApp->installTranslator(&qtLanguageTranslator);
+    qtLanguageTranslator = new QTranslator();
+    qtLanguageTranslator->load("QtLanguage_en_US");
+    qApp->removeTranslator(qtLanguageTranslator);
+    qApp->installTranslator(qtLanguageTranslator);
 }
 
 void MainWindow::translate_ru()
 {
-    qtLanguageTranslator.load(QString("QtLanguage_") + QString("ru_RU"));
-    qApp->installTranslator(&qtLanguageTranslator);
+    qApp->removeTranslator(qtLanguageTranslator);
+    volatile bool res = qApp->removeTranslator(qtLanguageTranslator);
 }
 
 void MainWindow::translator()

@@ -25,14 +25,16 @@ int main(int argc, char *argv[])
     }
 
 
-    QTranslator qtLanguageTranslator;
+
     QSettings settings( "BRU", "IM View");
     settings.beginGroup( "language interface" );
     QString lokal = settings.value( "QtLanguage_", "").toString();
     settings.endGroup();
 
-    qtLanguageTranslator.load(QString("QtLanguage_") + lokal);
-    qApp->installTranslator(&qtLanguageTranslator);
+    QString aaaaa = QString("QtLanguage_") + lokal;
+    QTranslator *qtLanguageTranslator = new QTranslator();
+    qtLanguageTranslator->load(aaaaa);
+    volatile bool res = qApp->installTranslator(qtLanguageTranslator);
 
 
 

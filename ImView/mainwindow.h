@@ -220,7 +220,6 @@ public:
     QString dataSourceFilename;
     QString dirName;
     bool isChanged = false;
-    QTranslator qtLanguageTranslator;
     QAction *separatorAct;
     QMenu *fileMenu;
 
@@ -265,7 +264,8 @@ public:
     QStandardItem *item105,*item106, *item107, *item108, *item109, *item110, *item111, *item112;
     QStandardItem *item113,*item114, *item115, *item116, *item117, *item118, *item119, *item120;
     QStandardItem *item121,*item122,*item123,*item124,*item125,*item126,*item127,*item128;
-    QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;   
+    QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;
+    void changeEvent(QEvent *event);
 };
 
 #endif // MAINWINDOW_H

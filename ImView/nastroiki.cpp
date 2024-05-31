@@ -38,15 +38,7 @@ Nastroiki::Nastroiki(QWidget *parent)
     ui->comboBox->addItem(tr("English language"));
 
   /*  connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
-            [=](const QString &text){
-        if(ui->comboBox->currentText() == "Русский язык")
-        {wf->translate_ru();}
-        else if(ui->comboBox->currentText() == "English language")
-        {wf->translate_en();}
-            });*/
-
-    connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
-            [=](const QString &text){ wf->translator(); });
+            [=](const QString &text){ wf->translator(); });*/
 
         connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
             [=](int index){ ui->pushButton_2->setEnabled(true); });
