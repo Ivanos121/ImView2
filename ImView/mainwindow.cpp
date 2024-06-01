@@ -9428,7 +9428,7 @@ void MainWindow::openRecentFile()
     if (action)
     {
         QString fileName = action->data().toString();
-        //loadFile(fileName);
+        loadFile(fileName);
         int index = ui->tabWidget->currentIndex();
         QString currentTabText = ui->tabWidget->tabText(index);
         QFileInfo fi(fileName);
@@ -9485,7 +9485,8 @@ QString MainWindow::strippedName(const QString &fullFileName)
 void MainWindow::loadFile(const QString &fileName)
 {
     // setWindowTitle(fileName + QString(" - IM View"));
-     dat->table();
+    // dat->table();
+     on_LoadProgect_clicked();
      setCurrentFile(fileName);
 
      QFileInfo fi(fileName);

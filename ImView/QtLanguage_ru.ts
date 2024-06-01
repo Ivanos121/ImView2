@@ -1146,79 +1146,79 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="202"/>
+        <location filename="mainwindow.cpp" line="203"/>
         <source>Наименование</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="202"/>
+        <location filename="mainwindow.cpp" line="203"/>
         <source>Свойство</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="239"/>
+        <location filename="mainwindow.cpp" line="240"/>
         <source>Общее название сеанса</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="254"/>
+        <location filename="mainwindow.cpp" line="255"/>
         <source>Название сеанса</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="258"/>
+        <location filename="mainwindow.cpp" line="259"/>
         <source>Имя сеанса</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="266"/>
+        <location filename="mainwindow.cpp" line="267"/>
         <source>Тип эксперимента</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="279"/>
+        <location filename="mainwindow.cpp" line="280"/>
         <source>Идентификация данных схемы замещения</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="283"/>
+        <location filename="mainwindow.cpp" line="284"/>
         <source>Выбрать тип эксперимента</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="291"/>
+        <location filename="mainwindow.cpp" line="292"/>
         <source>Загрузка данных ручной идентификации</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="296"/>
+        <location filename="mainwindow.cpp" line="297"/>
         <source>Указать каталог</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8363"/>
-        <location filename="mainwindow.cpp" line="8380"/>
-        <location filename="mainwindow.cpp" line="8397"/>
+        <location filename="mainwindow.cpp" line="8379"/>
+        <location filename="mainwindow.cpp" line="8396"/>
+        <location filename="mainwindow.cpp" line="8413"/>
         <source>Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8606"/>
+        <location filename="mainwindow.cpp" line="8622"/>
         <source>Сообщение</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8606"/>
+        <location filename="mainwindow.cpp" line="8622"/>
         <source>Расчет окончен!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8891"/>
+        <location filename="mainwindow.cpp" line="8907"/>
         <source>Command List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9453"/>
+        <location filename="mainwindow.cpp" line="9469"/>
         <source>&amp;%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1296,12 +1296,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="nastroiki.cpp" line="36"/>
+        <location filename="nastroiki.cpp" line="37"/>
         <source>Русский язык</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="nastroiki.cpp" line="37"/>
+        <location filename="nastroiki.cpp" line="38"/>
         <source>English language</source>
         <translation type="unfinished"></translation>
     </message>

@@ -6,32 +6,32 @@
     <message>
         <location filename="itogs.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="itogs.ui" line="41"/>
         <source>Печать</source>
-        <translation type="unfinished">Print</translation>
+        <translation>Print</translation>
     </message>
     <message>
         <location filename="itogs.ui" line="54"/>
         <source>Очистить</source>
-        <translation type="unfinished"></translation>
+        <translation>Clean</translation>
     </message>
     <message>
         <location filename="itogs.ui" line="67"/>
         <source>Отчет</source>
-        <translation type="unfinished"></translation>
+        <translation>Otchet</translation>
     </message>
     <message>
         <location filename="itogs.ui" line="80"/>
         <source>Предосмотр</source>
-        <translation type="unfinished"></translation>
+        <translation>Preview</translation>
     </message>
     <message>
         <location filename="itogs.cpp" line="276"/>
         <source>Print Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Print Document</translation>
     </message>
 </context>
 <context>
@@ -39,14 +39,16 @@
     <message>
         <location filename="kalibr.ui" line="14"/>
         <source>Калибровка осциллографа</source>
-        <translation type="unfinished">Calibrating the oscilloscope</translation>
+        <translation>Calibrating the oscilloscope</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="80"/>
         <source>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
 &lt;p&gt;Настройки соединения&lt;br&gt;архиватора МСД200&lt;/p&gt;
 &lt;/dev&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
+&lt;p&gt;Connection settings&lt;br&gt;of the MSD 200 archiver&lt;/p&gt;
+&lt;/dev&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="89"/>
@@ -54,7 +56,7 @@
         <location filename="kalibr.ui" line="637"/>
         <location filename="kalibr.ui" line="766"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="104"/>
@@ -62,49 +64,49 @@
         <location filename="kalibr.ui" line="687"/>
         <location filename="kalibr.ui" line="813"/>
         <source>Номер порта</source>
-        <translation type="unfinished"></translation>
+        <translation>Port number</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="118"/>
         <location filename="kalibr.ui" line="499"/>
         <location filename="kalibr.ui" line="701"/>
         <source>Стоповые биты</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop bits</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="125"/>
         <location filename="kalibr.ui" line="478"/>
         <location filename="kalibr.ui" line="680"/>
         <source>Четность</source>
-        <translation type="unfinished"></translation>
+        <translation>Parity</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="149"/>
         <location filename="kalibr.ui" line="530"/>
         <location filename="kalibr.ui" line="732"/>
         <source>Управление потоком</source>
-        <translation type="unfinished"></translation>
+        <translation>Flow control</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="170"/>
         <location filename="kalibr.ui" line="471"/>
         <location filename="kalibr.ui" line="673"/>
         <source>Биты данных</source>
-        <translation type="unfinished"></translation>
+        <translation>Data bits</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="184"/>
         <location filename="kalibr.ui" line="513"/>
         <location filename="kalibr.ui" line="715"/>
         <source>Скорость (бит/с)</source>
-        <translation type="unfinished"></translation>
+        <translation>Speed (bps)</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="196"/>
         <location filename="kalibr.ui" line="576"/>
         <location filename="kalibr.ui" line="649"/>
         <source>Поиск портов</source>
-        <translation type="unfinished"></translation>
+        <translation>Port Search</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="206"/>
@@ -112,132 +114,140 @@
         <location filename="kalibr.ui" line="661"/>
         <location filename="kalibr.ui" line="796"/>
         <source>Принять</source>
-        <translation type="unfinished"></translation>
+        <translation>Apply</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="245"/>
         <source>Создание файла данных</source>
-        <translation type="unfinished"></translation>
+        <translation>Creating a data file</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="252"/>
         <source>Загрузить данные из файла</source>
-        <translation type="unfinished"></translation>
+        <translation>Download data from a file</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="259"/>
         <source>Сохранить данные в файл</source>
-        <translation type="unfinished"></translation>
+        <translation>Save data to a file</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="266"/>
         <source>Закрыть файл</source>
-        <translation type="unfinished"></translation>
+        <translation>Close the file</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="286"/>
         <source>Чтение данных из прибора</source>
-        <translation type="unfinished"></translation>
+        <translation>Reading data from the device</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="293"/>
         <source>Запись данных в прибор</source>
-        <translation type="unfinished"></translation>
+        <translation>Recording data into the device</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="300"/>
         <source>Тестовое чтение данных</source>
-        <translation type="unfinished"></translation>
+        <translation>Test data reading</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="317"/>
         <source>Добавить строку</source>
-        <translation type="unfinished"></translation>
+        <translation>Add a line</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="324"/>
         <source>Удалить строку</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete a line</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="338"/>
         <source>Настройка печати</source>
-        <translation type="unfinished"></translation>
+        <translation>Print Settings</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="345"/>
         <source>Печать</source>
-        <translation type="unfinished">Print</translation>
+        <translation>Print</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="359"/>
         <source>Справка</source>
-        <translation type="unfinished">Help</translation>
+        <translation>Help</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="386"/>
         <source>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
 &lt;p&gt;Настройки каналов&lt;br&gt;архиватора МСД-200&lt;/p&gt;
 &lt;/dev&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
+&lt;p&gt;Channel settings&lt;br&gt;of the MSD-200 archiver&lt;/p&gt;
+&lt;/dev&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="447"/>
         <source>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
 &lt;p&gt;Настройки соединения&lt;br&gt;осциллографа osc&lt;/p&gt;
 &lt;/dev&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
+&lt;p&gt;Connection settings&lt;br&gt;of the osc oscilloscope&lt;/p&gt;
+&lt;/dev&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="628"/>
         <source>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
 &lt;p&gt;Настройки соединения&lt;br&gt;ПЛК&lt;/p&gt;
 &lt;/dev&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
+&lt;p&gt;Connection settings&lt;br&gt;PLC&lt;/p&gt;
+&lt;/dev&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="806"/>
         <source>ip-адресс</source>
-        <translation type="unfinished"></translation>
+        <translation>ip-address</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="878"/>
         <source>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
 &lt;p&gt;Настройки соединения&lt;br&gt;изменения момента&lt;/p&gt;
 &lt;/dev&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;div style=&quot;font-size: 18px;text-align: center;&quot;&gt;
+&lt;p&gt;Connection settings&lt;br&gt;moment changes&lt;/p&gt;
+&lt;/dev&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="910"/>
         <source>Настройки каналов</source>
-        <translation type="unfinished"></translation>
+        <translation>Channel Settings</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="927"/>
         <source>Результат измерений</source>
-        <translation type="unfinished"></translation>
+        <translation>Measurement result</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="976"/>
         <source>Выбор осциллографа</source>
-        <translation type="unfinished"></translation>
+        <translation>Choosing an oscilloscope</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="986"/>
         <source>Сохранить калибровку</source>
-        <translation type="unfinished"></translation>
+        <translation>Save the calibration</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="993"/>
         <source>Запустить</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1040"/>
         <location filename="kalibr.ui" line="1194"/>
         <location filename="kalibr.ui" line="1402"/>
         <source>0 А</source>
-        <translation type="unfinished"></translation>
+        <translation>0 А</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1047"/>
@@ -247,7 +257,7 @@
         <location filename="kalibr.ui" line="1354"/>
         <location filename="kalibr.ui" line="1361"/>
         <source>Задать значение:</source>
-        <translation type="unfinished"></translation>
+        <translation>Set the value:</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1054"/>
@@ -257,7 +267,7 @@
         <location filename="kalibr.ui" line="1314"/>
         <location filename="kalibr.ui" line="1375"/>
         <source>Применить</source>
-        <translation type="unfinished">Apply</translation>
+        <translation>Apply</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1074"/>
@@ -267,7 +277,7 @@
         <location filename="kalibr.ui" line="1327"/>
         <location filename="kalibr.ui" line="1395"/>
         <source>Текущее значение:</source>
-        <translation type="unfinished"></translation>
+        <translation>Current value:</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1081"/>
@@ -277,7 +287,7 @@
         <location filename="kalibr.ui" line="1344"/>
         <location filename="kalibr.ui" line="1368"/>
         <source>Нулевой уровень:</source>
-        <translation type="unfinished"></translation>
+        <translation>Level zero:</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1088"/>
@@ -287,69 +297,69 @@
         <location filename="kalibr.ui" line="1419"/>
         <location filename="kalibr.ui" line="1429"/>
         <source>Установить</source>
-        <translation type="unfinished"></translation>
+        <translation>Apply</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1115"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Сигнал напряжения фазы А&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Phase A voltage signal&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1125"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Сигнал тока фазы А&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Phase A current signal&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1145"/>
         <location filename="kalibr.ui" line="1255"/>
         <location filename="kalibr.ui" line="1409"/>
         <source>0 В</source>
-        <translation type="unfinished"></translation>
+        <translation>0 V</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1177"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Сигнал напряжения фазы В&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Phase B voltage signal&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1184"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Сигнал тока фазы В&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Phase B current signal&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1334"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Сигнал напряжения фазы C&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Phase C voltage signal&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1382"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Сигнал тока фазы C&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Phase C current signal&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1458"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Калибровка осциллографа&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Calibrating the oscilloscope&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1465"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Каналы архиватора МСД-200&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Channels archiver MSD-200&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.ui" line="1472"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Настройки подключений&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Connection Settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="kalibr.cpp" line="764"/>
         <source>Ошибка</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="kalibr.cpp" line="764"/>
         <source>Порт не открыт</source>
-        <translation type="unfinished"></translation>
+        <translation>Port is not open</translation>
     </message>
 </context>
 <context>
@@ -357,84 +367,84 @@
     <message>
         <location filename="settings.ui" line="14"/>
         <source>Параметры - IM View</source>
-        <translation type="unfinished"></translation>
+        <translation>Parameters - IM View</translation>
     </message>
     <message>
         <location filename="settings.ui" line="47"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="settings.ui" line="60"/>
         <source>Применить</source>
-        <translation type="unfinished">Apply</translation>
+        <translation>Apply</translation>
     </message>
     <message>
         <location filename="settings.ui" line="73"/>
         <source>Отмена</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancel</translation>
     </message>
     <message>
         <location filename="settings.ui" line="106"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Интерфейс&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Interface&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="settings.ui" line="129"/>
         <source>Пользовательский интерфейс</source>
-        <translation type="unfinished"></translation>
+        <translation>User interface</translation>
     </message>
     <message>
         <location filename="settings.ui" line="142"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation>PushButton</translation>
     </message>
     <message>
         <location filename="settings.ui" line="155"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="settings.ui" line="170"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Исходные данные&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Initial data&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="settings.ui" line="185"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Идентификация&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Identification&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="settings.ui" line="200"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Электро&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Electro&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="settings.ui" line="215"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Энергетика&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Energy&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="settings.ui" line="230"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Тепловентиляция&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Thermal ventilation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="settings.ui" line="245"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Итоги&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Results&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="settings.cpp" line="13"/>
         <location filename="settings.cpp" line="43"/>
         <source>Русский язык</source>
-        <translation type="unfinished"></translation>
+        <translation>Русский язык</translation>
     </message>
     <message>
         <location filename="settings.cpp" line="14"/>
         <location filename="settings.cpp" line="44"/>
         <source>English language</source>
-        <translation type="unfinished"></translation>
+        <translation>English language</translation>
     </message>
 </context>
 <context>
@@ -1154,79 +1164,79 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <translation>recentFileActions5</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="202"/>
+        <location filename="mainwindow.cpp" line="203"/>
         <source>Наименование</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="202"/>
+        <location filename="mainwindow.cpp" line="203"/>
         <source>Свойство</source>
         <translation>Property</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="239"/>
+        <location filename="mainwindow.cpp" line="240"/>
         <source>Общее название сеанса</source>
         <translation>The general name of the session</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="254"/>
+        <location filename="mainwindow.cpp" line="255"/>
         <source>Название сеанса</source>
         <translation>Session name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="258"/>
+        <location filename="mainwindow.cpp" line="259"/>
         <source>Имя сеанса</source>
         <translation>Session Name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="266"/>
+        <location filename="mainwindow.cpp" line="267"/>
         <source>Тип эксперимента</source>
         <translation>Type of experiment</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="279"/>
+        <location filename="mainwindow.cpp" line="280"/>
         <source>Идентификация данных схемы замещения</source>
         <translation>Identification of substitution scheme data</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="283"/>
+        <location filename="mainwindow.cpp" line="284"/>
         <source>Выбрать тип эксперимента</source>
         <translation>Select the type of experiment</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="291"/>
+        <location filename="mainwindow.cpp" line="292"/>
         <source>Загрузка данных ручной идентификации</source>
         <translation>Uploading manual identification data</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="296"/>
+        <location filename="mainwindow.cpp" line="297"/>
         <source>Указать каталог</source>
         <translation>Specify the folder</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8363"/>
-        <location filename="mainwindow.cpp" line="8380"/>
-        <location filename="mainwindow.cpp" line="8397"/>
+        <location filename="mainwindow.cpp" line="8379"/>
+        <location filename="mainwindow.cpp" line="8396"/>
+        <location filename="mainwindow.cpp" line="8413"/>
         <source>Save as...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8606"/>
+        <location filename="mainwindow.cpp" line="8622"/>
         <source>Сообщение</source>
         <translation>Message</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8606"/>
+        <location filename="mainwindow.cpp" line="8622"/>
         <source>Расчет окончен!</source>
         <translation>The calculation is over!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8891"/>
+        <location filename="mainwindow.cpp" line="8907"/>
         <source>Command List</source>
         <translation>Command List</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9453"/>
+        <location filename="mainwindow.cpp" line="9469"/>
         <source>&amp;%1 %2</source>
         <translation>&amp;%1 %2</translation>
     </message>
@@ -1241,7 +1251,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="nastroiki.ui" line="53"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ok</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="66"/>
@@ -1251,67 +1261,67 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="nastroiki.ui" line="79"/>
         <source>Отмена</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cancel</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="108"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Интерфейс&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Interface&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="131"/>
         <source>Пользовательский интерфейс</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">User interface</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="144"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">PushButton</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="157"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">TextLabel</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="172"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Исходные данные&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Initial data&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="187"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Идентификация&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Identification&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="202"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Электро&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Electro&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="217"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Энергетика&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Energy&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="232"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Тепловентиляция&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Thermal ventilation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="nastroiki.ui" line="247"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Итоги&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="nastroiki.cpp" line="36"/>
-        <source>Русский язык</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Results&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="nastroiki.cpp" line="37"/>
+        <source>Русский язык</source>
+        <translation type="unfinished">Русский язык</translation>
+    </message>
+    <message>
+        <location filename="nastroiki.cpp" line="38"/>
         <source>English language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">English language</translation>
     </message>
 </context>
 <context>
@@ -1319,7 +1329,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="settingscanals.ui" line="14"/>
         <source>Настройки каналов</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Channel Settings</translation>
     </message>
     <message>
         <location filename="settingscanals.ui" line="44"/>
@@ -1334,7 +1344,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="settingscanals.ui" line="61"/>
         <source>Принять</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apply</translation>
     </message>
     <message>
         <location filename="settingscanals.ui" line="68"/>
@@ -1357,7 +1367,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="tepl_dannie.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
@@ -1365,7 +1375,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="tepl_identf.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
@@ -1373,7 +1383,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="trend.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="trend.cpp" line="1029"/>
@@ -1391,7 +1401,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="vent_tract.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="vent_tract.ui" line="28"/>
@@ -1422,7 +1432,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="datas.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="datas.ui" line="41"/>
@@ -1450,7 +1460,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="draw_line.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="draw_line.ui" line="21"/>
@@ -1464,7 +1474,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="draw_poper.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="draw_poper.ui" line="21"/>
@@ -1478,7 +1488,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="electromagn.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
@@ -1504,7 +1514,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="identf.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="identf.cpp" line="73"/>
@@ -1553,7 +1563,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <location filename="settinsKanals.ui" line="20"/>
         <location filename="settinsKanals.ui" line="30"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">PushButton</translation>
     </message>
 </context>
 <context>
@@ -1561,7 +1571,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="tepl_nabludatel.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="tepl_nabludatel.ui" line="24"/>
@@ -1584,7 +1594,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="teplovent.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="teplovent.ui" line="24"/>
@@ -1649,7 +1659,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="teplschem.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="teplschem.ui" line="21"/>
@@ -1662,7 +1672,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="vent_model.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="vent_model.ui" line="24"/>
