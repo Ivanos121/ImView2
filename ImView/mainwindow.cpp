@@ -112,7 +112,10 @@ MainWindow::MainWindow(QWidget *parent)
     recentFileActs[3] = ui->actionmy4;
     recentFileActs[4] = ui->actionmy5;
 
-    connect(recentFileActs[MaxRecentFiles-1], &QAction::triggered, this, &MainWindow::openRecentFile);
+    for (int i = 0; i < MaxRecentFiles; i++)
+    {
+        connect(recentFileActs[i], &QAction::triggered, this, &MainWindow::openRecentFile);
+    }
 
     createUndoView();
 
@@ -3984,7 +3987,7 @@ void MainWindow::LoadProject(QString str)
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
     ui->action_2->setEnabled(false);
     ui->action_6->setEnabled(false);
-    setCurrentFile(sessionFileName);
+    setCurrentFile(str);
 }
 
 void MainWindow::on_pushButton_5_clicked(bool checked)
@@ -9486,7 +9489,8 @@ void MainWindow::loadFile(const QString &fileName)
 {
     // setWindowTitle(fileName + QString(" - IM View"));
     // dat->table();
-     on_LoadProgect_clicked();
+     //on_LoadProgect_clicked();
+     LoadProject(fileName);
      setCurrentFile(fileName);
 
      QFileInfo fi(fileName);
