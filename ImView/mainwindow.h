@@ -98,8 +98,8 @@ public:
 
 private:
     QString sessionFileName;
-
-
+    QSqlDatabase sdb;
+    QSqlTableModel *model;
 
     void updateRecentFileActions();
     void setCurrentFile(const QString &fileName);
@@ -209,6 +209,7 @@ private slots:
     void openRecentFile();
 
 
+    void close_progect();
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;

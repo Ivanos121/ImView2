@@ -143,6 +143,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->action_6, &QAction::triggered, this, &MainWindow::save_as_file);
     connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
     connect(ui->action_3, &QAction::triggered, this, &MainWindow::pagePrint);
+    connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
@@ -676,7 +677,7 @@ MainWindow::MainWindow(QWidget *parent)
     QList<QStandardItem*> items8;
     item27 = new QStandardItem(QStringLiteral ("Начальное значение температуры, °C"));
     item27->setEditable(false);
-    item28 = new QStandardItem(QStringLiteral ("Введите значение"));
+    item28 = new QStandardItem(QStringLiteral ("0"));
     items8.append(item27);
     items8.append(item28);
     item25->appendRow(items8);
@@ -691,7 +692,7 @@ MainWindow::MainWindow(QWidget *parent)
     items8.clear();
     item23 = new QStandardItem(QStringLiteral ("Шаг выбора точек"));
     item23->setEditable(false);
-    item107 = new QStandardItem(QStringLiteral ("Введите значение"));
+    item107 = new QStandardItem(QStringLiteral ("0"));
     items8.append(item23);
     items8.append(item107);
     item25->appendRow(items8);
@@ -3041,51 +3042,6 @@ void AboutDialog::on_pushButton_clicked()
     close();
 }
 
-/*Settings::Settings(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::settings)  
-{
-    wf = (MainWindow*)parent;
-    ui->setupUi(this);
-    QListWidgetItem *item_1=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/folder.svg"), "Интерфейс");
-    ui->listWidget->addItem(item_1);
-    QListWidgetItem *item_2=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-axis-vertical.svg"), "Исходные данные");
-    ui->listWidget->addItem(item_2);
-    QListWidgetItem *item_3=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-matrix-new.svg"), "Идентификация параметров");
-    ui->listWidget->addItem(item_3);
-    QListWidgetItem *item_4=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-xy-interpolation-curve.svg"), "Энергетические показатели");
-    ui->listWidget->addItem(item_4);
-    QListWidgetItem *item_5=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-zoom-out-y.svg"), "Тепловентиляция");
-    ui->listWidget->addItem(item_5);
-    QListWidgetItem *item_6=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/map-flat.svg"), "Выходные данные");
-    ui->listWidget->addItem(item_6);
-
-    QModelIndex firstRow = ui->listWidget->model()->index(0, 0);
-    ui->listWidget->selectionModel()->select(firstRow,
-                                   QItemSelectionModel::ClearAndSelect |
-                                   QItemSelectionModel::Rows);
-
-    ui->listWidget->setFocus();
-
-    connect(ui->listWidget, &QListWidget::itemSelectionChanged, this, &Settings::on_listWidget_itemSelectionChanged);
-
-
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->comboBox->addItem(tr("Русский язык"));
-    ui->comboBox->addItem(tr("English language"));
-   // ui->comboBox->setCurrentIndex(0);
-
-    connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
-                [=](const QString &text){
-            qtLanguageTranslator.load("QtLanguage_" + text, ".");   // Загружаем перевод
-            qApp->installTranslator(&qtLanguageTranslator);        // Устанавливаем перевод в приложение
-        });
-
-    connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-        [=](int index){ ui->pushButton_2->setEnabled(true); });
-}
-*/
-
 void MainWindow::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange)
@@ -3105,7 +3061,7 @@ void MainWindow::translate_en()
 void MainWindow::translate_ru()
 {
     qApp->removeTranslator(qtLanguageTranslator);
-    volatile bool res = qApp->removeTranslator(qtLanguageTranslator);
+    qApp->removeTranslator(qtLanguageTranslator);
 }
 
 void MainWindow::translator()
@@ -3617,6 +3573,11 @@ void MainWindow::on_LoadProgect_clicked()
 
 void MainWindow::LoadProject(QString str)
 {
+   // sdb = QSqlDatabase::addDatabase("QSQLITE");
+   // sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
+
+   // dat->table();
+
     QDir().mkdir("/tmp/imview");
     JlCompress::extractDir(str,"/tmp/imview");
     QFile file(QString("/tmp/imview/project.xml"));
@@ -9499,4 +9460,28 @@ void MainWindow::loadFile(const QString &fileName)
      int index = ui->tabWidget->currentIndex();
      QString currentTabText = ui->tabWidget->tabText(index);
      setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
+}
+
+void::MainWindow::close_progect()
+{
+    item4->setText(tr("Имя сеанса"));
+    item88->setText(tr("Выбрать тип эксперимента"));
+    item106->setText(tr("Указать каталог"));
+    item80->setText(tr("Выбрать тип эксперимента"));
+    item82->setText(tr("Указать каталог"));
+    item117->setText(tr("Выбрать каналы"));
+    item14->setText(tr("Выберите режим"));
+    item20->setText(tr("Выбрать режим"));
+    item22->setText(tr("0"));
+    item24->setText(tr("0"));
+    item28->setText(tr("0"));
+    item130->setText(tr("0"));
+    item132->setText(tr("0"));
+    item92->setText(tr("Выбрать режим"));
+    item28->setText(tr("0"));
+    item30->setText(tr("Выберите режим"));
+    item107->setText(tr("0"));
+    item34->setText(tr("Выберите режим"));
+    item36->setText(tr("Выберите конструкцию"));
+
 }

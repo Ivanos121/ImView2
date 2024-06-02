@@ -456,7 +456,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="31"/>
-        <location filename="mainwindow.ui" line="1761"/>
+        <location filename="mainwindow.ui" line="1762"/>
         <source>Исходные данные</source>
         <translation>source data</translation>
     </message>
@@ -533,7 +533,7 @@
         <location filename="mainwindow.ui" line="1286"/>
         <location filename="mainwindow.ui" line="1368"/>
         <location filename="mainwindow.ui" line="1500"/>
-        <location filename="mainwindow.ui" line="1883"/>
+        <location filename="mainwindow.ui" line="1884"/>
         <source>Сохранить</source>
         <translation>Save</translation>
     </message>
@@ -835,408 +835,438 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <translation>Recent files</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1724"/>
+        <location filename="mainwindow.ui" line="1725"/>
         <source>&amp;Справка</source>
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1731"/>
+        <location filename="mainwindow.ui" line="1732"/>
         <source>&amp;Инструменты</source>
         <translation>&amp;Tools</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1738"/>
+        <location filename="mainwindow.ui" line="1739"/>
         <source>&amp;Правка</source>
         <translation>&amp;Correction</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1752"/>
+        <location filename="mainwindow.ui" line="1753"/>
         <source>&amp;Идентификация параметров</source>
         <translation>&amp;Identification of parameters</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1771"/>
+        <location filename="mainwindow.ui" line="1772"/>
         <source>&amp;Энергетические показатели</source>
         <translation>&amp;Energy Indicators</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1788"/>
+        <location filename="mainwindow.ui" line="1789"/>
         <source>toolBar</source>
         <translation>toolBar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1838"/>
+        <location filename="mainwindow.ui" line="1839"/>
         <source>Выход</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1841"/>
+        <location filename="mainwindow.ui" line="1842"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1850"/>
+        <location filename="mainwindow.ui" line="1851"/>
         <source>Справка</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1853"/>
+        <location filename="mainwindow.ui" line="1854"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1862"/>
+        <location filename="mainwindow.ui" line="1863"/>
         <source>О программе</source>
         <translation>About the program</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1871"/>
+        <location filename="mainwindow.ui" line="1872"/>
         <source>Открыть</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1874"/>
+        <location filename="mainwindow.ui" line="1875"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1886"/>
-        <location filename="mainwindow.ui" line="2057"/>
+        <location filename="mainwindow.ui" line="1887"/>
+        <location filename="mainwindow.ui" line="2058"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1895"/>
+        <location filename="mainwindow.ui" line="1896"/>
         <source>Печать</source>
         <translation>Print</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1898"/>
-        <location filename="mainwindow.ui" line="2033"/>
+        <location filename="mainwindow.ui" line="1899"/>
+        <location filename="mainwindow.ui" line="2034"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1907"/>
+        <location filename="mainwindow.ui" line="1908"/>
         <source>Сохранить как</source>
         <translation>Save as</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1910"/>
+        <location filename="mainwindow.ui" line="1911"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1919"/>
+        <location filename="mainwindow.ui" line="1920"/>
         <source>Отменить действие</source>
         <translation>Cancel the action</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1922"/>
-        <location filename="mainwindow.ui" line="2045"/>
+        <location filename="mainwindow.ui" line="1923"/>
+        <location filename="mainwindow.ui" line="2046"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1931"/>
+        <location filename="mainwindow.ui" line="1932"/>
         <source>Повторить действие</source>
         <translation>Repeat the action</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1934"/>
+        <location filename="mainwindow.ui" line="1935"/>
         <source>Ctrl+Shift+Z</source>
         <translation>Ctrl+Shift+Z</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1943"/>
+        <location filename="mainwindow.ui" line="1944"/>
         <source>Вырезать</source>
         <translation>Cut</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1946"/>
+        <location filename="mainwindow.ui" line="1947"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1955"/>
+        <location filename="mainwindow.ui" line="1956"/>
         <source>Копировать</source>
         <translation>Copy</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1958"/>
+        <location filename="mainwindow.ui" line="1959"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1967"/>
+        <location filename="mainwindow.ui" line="1968"/>
         <source>Вставить</source>
         <translation>Paste</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1970"/>
+        <location filename="mainwindow.ui" line="1971"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1979"/>
+        <location filename="mainwindow.ui" line="1980"/>
         <source>Поиск/замена</source>
         <translation>Search/Replace</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1988"/>
+        <location filename="mainwindow.ui" line="1989"/>
         <source>Удалить</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1991"/>
+        <location filename="mainwindow.ui" line="1992"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2000"/>
+        <location filename="mainwindow.ui" line="2001"/>
         <source>Пуск</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2003"/>
+        <location filename="mainwindow.ui" line="2004"/>
         <source>Запуск предварительной идентификации параметров схемы замещения</source>
         <translation>Starting the preliminary identification of the substitution scheme parameters</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2012"/>
+        <location filename="mainwindow.ui" line="2013"/>
         <source>Стоп</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2021"/>
-        <location filename="mainwindow.ui" line="2030"/>
+        <location filename="mainwindow.ui" line="2022"/>
+        <location filename="mainwindow.ui" line="2031"/>
         <source>Настройки</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2042"/>
+        <location filename="mainwindow.ui" line="2043"/>
         <source>Загрузить данные</source>
         <translation>Upload data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2054"/>
+        <location filename="mainwindow.ui" line="2055"/>
         <source>Сохранить данные</source>
         <translation>Save data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2066"/>
+        <location filename="mainwindow.ui" line="2067"/>
         <source>Удалить данные</source>
         <translation>Delete data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2069"/>
+        <location filename="mainwindow.ui" line="2070"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2078"/>
+        <location filename="mainwindow.ui" line="2079"/>
         <source>Очистить данные</source>
         <translation>Clean data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2081"/>
+        <location filename="mainwindow.ui" line="2082"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2090"/>
+        <location filename="mainwindow.ui" line="2091"/>
         <source>Принять данные</source>
         <translation>Enter data</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2093"/>
+        <location filename="mainwindow.ui" line="2094"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2108"/>
+        <location filename="mainwindow.ui" line="2109"/>
         <source>Запуск</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2117"/>
+        <location filename="mainwindow.ui" line="2118"/>
         <source>Останов</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2126"/>
+        <location filename="mainwindow.ui" line="2127"/>
         <source>Калибровка осциллографа</source>
         <translation>Calibrating the oscilloscope</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2135"/>
+        <location filename="mainwindow.ui" line="2136"/>
         <source>Настройки графиков</source>
         <translation>Chart Settings</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2144"/>
+        <location filename="mainwindow.ui" line="2145"/>
         <source>Итоги измерений</source>
         <translation>Measurement results</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2153"/>
+        <location filename="mainwindow.ui" line="2154"/>
         <source>Итоги идентификации</source>
         <translation>Identification results</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2162"/>
+        <location filename="mainwindow.ui" line="2163"/>
         <source>Создать</source>
         <translation>Create</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2165"/>
+        <location filename="mainwindow.ui" line="2166"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2177"/>
+        <location filename="mainwindow.ui" line="2178"/>
         <source>Подключение архиватора</source>
         <translation>Connecting the archiver</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2189"/>
+        <location filename="mainwindow.ui" line="2190"/>
         <source>Подключение осциллографа</source>
         <translation>Connecting an oscilloscope</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2201"/>
+        <location filename="mainwindow.ui" line="2202"/>
         <source>Подключение ПЛК</source>
         <translation>PLC connection</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2213"/>
+        <location filename="mainwindow.ui" line="2214"/>
         <source>Подключение управления моментом</source>
         <translation>Connecting the torque control</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2222"/>
+        <location filename="mainwindow.ui" line="2223"/>
         <source>Пуск2</source>
         <translation>Start2</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2225"/>
+        <location filename="mainwindow.ui" line="2226"/>
         <source>Запуск идентификации параметров тепловой модели</source>
         <translation>Starting identification of thermal model parameters</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2237"/>
+        <location filename="mainwindow.ui" line="2238"/>
         <source>Стоп2</source>
         <translation>Stop2</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2249"/>
+        <location filename="mainwindow.ui" line="2250"/>
         <source>Предварительный просмотр</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2252"/>
+        <location filename="mainwindow.ui" line="2253"/>
         <source>Ctrl+Shift+O</source>
         <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2257"/>
+        <location filename="mainwindow.ui" line="2258"/>
+        <source>&amp;recentFileActions1</source>
+        <translation>&amp;recentFileActions1</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2263"/>
+        <source>r&amp;ecentFileActions2</source>
+        <translation>r&amp;ecentFileActions2</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2268"/>
+        <source>re&amp;centFileActions3</source>
+        <translation>re&amp;centFileActions3</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2273"/>
+        <source>rece&amp;ntFileActions4</source>
+        <translation>rece&amp;ntFileActions4</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2278"/>
+        <source>recen&amp;tFileActions5</source>
+        <translation>recen&amp;tFileActions5</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2287"/>
+        <source>Закрыть файл</source>
+        <translation>Close the file</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2290"/>
+        <source>Ctrl+Shift+W</source>
+        <translation>Ctrl+Shift+W</translation>
+    </message>
+    <message>
         <source>recentFileActions1</source>
-        <translation>recentFileActions1</translation>
+        <translation type="vanished">recentFileActions1</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2262"/>
         <source>recentFileActions2</source>
-        <translation>recentFileActions2</translation>
+        <translation type="vanished">recentFileActions2</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2267"/>
         <source>recentFileActions3</source>
-        <translation>recentFileActions3</translation>
+        <translation type="vanished">recentFileActions3</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2272"/>
         <source>recentFileActions4</source>
-        <translation>recentFileActions4</translation>
+        <translation type="vanished">recentFileActions4</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2277"/>
         <source>recentFileActions5</source>
-        <translation>recentFileActions5</translation>
+        <translation type="vanished">recentFileActions5</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="203"/>
+        <location filename="mainwindow.cpp" line="207"/>
         <source>Наименование</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="203"/>
+        <location filename="mainwindow.cpp" line="207"/>
         <source>Свойство</source>
         <translation>Property</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="240"/>
+        <location filename="mainwindow.cpp" line="244"/>
         <source>Общее название сеанса</source>
         <translation>The general name of the session</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="255"/>
+        <location filename="mainwindow.cpp" line="259"/>
         <source>Название сеанса</source>
         <translation>Session name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="259"/>
+        <location filename="mainwindow.cpp" line="263"/>
         <source>Имя сеанса</source>
         <translation>Session Name</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="267"/>
+        <location filename="mainwindow.cpp" line="271"/>
         <source>Тип эксперимента</source>
         <translation>Type of experiment</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="280"/>
+        <location filename="mainwindow.cpp" line="284"/>
         <source>Идентификация данных схемы замещения</source>
         <translation>Identification of substitution scheme data</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="284"/>
+        <location filename="mainwindow.cpp" line="288"/>
         <source>Выбрать тип эксперимента</source>
         <translation>Select the type of experiment</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="292"/>
+        <location filename="mainwindow.cpp" line="296"/>
         <source>Загрузка данных ручной идентификации</source>
         <translation>Uploading manual identification data</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="297"/>
+        <location filename="mainwindow.cpp" line="301"/>
         <source>Указать каталог</source>
         <translation>Specify the folder</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8379"/>
-        <location filename="mainwindow.cpp" line="8396"/>
-        <location filename="mainwindow.cpp" line="8413"/>
+        <location filename="mainwindow.cpp" line="8338"/>
+        <location filename="mainwindow.cpp" line="8355"/>
+        <location filename="mainwindow.cpp" line="8372"/>
         <source>Save as...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8622"/>
+        <location filename="mainwindow.cpp" line="8581"/>
         <source>Сообщение</source>
         <translation>Message</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8622"/>
+        <location filename="mainwindow.cpp" line="8581"/>
         <source>Расчет окончен!</source>
         <translation>The calculation is over!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8907"/>
+        <location filename="mainwindow.cpp" line="8866"/>
         <source>Command List</source>
         <translation>Command List</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9469"/>
+        <location filename="mainwindow.cpp" line="9428"/>
         <source>&amp;%1 %2</source>
         <translation>&amp;%1 %2</translation>
     </message>
@@ -1322,6 +1352,60 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <location filename="nastroiki.cpp" line="38"/>
         <source>English language</source>
         <translation type="unfinished">English language</translation>
+    </message>
+</context>
+<context>
+    <name>QtPrivate::void::MainWindow</name>
+    <message>
+        <location filename="mainwindow.cpp" line="9462"/>
+        <source>Имя сеанса</source>
+        <translation type="unfinished">Session Name</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="9463"/>
+        <location filename="mainwindow.cpp" line="9465"/>
+        <source>Выбрать тип эксперимента</source>
+        <translation type="unfinished">Select the type of experiment</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="9464"/>
+        <location filename="mainwindow.cpp" line="9466"/>
+        <source>Указать каталог</source>
+        <translation type="unfinished">Specify the folder</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="9467"/>
+        <source>Выбрать каналы</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="9468"/>
+        <location filename="mainwindow.cpp" line="9477"/>
+        <location filename="mainwindow.cpp" line="9479"/>
+        <source>Выберите режим</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="9469"/>
+        <location filename="mainwindow.cpp" line="9475"/>
+        <source>Выбрать режим</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="9470"/>
+        <location filename="mainwindow.cpp" line="9471"/>
+        <location filename="mainwindow.cpp" line="9472"/>
+        <location filename="mainwindow.cpp" line="9473"/>
+        <location filename="mainwindow.cpp" line="9474"/>
+        <location filename="mainwindow.cpp" line="9476"/>
+        <location filename="mainwindow.cpp" line="9478"/>
+        <source>0</source>
+        <translation type="unfinished">0</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="9480"/>
+        <source>Выберите конструкцию</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

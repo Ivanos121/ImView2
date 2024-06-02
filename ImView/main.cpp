@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     QString aaaaa = QString("QtLanguage_") + lokal;
     QTranslator *qtLanguageTranslator = new QTranslator();
     qtLanguageTranslator->load(aaaaa);
-    volatile bool res = qApp->installTranslator(qtLanguageTranslator);
+    qApp->installTranslator(qtLanguageTranslator);
 
 
 
