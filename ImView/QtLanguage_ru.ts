@@ -482,11 +482,13 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="113"/>
+        <location filename="mainwindow.cpp" line="651"/>
         <source>Тепловая модель</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="123"/>
+        <location filename="mainwindow.cpp" line="689"/>
         <source>Вентиляционная модель</source>
         <translation type="unfinished"></translation>
     </message>
@@ -509,6 +511,7 @@
     <message>
         <location filename="mainwindow.ui" line="155"/>
         <location filename="mainwindow.ui" line="778"/>
+        <location filename="mainwindow.cpp" line="800"/>
         <source>Выходные данные</source>
         <translation type="unfinished"></translation>
     </message>
@@ -666,6 +669,19 @@
     <message>
         <location filename="mainwindow.ui" line="1035"/>
         <location filename="mainwindow.ui" line="1102"/>
+        <location filename="mainwindow.cpp" line="476"/>
+        <location filename="mainwindow.cpp" line="491"/>
+        <location filename="mainwindow.cpp" line="506"/>
+        <location filename="mainwindow.cpp" line="521"/>
+        <location filename="mainwindow.cpp" line="536"/>
+        <location filename="mainwindow.cpp" line="551"/>
+        <location filename="mainwindow.cpp" line="594"/>
+        <location filename="mainwindow.cpp" line="606"/>
+        <location filename="mainwindow.cpp" line="630"/>
+        <location filename="mainwindow.cpp" line="642"/>
+        <location filename="mainwindow.cpp" line="667"/>
+        <location filename="mainwindow.cpp" line="682"/>
+        <location filename="mainwindow.cpp" line="719"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1192,6 +1208,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="288"/>
+        <location filename="mainwindow.cpp" line="314"/>
         <source>Выбрать тип эксперимента</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1202,33 +1219,360 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </message>
     <message>
         <location filename="mainwindow.cpp" line="301"/>
+        <location filename="mainwindow.cpp" line="327"/>
         <source>Указать каталог</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8338"/>
-        <location filename="mainwindow.cpp" line="8355"/>
-        <location filename="mainwindow.cpp" line="8372"/>
+        <location filename="mainwindow.cpp" line="310"/>
+        <source>Наблюдатель состояния</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="322"/>
+        <source>Чтение данных для наблюдателя скорости</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="336"/>
+        <source>Настройка каналов</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="340"/>
+        <source>Выбрать каналы</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="349"/>
+        <source>Сохранение данных</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="362"/>
+        <source>Данные идентификации</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="369"/>
+        <location filename="mainwindow.cpp" line="382"/>
+        <location filename="mainwindow.cpp" line="395"/>
+        <location filename="mainwindow.cpp" line="408"/>
+        <location filename="mainwindow.cpp" line="421"/>
+        <location filename="mainwindow.cpp" line="434"/>
+        <location filename="mainwindow.cpp" line="3265"/>
+        <location filename="mainwindow.cpp" line="3277"/>
+        <location filename="mainwindow.cpp" line="3289"/>
+        <location filename="mainwindow.cpp" line="3301"/>
+        <location filename="mainwindow.cpp" line="3313"/>
+        <location filename="mainwindow.cpp" line="3325"/>
+        <location filename="mainwindow.cpp" line="3337"/>
+        <source>Выкл</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="375"/>
+        <source>Данные электромагнитных процессов</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="388"/>
+        <source>Данные тепловых процессов</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="401"/>
+        <source>Данные вентиляционных процессов</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="414"/>
+        <source>Данные прогноза температур</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="427"/>
+        <source>Данные остаточного теплового ресурса</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="441"/>
+        <source>Идентификация параметров схемы замещения</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="459"/>
+        <source>Режим расчета</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="463"/>
+        <location filename="mainwindow.cpp" line="675"/>
+        <location filename="mainwindow.cpp" line="705"/>
+        <source>Выберите режим</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="471"/>
+        <source>Настроечный коэффициент gd=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="486"/>
+        <source>Настроечный коэффициент ki=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="501"/>
+        <source>Настроечный коэффициент gb=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="516"/>
+        <source>Настроечный коэффициент kpsi=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="531"/>
+        <source>Настроечный коэффициент gp=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="546"/>
+        <source>Настроечный коэффициент gpsi=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="562"/>
+        <source>Электромагнитная модель</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="578"/>
+        <source>Pежим работы двигателя</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="582"/>
+        <location filename="mainwindow.cpp" line="618"/>
+        <source>Выбрать режим</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="590"/>
+        <source>Время цикла, с:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="602"/>
+        <source>Время работы, с:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="614"/>
+        <source>Выбор системы электропривода</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="626"/>
+        <source>Ввод напряжения питания двигателя</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="638"/>
+        <source>Ввод значение момента нагрузки</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="665"/>
+        <source>Начальное значение температуры, °C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="673"/>
+        <source>Температурный режим</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="680"/>
+        <source>Шаг выбора точек</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="703"/>
+        <source>Вентиляционный режим</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="710"/>
+        <source>Конструкция вентиляционной системы электродвигателя</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="717"/>
+        <source>Барометрическое давление, Па</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="726"/>
+        <source>Прогнозирование температур</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="740"/>
+        <source>Условие 13</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="742"/>
+        <source>Значение 13</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="747"/>
+        <source>Условие 14</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="749"/>
+        <source>Значение 14</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="754"/>
+        <source>Условие 15</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="756"/>
+        <source>Значение 15</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="763"/>
+        <source>Оценка остаточного теплового ресурса</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="777"/>
+        <source>Условие 16</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="779"/>
+        <source>Значение 16</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="784"/>
+        <source>Условие 17</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="786"/>
+        <source>Значение 17</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="791"/>
+        <source>Условие 18</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="793"/>
+        <source>Значение 18</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="814"/>
+        <source>Условие 19</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="816"/>
+        <source>Значение 19</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="821"/>
+        <source>Условие 20</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="828"/>
+        <source>Условие 21</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="830"/>
+        <source>Значение 21</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="837"/>
+        <source>Идентификация параметров тепловой модели</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="851"/>
+        <source>Выбор типа тепловой модели</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="853"/>
+        <source>Выберите тип</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="858"/>
+        <source>Условие 23</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="865"/>
+        <source>Условие 24</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="867"/>
+        <source>Значение 25</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="3261"/>
+        <location filename="mainwindow.cpp" line="3273"/>
+        <location filename="mainwindow.cpp" line="3285"/>
+        <location filename="mainwindow.cpp" line="3297"/>
+        <location filename="mainwindow.cpp" line="3309"/>
+        <location filename="mainwindow.cpp" line="3321"/>
+        <location filename="mainwindow.cpp" line="3333"/>
+        <source>Вкл</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="8328"/>
+        <location filename="mainwindow.cpp" line="8345"/>
+        <location filename="mainwindow.cpp" line="8362"/>
         <source>Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8581"/>
+        <location filename="mainwindow.cpp" line="8571"/>
         <source>Сообщение</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8581"/>
+        <location filename="mainwindow.cpp" line="8571"/>
         <source>Расчет окончен!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="8866"/>
+        <location filename="mainwindow.cpp" line="8856"/>
         <source>Command List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9428"/>
+        <location filename="mainwindow.cpp" line="9418"/>
         <source>&amp;%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1319,53 +1663,53 @@ li.checked::marker { content: &quot;\2612&quot;; }
 <context>
     <name>QtPrivate::void::MainWindow</name>
     <message>
-        <location filename="mainwindow.cpp" line="9462"/>
+        <location filename="mainwindow.cpp" line="9452"/>
         <source>Имя сеанса</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9463"/>
-        <location filename="mainwindow.cpp" line="9465"/>
+        <location filename="mainwindow.cpp" line="9453"/>
+        <location filename="mainwindow.cpp" line="9455"/>
         <source>Выбрать тип эксперимента</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9464"/>
-        <location filename="mainwindow.cpp" line="9466"/>
+        <location filename="mainwindow.cpp" line="9454"/>
+        <location filename="mainwindow.cpp" line="9456"/>
         <source>Указать каталог</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9467"/>
+        <location filename="mainwindow.cpp" line="9457"/>
         <source>Выбрать каналы</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9468"/>
-        <location filename="mainwindow.cpp" line="9477"/>
-        <location filename="mainwindow.cpp" line="9479"/>
+        <location filename="mainwindow.cpp" line="9458"/>
+        <location filename="mainwindow.cpp" line="9467"/>
+        <location filename="mainwindow.cpp" line="9469"/>
         <source>Выберите режим</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9469"/>
-        <location filename="mainwindow.cpp" line="9475"/>
+        <location filename="mainwindow.cpp" line="9459"/>
+        <location filename="mainwindow.cpp" line="9465"/>
         <source>Выбрать режим</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9470"/>
-        <location filename="mainwindow.cpp" line="9471"/>
-        <location filename="mainwindow.cpp" line="9472"/>
-        <location filename="mainwindow.cpp" line="9473"/>
-        <location filename="mainwindow.cpp" line="9474"/>
-        <location filename="mainwindow.cpp" line="9476"/>
-        <location filename="mainwindow.cpp" line="9478"/>
+        <location filename="mainwindow.cpp" line="9460"/>
+        <location filename="mainwindow.cpp" line="9461"/>
+        <location filename="mainwindow.cpp" line="9462"/>
+        <location filename="mainwindow.cpp" line="9463"/>
+        <location filename="mainwindow.cpp" line="9464"/>
+        <location filename="mainwindow.cpp" line="9466"/>
+        <location filename="mainwindow.cpp" line="9468"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="9480"/>
+        <location filename="mainwindow.cpp" line="9470"/>
         <source>Выберите конструкцию</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1500,6 +1844,56 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Список сохраненных двигателей&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="datas.cpp" line="63"/>
+        <source>Марка двигателя</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="64"/>
+        <source>Номинальная мощность двигателя, кВт</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="65"/>
+        <source>Номинальная частота вращения, об/мин</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="66"/>
+        <source>Номинальное напряжение фазы, В</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="67"/>
+        <source>Номинальный коэффициент мощности</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="68"/>
+        <source>Номинальный коэффициент полезного действия</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="69"/>
+        <source>Кратность максимального момента</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="70"/>
+        <source>Синхронная частота вращения, об/мин</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="113"/>
+        <source>Ошибка!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datas.cpp" line="113"/>
+        <source>Выберите необходимую строку</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>draw_line</name>
@@ -1534,6 +1928,72 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="electromagn.ui" line="14"/>
         <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="502"/>
+        <source>Режим S1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="508"/>
+        <source>Режим S2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="522"/>
+        <source>Режим S3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="974"/>
+        <source>БВАСv1 + наблюдатель скорости (без датчика скорости)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="980"/>
+        <location filename="electromagn.cpp" line="1019"/>
+        <location filename="electromagn.cpp" line="1060"/>
+        <location filename="electromagn.cpp" line="1290"/>
+        <source>Ошибка!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="980"/>
+        <location filename="electromagn.cpp" line="1019"/>
+        <location filename="electromagn.cpp" line="1060"/>
+        <source>Порт регулятора</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="1014"/>
+        <source>БВАСv1 + наблюдатель скорости (с датчиком скорости)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="1055"/>
+        <source>БВАСv2 + наблюдатель скорости (без датчика скорости)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="1103"/>
+        <source>БВАСv2 + наблюдатель скорости (с датчиком скорости)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="1152"/>
+        <location filename="electromagn.cpp" line="1194"/>
+        <source>Внутренний источник данных</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="1172"/>
+        <source>Чтение данных из файла для наблюдателя скорости</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="electromagn.cpp" line="1290"/>
+        <source>Ошибка подключения BVAS!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

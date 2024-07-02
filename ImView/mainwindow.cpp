@@ -307,11 +307,11 @@ MainWindow::MainWindow(QWidget *parent)
     item7->appendRow(items2);
     items2.clear();
 
-    item79 = new QStandardItem(QStringLiteral ("Наблюдатель состояния"));
+    item79 = new QStandardItem(tr("Наблюдатель состояния"));
     item79->setEditable(false);
     QString w14=item79->text();
     item79->setToolTip(w14);
-    item80 = new QStandardItem(QStringLiteral ("Выбрать тип эксперимента"));
+    item80 = new QStandardItem(tr("Выбрать тип эксперимента"));
     QString w15=item80->text();
     item80->setToolTip(w15);
     items2.append(item79);
@@ -319,12 +319,12 @@ MainWindow::MainWindow(QWidget *parent)
     item7->appendRow(items2);
     items2.clear();
 
-    item81 = new QStandardItem(QStringLiteral ("Чтение данных для наблюдателя скорости"));
+    item81 = new QStandardItem(tr("Чтение данных для наблюдателя скорости"));
     item81->setEditable(false);
     item81->setEnabled(false);
     QString w16=item81->text();
     item81->setToolTip(w16);
-    item82 = new QStandardItem(QStringLiteral ("Указать каталог"));
+    item82 = new QStandardItem(tr("Указать каталог"));
     item82->setEnabled(false);
     QString w17=item82->text();
     item82->setToolTip(w17);
@@ -333,11 +333,11 @@ MainWindow::MainWindow(QWidget *parent)
     item7->appendRow(items2);
     items2.clear();
 
-    item116 = new QStandardItem(QStringLiteral ("Настройка каналов"));
+    item116 = new QStandardItem(tr("Настройка каналов"));
     item116->setEditable(false);
     //QString w336=item116->text();
     //item116->setToolTip(w336);
-    item117 = new QStandardItem(QStringLiteral ("Выбрать каналы"));
+    item117 = new QStandardItem(tr("Выбрать каналы"));
     QString w447=item117->text();
     item117->setToolTip(w447);
     items2.append(item116);
@@ -346,7 +346,7 @@ MainWindow::MainWindow(QWidget *parent)
     items2.clear();
 
 
-    item65 = new QStandardItem(QStringLiteral ("Сохранение данных"));
+    item65 = new QStandardItem(tr("Сохранение данных"));
     item65->setEditable(false);
     QFont newFont11("DroidSans", 10, QFont::Bold,false);
     item65->setFont(newFont11);
@@ -359,86 +359,86 @@ MainWindow::MainWindow(QWidget *parent)
     item1->appendRow(items2);
     items2.clear();
 
-    item67 = new QStandardItem(QStringLiteral ("Данные идентификации"));
+    item67 = new QStandardItem(tr("Данные идентификации"));
     item67->setEditable(false);
     QString w19=item67->text();
     item67->setToolTip(w19);
     item68 = new QStandardItem();
     item68->setEditable(false);
     item68->setCheckable(true);
-    item68->setToolTip(QStringLiteral ("Выкл"));
+    item68->setToolTip(tr("Выкл"));
     items2.append(item67);
     items2.append(item68);
     item65->appendRow(items2);
     items2.clear();
 
-    item69 = new QStandardItem(QStringLiteral ("Данные электромагнитных процессов"));
+    item69 = new QStandardItem(tr("Данные электромагнитных процессов"));
     item69->setEditable(false);
     QString w21=item69->text();
     item69->setToolTip(w21);
     item70 = new QStandardItem();
     item70->setEditable(false);
     item70->setCheckable(true);
-    item70->setToolTip(QStringLiteral ("Выкл"));
+    item70->setToolTip(tr("Выкл"));
     items2.append(item69);
     items2.append(item70);
     item65->appendRow(items2);
     items2.clear();
 
-    item71 = new QStandardItem(QStringLiteral ("Данные тепловых процессов"));
+    item71 = new QStandardItem(tr("Данные тепловых процессов"));
     item71->setEditable(false);
     QString w23=item71->text();
     item71->setToolTip(w23);
     item72 = new QStandardItem();
     item72->setEditable(false);
     item72->setCheckable(true);
-    item72->setToolTip(QStringLiteral ("Выкл"));
+    item72->setToolTip(tr("Выкл"));
     items2.append(item71);
     items2.append(item72);
     item65->appendRow(items2);
     items2.clear();
 
-    item73 = new QStandardItem(QStringLiteral ("Данные вентиляционных процессов"));
+    item73 = new QStandardItem(tr("Данные вентиляционных процессов"));
     item73->setEditable(false);
     QString w25=item73->text();
     item73->setToolTip(w25);
     item74 = new QStandardItem();
     item74->setEditable(false);
     item74->setCheckable(true);
-    item74->setToolTip(QStringLiteral ("Выкл"));
+    item74->setToolTip(tr("Выкл"));
     items2.append(item73);
     items2.append(item74);
     item65->appendRow(items2);
     items2.clear();
 
-    item75 = new QStandardItem(QStringLiteral ("Данные прогноза температур"));
+    item75 = new QStandardItem(tr("Данные прогноза температур"));
     item75->setEditable(false);
     QString w27=item75->text();
     item75->setToolTip(w27);
     item76 = new QStandardItem();
     item76->setEditable(false);
     item76->setCheckable(true);
-    item76->setToolTip(QStringLiteral ("Выкл"));
+    item76->setToolTip(tr("Выкл"));
     items2.append(item75);
     items2.append(item76);
     item65->appendRow(items2);
     items2.clear();
 
-    item77 = new QStandardItem(QStringLiteral ("Данные остаточного теплового ресурса"));
+    item77 = new QStandardItem(tr("Данные остаточного теплового ресурса"));
     item77->setEditable(false);
     QString w29=item77->text();
     item77->setToolTip(w29);
     item78 = new QStandardItem();
     item78->setEditable(false);
     item78->setCheckable(true);
-    item78->setToolTip(QStringLiteral ("Выкл"));
+    item78->setToolTip(tr("Выкл"));
     items2.append(item77);
     items2.append(item78);
     item65->appendRow(items2);
     items2.clear();
 
     QList<QStandardItem*> items3;
-    item9 = new QStandardItem(QStringLiteral ("Идентификация параметров схемы замещения"));
+    item9 = new QStandardItem(tr("Идентификация параметров схемы замещения"));
     item10 = new QStandardItem();
     items3.append(item9);
     items3.append(item10);
@@ -456,11 +456,11 @@ MainWindow::MainWindow(QWidget *parent)
     item9->setFont(newFont2);
 
     QList<QStandardItem*> items4;
-    item13 = new QStandardItem(QStringLiteral ("Режим расчета"));
+    item13 = new QStandardItem(tr("Режим расчета"));
     item13->setEditable(false);
     QString w35=item13->text();
     item13->setToolTip(w35);
-    item14 = new QStandardItem(QStringLiteral ("Выберите режим"));
+    item14 = new QStandardItem(tr("Выберите режим"));
     QString w73=item14->text();
     item14->setToolTip(w73);
     items4.append(item13);
@@ -468,12 +468,12 @@ MainWindow::MainWindow(QWidget *parent)
     item9->appendRow(items4);
     items4.clear();
 
-    item93 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gd="));
+    item93 = new QStandardItem(tr("Настроечный коэффициент gd="));
     item93->setEditable(false);
     item93->setEnabled(false);
     QString w37=item93->text();
     item93->setToolTip(w37);
-    item94 = new QStandardItem(QStringLiteral ("0"));
+    item94 = new QStandardItem(tr("0"));
     item94->setEnabled(false);
     item94->setCheckable(false);
     QString w38=item94->text();
@@ -483,12 +483,12 @@ MainWindow::MainWindow(QWidget *parent)
     item9->appendRow(items4);
     items4.clear();
 
-    item95 = new QStandardItem(QStringLiteral ("Настроечный коэффициент ki="));
+    item95 = new QStandardItem(tr("Настроечный коэффициент ki="));
     item95->setEditable(false);
     item95->setEnabled(false);
     QString w39=item95->text();
     item95->setToolTip(w39);
-    item96 = new QStandardItem(QStringLiteral ("0"));
+    item96 = new QStandardItem(tr("0"));
     item96->setEnabled(false);
     item96->setCheckable(false);
     QString w40=item96->text();
@@ -498,12 +498,12 @@ MainWindow::MainWindow(QWidget *parent)
     item9->appendRow(items4);
     items4.clear();
 
-    item97 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gb="));
+    item97 = new QStandardItem(tr("Настроечный коэффициент gb="));
     item97->setEditable(false);
     item97->setEnabled(false);
     QString w41=item97->text();
     item97->setToolTip(w41);
-    item98 = new QStandardItem(QStringLiteral ("0"));
+    item98 = new QStandardItem(tr("0"));
     item98->setEnabled(false);
     item98->setCheckable(false);
     QString w42=item98->text();
@@ -513,12 +513,12 @@ MainWindow::MainWindow(QWidget *parent)
     item9->appendRow(items4);
     items4.clear();
 
-    item99 = new QStandardItem(QStringLiteral ("Настроечный коэффициент kpsi="));
+    item99 = new QStandardItem(tr("Настроечный коэффициент kpsi="));
     item99->setEditable(false);
     item99->setEnabled(false);
     QString w43=item99->text();
     item99->setToolTip(w43);
-    item100 = new QStandardItem(QStringLiteral ("0"));
+    item100 = new QStandardItem(tr("0"));
     item100->setEnabled(false);
     item100->setCheckable(false);
     QString w44=item100->text();
@@ -528,12 +528,12 @@ MainWindow::MainWindow(QWidget *parent)
     item9->appendRow(items4);
     items4.clear();
 
-    item101 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gp="));
+    item101 = new QStandardItem(tr("Настроечный коэффициент gp="));
     item101->setEditable(false);
     item101->setEnabled(false);
     QString w45=item101->text();
     item101->setToolTip(w45);
-    item102 = new QStandardItem(QStringLiteral ("0"));
+    item102 = new QStandardItem(tr("0"));
     item102->setEnabled(false);
     item102->setCheckable(false);
     QString w46=item102->text();
@@ -543,12 +543,12 @@ MainWindow::MainWindow(QWidget *parent)
     item9->appendRow(items4);
     items4.clear();
 
-    item103 = new QStandardItem(QStringLiteral ("Настроечный коэффициент gpsi="));
+    item103 = new QStandardItem(tr("Настроечный коэффициент gpsi="));
     item103->setEditable(false);
     item103->setEnabled(false);
     QString w47=item103->text();
     item103->setToolTip(w47);
-    item104 = new QStandardItem(QStringLiteral ("0"));
+    item104 = new QStandardItem(tr("0"));
     item104->setEnabled(false);
     item104->setCheckable(false);
     QString w48=item104->text();
@@ -559,7 +559,7 @@ MainWindow::MainWindow(QWidget *parent)
     items4.clear();
 
     QList<QStandardItem*> items5;
-    item17 = new QStandardItem(QStringLiteral ("Электромагнитная модель"));
+    item17 = new QStandardItem(tr("Электромагнитная модель"));
     item18 = new QStandardItem();
     items5.append(item17);
     items5.append(item18);
@@ -575,11 +575,11 @@ MainWindow::MainWindow(QWidget *parent)
     item17->setFont(newFont3);
 
     QList<QStandardItem*> items6;
-    item19 = new QStandardItem(QStringLiteral ("Pежим работы двигателя"));
+    item19 = new QStandardItem(tr("Pежим работы двигателя"));
     item19->setEditable(false);
     QString w50=item19->text();
     item19->setToolTip(w50);
-    item20 = new QStandardItem(QStringLiteral ("Выбрать режим"));
+    item20 = new QStandardItem(tr("Выбрать режим"));
     QString w51=item20->text();
     item20->setToolTip(w51);
     items6.append(item19);
@@ -587,11 +587,11 @@ MainWindow::MainWindow(QWidget *parent)
     item17->appendRow(items6);
     items6.clear();
 
-    item21 = new QStandardItem(QStringLiteral ("Время цикла, с:"));
+    item21 = new QStandardItem(tr("Время цикла, с:"));
     item21->setEditable(false);
     QString w52=item21->text();
     item21->setToolTip(w52);
-    item22 = new QStandardItem(QStringLiteral ("0"));
+    item22 = new QStandardItem(tr("0"));
     QString w53=item22->text();
     item22->setToolTip(w53);
     items6.append(item21);
@@ -599,11 +599,11 @@ MainWindow::MainWindow(QWidget *parent)
     item17->appendRow(items6);
     items6.clear();
 
-    item23 = new QStandardItem(QStringLiteral ("Время работы, с:"));
+    item23 = new QStandardItem(tr("Время работы, с:"));
     item23->setEditable(false);
     QString w54=item23->text();
     item23->setToolTip(w54);
-    item24 = new QStandardItem(QStringLiteral ("0"));
+    item24 = new QStandardItem(tr("0"));
     QString w55=item24->text();
     item24->setToolTip(w55);
     items6.append(item23);
@@ -611,23 +611,11 @@ MainWindow::MainWindow(QWidget *parent)
     item17->appendRow(items6);
     items6.clear();
 
-   /* item89 = new QStandardItem(QStringLiteral ("Значение момента нагрузки, Нм:"));
-    item89->setEditable(false);
-    QString w56=item89->text();
-    item89->setToolTip(w56);
-    item90 = new QStandardItem(QStringLiteral ("0"));
-    QString w57=item90->text();
-    item90->setToolTip(w57);
-    items6.append(item89);
-    items6.append(item90);
-    item17->appendRow(items6);
-    items6.clear();*/
-
-    item91 = new QStandardItem(QStringLiteral ("Выбор системы электропривода"));
+    item91 = new QStandardItem(tr("Выбор системы электропривода"));
     item91->setEditable(false);
     QString w58=item91->text();
     item91->setToolTip(w58);
-    item92 = new QStandardItem(QStringLiteral ("Выбрать режим"));
+    item92 = new QStandardItem(tr("Выбрать режим"));
     QString w59=item92->text();
     item92->setToolTip(w59);
     items6.append(item91);
@@ -635,11 +623,11 @@ MainWindow::MainWindow(QWidget *parent)
     item17->appendRow(items6);
     items6.clear();
 
-    item129 = new QStandardItem(QStringLiteral ("Ввод напряжения питания двигателя"));
+    item129 = new QStandardItem(tr("Ввод напряжения питания двигателя"));
     item129->setEditable(false);
     QString w60=item129->text();
     item129->setToolTip(w60);
-    item130 = new QStandardItem(QStringLiteral ("0"));
+    item130 = new QStandardItem(tr("0"));
     QString w61=item130->text();
     item130->setToolTip(w61);
     items6.append(item129);
@@ -647,11 +635,11 @@ MainWindow::MainWindow(QWidget *parent)
     item17->appendRow(items6);
     items6.clear();
 
-    item131 = new QStandardItem(QStringLiteral ("Ввод значение момента нагрузки"));
+    item131 = new QStandardItem(tr("Ввод значение момента нагрузки"));
     item131->setEditable(false);
     QString w62=item131->text();
     item131->setToolTip(w62);
-    item132 = new QStandardItem(QStringLiteral ("0"));
+    item132 = new QStandardItem(tr("0"));
     QString w63=item132->text();
     item132->setToolTip(w63);
     items6.append(item131);
@@ -660,13 +648,12 @@ MainWindow::MainWindow(QWidget *parent)
     items6.clear();
 
     QList<QStandardItem*> items7;
-    item25 = new QStandardItem(QStringLiteral ("Тепловая модель"));
+    item25 = new QStandardItem(tr("Тепловая модель"));
     item26 = new QStandardItem();
     items7.append(item25);
     items7.append(item26);
     model->appendRow(items7);
     items7.clear();
-    //item25->setForeground(QBrush(Qt::white));
     item25->setSelectable(false);
     item25->setEditable(false);
     item26->setSelectable(false);
@@ -675,31 +662,31 @@ MainWindow::MainWindow(QWidget *parent)
     item25->setFont(newFont4);
 
     QList<QStandardItem*> items8;
-    item27 = new QStandardItem(QStringLiteral ("Начальное значение температуры, °C"));
+    item27 = new QStandardItem(tr("Начальное значение температуры, °C"));
     item27->setEditable(false);
-    item28 = new QStandardItem(QStringLiteral ("0"));
+    item28 = new QStandardItem(tr("0"));
     items8.append(item27);
     items8.append(item28);
     item25->appendRow(items8);
     items8.clear();
 
-    item29 = new QStandardItem(QStringLiteral ("Температурный режим"));
+    item29 = new QStandardItem(tr("Температурный режим"));
     item29->setEditable(false);
-    item30 = new QStandardItem(QStringLiteral ("Выберите режим"));
+    item30 = new QStandardItem(tr("Выберите режим"));
     items8.append(item29);
     items8.append(item30);
     item25->appendRow(items8);
     items8.clear();
-    item23 = new QStandardItem(QStringLiteral ("Шаг выбора точек"));
+    item23 = new QStandardItem(tr("Шаг выбора точек"));
     item23->setEditable(false);
-    item107 = new QStandardItem(QStringLiteral ("0"));
+    item107 = new QStandardItem(tr("0"));
     items8.append(item23);
     items8.append(item107);
     item25->appendRow(items8);
     items8.clear();
 
     QList<QStandardItem*> items9;
-    item31 = new QStandardItem(QStringLiteral ("Вентиляционная модель"));
+    item31 = new QStandardItem(tr("Вентиляционная модель"));
     item32 = new QStandardItem();
     items9.append(item31);
     items9.append(item32);
@@ -713,36 +700,35 @@ MainWindow::MainWindow(QWidget *parent)
     item31->setFont(newFont5);
 
     QList<QStandardItem*> items10;
-    item33 = new QStandardItem(QStringLiteral ("Вентиляционный режим"));
+    item33 = new QStandardItem(tr("Вентиляционный режим"));
     item33->setEditable(false);
-    item34 = new QStandardItem(QStringLiteral ("Выберите режим"));
+    item34 = new QStandardItem(tr("Выберите режим"));
     items10.append(item33);
     items10.append(item34);
     item31->appendRow(items10);
     items10.clear();
-    item35 = new QStandardItem(QStringLiteral ("Конструкция вентиляционной системы электродвигателя"));
+    item35 = new QStandardItem(tr("Конструкция вентиляционной системы электродвигателя"));
     item35->setEditable(false);
     item36 = new QStandardItem(QString ("Выберите конструкцию"));
     items10.append(item35);
     items10.append(item36);
     item31->appendRow(items10);
     items10.clear();
-    item37 = new QStandardItem(QStringLiteral ("Барометрическое давление, Па"));
+    item37 = new QStandardItem(tr("Барометрическое давление, Па"));
     item37->setEditable(false);
-    item38 = new QStandardItem(QStringLiteral ("0"));
+    item38 = new QStandardItem(tr("0"));
     items10.append(item37);
     items10.append(item38);
     item31->appendRow(items10);
     items10.clear();
 
     QList<QStandardItem*> items11;
-    item39 = new QStandardItem(QStringLiteral ("Прогнозирование температур"));
+    item39 = new QStandardItem(tr("Прогнозирование температур"));
     item40 = new QStandardItem();
     items11.append(item39);
     items11.append(item40);
     model->appendRow(items11);
     items11.clear();
-    //item39->setForeground(QBrush(Qt::white));
     item39->setSelectable(false);
     item39->setEditable(false);
     item40->setSelectable(false);
@@ -751,36 +737,35 @@ MainWindow::MainWindow(QWidget *parent)
     item39->setFont(newFont6);
 
     QList<QStandardItem*> items12;
-    item41 = new QStandardItem(QStringLiteral ("Условие 13"));
+    item41 = new QStandardItem(tr("Условие 13"));
     item41->setEditable(false);
-    item42 = new QStandardItem(QStringLiteral ("Значение 13"));
+    item42 = new QStandardItem(tr("Значение 13"));
     items12.append(item41);
     items12.append(item42);
     item39->appendRow(items12);
     items12.clear();
-    item43 = new QStandardItem(QStringLiteral ("Условие 14"));
+    item43 = new QStandardItem(tr("Условие 14"));
     item43->setEditable(false);
-    item44 = new QStandardItem(QString ("Значение 14"));
+    item44 = new QStandardItem(tr("Значение 14"));
     items12.append(item43);
     items12.append(item44);
     item39->appendRow(items12);
     items12.clear();
-    item45 = new QStandardItem(QStringLiteral ("Условие 15"));
+    item45 = new QStandardItem(tr("Условие 15"));
     item45->setEditable(false);
-    item46 = new QStandardItem(QStringLiteral ("Значение 15"));
+    item46 = new QStandardItem(tr("Значение 15"));
     items12.append(item45);
     items12.append(item46);
     item39->appendRow(items12);
     items12.clear();
 
     QList<QStandardItem*> items13;
-    item47 = new QStandardItem(QStringLiteral ("Оценка остаточного теплового ресурса"));
+    item47 = new QStandardItem(tr("Оценка остаточного теплового ресурса"));
     item48 = new QStandardItem();
     items13.append(item47);
     items13.append(item48);
     model->appendRow(items13);
     items13.clear();
-    //item47->setForeground(QBrush(Qt::white));
     item47->setSelectable(false);
     item47->setEditable(false);
     item48->setSelectable(false);
@@ -789,30 +774,30 @@ MainWindow::MainWindow(QWidget *parent)
     item47->setFont(newFont7);
 
     QList<QStandardItem*> items14;
-    item49 = new QStandardItem(QStringLiteral ("Условие 16"));
+    item49 = new QStandardItem(tr("Условие 16"));
     item49->setEditable(false);
-    item50 = new QStandardItem(QStringLiteral ("Значение 16"));
+    item50 = new QStandardItem(tr("Значение 16"));
     items14.append(item49);
     items14.append(item50);
     item47->appendRow(items14);
     items14.clear();
-    item51 = new QStandardItem(QStringLiteral ("Условие 17"));
+    item51 = new QStandardItem(tr("Условие 17"));
     item51->setEditable(false);
-    item52 = new QStandardItem(QString ("Значение 17"));
+    item52 = new QStandardItem(tr("Значение 17"));
     items14.append(item51);
     items14.append(item52);
     item47->appendRow(items14);
     items14.clear();
-    item53 = new QStandardItem(QStringLiteral ("Условие 18"));
+    item53 = new QStandardItem(tr ("Условие 18"));
     item53->setEditable(false);
-    item54 = new QStandardItem(QStringLiteral ("Значение 18"));
+    item54 = new QStandardItem(tr ("Значение 18"));
     items14.append(item53);
     items14.append(item54);
     item47->appendRow(items14);
     items14.clear();
 
     QList<QStandardItem*> items15;
-    item55 = new QStandardItem(QStringLiteral ("Выходные данные"));
+    item55 = new QStandardItem(tr ("Выходные данные"));
     item56 = new QStandardItem();
     items15.append(item55);
     items15.append(item56);
@@ -826,30 +811,30 @@ MainWindow::MainWindow(QWidget *parent)
     item55->setFont(newFont8);
 
     QList<QStandardItem*> items16;
-    item57 = new QStandardItem(QStringLiteral ("Условие 19"));
+    item57 = new QStandardItem(tr ("Условие 19"));
     item57->setEditable(false);
-    item58 = new QStandardItem(QStringLiteral ("Значение 19"));
+    item58 = new QStandardItem(tr ("Значение 19"));
     items16.append(item57);
     items16.append(item58);
     item55->appendRow(items16);
     items16.clear();
-    item59 = new QStandardItem(QStringLiteral ("Условие 20"));
+    item59 = new QStandardItem(tr ("Условие 20"));
     item59->setEditable(false);
     item60 = new QStandardItem(QString ("Значение 20"));
     items16.append(item59);
     items16.append(item60);
     item55->appendRow(items16);
     items16.clear();
-    item61 = new QStandardItem(QStringLiteral ("Условие 21"));
+    item61 = new QStandardItem(tr ("Условие 21"));
     item61->setEditable(false);
-    item62 = new QStandardItem(QStringLiteral ("Значение 21"));
+    item62 = new QStandardItem(tr ("Значение 21"));
     items16.append(item61);
     items16.append(item62);
     item55->appendRow(items16);
     items16.clear();
 
     QList<QStandardItem*> items17;
-    item121 = new QStandardItem(QStringLiteral ("Идентификация параметров тепловой модели"));
+    item121 = new QStandardItem(tr ("Идентификация параметров тепловой модели"));
     item122 = new QStandardItem();
     items17.append(item121);
     items17.append(item122);
@@ -863,23 +848,23 @@ MainWindow::MainWindow(QWidget *parent)
     item121->setFont(newFont9);
 
     QList<QStandardItem*> items18;
-    item123 = new QStandardItem(QStringLiteral ("Выбор типа тепловой модели"));
+    item123 = new QStandardItem(tr ("Выбор типа тепловой модели"));
     item123->setEditable(false);
-    item124 = new QStandardItem(QStringLiteral ("Выберите тип"));
+    item124 = new QStandardItem(tr ("Выберите тип"));
     items18.append(item123);
     items18.append(item124);
     item121->appendRow(items18);
     items18.clear();
-    item125 = new QStandardItem(QStringLiteral ("Условие 23"));
+    item125 = new QStandardItem(tr ("Условие 23"));
     item125->setEditable(false);
     item126 = new QStandardItem(QString ("Значение 24"));
     items18.append(item125);
     items18.append(item126);
     item121->appendRow(items18);
     items18.clear();
-    item127 = new QStandardItem(QStringLiteral ("Условие 24"));
+    item127 = new QStandardItem(tr ("Условие 24"));
     item127->setEditable(false);
-    item128 = new QStandardItem(QStringLiteral ("Значение 25"));
+    item128 = new QStandardItem(tr ("Значение 25"));
     items18.append(item127);
     items18.append(item128);
     item121->appendRow(items18);
@@ -3273,11 +3258,11 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item68->setToolTip(QStringLiteral ("Вкл"));
+            item68->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item68->setToolTip(QStringLiteral ("Выкл"));
+            item68->setToolTip(tr ("Выкл"));
         }
     }
     else
@@ -3285,11 +3270,11 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item70->setToolTip(QStringLiteral ("Вкл"));
+            item70->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item70->setToolTip(QStringLiteral ("Выкл"));
+            item70->setToolTip(tr ("Выкл"));
         }
     }
     else
@@ -3297,11 +3282,11 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item72->setToolTip(QStringLiteral ("Вкл"));
+            item72->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item72->setToolTip(QStringLiteral ("Выкл"));
+            item72->setToolTip(tr ("Выкл"));
         }
     }
     else
@@ -3309,11 +3294,11 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item74->setToolTip(QStringLiteral ("Вкл"));
+            item74->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item74->setToolTip(QStringLiteral ("Выкл"));
+            item74->setToolTip(tr ("Выкл"));
         }
     }
     else
@@ -3321,11 +3306,11 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item76->setToolTip(QStringLiteral ("Вкл"));
+            item76->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item76->setToolTip(QStringLiteral ("Выкл"));
+            item76->setToolTip(tr ("Выкл"));
         }
     }
     else
@@ -3333,11 +3318,11 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item78->setToolTip(QStringLiteral ("Вкл"));
+            item78->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item78->setToolTip(QStringLiteral ("Выкл"));
+            item78->setToolTip(tr ("Выкл"));
         }
     }
     else
@@ -3345,11 +3330,11 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item14->setToolTip(QStringLiteral ("Вкл"));
+            item14->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item14->setToolTip(QStringLiteral ("Выкл"));
+            item14->setToolTip(tr ("Выкл"));
         }
     }
     else

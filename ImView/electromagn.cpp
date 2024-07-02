@@ -2,8 +2,6 @@
 #include "ui_electromagn.h"
 #include "base.h"
 #include "model_el.h"
-#include "nabludatel.h"
-#include "nabludatel_part.h"
 #include "plot.h"
 #include "datasource_file.h"
 #include "datasourcedigitosc.h"
@@ -96,9 +94,6 @@ void electromagn::realtimeDataSlot()
 
         //Считывание значения времени работы tp
         Model_el.tp=wf->item24->text().toDouble();
-
-        //Считывание значения времени работы Mc
-        //Model_el.Mc=wf->item90->text().toDouble();
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
 
@@ -463,13 +458,13 @@ void electromagn::realtimeDataSlot()
             wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(Model_el.cos_f,'f',3));
         }
 
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text('Р1 = %1 Вт');").arg(tepl_struct.P1, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91-3\").text('ΔPel1 = %1 Вт');").arg(tepl_struct.dPel1, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text('ΔPct = %1 Вт');").arg(tepl_struct.dPct, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text('ΔPel2 = %1 Вт');").arg(tepl_struct.dPel2, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text('ΔPdob = %1 Вт');").arg(tepl_struct.dPdob, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text('ΔPmech = %1 Вт');").arg(tepl_struct.dPmech, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text('P2 = %1 Вт');").arg(tepl_struct.P2, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text(tr('Р1 = %1 Вт'));").arg(tepl_struct.P1, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91-3\").text(tr('ΔPel1 = %1 Вт'));").arg(tepl_struct.dPel1, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text(tr('ΔPct = %1 Вт'));").arg(tepl_struct.dPct, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text(tr('ΔPel2 = %1 Вт'));").arg(tepl_struct.dPel2, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text(tr('ΔPdob = %1 Вт'));").arg(tepl_struct.dPdob, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text(tr('ΔPmech = %1 Вт'));").arg(tepl_struct.dPmech, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text(tr('P2 = %1 Вт'));").arg(tepl_struct.P2, 0, 'f', 3));
 
         std::ofstream fout;
         fout.open(QString(base.electromagnFilename).toStdString(),std::ios::out | std::ios::app);
@@ -504,13 +499,13 @@ void electromagn::realtimeDataSlot()
         double tt = key;
         bool motorOn = false;
 
-        if(S == "Режим S1")
+        if(S == tr("Режим S1"))
         {
             Mc = base.Mc_n;
             motorOn = true;
         }
 
-        if(S == "Режим S2")
+        if(S == tr("Режим S2"))
         {
             if(tt<=tp)
             {
@@ -524,7 +519,7 @@ void electromagn::realtimeDataSlot()
             }
         }
 
-        if(S == "Режим S3")
+        if(S == tr("Режим S3"))
         {
             while(tt>Tc)
             {
@@ -976,14 +971,13 @@ void electromagn::raschet_el()
     base.plcParams.ipAddr = settings.value("plcPort/ipAddr", "10.0.6.10").toString();
     base.plcParams.port = settings.value("plcPort/port", 502).toInt();
 
-    if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (без датчика скорости)")
+    if(wf->item80->text() == tr("БВАСv1 + наблюдатель скорости (без датчика скорости)"))
     {
-        //QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
         //БВАС без датчика скорости + наблюдатель скорости
         connectTcpPort();
         if (connectMomentPort() == 1)
         {
-            QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
+            QMessageBox::critical(this, tr("Ошибка!"), tr("Порт регулятора"));
             stop();
             return;
         }
@@ -1017,16 +1011,16 @@ void electromagn::raschet_el()
         connect(dataSourceBVAS, &DataSourceBVAS::failure, this, &electromagn::bvasFailureSlot);
     }
 
-    if(wf->item80->text() == "БВАСv1 + наблюдатель скорости (с датчиком скорости)")
+    if(wf->item80->text() == tr("БВАСv1 + наблюдатель скорости (с датчиком скорости)"))
     {
         connectTcpPort();
         if (connectMomentPort() == 1)
         {
-            QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
+            QMessageBox::critical(this, tr("Ошибка!"), tr("Порт регулятора"));
             stop();
             return;
         }
-        //QMessageBox::critical(this, "Ошибка!", "Выбран второй пункт");
+
         //БВАС с датчиком скорости + наблюдатель частично (момента)
         //БВАС без датчика скорости + наблюдатель скорости
         QSettings settings;
@@ -1058,16 +1052,15 @@ void electromagn::raschet_el()
         connect(dataSourceBVAS, &DataSourceBVASw::failure, this, &electromagn::bvasFailureSlot);
     }
 
-    if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (без датчика скорости)")
+    if(wf->item80->text() == tr("БВАСv2 + наблюдатель скорости (без датчика скорости)"))
     {
         connectTcpPort();
         if (connectMomentPort() == 1)
         {
-            QMessageBox::critical(this, "Ошибка!", "Порт регулятора");
+            QMessageBox::critical(this, tr("Ошибка!"), tr("Порт регулятора"));
             stop();
             return;
         }
-        //QMessageBox::critical(this, "Ошибка!", "Выбран первый пункт");
         //БВАС без датчика скорости + наблюдатель скорости
         QSettings settings;
 
@@ -1107,7 +1100,7 @@ void electromagn::raschet_el()
         wf->statusbar_label_3->setPixmap(QPixmap(":/icons/data/img/icons/osc_blue_24.svg"));
     }
 
-    if(wf->item80->text() == "БВАСv2 + наблюдатель скорости (с датчиком скорости)")
+    if(wf->item80->text() == tr("БВАСv2 + наблюдатель скорости (с датчиком скорости)"))
     {
         connectTcpPort();
         if (connectMomentPort() == 1)
@@ -1116,7 +1109,7 @@ void electromagn::raschet_el()
             stop();
             return;
         }
-        //QMessageBox::critical(this, "Ошибка!", "Выбран второй пункт");
+
         //БВАС с датчиком скорости + наблюдатель частично (момента)
         //БВАС без датчика скорости + наблюдатель скорости
         QSettings settings;
@@ -1156,7 +1149,7 @@ void electromagn::raschet_el()
     }
 
     //Внутренний источник данных
-    if (wf->item80->text() == "Внутренний источник данных")
+    if (wf->item80->text() == tr("Внутренний источник данных"))
     {
         base.Mc_n = wf->item132->text().toDouble();
         base.Um = wf->item130->text().toDouble();
@@ -1176,7 +1169,7 @@ void electromagn::raschet_el()
         connect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
     }
 
-    if (wf->item80->text() == "Чтение данных из файла для наблюдателя скорости")
+    if (wf->item80->text() == tr("Чтение данных из файла для наблюдателя скорости"))
     {
         QString dataSourceFileName = wf->item82->text();
         base.dataSourceFilename = dataSourceFileName;
@@ -1198,7 +1191,7 @@ void electromagn::raschet_el()
 
 void electromagn::stop()
 {
-    if (wf->item80->text() == "Внутренний источник данных")
+    if (wf->item80->text() == tr("Внутренний источник данных"))
     {
         Model_el.stop();
         disconnect(&Model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
@@ -1294,6 +1287,6 @@ void electromagn::bvasFailureSlot()
 {
     wf->ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
     wf->ui->action_21->setEnabled(false);
-    QMessageBox::critical(this, "Ошибка!", "Ошибка подключения BVAS!");
+    QMessageBox::critical(this, tr("Ошибка!"), tr("Ошибка подключения BVAS!"));
 }
 

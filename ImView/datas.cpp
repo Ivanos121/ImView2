@@ -60,14 +60,14 @@ void datas::table()
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); //выделение строки
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
 
-    modd->setHeaderData(1, Qt::Horizontal, "Марка двигателя", Qt::DisplayRole);
-    modd->setHeaderData(2, Qt::Horizontal, "Номинальная мощность двигателя, кВт", Qt::DisplayRole);
-    modd->setHeaderData(3, Qt::Horizontal, "Номинальная частота вращения, об/мин", Qt::DisplayRole);
-    modd->setHeaderData(4, Qt::Horizontal, "Номинальное напряжение фазы, В", Qt::DisplayRole);
-    modd->setHeaderData(5, Qt::Horizontal, "Номинальный коэффициент мощности", Qt::DisplayRole);
-    modd->setHeaderData(6, Qt::Horizontal, "Номинальный коэффициент полезного действия", Qt::DisplayRole);
-    modd->setHeaderData(7, Qt::Horizontal, "Кратность максимального момента", Qt::DisplayRole);
-    modd->setHeaderData(8, Qt::Horizontal, "Синхронная частота вращения, об/мин", Qt::DisplayRole);
+    modd->setHeaderData(1, Qt::Horizontal, tr("Марка двигателя"), Qt::DisplayRole);
+    modd->setHeaderData(2, Qt::Horizontal, tr("Номинальная мощность двигателя, кВт"), Qt::DisplayRole);
+    modd->setHeaderData(3, Qt::Horizontal, tr("Номинальная частота вращения, об/мин"), Qt::DisplayRole);
+    modd->setHeaderData(4, Qt::Horizontal, tr("Номинальное напряжение фазы, В"), Qt::DisplayRole);
+    modd->setHeaderData(5, Qt::Horizontal, tr("Номинальный коэффициент мощности"), Qt::DisplayRole);
+    modd->setHeaderData(6, Qt::Horizontal, tr("Номинальный коэффициент полезного действия"), Qt::DisplayRole);
+    modd->setHeaderData(7, Qt::Horizontal, tr("Кратность максимального момента"), Qt::DisplayRole);
+    modd->setHeaderData(8, Qt::Horizontal, tr("Синхронная частота вращения, об/мин"), Qt::DisplayRole);
 
     QHeaderView *header=ui->tableView->horizontalHeader();
     for(int i=1;i<=8;i++)
@@ -110,7 +110,7 @@ void datas::on_deleteDannie_clicked()
     QItemSelectionModel *selectModel = ui->tableView->selectionModel();
     if(selectModel->selectedRows().isEmpty())
     {
-        QMessageBox::critical(this, "Ошибка!", "Выберите необходимую строку");
+        QMessageBox::critical(this, tr("Ошибка!"), tr("Выберите необходимую строку"));
     }
     else
     {
