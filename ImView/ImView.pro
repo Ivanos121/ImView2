@@ -58,6 +58,7 @@ SOURCES += \
     nastroiki.cpp \
     paintdelegate.cpp \
     plot.cpp \
+    poisk.cpp \
     pushbuttondelegate.cpp \
     settings.cpp \
     settingscanals.cpp \
@@ -116,6 +117,7 @@ HEADERS += \
     nastroiki.h \
     paintdelegate.h \
     plot.h \
+    poisk.h \
     pushbuttondelegate.h \
     settings.h \
     settingscanals.h \
@@ -143,6 +145,7 @@ FORMS += \
     kalibr.ui \
     mainwindow.ui \
     nastroiki.ui \
+    poisk.ui \
     settings.ui \
     settingscanals.ui \
     settinsKanals.ui \

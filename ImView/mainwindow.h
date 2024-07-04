@@ -100,6 +100,7 @@ private:
     QString sessionFileName;
     QSqlDatabase sdb;
     QSqlTableModel *model;
+    QStandardItemModel *modd;
 
     void updateRecentFileActions();
     void setCurrentFile(const QString &fileName);
@@ -207,6 +208,17 @@ private slots:
     void on_radioButton_12_toggled(bool checked);
     void on_radioButton_13_toggled(bool checked);
     void openRecentFile();
+    void tab_open();
+    void changeTreeViewRowColor();
+    bool iterate(const QModelIndex & index, const QStandardItemModel * model, QString searchStr);
+    void rename_all();
+    void select_all();
+    void poisk();
+    void open_panel();
+    void zakr();
+    void rename();
+
+
 
 
     void close_progect();

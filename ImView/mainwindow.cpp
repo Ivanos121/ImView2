@@ -44,6 +44,7 @@
 #include "kalibr.h"
 #include "teplovent.h"
 #include "tepl_dannie.h"
+#include "ui_poisk.h"
 #include "ui_tepl_dannie.h"
 #include "ui_tepl_identf.h"
 #include "ui_teplovent.h"
@@ -66,6 +67,7 @@
 #include "tepl_struct.h"
 #include "tepl_identf.h"
 #include "settings.h"
+#include "poisk.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -105,6 +107,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->actionundo->setEnabled(false);
     ui->actionredo->setEnabled(false);
+    ui->widget_12->setVisible(false);
 
     recentFileActs[0] = ui->actionmy;
     recentFileActs[1] = ui->actionmy2;
@@ -117,7 +120,23 @@ MainWindow::MainWindow(QWidget *parent)
         connect(recentFileActs[i], &QAction::triggered, this, &MainWindow::openRecentFile);
     }
 
-    createUndoView();
+    QSettings settings( "BRU", "IM View");
+    settings.setValue( "ii", 0);
+    settings.setValue( "xx", 0);
+    settings.setValue( "iz", 0);
+    settings.setValue( "xz", 0);
+    settings.setValue( "iu", 0);
+    settings.setValue( "number", 0);
+
+    connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
+    connect(ui->widget_12->ui->pushButton_7,&QPushButton::clicked, this, &MainWindow::zakr);
+    connect(ui->widget_12->ui->pushButton, &QPushButton::pressed, this, &MainWindow::poisk);
+    connect(ui->widget_12->ui->pushButton_5, &QPushButton::pressed, this, &MainWindow::select_all);
+    connect(ui->widget_12->ui->pushButton_2, &QPushButton::pressed, this, &MainWindow::rename);
+    connect(ui->widget_12->ui->pushButton_6, &QPushButton::pressed, this, &MainWindow::rename_all);
+    connect(ui->widget_12->ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::tab_open);
+
+    //createUndoView();
 
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -180,6 +199,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->action_15, &QAction::triggered, this, &MainWindow::onButtonClicked);
     connect(ui->action_23, &QAction::triggered, this, &MainWindow::onButtonClicked2);
 
+
+
+
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
     ui->treeView->setAlternatingRowColors(true); // Цвет каждой строки интервала разный, при наличии qss этот атрибут недействителен
@@ -201,10 +223,10 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
 
-    QStandardItemModel* model=new QStandardItemModel(ui->treeView);
+    QStandardItemModel* model2=new QStandardItemModel(ui->treeView);
 
 
-    model->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
+    model2->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
     ui->treeView->setStyleSheet(
@@ -247,7 +269,7 @@ MainWindow::MainWindow(QWidget *parent)
     item2 = new QStandardItem();
     items1.append(item1);
     items1.append(item2);
-    model->appendRow(items1);
+    model2->appendRow(items1);
     item1->setSelectable(false);
     item1->setEditable(false);
     item2->setSelectable(false);
@@ -442,7 +464,7 @@ MainWindow::MainWindow(QWidget *parent)
     item10 = new QStandardItem();
     items3.append(item9);
     items3.append(item10);
-    model->appendRow(items3);
+    model2->appendRow(items3);
     items3.clear();
     item9->setSelectable(false);
     item9->setEditable(false);
@@ -563,7 +585,7 @@ MainWindow::MainWindow(QWidget *parent)
     item18 = new QStandardItem();
     items5.append(item17);
     items5.append(item18);
-    model->appendRow(items5);
+    model2->appendRow(items5);
     items5.clear();
     item17->setSelectable(false);
     item17->setEditable(false);
@@ -652,7 +674,7 @@ MainWindow::MainWindow(QWidget *parent)
     item26 = new QStandardItem();
     items7.append(item25);
     items7.append(item26);
-    model->appendRow(items7);
+    model2->appendRow(items7);
     items7.clear();
     item25->setSelectable(false);
     item25->setEditable(false);
@@ -690,7 +712,7 @@ MainWindow::MainWindow(QWidget *parent)
     item32 = new QStandardItem();
     items9.append(item31);
     items9.append(item32);
-    model->appendRow(items9);
+    model2->appendRow(items9);
     items9.clear();
     item31->setSelectable(false);
     item31->setEditable(false);
@@ -727,7 +749,7 @@ MainWindow::MainWindow(QWidget *parent)
     item40 = new QStandardItem();
     items11.append(item39);
     items11.append(item40);
-    model->appendRow(items11);
+    model2->appendRow(items11);
     items11.clear();
     item39->setSelectable(false);
     item39->setEditable(false);
@@ -764,7 +786,7 @@ MainWindow::MainWindow(QWidget *parent)
     item48 = new QStandardItem();
     items13.append(item47);
     items13.append(item48);
-    model->appendRow(items13);
+    model2->appendRow(items13);
     items13.clear();
     item47->setSelectable(false);
     item47->setEditable(false);
@@ -801,7 +823,7 @@ MainWindow::MainWindow(QWidget *parent)
     item56 = new QStandardItem();
     items15.append(item55);
     items15.append(item56);
-    model->appendRow(items15);
+    model2->appendRow(items15);
     items15.clear();
     item55->setSelectable(false);
     item55->setEditable(false);
@@ -838,7 +860,7 @@ MainWindow::MainWindow(QWidget *parent)
     item122 = new QStandardItem();
     items17.append(item121);
     items17.append(item122);
-    model->appendRow(items17);
+    model2->appendRow(items17);
     items17.clear();
     item121->setSelectable(false);
     item121->setEditable(false);
@@ -870,7 +892,7 @@ MainWindow::MainWindow(QWidget *parent)
     item121->appendRow(items18);
     items18.clear();
 
-    ui->treeView->setModel(model);
+    ui->treeView->setModel(model2);
 
     ui->treeView->header()->resizeSection(0,270);
     ui->treeView->header()->setSectionResizeMode(0,QHeaderView::Interactive);
@@ -2618,8 +2640,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
     connect(ui->tabWidget_3, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_5);
     connect(ui->widget_7->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_6);
-    connect(model, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible);
-    connect(model, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible_2);
+    connect(model2, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible);
+    connect(model2, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible_2);
 
     connect(ui->lineEdit_13,&QLineEdit::textEdited, this, &MainWindow::edit);
     connect(ui->lineEdit_16,&QLineEdit::textEdited, this, &MainWindow::edit_2);
@@ -2627,7 +2649,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->lineEdit_17,&QLineEdit::textEdited, this, &MainWindow::edit_4);
     connect(ui->lineEdit_15,&QLineEdit::textEdited, this, &MainWindow::edit_5);
     connect(ui->lineEdit_18,&QLineEdit::textEdited, this, &MainWindow::edit_6);
-    connect(model,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
+    connect(model2,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
 
     updateRecentFileActions();
 }
@@ -9468,5 +9490,860 @@ void::MainWindow::close_progect()
     item107->setText(tr("0"));
     item34->setText(tr("Выберите режим"));
     item36->setText(tr("Выберите конструкцию"));
+}
 
+void MainWindow::open_panel()
+{
+    ui->widget_12->setVisible(true);
+
+}
+
+void MainWindow::poisk()
+{
+    select_all();
+    int i,x, xz,iz, number;
+    QString str,moc_2;
+    str = ui->widget_12->ui->lineEdit->text();
+    if(ui->widget->ui->tableView->isEnabled()==true)
+    {        
+        int i,x,xx, ii, number;
+        str = ui->widget_12->ui->lineEdit->text();
+
+        QSettings settings( "BRU", "IM View");
+        xx = settings.value( "xx", "").toInt();
+        ii = settings.value( "ii", "").toInt();
+        number = settings.value( "number", "").toInt();
+
+        for(x=xx;x<model->rowCount();x++)
+        {
+            for(i=ii;i<model->columnCount();i++)
+            {
+                moc_2 = ui->widget->ui->tableView->model()->data(ui->widget->ui->tableView->model()->index(x,i)).toString();
+
+                if(moc_2==str)
+                {
+                    QModelIndex newIndex = ui->widget->ui->tableView->model()->index(x,i);
+                    ui->widget->ui->tableView->setCurrentIndex(newIndex);
+                    modd->item(x,i)->setBackground(Qt::yellow);
+                    ui->widget->ui->tableView->model()->setData(ui->widget->ui->tableView->model()->index(x, i, QModelIndex()), QVariant(QColor(Qt::red)), Qt::ForegroundRole);
+
+                    QSettings settings( "BRU", "IM View");
+                    settings.setValue( "ii", i+1);
+                    settings.setValue( "xx", x);
+                    if(x==model->rowCount()-1)
+                    {
+                        settings.setValue( "ii", i+1);
+                    }
+                    return;
+                }
+            }
+            ii = 0;
+        }
+    }
+
+    if (number < 1)
+    {
+        if(ui->tableWidget->isEnabled()==true)
+        {          
+            QSettings settings( "BRU", "IM View");
+            xz = settings.value( "xz", "").toInt();
+            iz = settings.value( "iz", "").toInt();
+            number=settings.value( "number", "").toInt();
+
+            for(x=xz;x<ui->tableWidget->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget->item(x,i)->text();
+                    if(moc_2==str)
+                    {
+                        QModelIndex newIndex = ui->tableWidget->model()->index(x, i);
+                        ui->tableWidget->setCurrentIndex(newIndex);
+                        ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "xz", x);
+
+                        if(x==ui->tableWidget->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                }
+            iz = 0;
+            }
+
+            if((moc_2!=str))
+            {
+                ui->tabWidget->setCurrentIndex( 1 );
+                ui->tableWidget_2->setFocus();
+                settings.setValue( "iz", 0);
+                settings.setValue( "xz", 0);
+                settings.setValue( "number", 1);
+            }
+        }
+    }
+
+    if (number < 2)
+    {
+        if(ui->tableWidget_2->isEnabled()==true)
+        {
+            QSettings settings( "BRU", "IM View");
+            xz = settings.value( "xz", "").toInt();
+            iz = settings.value( "iz", "").toInt();
+            for(x=xz;x<ui->tableWidget_2->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget_2->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget_2->item(x,i)->text();
+                    if(moc_2==str)
+                    {
+                        QModelIndex newIndex = ui->tableWidget_2->model()->index(x, i);
+                        ui->tableWidget_2->setCurrentIndex(newIndex);
+                        ui->tableWidget_2->item(x,i)->setBackground(Qt::yellow);
+                       // model->item( x, i )->setBackground( Qt::yellow );
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "xz", x);
+                        if(x==ui->tableWidget_2->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                }
+                iz = 0;
+            }
+            if((moc_2!=str))
+            {
+                ui->tabWidget->setCurrentIndex(2);
+                ui->tableWidget_3->setFocus();
+                settings.setValue( "iz", 0);
+                settings.setValue( "xz", 0);
+                settings.setValue( "number", 2);
+            }
+        }
+    }
+
+
+    if(ui->tableWidget_3->isEnabled()==true)
+    {
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        QString str = ui->widget_12->ui->lineEdit->text();
+
+        for(x=xz;x<ui->tableWidget_3->rowCount();x++)
+        {
+            for(i=iz;i<ui->tableWidget_3->columnCount();i++)
+            {
+                moc_2 = ui->tableWidget_3->item(x,i)->text();
+                if(moc_2==str)
+                {
+                    QModelIndex newIndex = ui->tableWidget_3->model()->index(x, i);
+                    ui->tableWidget_3->setCurrentIndex(newIndex);
+                    ui->tableWidget_3->item(x,i)->setBackground(Qt::yellow);
+                    //model->item( x, i )->setBackground( Qt::yellow );
+                    QSettings settings( "BRU", "IM View");
+                    settings.setValue( "iz", i+1);
+                    settings.setValue( "xz", x);
+                    if(x==ui->tableWidget_3->rowCount()-1)
+                    {
+                        settings.setValue( "iz", i+1);
+                    }
+                    return;
+                }
+            }
+        iz = 0;
+        }
+        if((moc_2!=str))
+        {
+            ui->stackedWidget->setCurrentIndex(1);
+            ui->tableWidget_4->setFocus();
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "number", 3);
+        }
+    }
+
+    if(ui->tableWidget_4->isEnabled()==true)
+    {        
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        for(x=xz;x<ui->tableWidget_4->rowCount();x++)
+        {
+            for(i=iz;i<ui->tableWidget_4->columnCount();i++)
+            {
+                moc_2 = ui->tableWidget_4->item(x,i)->text();
+                if(moc_2==str)
+                {
+                    QModelIndex newIndex = ui->tableWidget_4->model()->index(x, i);
+                    ui->tableWidget_4->setCurrentIndex(newIndex);
+                    ui->tableWidget_4->item(x,i)->setBackground(Qt::yellow);
+                    //model->item( x, i )->setBackground( Qt::yellow );
+                    QSettings settings( "BRU", "IM View");
+                    settings.setValue( "iz", i+1);
+                    settings.setValue( "xz", x);
+                    if(x==ui->tableWidget_4->rowCount()-1)
+                    {
+                        settings.setValue( "iz", i+1);
+                    }
+                    return;
+                }
+            }
+        iz = 0;
+        }
+        if((moc_2!=str))
+        {
+            ui->stackedWidget->setCurrentIndex(2);
+            ui->tableWidget_5->setFocus();
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "number", 4);
+        }
+    }
+
+    if(ui->tableWidget_5->isEnabled()==true)
+    {
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        for(x=xz;x<ui->tableWidget_5->rowCount();x++)
+        {
+            for(i=iz;i<ui->tableWidget_5->columnCount();i++)
+            {
+                moc_2 = ui->tableWidget_5->item(x,i)->text();
+                if(moc_2==str)
+                {
+                    QModelIndex newIndex = ui->tableWidget_5->model()->index(x, i);
+                    ui->tableWidget_5->setCurrentIndex(newIndex);
+                    ui->tableWidget_5->item(x,i)->setBackground(Qt::yellow);
+                   // model->item( x, i )->setBackground( Qt::yellow );
+                    QSettings settings( "BRU", "IM View");
+                    settings.setValue( "iz", i+1);
+                    settings.setValue( "xz", x);
+                    if(x==ui->tableWidget_5->rowCount()-1)
+                    {
+                        settings.setValue( "iz", i+1);
+                        //settings.setValue( "xz", 0);
+                    }
+                    return;
+                }
+            }
+            iz = 0;
+        }
+        if((moc_2!=str))
+        {
+            QMessageBox::information(this, "Внимание!","Поиск завершен");
+        }
+    }
+
+    if(ui->treeView->isEnabled()==true)
+    {
+        QSettings settings( "BRU", "IM View");
+        //iterate(model2->index(0,0), model2, str);
+        item2->setBackground(QColor(255,255,255));
+    }
+}
+
+void MainWindow::zakr()
+{
+    ui->widget_12->setVisible(false);
+    QString str = ui->widget_12->ui->lineEdit->text();
+
+    for(int i=0;i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
+    {
+        for(int x=0;x<ui->widget_5->ui->widget_2->ui->tableWidget->rowCount();x++)
+        {
+            QString moc_2 = ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->widget_5->ui->tableWidget->columnCount();i++)
+    {
+        for(int x=0;x<ui->widget_5->ui->tableWidget->rowCount();x++)
+        {
+            QString moc_2 = ui->widget_5->ui->tableWidget->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->widget_5->ui->tableWidget->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->widget_5->ui->tableWidget->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_2->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_2->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_2->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_2->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_2->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_4->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_4->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_4->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_4->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_4->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_16->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_16->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_16->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_16->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_16->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_7->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_7->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_7->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_7->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_7->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_3->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_3->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_3->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_3->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_3->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_14->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_14->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_14->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_14->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_14->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_15->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_15->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_15->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_15->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_15->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_5->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_5->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_5->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_5->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_5->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_6->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_6->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_6->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_6->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_6->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_9->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_9->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_9->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_9->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_9->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_13->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_13->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_13->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_13->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_13->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_8->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_8->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_8->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_8->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_8->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_10->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_10->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_10->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_10->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_10->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_11->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_11->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_11->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_11->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_11->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_12->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_12->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_12->item(x,i)->text();
+            if(moc_2==str)
+            {
+                if (x % 2 == 0)
+                {
+                    ui->tableWidget_12->item(x,i)->setBackground(QColor(225, 255, 255));
+                }
+                else
+                {
+                    ui->tableWidget_12->item(x,i)->setBackground( QColor(200, 255, 255));
+                }
+            }
+        }
+    }
+
+    QSettings settings( "BRU", "IM View");
+    settings.setValue( "ii", 0);
+    settings.setValue( "xx", 0);
+    settings.setValue( "iz", 0);
+    settings.setValue( "xz", 0);
+    settings.setValue( "iu", 0);
+    //ui->stackedWidget->setCurrentIndex(0);
+
+
+}
+
+void MainWindow::select_all()
+{
+    QString str = ui->widget_12->ui->lineEdit->text();
+    if(str!=nullptr)
+    {
+        for(int i=0;i<=model->columnCount();i++)
+        {
+            for(int x=0;x<=model->rowCount();x++)
+            {
+                QModelIndex ind = model->index(x,i);
+                if(ind.data().toString()==str)
+                {
+                    modd->item( x, i )->setBackground( Qt::yellow );
+                }
+            }
+        }
+    }
+
+    //select all tableWidget
+
+    for(int i=0;i<ui->tableWidget->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget->item(x,i)->text();
+            if(moc_2==str)
+            {
+                ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_2->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_2->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_2->item(x,i)->text();
+            if(moc_2==str)
+            {
+                ui->tableWidget_2->item(x,i)->setBackground(Qt::yellow);
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_3->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_3->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_3->item(x,i)->text();
+            if(moc_2==str)
+            {
+                ui->tableWidget_3->item(x,i)->setBackground(Qt::yellow);
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_4->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_4->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget_4->item(x,i)->text();
+            if(moc_2==str)
+            {
+                ui->tableWidget_4->item(x,i)->setBackground(Qt::yellow);
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_5->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_5->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_5->item(x,i)->text();
+            if(moc_2==str)
+            {
+                ui->tableWidget_5->item(x,i)->setBackground(Qt::yellow);
+            }
+        }
+    }
+}
+
+void MainWindow::rename()
+{
+    //rename in tableview
+
+    QString str = ui->widget_12->ui->lineEdit->text();
+    QString str_2 = ui->widget_12->ui->lineEdit_2->text();
+    QString moc;
+    int i,x,ii,xx,iz,xz;
+
+    for(i=0;i<=model->columnCount();i++)
+    {
+        for(x=0;x<=model->rowCount();x++)
+        {
+            QModelIndex ind = model->index(x,i);
+            if(ind.data().toString()==str)
+            {
+                modd->item( x, i )->setBackground( Qt::yellow );
+            }
+        }
+    }
+
+
+    QSettings settings( "BRU", "IM View");
+    xx = settings.value( "xx", "").toInt();
+    ii = settings.value( "ii", "").toInt();
+
+    for(i=ii;i<=modd->columnCount();i++)
+    {
+        for(x=xx;x<=modd->rowCount();x++)
+        {
+            moc = ui->widget->ui->tableView->model()->data(ui->widget->ui->tableView->model()->index(x,i)).toString();
+
+            if(moc==str)
+            {
+                QFont font("DroidSans", 10, QFont::Bold,false);
+
+                modd->item(x,i)->setFont(font);
+                modd->item(x,i)->setText(str_2);
+                modd->item(x,i)->setBackground(Qt::yellow);
+                QSettings settings( "BRU", "IM View");
+                settings.setValue( "ii", i);
+                settings.setValue( "xx", x+1);
+                return;
+            }
+        }
+    }
+    //rename in tablewidget
+
+    for(i=ii;i<ui->tableWidget->columnCount();i++)
+    {
+        for(x=xx;x<ui->tableWidget->rowCount();x++)
+        {
+           QString moc_2 = ui->tableWidget->item(x,i)->text();
+
+            if(moc_2==str)
+            {
+                ui->tableWidget->item(x,i)->setText(str_2);
+                ui->tableWidget->item(x,i)->setText(str_2);
+                ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
+                QSettings settings( "BRU", "IM View");
+                settings.setValue( "ii", i);
+                settings.setValue( "xx", x+1);
+                return;
+            }
+        }
+    }
+}
+
+void MainWindow::rename_all()
+{
+    //rename in tableview
+
+    QString str = ui->widget_12->ui->lineEdit->text();
+    QString str_2 = ui->widget_12->ui->lineEdit_2->text();
+    QString moc;
+    int i,x,ii,xx,iz,xz;
+
+    QSettings settings( "BRU", "IM View");
+    xx = settings.value( "xx", "").toInt();
+    ii = settings.value( "ii", "").toInt();
+
+    for(i=ii;i<=model->columnCount();i++)
+    {
+        for(x=xx;x<=model->rowCount();x++)
+        {
+            moc = ui->widget->ui->tableView->model()->data(ui->widget->ui->tableView->model()->index(x,i)).toString();
+
+            if(moc==str)
+            {
+                modd->item(x,i)->setText(str_2);
+                modd->item(x,i)->setBackground(Qt::yellow);
+                QSettings settings( "BRU", "IM View");
+                settings.setValue( "ii", i);
+                settings.setValue( "xx", x+1);
+               // return;
+            }
+        }
+    }
+    //rename in tablewidget
+
+    for(i=ii;i<ui->tableWidget->columnCount();i++)
+    {
+        for(x=xx;x<ui->tableWidget->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget->item(x,i)->text();
+
+            if(moc_2==str)
+            {
+                ui->tableWidget->item(x,i)->setText(str_2);
+                ui->tableWidget->item(x,i)->setText(str_2);
+                ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
+                QSettings settings( "BRU", "IM View");
+                settings.setValue( "ii", i);
+                settings.setValue( "xx", x+1);
+                //return;
+            }
+        }
+    }
+}
+
+bool MainWindow::iterate(const QModelIndex & index, const QStandardItemModel * model, QString searchStr)
+{
+    if (index.isValid())
+    {
+        // Do action here
+    }
+
+    QString itemText = model->itemData(index)[0].toString();
+
+    if (itemText == searchStr)
+    {
+        model->itemFromIndex(index)->setText("rrr");
+
+        return false;
+    }
+
+    if (!model->hasChildren(index) || (index.flags() &
+                                       Qt::ItemNeverHasChildren))
+    {
+        return true;
+    }
+
+
+    auto rows = model->rowCount(index);
+    auto cols = model->columnCount(index);
+
+    for (int i = 0; i < rows; ++i)
+    {
+        for (int j = 0; j < cols; j++)
+            if (iterate(model->index(i, j, index), model, searchStr) == false)
+                return false;
+    }
+
+    return true;
+
+}
+
+void MainWindow::changeTreeViewRowColor()
+{
+    item1->setData(QColor(5, 50, 255));
+    item2->setBackground(QColor(5, 50, 255));
+}
+
+void::MainWindow::tab_open()
+{
+    int i, iu;
+    QSettings settings( "BRU", "IM View");
+    iu = settings.value( "iu", "").toInt();
+    i=iu;
+    i=i+1;
+    ui->stackedWidget->setCurrentIndex(i);
+    ui->label_34->setText("page_number:"+QString::number(i));
+    settings.setValue( "iu", i);
+    if(i==ui->stackedWidget->count()-1)
+    {
+        settings.setValue( "iu", -1);
+    }
+    return;
 }

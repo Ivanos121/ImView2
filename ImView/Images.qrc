@@ -37,6 +37,7 @@
         <file>../data/img/system_icons/media-playback-stop_3.svg</file>
         <file>../data/img/system_icons/document-preview-archive.svg</file>
         <file>../data/img/system_icons/document-close.svg</file>
+        <file>../data/img/system_icons/window-close1.svg</file>
     </qresource>
     <qresource prefix="/icons">
         <file>../data/img/icons/IM_16x16.png</file>
