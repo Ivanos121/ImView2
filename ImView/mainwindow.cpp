@@ -1,8 +1,39 @@
 #include "qimagewriter.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
-#include <QEvent>
-#include <QSettings>
+#include "base.h"
+#include "model.h"
+#include "datas.h"
+#include "ui_datas.h"
+#include "identf.h"
+#include "ui_identf.h"
+#include "electromagn.h"
+#include "kalibr.h"
+#include "teplovent.h"
+#include "tepl_dannie.h"
+#include "ui_poisk.h"
+#include "ui_tepl_dannie.h"
+#include "ui_tepl_identf.h"
+#include "ui_teplovent.h"
+#include "ui_electromagn.h"
+#include "ui_draw_line.h"
+#include "ui_draw_poper.h"
+#include "ui_teplschem.h"
+#include "ui_vent_model.h"
+#include "ui_trend.h"
+#include "ui_datas.h"
+#include "vent_model.h"
+#include "ui_vent_model.h"
+#include "customhelpdelegate.h"
+#include "math.h"
+#include "plot.h"
+#include "tepl_nabludatel.h"
+#include "ui_tepl_nabludatel.h"
+#include "model_el.h"
+#include "tepl_struct.h"
+#include "tepl_identf.h"
+#include "settings.h"
+#include "poisk.h"
 
 #include <QStyle>
 #include <QDesktopWidget>
@@ -33,41 +64,8 @@
 #include <QSvgRenderer>
 #include <iostream>
 #include <QString>
-
-#include "base.h"
-#include "model.h"
-#include "datas.h"
-#include "ui_datas.h"
-#include "identf.h"
-#include "ui_identf.h"
-#include "electromagn.h"
-#include "kalibr.h"
-#include "teplovent.h"
-#include "tepl_dannie.h"
-#include "ui_poisk.h"
-#include "ui_tepl_dannie.h"
-#include "ui_tepl_identf.h"
-#include "ui_teplovent.h"
-#include "ui_electromagn.h"
-#include "ui_draw_line.h"
-#include "ui_draw_poper.h"
-#include "ui_teplschem.h"
-#include "ui_vent_model.h"
-#include "ui_trend.h"
-//#include "ui_vent_izm.h"
-#include "ui_datas.h"
-#include "vent_model.h"
-#include "ui_vent_model.h"
-#include "customhelpdelegate.h"
-#include "math.h"
-#include "plot.h"
-#include "tepl_nabludatel.h"
-#include "ui_tepl_nabludatel.h"
-#include "model_el.h"
-#include "tepl_struct.h"
-#include "tepl_identf.h"
-#include "settings.h"
-#include "poisk.h"
+#include <QEvent>
+#include <QSettings>
 
 Base base;
 Base_tepl base_tepl;
@@ -385,10 +383,10 @@ MainWindow::MainWindow(QWidget *parent)
     item67->setEditable(false);
     QString w19=item67->text();
     item67->setToolTip(w19);
-    item68 = new QStandardItem();
-    item68->setEditable(false);
-    item68->setCheckable(true);
-    item68->setToolTip(tr("Выкл"));
+    item68 = new QStandardItem(tr("Выбрать режим"));
+    //item68->setEditable(false);
+    //item68->setCheckable(false);
+    //item68->setToolTip(tr("Выкл"));
     items2.append(item67);
     items2.append(item68);
     item65->appendRow(items2);
@@ -398,10 +396,10 @@ MainWindow::MainWindow(QWidget *parent)
     item69->setEditable(false);
     QString w21=item69->text();
     item69->setToolTip(w21);
-    item70 = new QStandardItem();
-    item70->setEditable(false);
-    item70->setCheckable(true);
-    item70->setToolTip(tr("Выкл"));
+    item70 = new QStandardItem(tr("Выбрать режим"));
+    //item70->setEditable(false);
+    //item70->setCheckable(true);
+    //item70->setToolTip(tr("Выкл"));
     items2.append(item69);
     items2.append(item70);
     item65->appendRow(items2);
@@ -411,10 +409,10 @@ MainWindow::MainWindow(QWidget *parent)
     item71->setEditable(false);
     QString w23=item71->text();
     item71->setToolTip(w23);
-    item72 = new QStandardItem();
-    item72->setEditable(false);
-    item72->setCheckable(true);
-    item72->setToolTip(tr("Выкл"));
+    item72 = new QStandardItem(tr("Выбрать режим"));
+    //item72->setEditable(false);
+    //item72->setCheckable(true);
+    //item72->setToolTip(tr("Выкл"));
     items2.append(item71);
     items2.append(item72);
     item65->appendRow(items2);
@@ -424,10 +422,10 @@ MainWindow::MainWindow(QWidget *parent)
     item73->setEditable(false);
     QString w25=item73->text();
     item73->setToolTip(w25);
-    item74 = new QStandardItem();
-    item74->setEditable(false);
-    item74->setCheckable(true);
-    item74->setToolTip(tr("Выкл"));
+    item74 = new QStandardItem(tr("Выбрать режим"));
+    //item74->setEditable(false);
+    //item74->setCheckable(true);
+    //item74->setToolTip(tr("Выкл"));
     items2.append(item73);
     items2.append(item74);
     item65->appendRow(items2);
@@ -437,10 +435,10 @@ MainWindow::MainWindow(QWidget *parent)
     item75->setEditable(false);
     QString w27=item75->text();
     item75->setToolTip(w27);
-    item76 = new QStandardItem();
-    item76->setEditable(false);
-    item76->setCheckable(true);
-    item76->setToolTip(tr("Выкл"));
+    item76 = new QStandardItem(tr("Выбрать режим"));
+    //item76->setEditable(false);
+    //item76->setCheckable(true);
+    // item76->setToolTip(tr("Выкл"));
     items2.append(item75);
     items2.append(item76);
     item65->appendRow(items2);
@@ -450,10 +448,10 @@ MainWindow::MainWindow(QWidget *parent)
     item77->setEditable(false);
     QString w29=item77->text();
     item77->setToolTip(w29);
-    item78 = new QStandardItem();
-    item78->setEditable(false);
-    item78->setCheckable(true);
-    item78->setToolTip(tr("Выкл"));
+    item78 = new QStandardItem(tr("Выбрать режим"));
+    //item78->setEditable(false);
+    //item78->setCheckable(true);
+    //item78->setToolTip(tr("Выкл"));
     items2.append(item77);
     items2.append(item78);
     item65->appendRow(items2);
@@ -2568,9 +2566,9 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    QPalette p_16=ui->tableWidget_16->palette();
-    p_16.setColor(QPalette::Base, QColor(255, 244, 173));
-    p_16.setColor(QPalette::AlternateBase, QColor(265, 230, 0));
+    QPalette p_16=ui->tableWidget_16->palette(); 
+    p_16.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_16.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget_16->setPalette(p_16);
 
     CustomHelpDelegate* customHelpDelegate16 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
@@ -3465,31 +3463,31 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item82->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("checkbox_1");
-    xmlWriter.writeAttribute("boolean", (item68->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_2");
-    xmlWriter.writeAttribute("boolean", (item70->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_3");
-    xmlWriter.writeAttribute("boolean", (item72->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_4");
-    xmlWriter.writeAttribute("boolean", (item74->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_5");
-    xmlWriter.writeAttribute("boolean", (item76->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_6");
-    xmlWriter.writeAttribute("boolean", (item78->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
     xmlWriter.writeStartElement("combobox_3");
+    xmlWriter.writeAttribute("value", (item68->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_4");
+    xmlWriter.writeAttribute("value", (item70->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_5");
+    xmlWriter.writeAttribute("value", (item72->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_6");
+    xmlWriter.writeAttribute("value", (item74->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_7");
+    xmlWriter.writeAttribute("value", (item76->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_8");
+    xmlWriter.writeAttribute("value", (item78->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_9");
     xmlWriter.writeAttribute("value", (item14->text()));
     xmlWriter.writeEndElement();
 
@@ -3517,7 +3515,7 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item104->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_4");
+    xmlWriter.writeStartElement("combobox_10");
     xmlWriter.writeAttribute("value", (item20->text()));
     xmlWriter.writeEndElement();
 
@@ -3529,7 +3527,7 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item24->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_5");
+    xmlWriter.writeStartElement("combobox_11");
     xmlWriter.writeAttribute("value", (item92->text()));
     xmlWriter.writeEndElement();
 
@@ -3545,7 +3543,7 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item28->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_6");
+    xmlWriter.writeStartElement("combobox_12");
     xmlWriter.writeAttribute("value", (item30->text()));
     xmlWriter.writeEndElement();
 
@@ -3553,13 +3551,66 @@ void MainWindow::on_SaveProgectToFile_clicked()
     xmlWriter.writeAttribute("value", (item107->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_7");
+    xmlWriter.writeStartElement("combobox_13");
     xmlWriter.writeAttribute("value", (item34->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_8");
+    xmlWriter.writeStartElement("combobox_14");
     xmlWriter.writeAttribute("value", (item36->text()));
     xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("pressure");
+    xmlWriter.writeAttribute("value", (item38->text()));
+    xmlWriter.writeEndElement();
+
+    if(item68->text() == "Сохранить")
+    {
+        xmlWriter.writeStartElement("sopr_R1");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_12->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("sopr_R2");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_11->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("ind_L1");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_10->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("ind_L2");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_9->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("ind_Lm");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_8->text()));
+        xmlWriter.writeEndElement();
+    }
+    if(item14->text() == "Автоматический")
+    {
+        xmlWriter.writeStartElement("koeff_gd");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_13->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_ki");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_16->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_gb");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_14->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_kpsi");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_17->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_gp");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_15->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_gpsi");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_18->text()));
+        xmlWriter.writeEndElement();
+    }
 
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
@@ -3655,97 +3706,74 @@ void MainWindow::LoadProject(QString str)
                             item82->setText(attribute_value);
                         }
                     }
-                }
-                else if(xmlReader.name() == "checkbox_1")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "boolean")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            if(attribute_value=="true")
-                            {
-                                item68->setCheckState(Qt::Checked);
-                            }
-                            else
-                            {
-                                item68->setCheckState(Qt::Unchecked);
-                            };
-                        }
-                    }
-                }
-
-                else if(xmlReader.name() == "checkbox_2")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "boolean")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            if(attribute_value=="true"){
-                                item70->setCheckState(Qt::Checked);}
-                            else {item70->setCheckState(Qt::Unchecked);};
-                        }
-                    }
-                }
-
-                else if(xmlReader.name() == "checkbox_3")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "boolean")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            if(attribute_value=="true"){
-                            item72->setCheckState(Qt::Checked);}
-                            else {item72->setCheckState(Qt::Unchecked);};
-                        }
-                    }
-                }
-
-                else if(xmlReader.name() == "checkbox_4")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "boolean")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            if(attribute_value=="true"){
-                            item74->setCheckState(Qt::Checked);}
-                            else {item74->setCheckState(Qt::Unchecked);};
-                        }
-                    }
-                }
-
-                else if(xmlReader.name() == "checkbox_5")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "boolean")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            if(attribute_value=="true"){
-                            item76->setCheckState(Qt::Checked);}
-                            else {item76->setCheckState(Qt::Unchecked);};
-                        }
-                    }
-                }
-
-                else if(xmlReader.name() == "checkbox_6")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "boolean")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            if(attribute_value=="true"){
-                            item78->setCheckState(Qt::Checked);}
-                            else {item78->setCheckState(Qt::Unchecked);};
-                        }
-                    }
-                }
-
+                }                
                 else if(xmlReader.name() == "combobox_3")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item68->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_4")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item70->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_5")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item72->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_6")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item74->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_7")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item76->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_8")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item78->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_9")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3822,7 +3850,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_4")
+                else if(xmlReader.name() == "combobox_10")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3855,7 +3883,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_5")
+                else if(xmlReader.name() == "combobox_11")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3899,7 +3927,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_6")
+                else if(xmlReader.name() == "combobox_12")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3921,7 +3949,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_7")
+                if(xmlReader.name() == "combobox_13")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3932,7 +3960,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_8")
+                if(xmlReader.name() == "combobox_14")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -3940,6 +3968,138 @@ void MainWindow::LoadProject(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             item36->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "pressure")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item38->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "sopr_R1")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_12->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "sopr_R2")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_11->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "ind_L1")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_10->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "ind_L2")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_9->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "ind_Lm")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_8->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "koeff_gd")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_13->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "koeff_ki")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_16->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "koeff_gb")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_14->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "koeff_kpsi")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_17->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "koeff_gp")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_15->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "koeff_gpsi")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->lineEdit_18->setText(attribute_value);
                         }
                     }
                 }
@@ -3953,8 +4113,8 @@ void MainWindow::LoadProject(QString str)
 
     item4->setText(sessionFileName);
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
-    ui->action_2->setEnabled(false);
-    ui->action_6->setEnabled(false);
+    ui->action_2->setEnabled(true);
+    ui->action_6->setEnabled(true);
     setCurrentFile(str);
 }
 
@@ -8617,7 +8777,7 @@ void MainWindow::open_file()
 
 void MainWindow::save_file()
 {
-    QString filename;
+    sessionFileName = item4->text();
     QDir dir("../Output");
     if (!dir.exists())
     {
@@ -9490,6 +9650,24 @@ void::MainWindow::close_progect()
     item107->setText(tr("0"));
     item34->setText(tr("Выберите режим"));
     item36->setText(tr("Выберите конструкцию"));
+    item38->setText(tr("0"));
+
+    ui->lineEdit_12->clear();
+    ui->lineEdit_11->clear();
+    ui->lineEdit_10->clear();
+    ui->lineEdit_9->clear();
+    ui->lineEdit_8->clear();
+
+    ui->lineEdit_13->clear();
+    ui->lineEdit_16->clear();
+    ui->lineEdit_14->clear();
+    ui->lineEdit_17->clear();
+    ui->lineEdit_8->clear();
+    ui->lineEdit_15->clear();
+    ui->lineEdit_18->clear();
+
+    ui->widget_2->ui->plot->clear();
+
 }
 
 void MainWindow::open_panel()
@@ -9501,12 +9679,12 @@ void MainWindow::open_panel()
 void MainWindow::poisk()
 {
     select_all();
-    int i,x, xz,iz, number;
+    int i,x,xx,ii, xz,iz, number=0;
     QString str,moc_2;
     str = ui->widget_12->ui->lineEdit->text();
-    if(ui->widget->ui->tableView->isEnabled()==true)
+  /* if(ui->widget->ui->tableView->isEnabled()==true)
     {        
-        int i,x,xx, ii, number;
+        //int i,x,xx, ii, number;
         str = ui->widget_12->ui->lineEdit->text();
 
         QSettings settings( "BRU", "IM View");
@@ -9539,32 +9717,32 @@ void MainWindow::poisk()
             }
             ii = 0;
         }
-    }
+    }*/
 
     if (number < 1)
     {
-        if(ui->tableWidget->isEnabled()==true)
+        if(ui->widget_5->ui->widget_2->ui->tableWidget->isEnabled()==true)
         {          
             QSettings settings( "BRU", "IM View");
             xz = settings.value( "xz", "").toInt();
             iz = settings.value( "iz", "").toInt();
             number=settings.value( "number", "").toInt();
 
-            for(x=xz;x<ui->tableWidget->rowCount();x++)
+            for(x=xz;x<ui->widget_5->ui->widget_2->ui->tableWidget->rowCount();x++)
             {
-                for(i=iz;i<ui->tableWidget->columnCount();i++)
+                for(i=iz;i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
                 {
-                    moc_2 = ui->tableWidget->item(x,i)->text();
+                    moc_2 = ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->text();
                     if(moc_2==str)
                     {
-                        QModelIndex newIndex = ui->tableWidget->model()->index(x, i);
-                        ui->tableWidget->setCurrentIndex(newIndex);
-                        ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
+                        QModelIndex newIndex = ui->widget_5->ui->widget_2->ui->tableWidget->model()->index(x, i);
+                        ui->widget_5->ui->widget_2->ui->tableWidget->setCurrentIndex(newIndex);
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
                         QSettings settings( "BRU", "IM View");
                         settings.setValue( "iz", i+1);
                         settings.setValue( "xz", x);
 
-                        if(x==ui->tableWidget->rowCount()-1)
+                        if(x==ui->widget_5->ui->widget_2->ui->tableWidget->rowCount()-1)
                         {
                             settings.setValue( "iz", i+1);
                         }
@@ -9762,11 +9940,11 @@ void MainWindow::zakr()
             {
                 if (x % 2 == 0)
                 {
-                    ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(QColor(225, 255, 255));
+                    ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(QColor(255, 255, 191));
                 }
                 else
                 {
-                    ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground( QColor(200, 255, 255));
+                    ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground( QColor(255, 255, 222));
                 }
             }
         }
@@ -9781,11 +9959,11 @@ void MainWindow::zakr()
             {
                 if (x % 2 == 0)
                 {
-                    ui->widget_5->ui->tableWidget->item(x,i)->setBackground(QColor(225, 255, 255));
+                    ui->widget_5->ui->tableWidget->item(x,i)->setBackground(QColor(255, 255, 191));
                 }
                 else
                 {
-                    ui->widget_5->ui->tableWidget->item(x,i)->setBackground( QColor(200, 255, 255));
+                    ui->widget_5->ui->tableWidget->item(x,i)->setBackground( QColor(255, 255, 222));
                 }
             }
         }
@@ -9800,11 +9978,11 @@ void MainWindow::zakr()
             {
                 if (x % 2 == 0)
                 {
-                    ui->tableWidget_2->item(x,i)->setBackground(QColor(225, 255, 255));
+                    ui->tableWidget_2->item(x,i)->setBackground(QColor(255, 255, 191));
                 }
                 else
                 {
-                    ui->tableWidget_2->item(x,i)->setBackground( QColor(200, 255, 255));
+                    ui->tableWidget_2->item(x,i)->setBackground( QColor(255, 255, 222));
                 }
             }
         }
@@ -9838,11 +10016,11 @@ void MainWindow::zakr()
             {
                 if (x % 2 == 0)
                 {
-                    ui->tableWidget_16->item(x,i)->setBackground(QColor(225, 255, 255));
+                    ui->tableWidget_16->item(x,i)->setBackground(QColor(255, 255, 191));
                 }
                 else
                 {
-                    ui->tableWidget_16->item(x,i)->setBackground( QColor(200, 255, 255));
+                    ui->tableWidget_16->item(x,i)->setBackground( QColor(255, 255, 222));
                 }
             }
         }
@@ -9857,11 +10035,11 @@ void MainWindow::zakr()
             {
                 if (x % 2 == 0)
                 {
-                    ui->tableWidget_7->item(x,i)->setBackground(QColor(225, 255, 255));
+                    ui->tableWidget_7->item(x,i)->setBackground(QColor(255, 255, 191));
                 }
                 else
                 {
-                    ui->tableWidget_7->item(x,i)->setBackground( QColor(200, 255, 255));
+                    ui->tableWidget_7->item(x,i)->setBackground( QColor(255, 255, 222));
                 }
             }
         }
@@ -9895,11 +10073,11 @@ void MainWindow::zakr()
             {
                 if (x % 2 == 0)
                 {
-                    ui->tableWidget_14->item(x,i)->setBackground(QColor(225, 255, 255));
+                    ui->tableWidget_14->item(x,i)->setBackground(QColor(255, 255, 191));
                 }
                 else
                 {
-                    ui->tableWidget_14->item(x,i)->setBackground( QColor(200, 255, 255));
+                    ui->tableWidget_14->item(x,i)->setBackground( QColor(255, 255, 222));
                 }
             }
         }
@@ -9914,11 +10092,11 @@ void MainWindow::zakr()
             {
                 if (x % 2 == 0)
                 {
-                    ui->tableWidget_15->item(x,i)->setBackground(QColor(225, 255, 255));
+                    ui->tableWidget_15->item(x,i)->setBackground(QColor(255, 255, 191));
                 }
                 else
                 {
-                    ui->tableWidget_15->item(x,i)->setBackground( QColor(200, 255, 255));
+                    ui->tableWidget_15->item(x,i)->setBackground( QColor(255, 255, 222));
                 }
             }
         }
@@ -10028,11 +10206,11 @@ void MainWindow::zakr()
             {
                 if (x % 2 == 0)
                 {
-                    ui->tableWidget_10->item(x,i)->setBackground(QColor(225, 255, 255));
+                    ui->tableWidget_10->item(x,i)->setBackground(QColor(255, 255, 191));
                 }
                 else
                 {
-                    ui->tableWidget_10->item(x,i)->setBackground( QColor(200, 255, 255));
+                    ui->tableWidget_10->item(x,i)->setBackground( QColor(255, 255, 222));
                 }
             }
         }
@@ -10090,7 +10268,7 @@ void MainWindow::zakr()
 void MainWindow::select_all()
 {
     QString str = ui->widget_12->ui->lineEdit->text();
-    if(str!=nullptr)
+   /* if(str!=nullptr)
     {
         for(int i=0;i<=model->columnCount();i++)
         {
@@ -10103,23 +10281,28 @@ void MainWindow::select_all()
                 }
             }
         }
-    }
+    }*/
 
     //select all tableWidget
 
-    for(int i=0;i<ui->tableWidget->columnCount();i++)
+    int index = 0;
+    for(int i=0;i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
     {
-        for(int x=0;x<ui->tableWidget->rowCount();x++)
+        for(int x=0;x<ui->widget_5->ui->widget_2->ui->tableWidget->rowCount();x++)
         {
-            QString moc_2 = ui->tableWidget->item(x,i)->text();
-            if(moc_2==str)
+            QString moc_2 = ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+
+            if(index>0)
             {
-                ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
+                index = moc_2.indexOf(str, index+1);
+                ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setSelected(true);
+                       // setBackground(Qt::yellow);
             }
         }
     }
 
-    for(int i=0;i<ui->tableWidget_2->columnCount();i++)
+    /*for(int i=0;i<ui->tableWidget_2->columnCount();i++)
     {
         for(int x=0;x<ui->tableWidget_2->rowCount();x++)
         {
@@ -10165,7 +10348,7 @@ void MainWindow::select_all()
                 ui->tableWidget_5->item(x,i)->setBackground(Qt::yellow);
             }
         }
-    }
+    }*/
 }
 
 void MainWindow::rename()

@@ -40,7 +40,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>8</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -227,7 +227,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>21</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -1518,7 +1518,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QTableWidget" name="tableWidget_9"/>
+         <widget class="QTableWidget" name="tableWidget_9">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
         <item row="7" column="0">
          <widget class="QPushButton" name="tepl_result">
@@ -1724,7 +1728,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1499</width>
-     <height>30</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">

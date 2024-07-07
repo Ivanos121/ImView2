@@ -108,6 +108,8 @@ void identf::realtimeDataSlot()
         wf->ui->lineEdit_12->setText(QString::number(R1));
 
 
+
+
         //   printf("%f %f %f\n", model.R2, model.L, model.Lm);
 
     }
@@ -152,6 +154,16 @@ void identf::raschet_f()
     for (int i = 0; i < wf->dataLineColors.size(); i++)
     {
         ui->plot->addDataLine(wf->dataLineColors[i], 0);
+    }
+
+    if(wf->item14->text() == "Автоматический")
+    {
+        wf->ui->lineEdit_13->setText("0.01");
+        wf->ui->lineEdit_16->setText("0.1");
+        wf->ui->lineEdit_14->setText("0.05");
+        wf->ui->lineEdit_17->setText("0.02");
+        wf->ui->lineEdit_15->setText("0.01");
+        wf->ui->lineEdit_18->setText("0.0001");
     }
 
     ui->plot->addPoint(0, key, model.R2);

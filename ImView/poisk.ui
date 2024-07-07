@@ -196,7 +196,7 @@
      <item row="0" column="4">
       <widget class="QPushButton" name="pushButton_3">
        <property name="text">
-        <string>PushButton</string>
+        <string>Переключение страниц stackedwidget</string>
        </property>
       </widget>
      </item>

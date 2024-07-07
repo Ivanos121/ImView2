@@ -12,8 +12,6 @@
 #include <QToolTip>
 #include "qabstractitemview.h"
 #include "qcombobox.h"
-#include "qscreen.h"
-#include "mainwindow.h"
 #include "settingscanals.h"
 
 ButtonColumnDelegate::ButtonColumnDelegate(QObject *parent) :QStyledItemDelegate(parent)
@@ -77,6 +75,49 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         connect(btn,SIGNAL(clicked()), this, SLOT(btn_clicked_7()));
         return btn;
     }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 0))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Сохранить");
+        editor->insertItem(1, "Не сохранять");
+        return editor;
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 1))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Сохранить");
+        editor->insertItem(1, "Не сохранять");
+        return editor;
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 2))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Сохранить");
+        editor->insertItem(1, "Не сохранять");
+        return editor;
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 3))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Сохранить");
+        editor->insertItem(1, "Не сохранять");
+        return editor;
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 4))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Сохранить");
+        editor->insertItem(1, "Не сохранять");
+        return editor;
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 5))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Сохранить");
+        editor->insertItem(1, "Не сохранять");
+        return editor;
+    }
+
     else if ((index.parent().row() == 1) && (index.row() == 0))
     {
         QComboBox *editor = new QComboBox(parent);
@@ -300,13 +341,35 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         QPushButton * btn = qobject_cast<QPushButton *>(editor);
         btn->setProperty("data_value", index.data());
     }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 0))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Сохранить")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Не сохранять")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
     else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 1))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Сохранение данных в картинку")
+        if(value == "Сохранить")
             comboBox->setCurrentIndex(0);
-        else if(value == "Сохранение данных в файл данных")
+        else if(value == "Не сохранять")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 2))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Сохранить")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Не сохранять")
             comboBox->setCurrentIndex(1);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
@@ -315,9 +378,20 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Сохранение данных в картинку")
+        if(value == "Сохранить")
             comboBox->setCurrentIndex(0);
-        else if(value == "Сохранение данных в файл данных")
+        else if(value == "Не сохранять")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 4))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Сохранить")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Не сохранять")
             comboBox->setCurrentIndex(1);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
@@ -326,42 +400,9 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Сохранение данных в картинку")
+        if(value == "Сохранить")
             comboBox->setCurrentIndex(0);
-        else if(value == "Сохранение данных в файл данных")
-            comboBox->setCurrentIndex(1);
-        int width=comboBox->minimumSizeHint().width();
-        comboBox->view()->setMinimumWidth(width);
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 7))
-    {
-        QString value = index.model()->data(index, Qt::DisplayRole).toString();
-        QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Сохранение данных в картинку")
-            comboBox->setCurrentIndex(0);
-        else if(value == "Сохранение данных в файл данных")
-            comboBox->setCurrentIndex(1);
-        int width=comboBox->minimumSizeHint().width();
-        comboBox->view()->setMinimumWidth(width);
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 9))
-    {
-        QString value = index.model()->data(index, Qt::DisplayRole).toString();
-        QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Сохранение данных в картинку")
-            comboBox->setCurrentIndex(0);
-        else if(value == "Сохранение данных в файл данных")
-            comboBox->setCurrentIndex(1);
-        int width=comboBox->minimumSizeHint().width();
-        comboBox->view()->setMinimumWidth(width);
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 11))
-    {
-        QString value = index.model()->data(index, Qt::DisplayRole).toString();
-        QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Сохранение данных в картинку")
-            comboBox->setCurrentIndex(0);
-        else if(value == "Сохранение данных в файл данных")
+        else if(value == "Не сохранять")
             comboBox->setCurrentIndex(1);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
@@ -568,7 +609,19 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         QPushButton *btn = qobject_cast<QPushButton *>(editor);
         model->setData(index, btn->property("data_value"));
     }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 0))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
     else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 1))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 2))
     {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();
@@ -580,25 +633,13 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         QString value = comboBox->currentText();
         model->setData(index, value);
     }
+    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 4))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
     else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 5))
-    {
-        QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        QString value = comboBox->currentText();
-        model->setData(index, value);
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 7))
-    {
-        QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        QString value = comboBox->currentText();
-        model->setData(index, value);
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 9))
-    {
-        QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        QString value = comboBox->currentText();
-        model->setData(index, value);
-    }
-    else if ((index.parent().parent().row() == 0) && (index.parent().row() == 2) && (index.row() == 11))
     {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();
