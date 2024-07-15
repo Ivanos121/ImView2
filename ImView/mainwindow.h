@@ -120,7 +120,6 @@ private slots:
     void on_action_15_triggered();
     void on_action_16_triggered();
     void on_action_17_triggered();
-    void on_action_19_triggered();
     void on_action_20_triggered();
     void on_action_21_triggered();
     void on_action_22_triggered();

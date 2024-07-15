@@ -23,12 +23,12 @@ public:
 
 public slots:
     void on_enterDannie_clicked();
-
     void on_deleteDannie_clicked();
+    void on_saveDannie_clicked();
 
 private slots:
 
-    void on_saveDannie_clicked();
+
 
 
 

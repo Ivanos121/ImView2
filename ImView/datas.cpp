@@ -25,6 +25,8 @@ datas::datas(QWidget *parent) :
     sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
 
     table();
+
+    ui->widget_2->setVisible(false);
 }
 
 datas::~datas()
@@ -125,9 +127,6 @@ void datas::on_deleteDannie_clicked()
 
 void datas::on_saveDannie_clicked()
 {
-//    zapis();
-//    table();
-
     model->database().transaction();
         if(model->submitAll())
             model->database().commit();

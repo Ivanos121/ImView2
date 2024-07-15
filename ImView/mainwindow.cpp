@@ -2754,22 +2754,17 @@ void MainWindow::titleChanged(const QString &title)
 
 void MainWindow::on_action_16_triggered()
 {
-    ui->widget->on_enterDannie_clicked();
+    ui->widget->on_saveDannie_clicked();
 }
 
 void MainWindow::on_action_12_triggered()
 {
-
+    ui->widget->on_enterDannie_clicked();
 }
 
 void MainWindow::on_action_17_triggered()
 {
     ui->widget->on_deleteDannie_clicked();
-}
-
-void MainWindow::on_action_19_triggered()
-{
-
 }
 
 void MainWindow::on_action_5_triggered()
@@ -4158,53 +4153,60 @@ void MainWindow::on_action_25_triggered()
 
 void MainWindow::tabClicked()
 {
-
-
     if(ui->tabWidget->currentIndex()==0)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(0);
     }
+
     if(ui->tabWidget->currentIndex()==1)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(1);
-            }
+    }
+
     if(ui->tabWidget->currentIndex()==2)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(8);
     }
+
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(7);
     }
+
     if(ui->tabWidget->currentIndex()==4)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(16);
     }
+
     if(ui->tabWidget->currentIndex()==5)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(10);
     }
+
     if(ui->tabWidget->currentIndex()==6)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(2);
     }
+
     if(ui->tabWidget->currentIndex()==7)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(3);
     }
+
     if(ui->tabWidget->currentIndex()==8)
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(12);
     }
+
     if(ui->tabWidget->currentIndex()==9)
     {
         ui->stackedWidget->show();
@@ -4217,7 +4219,7 @@ void MainWindow::tabClicked_2()
     if(ui->widget_5->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(15);
+        ui->stackedWidget->setCurrentIndex(16);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 1)
     {
@@ -4251,22 +4253,22 @@ void MainWindow::tabClicked_3()
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
+        ui->stackedWidget->setCurrentIndex(9);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 1)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
+        ui->stackedWidget->setCurrentIndex(9);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 2)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
+        ui->stackedWidget->setCurrentIndex(9);
     }
     if(ui->widget_5->ui->tabWidget_2->currentIndex() == 3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
+        ui->stackedWidget->setCurrentIndex(9);
     }
 }
 
@@ -9931,119 +9933,85 @@ void MainWindow::zakr()
     ui->widget_12->setVisible(false);
     QString str = ui->widget_12->ui->lineEdit->text();
 
-    for(int i=0;i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
+    for(int i=0; i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
     {
-        for(int x=0;x<ui->widget_5->ui->widget_2->ui->tableWidget->rowCount();x++)
+        for(int x=0; x<ui->widget_5->ui->widget_2->ui->tableWidget->rowCount();x++)
         {
-            QString moc_2 = ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(QColor(255, 255, 191));
-                }
-                else
-                {
-                    ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground( QColor(255, 255, 222));
-                }
+                ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(QColor(255, 255, 191));
+            }
+            else
+            {
+                ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground( QColor(255, 255, 222));
             }
         }
     }
 
-    for(int i=0;i<ui->widget_5->ui->tableWidget->columnCount();i++)
+    for(int i=0; i<ui->tableWidget_9->columnCount();i++)
     {
-        for(int x=0;x<ui->widget_5->ui->tableWidget->rowCount();x++)
+        for(int x=0; x<ui->tableWidget_9->rowCount();x++)
         {
-            QString moc_2 = ui->widget_5->ui->tableWidget->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->widget_5->ui->tableWidget->item(x,i)->setBackground(QColor(255, 255, 191));
-                }
-                else
-                {
-                    ui->widget_5->ui->tableWidget->item(x,i)->setBackground( QColor(255, 255, 222));
-                }
+                ui->tableWidget_9->item(x,i)->setBackground(QColor(225, 255, 255));
+            }
+            else
+            {
+                ui->tableWidget_9->item(x,i)->setBackground( QColor(200, 255, 255));
             }
         }
     }
 
-    for(int i=0;i<ui->tableWidget_2->columnCount();i++)
+    for(int i=0; i<ui->widget_5->ui->tableWidget->columnCount();i++)
     {
-        for(int x=0;x<ui->tableWidget_2->rowCount();x++)
+        for(int x=0; x<ui->widget_5->ui->tableWidget->rowCount();x++)
         {
-            QString moc_2 = ui->tableWidget_2->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_2->item(x,i)->setBackground(QColor(255, 255, 191));
-                }
-                else
-                {
-                    ui->tableWidget_2->item(x,i)->setBackground( QColor(255, 255, 222));
-                }
+                ui->widget_5->ui->tableWidget->item(x,i)->setBackground(QColor(255, 255, 191));
+            }
+            else
+            {
+                ui->widget_5->ui->tableWidget->item(x,i)->setBackground( QColor(255, 255, 222));
             }
         }
     }
 
-    for(int i=0;i<ui->tableWidget_4->columnCount();i++)
+    for(int i=0; i<ui->tableWidget_3->columnCount();i++)
     {
-        for(int x=0;x<ui->tableWidget_4->rowCount();x++)
+        for(int x=0; x<ui->tableWidget_3->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_4->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_4->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_4->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
+                ui->tableWidget_3->item(x,i)->setBackground(QColor(225, 255, 255));
+            }
+            else
+            {
+                ui->tableWidget_3->item(x,i)->setBackground( QColor(200, 255, 255));
             }
         }
     }
 
-    for(int i=0;i<ui->tableWidget_16->columnCount();i++)
+    for(int i=0; i<ui->tableWidget_16->columnCount();i++)
     {
-        for(int x=0;x<ui->tableWidget_16->rowCount();x++)
+        for(int x=0; x<ui->tableWidget_16->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_16->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_16->item(x,i)->setBackground(QColor(255, 255, 191));
-                }
-                else
-                {
-                    ui->tableWidget_16->item(x,i)->setBackground( QColor(255, 255, 222));
-                }
+                ui->tableWidget_16->item(x,i)->setBackground(QColor(255, 255, 191));
+            }
+            else
+            {
+                ui->tableWidget_16->item(x,i)->setBackground( QColor(255, 255, 222));
             }
         }
     }
 
-    for(int i=0;i<ui->tableWidget_7->columnCount();i++)
-    {
-        for(int x=0;x<ui->tableWidget_7->rowCount();x++)
-        {
-           QString moc_2 = ui->tableWidget_7->item(x,i)->text();
-            if(moc_2==str)
-            {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_7->item(x,i)->setBackground(QColor(255, 255, 191));
-                }
-                else
-                {
-                    ui->tableWidget_7->item(x,i)->setBackground( QColor(255, 255, 222));
-                }
-            }
-        }
-    }
+
+
+
+
 
     for(int i=0;i<ui->tableWidget_3->columnCount();i++)
     {
@@ -10286,30 +10254,48 @@ void MainWindow::select_all()
     //select all tableWidget
 
     int index = 0;
+
     for(int i=0;i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
     {
         for(int x=0;x<ui->widget_5->ui->widget_2->ui->tableWidget->rowCount();x++)
         {
             QString moc_2 = ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->text();
             index = moc_2.indexOf(str, index);
-
-            if(index>0)
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
             {
-                index = moc_2.indexOf(str, index+1);
-                ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setSelected(true);
-                       // setBackground(Qt::yellow);
+                ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
+                ++j;
             }
         }
     }
 
-    /*for(int i=0;i<ui->tableWidget_2->columnCount();i++)
+    for(int i=0;i<ui->tableWidget_9->columnCount();i++)
     {
-        for(int x=0;x<ui->tableWidget_2->rowCount();x++)
+        for(int x=0;x<ui->tableWidget_9->rowCount();x++)
         {
-            QString moc_2 = ui->tableWidget_2->item(x,i)->text();
-            if(moc_2==str)
+            QString moc_2 = ui->tableWidget_9->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
             {
-                ui->tableWidget_2->item(x,i)->setBackground(Qt::yellow);
+                ui->tableWidget_9->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i=0;i<ui->widget_5->ui->tableWidget->columnCount();i++)
+    {
+        for(int x=0;x<ui->widget_5->ui->tableWidget->rowCount();x++)
+        {
+            QString moc_2 = ui->widget_5->ui->tableWidget->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->widget_5->ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
+                ++j;
             }
         }
     }
@@ -10319,36 +10305,30 @@ void MainWindow::select_all()
         for(int x=0;x<ui->tableWidget_3->rowCount();x++)
         {
             QString moc_2 = ui->tableWidget_3->item(x,i)->text();
-            if(moc_2==str)
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
             {
                 ui->tableWidget_3->item(x,i)->setBackground(Qt::yellow);
+                ++j;
             }
         }
     }
 
-    for(int i=0;i<ui->tableWidget_4->columnCount();i++)
+    for(int i=0;i<ui->tableWidget_16->columnCount();i++)
     {
-        for(int x=0;x<ui->tableWidget_4->rowCount();x++)
+        for(int x=0;x<ui->tableWidget_16->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_4->item(x,i)->text();
-            if(moc_2==str)
+            QString moc_2 = ui->tableWidget_16->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
             {
-                ui->tableWidget_4->item(x,i)->setBackground(Qt::yellow);
+                ui->tableWidget_16->item(x,i)->setBackground(Qt::yellow);
+                ++j;
             }
         }
     }
-
-    for(int i=0;i<ui->tableWidget_5->columnCount();i++)
-    {
-        for(int x=0;x<ui->tableWidget_5->rowCount();x++)
-        {
-            QString moc_2 = ui->tableWidget_5->item(x,i)->text();
-            if(moc_2==str)
-            {
-                ui->tableWidget_5->item(x,i)->setBackground(Qt::yellow);
-            }
-        }
-    }*/
 }
 
 void MainWindow::rename()
