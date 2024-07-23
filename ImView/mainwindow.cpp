@@ -124,6 +124,7 @@ MainWindow::MainWindow(QWidget *parent)
     settings.setValue( "iz", 0);
     settings.setValue( "xz", 0);
     settings.setValue( "iu", 0);
+    settings.setValue( "jz", 0);
     settings.setValue( "number", 0);
 
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
@@ -1365,19 +1366,8 @@ MainWindow::MainWindow(QWidget *parent)
             ui->tableWidget_4->setItem(row, column, new QTableWidgetItem());
 
         }
-//        if (ui->tableWidget_9->item(row, 1) != 0)
-//        {
-//            ui->tableWidget_9->item(row, 1)->setTextAlignment(Qt::AlignCenter);
-//        }
-//        if (ui->tableWidget_9->item(row, 2) != 0)
-//        {
-//            ui->tableWidget_9->item(row, 2)->setTextAlignment(Qt::AlignCenter);
-//        }
-//        if (ui->tableWidget_9->item(row, 3) != 0)
-//        {
-//            ui->tableWidget_9->item(row, 3)->setTextAlignment(Qt::AlignCenter);
-//        }
     }
+
 
     //Заполнение полей левой части таблицы для пояснения чекбоксов таблицы tableWidget_3
     ui->tableWidget_4->setItem(0, 0, new QTableWidgetItem("Потребляемая двигателем мощность, Вт"));
@@ -2780,7 +2770,7 @@ void MainWindow::on_action_5_triggered()
         QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
         QIcon ButtonIcon_1(pixmap);
         ui->pushButton_5->setIcon(ButtonIcon_1);
-        ui->stackedWidget->hide();
+        ui->stackedWidget->setVisible(false);
         QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7;
         myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
         base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
@@ -9681,9 +9671,16 @@ void MainWindow::open_panel()
 void MainWindow::poisk()
 {
     select_all();
-    int i,x,xx,ii, xz,iz, number=0;
+    int i,x, j, xz,iz, jz, number;
     QString str,moc_2;
     str = ui->widget_12->ui->lineEdit->text();
+
+    QSettings settings( "BRU", "IM View");
+    xz = settings.value( "xz", "").toInt();
+    iz = settings.value( "iz", "").toInt();
+    jz = settings.value( "jz", "").toInt();
+    number=settings.value( "number", "").toInt();
+
   /* if(ui->widget->ui->tableView->isEnabled()==true)
     {        
         //int i,x,xx, ii, number;
@@ -9719,219 +9716,776 @@ void MainWindow::poisk()
             }
             ii = 0;
         }
-    }*/
+    }
 
     if (number < 1)
     {
-        if(ui->widget_5->ui->widget_2->ui->tableWidget->isEnabled()==true)
-        {          
-            QSettings settings( "BRU", "IM View");
-            xz = settings.value( "xz", "").toInt();
-            iz = settings.value( "iz", "").toInt();
-            number=settings.value( "number", "").toInt();
+        ui->tabWidget->setCurrentIndex(2);
+        ui->tableWidget_16->setFocus();
 
-            for(x=xz;x<ui->widget_5->ui->widget_2->ui->tableWidget->rowCount();x++)
-            {
-                for(i=iz;i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
-                {
-                    moc_2 = ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->text();
-                    if(moc_2==str)
-                    {
-                        QModelIndex newIndex = ui->widget_5->ui->widget_2->ui->tableWidget->model()->index(x, i);
-                        ui->widget_5->ui->widget_2->ui->tableWidget->setCurrentIndex(newIndex);
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(Qt::yellow);
-                        QSettings settings( "BRU", "IM View");
-                        settings.setValue( "iz", i+1);
-                        settings.setValue( "xz", x);
-
-                        if(x==ui->widget_5->ui->widget_2->ui->tableWidget->rowCount()-1)
-                        {
-                            settings.setValue( "iz", i+1);
-                        }
-                        return;
-                    }
-                }
-            iz = 0;
-            }
-
-            if((moc_2!=str))
-            {
-                ui->tabWidget->setCurrentIndex( 1 );
-                ui->tableWidget_2->setFocus();
-                settings.setValue( "iz", 0);
-                settings.setValue( "xz", 0);
-                settings.setValue( "number", 1);
-            }
-        }
-    }
-
-    if (number < 2)
-    {
-        if(ui->tableWidget_2->isEnabled()==true)
+        if(ui->tableWidget_16->isEnabled() == true)
         {
-            QSettings settings( "BRU", "IM View");
-            xz = settings.value( "xz", "").toInt();
-            iz = settings.value( "iz", "").toInt();
-            for(x=xz;x<ui->tableWidget_2->rowCount();x++)
+            for(x = xz; x <ui->tableWidget_16->rowCount(); x++)
             {
-                for(i=iz;i<ui->tableWidget_2->columnCount();i++)
+                for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
                 {
-                    moc_2 = ui->tableWidget_2->item(x,i)->text();
-                    if(moc_2==str)
+                    moc_2 = ui->tableWidget_16->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
                     {
-                        QModelIndex newIndex = ui->tableWidget_2->model()->index(x, i);
-                        ui->tableWidget_2->setCurrentIndex(newIndex);
-                        ui->tableWidget_2->item(x,i)->setBackground(Qt::yellow);
-                       // model->item( x, i )->setBackground( Qt::yellow );
+                        ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
+                        ui->widget_12->ui->plainTextEdit->appendPlainText(moc_2);
+
+                        QTextCursor c = ui->widget_12->ui->plainTextEdit->textCursor();
+                        c.setPosition(j);
+                        c.setPosition(j+1, QTextCursor::KeepAnchor);
+                        ui->widget_12->ui->plainTextEdit->setTextCursor(c);
+
                         QSettings settings( "BRU", "IM View");
                         settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
                         settings.setValue( "xz", x);
-                        if(x==ui->tableWidget_2->rowCount()-1)
+
+                        if(x == ui->tableWidget_16->rowCount()-1)
                         {
                             settings.setValue( "iz", i+1);
                         }
                         return;
                     }
+                    jz = 0;
                 }
                 iz = 0;
             }
-            if((moc_2!=str))
-            {
-                ui->tabWidget->setCurrentIndex(2);
-                ui->tableWidget_3->setFocus();
-                settings.setValue( "iz", 0);
-                settings.setValue( "xz", 0);
-                settings.setValue( "number", 2);
-            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 1);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(3);
+            ui->tabWidget_2->setCurrentIndex(0);
+            ui->tableWidget_2->setFocus();
         }
-    }
+    }*/
 
 
-    if(ui->tableWidget_3->isEnabled()==true)
+
+    if (number < 1)
     {
-        QSettings settings( "BRU", "IM View");
-        xz = settings.value( "xz", "").toInt();
-        iz = settings.value( "iz", "").toInt();
-        QString str = ui->widget_12->ui->lineEdit->text();
+        ui->tabWidget->setCurrentIndex(2);
+        ui->tableWidget_16->setFocus();
 
-        for(x=xz;x<ui->tableWidget_3->rowCount();x++)
+        if(ui->tableWidget_16->isEnabled() == true)
         {
-            for(i=iz;i<ui->tableWidget_3->columnCount();i++)
+            for(x = xz; x <ui->tableWidget_16->rowCount(); x++)
             {
-                moc_2 = ui->tableWidget_3->item(x,i)->text();
-                if(moc_2==str)
+                for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
                 {
-                    QModelIndex newIndex = ui->tableWidget_3->model()->index(x, i);
-                    ui->tableWidget_3->setCurrentIndex(newIndex);
-                    ui->tableWidget_3->item(x,i)->setBackground(Qt::yellow);
-                    //model->item( x, i )->setBackground( Qt::yellow );
+                    moc_2 = ui->tableWidget_16->item(x,i)->text();
+
+                    int j = 0;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
+                        ui->widget_12->ui->plainTextEdit->appendPlainText(moc_2);
+
+                        QTextCursor c = ui->widget_12->ui->plainTextEdit->textCursor();
+                        c.setPosition(j);
+                        c.setPosition(j+str.size()+2, QTextCursor::KeepAnchor);
+                        ui->widget_12->ui->plainTextEdit->setTextCursor(c);
+                        ++j;
+                    }
                     QSettings settings( "BRU", "IM View");
                     settings.setValue( "iz", i+1);
+                    settings.setValue( "jz", j+1);
                     settings.setValue( "xz", x);
-                    if(x==ui->tableWidget_3->rowCount()-1)
+
+                    if(x == ui->tableWidget_16->rowCount()-1)
                     {
                         settings.setValue( "iz", i+1);
                     }
                     return;
                 }
+                iz = 0;
             }
-        iz = 0;
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 1);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(3);
+            ui->tabWidget_2->setCurrentIndex(0);
+            ui->tableWidget_2->setFocus();
         }
-        if((moc_2!=str))
+    }
+
+
+
+
+
+    if ((number == 1) && (number < 2))
+    {
+
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_2->isEnabled() == true)
         {
-            ui->stackedWidget->setCurrentIndex(1);
+            for(x = xz; x < ui->tableWidget_2->rowCount(); x++)
+            {
+                for(i = iz; i < ui->tableWidget_2->columnCount(); i++)
+                {
+                    moc_2 = ui->tableWidget_2->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_2->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_2->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz = 0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 2);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(3);
+            ui->tabWidget_2->setCurrentIndex(1);
             ui->tableWidget_4->setFocus();
-            settings.setValue( "iz", 0);
-            settings.setValue( "xz", 0);
-            settings.setValue( "number", 3);
         }
     }
 
-    if(ui->tableWidget_4->isEnabled()==true)
-    {        
-        QSettings settings( "BRU", "IM View");
-        xz = settings.value( "xz", "").toInt();
-        iz = settings.value( "iz", "").toInt();
-        for(x=xz;x<ui->tableWidget_4->rowCount();x++)
-        {
-            for(i=iz;i<ui->tableWidget_4->columnCount();i++)
-            {
-                moc_2 = ui->tableWidget_4->item(x,i)->text();
-                if(moc_2==str)
-                {
-                    QModelIndex newIndex = ui->tableWidget_4->model()->index(x, i);
-                    ui->tableWidget_4->setCurrentIndex(newIndex);
-                    ui->tableWidget_4->item(x,i)->setBackground(Qt::yellow);
-                    //model->item( x, i )->setBackground( Qt::yellow );
-                    QSettings settings( "BRU", "IM View");
-                    settings.setValue( "iz", i+1);
-                    settings.setValue( "xz", x);
-                    if(x==ui->tableWidget_4->rowCount()-1)
-                    {
-                        settings.setValue( "iz", i+1);
-                    }
-                    return;
-                }
-            }
-        iz = 0;
-        }
-        if((moc_2!=str))
-        {
-            ui->stackedWidget->setCurrentIndex(2);
-            ui->tableWidget_5->setFocus();
-            settings.setValue( "iz", 0);
-            settings.setValue( "xz", 0);
-            settings.setValue( "number", 4);
-        }
-    }
-
-    if(ui->tableWidget_5->isEnabled()==true)
+    if ((number == 2) && (number < 3))
     {
+        //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
         xz = settings.value( "xz", "").toInt();
         iz = settings.value( "iz", "").toInt();
-        for(x=xz;x<ui->tableWidget_5->rowCount();x++)
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_4->isEnabled() == true)
         {
-            for(i=iz;i<ui->tableWidget_5->columnCount();i++)
+            for(x = xz; x < ui->tableWidget_4->rowCount(); x++)
             {
-                moc_2 = ui->tableWidget_5->item(x,i)->text();
-                if(moc_2==str)
+                for(i = iz; i < ui->tableWidget_4->columnCount(); i++)
                 {
-                    QModelIndex newIndex = ui->tableWidget_5->model()->index(x, i);
-                    ui->tableWidget_5->setCurrentIndex(newIndex);
-                    ui->tableWidget_5->item(x,i)->setBackground(Qt::yellow);
-                   // model->item( x, i )->setBackground( Qt::yellow );
-                    QSettings settings( "BRU", "IM View");
-                    settings.setValue( "iz", i+1);
-                    settings.setValue( "xz", x);
-                    if(x==ui->tableWidget_5->rowCount()-1)
+                    moc_2 = ui->tableWidget_4->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
                     {
+                        ui->tableWidget_4->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
                         settings.setValue( "iz", i+1);
-                        //settings.setValue( "xz", 0);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_4->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
                     }
-                    return;
+                    jz = 0;
                 }
+                iz = 0;
             }
-            iz = 0;
-        }
-        if((moc_2!=str))
-        {
-            QMessageBox::information(this, "Внимание!","Поиск завершен");
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 3);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(4);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(0);
+            ui->tableWidget_9->setFocus();
         }
     }
 
-    if(ui->treeView->isEnabled()==true)
+    if ((number == 3) && (number < 4))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->widget_5->ui->widget_2->ui->tableWidget->isEnabled() == true)
+        {
+
+
+            for(x = xz; x <ui->widget_5->ui->widget_2->ui->tableWidget->rowCount(); x++)
+            {
+                for(i = iz; i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount(); i++)
+                {
+                    moc_2 = ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->widget_5->ui->widget_2->ui->tableWidget->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->widget_5->ui->widget_2->ui->tableWidget->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz = 0;
+                }
+                iz = 0;
+            }
+
+
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 4);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(4);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(0);
+            ui->tableWidget_9->setFocus();
+        }
+    }
+
+    if ((number == 4) && (number < 5))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_9->isEnabled()==true)
+        {
+            for(x=xz; x<ui->tableWidget_9->rowCount(); x++)
+            {
+                for(i=iz; i<ui->tableWidget_9->columnCount(); i++)
+                {
+                    moc_2 = ui->tableWidget_9->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_9->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x==ui->tableWidget_9->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 5);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(4);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(1);
+            ui->widget_5->ui->tableWidget->setFocus();
+        }
+    }
+
+    if ((number == 5) && (number < 6))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->widget_5->ui->tableWidget->isEnabled()==true)
+        {
+            for(x=xz;x<ui->widget_5->ui->tableWidget->rowCount();x++)
+            {
+                for(i=iz;i<ui->widget_5->ui->tableWidget->columnCount();i++)
+                {
+                    moc_2 = ui->widget_5->ui->tableWidget->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->widget_5->ui->tableWidget->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x==ui->widget_5->ui->tableWidget->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 6);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(4);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(3);
+            ui->tableWidget_3->setFocus();
+        }
+    }
+
+    if ((number == 6) && (number < 7))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_3->isEnabled()==true)
+        {
+            for(x=xz;x<ui->tableWidget_3->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget_3->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget_3->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_3->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_3->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 7);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(4);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(4);
+            ui->tableWidget_5->setFocus();
+        }
+    }
+
+    if ((number == 7) && (number < 8))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_5->isEnabled()==true)
+        {
+            for(x=xz;x<ui->tableWidget_5->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget_5->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget_5->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_5->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_5->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 8);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(4);
+            ui->widget_5->ui->tabWidget->setCurrentIndex(5);
+            ui->tableWidget_6->setFocus();
+
+        }
+    }
+
+    if ((number == 8) && (number < 9))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_6->isEnabled()==true)
+        {
+            for(x=xz;x<ui->tableWidget_6->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget_6->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget_6->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_6->item(x,i)->setBackground(Qt::green);
+
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_6->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 9);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(5);
+            ui->widget_6->ui->tabWidget->setCurrentIndex(0);
+            ui->widget_6->ui->tabWidget_2->setCurrentIndex(0);
+            ui->tableWidget_7->setFocus();
+        }
+    }
+
+    if ((number == 9) && (number < 10))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_7->isEnabled()==true)
+        {
+            for(x=xz;x<ui->tableWidget_7->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget_7->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget_7->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_7->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_7->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 10);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(5);
+            ui->widget_6->ui->tabWidget->setCurrentIndex(1);
+            ui->widget_6->ui->tabWidget_2->setCurrentIndex(0);
+            ui->tableWidget_13->setFocus();
+        }
+    }
+
+    if ((number == 10) && (number < 11))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_13->isEnabled()==true)
+        {
+            for(x=xz;x<ui->tableWidget_13->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget_13->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget_13->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_13->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_13->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 11);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(5);
+            ui->widget_6->ui->tabWidget->setCurrentIndex(2);
+            ui->tableWidget_8->setFocus();
+        }
+    }
+
+    if ((number == 11) && (number < 12))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_8->isEnabled()==true)
+        {
+            for(x=xz;x<ui->tableWidget_8->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget_8->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget_8->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_8->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_8->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 12);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(5);
+            ui->widget_6->ui->tabWidget->setCurrentIndex(3);
+            ui->tableWidget_10->setFocus();
+        }
+    }
+
+    if ((number == 12) && (number < 13))
+    {
+        //i=0,x=0,j=0;
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+
+        if(ui->tableWidget_10->isEnabled()==true)
+        {
+            for(x=xz;x<ui->tableWidget_10->rowCount();x++)
+            {
+                for(i=iz;i<ui->tableWidget_10->columnCount();i++)
+                {
+                    moc_2 = ui->tableWidget_10->item(x,i)->text();
+
+                    j = jz;
+                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                    {
+                        ui->tableWidget_10->item(x,i)->setBackground(Qt::green);
+
+                        QSettings settings( "BRU", "IM View");
+                        settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_10->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    }
+                    jz=0;
+                }
+                iz = 0;
+            }
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 13);
+            //QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+           // ui->tabWidget->setCurrentIndex(4);
+           // ui->widget_5->ui->tableWidget->setFocus();
+        }
+    }
+
+    if(number == 13)
+    {
+        QMessageBox::information(this, tr("IM View"), tr("Поиск закончен"));
+
+    }
+
+
+    /*if(ui->treeView->isEnabled()==true)
     {
         QSettings settings( "BRU", "IM View");
         //iterate(model2->index(0,0), model2, str);
         item2->setBackground(QColor(255,255,255));
-    }
+    }*/
 }
 
 void MainWindow::zakr()
 {
     ui->widget_12->setVisible(false);
-    QString str = ui->widget_12->ui->lineEdit->text();
+
+    for(int i = 0; i < ui->tableWidget_16->columnCount(); i++)
+    {
+        for(int x = 0; x < ui->tableWidget_16->rowCount(); x++)
+        {
+            if (x % 2 == 0)
+            {
+                ui->tableWidget_16->item(x,i)->setBackground(QColor(255, 255, 191));
+            }
+            else
+            {
+                ui->tableWidget_16->item(x,i)->setBackground( QColor(255, 255, 222));
+            }
+        }
+    }
+
+    for(int i = 0; i < ui->tableWidget_2->columnCount(); i++)
+    {
+        for(int x = 0; x < ui->tableWidget_2->rowCount(); x++)
+        {
+            if (x % 2 == 0)
+            {
+                ui->tableWidget_2->item(x,i)->setBackground(QColor(255, 255, 191));
+            }
+            else
+            {
+                ui->tableWidget_2->item(x,i)->setBackground( QColor(255, 255, 222));
+            }
+        }
+    }
+
+    for(int i = 0; i < ui->tableWidget_4->columnCount(); i++)
+    {
+        for(int x = 0; x < ui->tableWidget_4->rowCount(); x++)
+        {
+            if (x % 2 == 0)
+            {
+                ui->tableWidget_4->item(x,i)->setBackground(QColor(255, 255, 191));
+            }
+            else
+            {
+                ui->tableWidget_4->item(x,i)->setBackground( QColor(255, 255, 222));
+            }
+        }
+    }
+
 
     for(int i=0; i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
     {
@@ -9993,98 +10547,17 @@ void MainWindow::zakr()
         }
     }
 
-    for(int i=0; i<ui->tableWidget_16->columnCount();i++)
-    {
-        for(int x=0; x<ui->tableWidget_16->rowCount();x++)
-        {
-            if (x % 2 == 0)
-            {
-                ui->tableWidget_16->item(x,i)->setBackground(QColor(255, 255, 191));
-            }
-            else
-            {
-                ui->tableWidget_16->item(x,i)->setBackground( QColor(255, 255, 222));
-            }
-        }
-    }
-
-
-
-
-
-
-    for(int i=0;i<ui->tableWidget_3->columnCount();i++)
-    {
-        for(int x=0;x<ui->tableWidget_3->rowCount();x++)
-        {
-           QString moc_2 = ui->tableWidget_3->item(x,i)->text();
-            if(moc_2==str)
-            {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_3->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_3->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
-            }
-        }
-    }
-
-    for(int i=0;i<ui->tableWidget_14->columnCount();i++)
-    {
-        for(int x=0;x<ui->tableWidget_14->rowCount();x++)
-        {
-           QString moc_2 = ui->tableWidget_14->item(x,i)->text();
-            if(moc_2==str)
-            {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_14->item(x,i)->setBackground(QColor(255, 255, 191));
-                }
-                else
-                {
-                    ui->tableWidget_14->item(x,i)->setBackground( QColor(255, 255, 222));
-                }
-            }
-        }
-    }
-
-    for(int i=0;i<ui->tableWidget_15->columnCount();i++)
-    {
-        for(int x=0;x<ui->tableWidget_15->rowCount();x++)
-        {
-           QString moc_2 = ui->tableWidget_15->item(x,i)->text();
-            if(moc_2==str)
-            {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_15->item(x,i)->setBackground(QColor(255, 255, 191));
-                }
-                else
-                {
-                    ui->tableWidget_15->item(x,i)->setBackground( QColor(255, 255, 222));
-                }
-            }
-        }
-    }
-
     for(int i=0;i<ui->tableWidget_5->columnCount();i++)
     {
         for(int x=0;x<ui->tableWidget_5->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_5->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_5->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_5->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
+                ui->tableWidget_5->item(x,i)->setBackground(QColor(225, 255, 255));
+            }
+            else
+            {
+                ui->tableWidget_5->item(x,i)->setBackground( QColor(200, 255, 255));
             }
         }
     }
@@ -10093,36 +10566,28 @@ void MainWindow::zakr()
     {
         for(int x=0;x<ui->tableWidget_6->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_6->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_6->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_6->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
+                ui->tableWidget_6->item(x,i)->setBackground(QColor(225, 255, 255));
+            }
+            else
+            {
+                ui->tableWidget_6->item(x,i)->setBackground( QColor(200, 255, 255));
             }
         }
     }
 
-    for(int i=0;i<ui->tableWidget_9->columnCount();i++)
+    for(int i=0;i<ui->tableWidget_7->columnCount();i++)
     {
-        for(int x=0;x<ui->tableWidget_9->rowCount();x++)
+        for(int x=0;x<ui->tableWidget_7->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_9->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_9->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_9->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
+                ui->tableWidget_7->item(x,i)->setBackground(QColor(255, 255, 191));
+            }
+            else
+            {
+                ui->tableWidget_7->item(x,i)->setBackground( QColor(255, 255, 222));
             }
         }
     }
@@ -10131,17 +10596,13 @@ void MainWindow::zakr()
     {
         for(int x=0;x<ui->tableWidget_13->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_13->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_13->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_13->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
+                ui->tableWidget_13->item(x,i)->setBackground(QColor(225, 255, 255));
+            }
+            else
+            {
+                ui->tableWidget_13->item(x,i)->setBackground( QColor(200, 255, 255));
             }
         }
     }
@@ -10150,17 +10611,13 @@ void MainWindow::zakr()
     {
         for(int x=0;x<ui->tableWidget_8->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_8->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_8->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_8->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
+                ui->tableWidget_8->item(x,i)->setBackground(QColor(225, 255, 255));
+            }
+            else
+            {
+                ui->tableWidget_8->item(x,i)->setBackground( QColor(200, 255, 255));
             }
         }
     }
@@ -10169,58 +10626,16 @@ void MainWindow::zakr()
     {
         for(int x=0;x<ui->tableWidget_10->rowCount();x++)
         {
-           QString moc_2 = ui->tableWidget_10->item(x,i)->text();
-            if(moc_2==str)
+            if (x % 2 == 0)
             {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_10->item(x,i)->setBackground(QColor(255, 255, 191));
-                }
-                else
-                {
-                    ui->tableWidget_10->item(x,i)->setBackground( QColor(255, 255, 222));
-                }
+                ui->tableWidget_10->item(x,i)->setBackground(QColor(225, 255, 255));
+            }
+            else
+            {
+                ui->tableWidget_10->item(x,i)->setBackground( QColor(200, 255, 255));
             }
         }
-    }
-
-    for(int i=0;i<ui->tableWidget_11->columnCount();i++)
-    {
-        for(int x=0;x<ui->tableWidget_11->rowCount();x++)
-        {
-           QString moc_2 = ui->tableWidget_11->item(x,i)->text();
-            if(moc_2==str)
-            {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_11->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_11->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
-            }
-        }
-    }
-
-    for(int i=0;i<ui->tableWidget_12->columnCount();i++)
-    {
-        for(int x=0;x<ui->tableWidget_12->rowCount();x++)
-        {
-           QString moc_2 = ui->tableWidget_12->item(x,i)->text();
-            if(moc_2==str)
-            {
-                if (x % 2 == 0)
-                {
-                    ui->tableWidget_12->item(x,i)->setBackground(QColor(225, 255, 255));
-                }
-                else
-                {
-                    ui->tableWidget_12->item(x,i)->setBackground( QColor(200, 255, 255));
-                }
-            }
-        }
-    }
+    }    
 
     QSettings settings( "BRU", "IM View");
     settings.setValue( "ii", 0);
@@ -10228,9 +10643,8 @@ void MainWindow::zakr()
     settings.setValue( "iz", 0);
     settings.setValue( "xz", 0);
     settings.setValue( "iu", 0);
-    //ui->stackedWidget->setCurrentIndex(0);
-
-
+    settings.setValue( "jz", 0);
+    settings.setValue( "number", 0);
 }
 
 void MainWindow::select_all()
@@ -10254,6 +10668,51 @@ void MainWindow::select_all()
     //select all tableWidget
 
     int index = 0;
+
+    for(int i = 0; i < ui->tableWidget_16->columnCount(); i++)
+    {
+        for(int x = 0; x < ui->tableWidget_16->rowCount(); x++)
+        {
+            QString moc_2 = ui->tableWidget_16->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_16->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i = 0; i < ui->tableWidget_2->columnCount(); i++)
+    {
+        for(int x = 0; x < ui->tableWidget_2->rowCount(); x++)
+        {
+            QString moc_2 = ui->tableWidget_2->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_2->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i = 0; i <  ui->tableWidget_4->columnCount(); i++)
+    {
+        for(int x = 0; x <  ui->tableWidget_4->rowCount(); x++)
+        {
+            QString moc_2 =  ui->tableWidget_4->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_4->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
 
     for(int i=0;i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
     {
@@ -10315,16 +10774,106 @@ void MainWindow::select_all()
         }
     }
 
-    for(int i=0;i<ui->tableWidget_16->columnCount();i++)
+    for(int i=0;i<ui->tableWidget_5->columnCount();i++)
     {
-        for(int x=0;x<ui->tableWidget_16->rowCount();x++)
+        for(int x=0;x<ui->tableWidget_5->rowCount();x++)
         {
-            QString moc_2 = ui->tableWidget_16->item(x,i)->text();
+            QString moc_2 = ui->tableWidget_5->item(x,i)->text();
             index = moc_2.indexOf(str, index);
             int j = 0;
             while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
             {
-                ui->tableWidget_16->item(x,i)->setBackground(Qt::yellow);
+                ui->tableWidget_5->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_6->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_6->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_6->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_6->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_7->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_7->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_7->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_7->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_13->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_13->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_13->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_13->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_8->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_8->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_8->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_8->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_10->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_10->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_10->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_10->item(x,i)->setBackground(Qt::yellow);
+                ++j;
+            }
+        }
+    }
+
+    for(int i=0;i<ui->tableWidget_11->columnCount();i++)
+    {
+        for(int x=0;x<ui->tableWidget_11->rowCount();x++)
+        {
+            QString moc_2 = ui->tableWidget_11->item(x,i)->text();
+            index = moc_2.indexOf(str, index);
+            int j = 0;
+            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+            {
+                ui->tableWidget_11->item(x,i)->setBackground(Qt::yellow);
                 ++j;
             }
         }
@@ -10338,7 +10887,7 @@ void MainWindow::rename()
     QString str = ui->widget_12->ui->lineEdit->text();
     QString str_2 = ui->widget_12->ui->lineEdit_2->text();
     QString moc;
-    int i,x,ii,xx,iz,xz;
+    int i,x,ii,xx;
 
     for(i=0;i<=model->columnCount();i++)
     {
@@ -10406,7 +10955,7 @@ void MainWindow::rename_all()
     QString str = ui->widget_12->ui->lineEdit->text();
     QString str_2 = ui->widget_12->ui->lineEdit_2->text();
     QString moc;
-    int i,x,ii,xx,iz,xz;
+    int i,x,ii,xx;
 
     QSettings settings( "BRU", "IM View");
     xx = settings.value( "xx", "").toInt();
