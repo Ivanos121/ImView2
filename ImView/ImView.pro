@@ -56,6 +56,7 @@ SOURCES += \
     nabludatel.cpp \
     nabludatel_part.cpp \
     nastroiki.cpp \
+    ostat_resurs.cpp \
     paintdelegate.cpp \
     plot.cpp \
     poisk.cpp \
@@ -103,6 +104,7 @@ HEADERS += \
     electromagn.h \
     gridlinedelegate.h \
     identf.h \
+    intens_star_izol.h \
     ischodn_dannie.h \
     itogs.h \
     kalibr.h \
@@ -115,6 +117,7 @@ HEADERS += \
     nabludatel_base.h \
     nabludatel_part.h \
     nastroiki.h \
+    ostat_resurs.h \
     paintdelegate.h \
     plot.h \
     poisk.h \
@@ -145,6 +148,7 @@ FORMS += \
     kalibr.ui \
     mainwindow.ui \
     nastroiki.ui \
+    ostat_resurs.ui \
     poisk.ui \
     settings.ui \
     settingscanals.ui \

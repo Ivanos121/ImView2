@@ -70,9 +70,10 @@ void datas::table()
     modd->setHeaderData(6, Qt::Horizontal, tr("Номинальный коэффициент полезного действия"), Qt::DisplayRole);
     modd->setHeaderData(7, Qt::Horizontal, tr("Кратность максимального момента"), Qt::DisplayRole);
     modd->setHeaderData(8, Qt::Horizontal, tr("Синхронная частота вращения, об/мин"), Qt::DisplayRole);
+    modd->setHeaderData(9, Qt::Horizontal, tr("Класс изоляции"), Qt::DisplayRole);
 
     QHeaderView *header=ui->tableView->horizontalHeader();
-    for(int i=1;i<=8;i++)
+    for(int i=1;i<=9;i++)
     {
         header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
     }

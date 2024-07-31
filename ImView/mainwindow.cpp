@@ -11,6 +11,7 @@
 #include "kalibr.h"
 #include "teplovent.h"
 #include "tepl_dannie.h"
+#include "ui_ostat_resurs.h"
 #include "ui_poisk.h"
 #include "ui_tepl_dannie.h"
 #include "ui_tepl_identf.h"
@@ -34,6 +35,7 @@
 #include "tepl_identf.h"
 #include "settings.h"
 #include "poisk.h"
+#include "intens_star_izol.h"
 
 #include <QStyle>
 #include <QDesktopWidget>
@@ -66,9 +68,11 @@
 #include <QString>
 #include <QEvent>
 #include <QSettings>
+#include <cmath>
 
 Base base;
 Base_tepl base_tepl;
+Klass_izol klass_izol;
 Model modelss;
 extern Model_el Model_el;
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp,teta0_0,teta0_1,teta0_2, teta0_1n,teta0_2n;
@@ -86,6 +90,8 @@ double H0, Qmax, Z0, Z1, Z2, Z3, Z4, Z5, Z6, Qp, Hp, Vcp, Pvent;
 double Nsv,N, dNptk, dNvpk, dNvk,dNsvp, dNkd;
 bool isNablLaunched = false;
 QString currentTabText;
+QString klass;
+double G,B;
 
 QVector<double> tepl_ident_t;
 QVector<double> tepl_ident_StatorTemp;
@@ -162,6 +168,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
     connect(ui->action_3, &QAction::triggered, this, &MainWindow::pagePrint);
     connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
+
+    connect(ui->pushButton_8, &QPushButton::clicked, this, &MainWindow::save_graphs);
+    connect(ui->pushButton_9, &QPushButton::clicked, this, &MainWindow::load_graphs);
+
+    connect(ui->pushButton_10, &QPushButton::clicked, this, &MainWindow::read_klass_izol);
+
 
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
@@ -2564,6 +2576,100 @@ MainWindow::MainWindow(QWidget *parent)
     CustomHelpDelegate* customHelpDelegate16 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget_16->setItemDelegateForColumn(0, customHelpDelegate16);
 
+    ui->tableWidget_17->setRowCount(30);
+    ui->tableWidget_17->setColumnCount(4);
+    QStringList name_17;
+    name_17 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+
+    ui->tableWidget_17->setHorizontalHeaderLabels(name_16);
+    ui->tableWidget_17->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_17->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_17->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_17->verticalHeader()->setVisible(true);
+    ui->tableWidget_17->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_17->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_17->columnCount(); column++)
+        {
+            ui->tableWidget_17->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    ui->tableWidget_17->setItem(0, 0, new QTableWidgetItem("Установившаяся температура статора"));
+    ui->tableWidget_17->setItem(1, 0, new QTableWidgetItem("Установившаяся температура ротора"));
+    ui->tableWidget_17->setItem(2, 0, new QTableWidgetItem("Постоянная времени статора"));
+    ui->tableWidget_17->setItem(3, 0, new QTableWidgetItem("Постоянная времени ротора"));
+    ui->tableWidget_17->setItem(4, 0, new QTableWidgetItem("Теплоемкость статора"));
+    ui->tableWidget_17->setItem(5, 0, new QTableWidgetItem("Теплоемкость ротора"));
+    ui->tableWidget_17->setItem(6, 0, new QTableWidgetItem("Тепловая проводимость статора"));
+    ui->tableWidget_17->setItem(7, 0, new QTableWidgetItem("Тепловая проводимость между статором и ротором"));
+    ui->tableWidget_17->setItem(8, 0, new QTableWidgetItem("Тепловая проводимость ротора"));
+    ui->tableWidget_17->setItem(9, 0, new QTableWidgetItem("Суммарные потери в статоре"));
+    ui->tableWidget_17->setItem(10, 0, new QTableWidgetItem("Суммарные потери в роторе"));
+    ui->tableWidget_17->setItem(11, 0, new QTableWidgetItem("Потери в стали"));
+    ui->tableWidget_17->setItem(12, 0, new QTableWidgetItem("Скорость вращения"));
+    ui->tableWidget_17->setItem(13, 0, new QTableWidgetItem("Момент"));
+
+    ui->tableWidget_17->setItem(0, 1, new QTableWidgetItem("τ_1"));
+    ui->tableWidget_17->setItem(1, 1, new QTableWidgetItem("τ_2"));
+    ui->tableWidget_17->setItem(2, 1, new QTableWidgetItem("T_1"));
+    ui->tableWidget_17->setItem(3, 1, new QTableWidgetItem("T_2"));
+    ui->tableWidget_17->setItem(4, 1, new QTableWidgetItem("C_1"));
+    ui->tableWidget_17->setItem(5, 1, new QTableWidgetItem("C_2"));
+    ui->tableWidget_17->setItem(6, 1, new QTableWidgetItem("λ10"));
+    ui->tableWidget_17->setItem(7, 1, new QTableWidgetItem("λ12"));
+    ui->tableWidget_17->setItem(8, 1, new QTableWidgetItem("λ20"));
+    ui->tableWidget_17->setItem(9, 1, new QTableWidgetItem("dPel1"));
+    ui->tableWidget_17->setItem(10, 1, new QTableWidgetItem("dPel2"));
+    ui->tableWidget_17->setItem(11, 1, new QTableWidgetItem("dPct"));
+    ui->tableWidget_17->setItem(12, 1, new QTableWidgetItem("omega"));
+    ui->tableWidget_17->setItem(13, 1, new QTableWidgetItem("M"));
+
+    ui->tableWidget_17->setItem(0, 3, new QTableWidgetItem("˚C"));
+    ui->tableWidget_17->setItem(1, 3, new QTableWidgetItem("˚C"));
+    ui->tableWidget_17->setItem(2, 3, new QTableWidgetItem("c"));
+    ui->tableWidget_17->setItem(3, 3, new QTableWidgetItem("c"));
+    ui->tableWidget_17->setItem(4, 3, new QTableWidgetItem("Дж/˚C"));
+    ui->tableWidget_17->setItem(5, 3, new QTableWidgetItem("Дж/˚C"));
+    ui->tableWidget_17->setItem(6, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    ui->tableWidget_17->setItem(7, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    ui->tableWidget_17->setItem(8, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    ui->tableWidget_17->setItem(9, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_17->setItem(10, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_17->setItem(11, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_17->setItem(12, 3, new QTableWidgetItem("рад/с"));
+    ui->tableWidget_17->setItem(13, 3, new QTableWidgetItem("Н*м"));
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_17->rowCount(); row++)
+    {
+        if (ui->tableWidget_17->item(row,0) != 0)
+        {
+            ui->tableWidget_17->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_17->item(row,1) != 0)
+        {
+            ui->tableWidget_17->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_17->item(row,1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_17->item(row,2) != 0)
+        {
+            ui->tableWidget_17->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_17->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_17->item(row,3) != 0)
+        {
+            ui->tableWidget_17->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_17->item(row,3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    QPalette p_17=ui->tableWidget_17->palette();
+    p_17.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_17.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_17->setPalette(p_17);
 
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
@@ -2771,7 +2877,7 @@ void MainWindow::on_action_5_triggered()
         QIcon ButtonIcon_1(pixmap);
         ui->pushButton_5->setIcon(ButtonIcon_1);
         ui->stackedWidget->setVisible(false);
-        QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7;
+        QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7,myIndex8;
         myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
         base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
         myIndex2 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 3, QModelIndex());
@@ -2786,6 +2892,8 @@ void MainWindow::on_action_5_triggered()
         base.muk=ui->widget->ui->tableView->model()->data(myIndex6).toDouble();
         myIndex7 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 8, QModelIndex());
         base.n_0=ui->widget->ui->tableView->model()->data(myIndex7).toDouble();
+        myIndex8 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
+        klass=ui->widget->ui->tableView->model()->data(myIndex8).toString();
 
         ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
         ui->action_9->setEnabled(true);
@@ -3413,8 +3521,7 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
 void MainWindow::on_SaveProgectToFile_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-    //QString filter = "Файл конфигурации проекта (*.xml);;Все файлы (*.*)";
-    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
+    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter) + ".imview";
 
     QFile file(QString("../save/project.xml"));
     file.open(QIODevice::WriteOnly);
@@ -3610,7 +3717,6 @@ void MainWindow::on_LoadProgect_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
-    //QString str = QFileInfo(QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter)).fileName();
     LoadProject(str);
 }
 
@@ -4101,6 +4207,7 @@ void MainWindow::LoadProject(QString str)
     ui->action_2->setEnabled(true);
     ui->action_6->setEnabled(true);
     setCurrentFile(str);
+    ui->widget_2->ui->plot->load();
 }
 
 void MainWindow::on_pushButton_5_clicked(bool checked)
@@ -4126,7 +4233,7 @@ void MainWindow::onButtonClicked()
 
 void MainWindow::onButtonClicked2()
 {
-    ui->stackedWidget->setCurrentIndex( 1 );
+    ui->stackedWidget->setCurrentIndex( 6 );
 }
 
 void MainWindow::on_action_24_triggered()
@@ -8916,6 +9023,8 @@ void MainWindow::save_file()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
+    ui->widget_2->ui->plot->save();
+
     JlCompress::compressDir(QString("../Output/") + sessionFileName, "../save/");
     ui->action_2->setEnabled(false);
 }
@@ -9658,6 +9767,7 @@ void::MainWindow::close_progect()
     ui->lineEdit_15->clear();
     ui->lineEdit_18->clear();
 
+    ui->widget_2->ui->plot->save();
     ui->widget_2->ui->plot->clear();
 
 }
@@ -9822,10 +9932,6 @@ void MainWindow::poisk()
             ui->tableWidget_2->setFocus();
         }
     }
-
-
-
-
 
     if ((number == 1) && (number < 2))
     {
@@ -11058,4 +11164,79 @@ void::MainWindow::tab_open()
         settings.setValue( "iu", -1);
     }
     return;
+}
+
+void::MainWindow::save_graphs()
+{
+    ui->widget_2->ui->plot->save();
+}
+
+void::MainWindow::load_graphs()
+{
+    ui->widget_2->ui->plot->load();
+}
+
+void MainWindow::read_klass_izol()
+{
+
+    if(klass == "A")
+    {
+        klass_izol.klass_A.G_A = 15.3;
+        klass_izol.klass_A.B_A = 0.000095;
+        G = klass_izol.klass_A.G_A;
+        B = klass_izol.klass_A.B_A;
+    }
+    else if(klass == "B")
+    {
+        klass_izol.klass_B.G_B = 15.5;
+        klass_izol.klass_B.B_B = 0.000102;
+        G = klass_izol.klass_B.G_B;
+        B = klass_izol.klass_B.B_B;
+            }
+    else if(klass == "C")
+    {
+        klass_izol.klass_C.G_C = 21.8;
+        klass_izol.klass_C.B_C = 0.000155;
+        G = klass_izol.klass_C.G_C;
+        B = klass_izol.klass_C.B_C;
+    }
+    else if(klass == "E")
+    {
+        klass_izol.klass_E.G_E = 15.1;
+        klass_izol.klass_E.B_E = 0.0000985;
+        G = klass_izol.klass_E.G_E;
+        B = klass_izol.klass_E.B_E;
+    }
+    else if(klass == "F")
+    {
+        klass_izol.klass_F.G_F = 19.7;
+        klass_izol.klass_F.B_F = 0.000127;
+        G = klass_izol.klass_F.G_F;
+        B = klass_izol.klass_F.B_F;
+    }
+    else if(klass == "H")
+    {
+        klass_izol.klass_H.G_H = 24.2;
+        klass_izol.klass_H.B_H = 0.000155;
+        G = klass_izol.klass_H.G_H;
+        B = klass_izol.klass_H.B_H;
+    }
+
+    double Q = 20;
+    ui->widget_13->ui->plots->clear();
+    ui->widget_13->ui->plots->addDataLine(QColor(Qt::green), 0);
+
+    while (Q < 30)
+    {
+        Q = Q + 1;
+        double T = 0;
+        int k = 1;
+        T = k*exp(((Q+273)/B)-G);
+        ui->widget_13->ui->plots->addPoint(0, Q, T);
+
+    }
+
+
+
+
 }

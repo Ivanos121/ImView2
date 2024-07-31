@@ -221,6 +221,9 @@ private slots:
 
 
     void close_progect();
+    void save_graphs();
+    void load_graphs();
+    void read_klass_izol();
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;

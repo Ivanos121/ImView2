@@ -36,6 +36,9 @@ public:
     void reset();
     void clear();
 
+    void save();
+    void load();
+
     int margin_bottom;
     int margin_left;
 

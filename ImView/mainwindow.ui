@@ -52,7 +52,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>20</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -573,6 +573,20 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_8">
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_9">
+          <property name="text">
+           <string>Load</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_19">
@@ -591,19 +605,49 @@
        </widget>
       </widget>
       <widget class="QWidget" name="page_20">
-       <widget class="QLabel" name="label_36">
-        <property name="geometry">
-         <rect>
-          <x>150</x>
-          <y>30</y>
-          <width>211</width>
-          <height>18</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Остаточный тепловой ресурс</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_27">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_40">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Оценка остаточного теплового ресурса обмотки статора&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_17">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_10">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_11">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButton_12">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="page_21">
        <widget class="QLabel" name="label_37">
@@ -1570,7 +1614,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>7</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1683,6 +1727,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <attribute name="title">
         <string>Оценка остаточного ресурса обмотки статора</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_26">
+        <item row="0" column="0">
+         <widget class="Ostat_resurs" name="widget_13" native="true"/>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_9">
        <attribute name="title">
@@ -2363,6 +2412,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>poisk</class>
    <extends>QWidget</extends>
    <header>poisk.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Ostat_resurs</class>
+   <extends>QWidget</extends>
+   <header>ostat_resurs.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

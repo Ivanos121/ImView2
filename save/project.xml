@@ -2,7 +2,7 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="zxc4.imview"/>
+            <project_name value="zxc5.imview"/>
             <combobox_1 value="Внутренний источник данных"/>
             <project_path value="Указать каталог"/>
             <combobox_2 value="Внутренний источник данных"/>

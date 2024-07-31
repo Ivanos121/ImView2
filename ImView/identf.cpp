@@ -164,8 +164,22 @@ void identf::raschet_f()
         wf->ui->lineEdit_17->setText("0.02");
         wf->ui->lineEdit_15->setText("0.01");
         wf->ui->lineEdit_18->setText("0.0001");
+        wf->ui->lineEdit_13->setReadOnly(true);
+        wf->ui->lineEdit_16->setReadOnly(true);
+        wf->ui->lineEdit_14->setReadOnly(true);
+        wf->ui->lineEdit_17->setReadOnly(true);
+        wf->ui->lineEdit_15->setReadOnly(true);
+        wf->ui->lineEdit_18->setReadOnly(true);
     }
-
+    else
+    {
+        wf->ui->lineEdit_13->setReadOnly(false);
+        wf->ui->lineEdit_16->setReadOnly(false);
+        wf->ui->lineEdit_14->setReadOnly(false);
+        wf->ui->lineEdit_17->setReadOnly(false);
+        wf->ui->lineEdit_15->setReadOnly(false);
+        wf->ui->lineEdit_18->setReadOnly(false);
+    }
     ui->plot->addPoint(0, key, model.R2);
     ui->plot->addPoint(1, key, model.L);
     ui->plot->addPoint(2, key, model.L);

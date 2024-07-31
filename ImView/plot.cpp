@@ -3,8 +3,11 @@
 #include <QtMath>
 #include <QWheelEvent>
 #include <QDebug>
+#include <QMessageBox>
 
 #include <iostream>
+#include <fstream>
+#include <string>
 
 #include "plot.h"
 
@@ -474,5 +477,63 @@ void Plot::clear()
 {
     reset();
     dataLines.clear();
+    repaint();
+}
+
+void Plot::save()
+{
+    std::ofstream fout;
+    fout.open("result.csv",std::ios::out);
+
+    for (int i=0 , n=dataLines[0].data.size(); i < n - 1; i++)
+    {
+        double t = dataLines[0].data[i].t;
+        fout << t;
+
+        for (DataLine& line : dataLines)
+        {
+            double U = line.data[i].U;
+            fout << " " << U;
+        }
+        fout << std::endl;
+    }
+
+    fout.close();
+}
+
+void Plot::load()
+{
+    clear();
+    std::ifstream fin;
+    fin.open("/home/elf/ImView2/save/result_identf.csv",std::ios::in);
+
+    std::string s;
+    std::getline(fin, s);
+
+    QString line = QString::fromStdString(s);
+    QStringList list = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+    int plotLinesSize = list.size() - 1;
+
+    for (int i = 0; i < plotLinesSize; i++)
+    {
+        addDataLine(QColor(0,255,0), 0.0);
+    }
+
+    while (!fin.eof())
+    {
+        double t = list[0].toDouble();
+
+        for (int i = 0; i < plotLinesSize; i++)
+        {
+            double U = list[i + 1].toDouble();
+            addPoint(i, t, U);
+        }
+
+        std::getline(fin, s);
+        line = QString::fromStdString(s);
+        list = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+    }
+
+    fin.close();
     repaint();
 }
