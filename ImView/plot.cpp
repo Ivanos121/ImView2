@@ -482,44 +482,56 @@ void Plot::clear()
 
 void Plot::save()
 {
-    std::ofstream fout;
-    fout.open("result.csv",std::ios::out);
+    QFile f("result.csv");
+    f.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream fout(&f);
 
-    for (int i=0 , n=dataLines[0].data.size(); i < n - 1; i++)
+    for (auto& line : dataLines)
+    {
+        fout << line.color.name() << " ";
+    }
+    fout << "\n";
+
+    for (int i=0; i < dataLines[0].data.size(); i++)
     {
         double t = dataLines[0].data[i].t;
         fout << t;
 
-        for (DataLine& line : dataLines)
+        for (auto& line : dataLines)
         {
             double U = line.data[i].U;
             fout << " " << U;
         }
-        fout << std::endl;
+        fout << "\n";
     }
 
-    fout.close();
+    f.close();
 }
 
 void Plot::load()
 {
     clear();
-    std::ifstream fin;
-    fin.open("/home/elf/ImView2/save/result_identf.csv",std::ios::in);
+    QFile f("result.csv");
+    if (!f.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        return;
+    }
 
-    std::string s;
-    std::getline(fin, s);
-
-    QString line = QString::fromStdString(s);
+    QTextStream fin(&f);
+    QString line = fin.readLine();
     QStringList list = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
-    int plotLinesSize = list.size() - 1;
+    int plotLinesSize = list.size();
 
     for (int i = 0; i < plotLinesSize; i++)
     {
-        addDataLine(QColor(0,255,0), 0.0);
+        bool bStatus;
+        addDataLine(list[i].remove(0,1).toUInt(&bStatus, 16), 0.0);
     }
 
-    while (!fin.eof())
+    line = fin.readLine();
+    list = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
+
+    while (!line.isNull())
     {
         double t = list[0].toDouble();
 
@@ -529,11 +541,10 @@ void Plot::load()
             addPoint(i, t, U);
         }
 
-        std::getline(fin, s);
-        line = QString::fromStdString(s);
+        line = fin.readLine();
         list = line.split(QRegExp("\\s+"), Qt::SkipEmptyParts);
     }
 
-    fin.close();
+    f.close();
     repaint();
 }
