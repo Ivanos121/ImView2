@@ -52,7 +52,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -80,6 +80,9 @@
            <number>-3</number>
           </property>
           <property name="alternatingRowColors">
+           <bool>false</bool>
+          </property>
+          <property name="animated">
            <bool>true</bool>
           </property>
          </widget>
@@ -1570,6 +1573,72 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_23">
+       <layout class="QGridLayout" name="gridLayout_29">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_36">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Тепловая модель с учетом вентиляции&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTabWidget" name="tabWidget_4">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="tab_16">
+           <attribute name="title">
+            <string>Параметры модели</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_31">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableWidget_18">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_17">
+           <attribute name="title">
+            <string>Итоги измерений</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_30">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableWidget_19">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_13">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_14">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item row="1" column="2">
@@ -1614,7 +1683,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>7</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1718,6 +1787,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab_15">
+       <attribute name="title">
+        <string>Тепловентиляционная модель</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_28">
+        <item row="0" column="0">
+         <widget class="Gybrid_tepl_model" name="widget_14" native="true"/>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tab_7">
        <attribute name="title">
         <string>Прогноз температур</string>
@@ -1794,8 +1873,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <addaction name="actionmy4"/>
      <addaction name="actionmy5"/>
     </widget>
-    <addaction name="action_26"/>
-    <addaction name="action"/>
+    <addaction name="create_new"/>
+    <addaction name="open_file"/>
     <addaction name="action_2"/>
     <addaction name="action_6"/>
     <addaction name="action_close_progect"/>
@@ -1878,8 +1957,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_26"/>
-   <addaction name="action"/>
+   <addaction name="create_new"/>
+   <addaction name="open_file"/>
    <addaction name="action_2"/>
    <addaction name="action_6"/>
    <addaction name="separator"/>
@@ -1947,7 +2026,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>О программе</string>
    </property>
   </action>
-  <action name="action">
+  <action name="open_file">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/document-open.svg</normaloff>:/system_icons/data/img/system_icons/document-open.svg</iconset>
@@ -2217,7 +2296,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Итоги идентификации</string>
    </property>
   </action>
-  <action name="action_26">
+  <action name="create_new">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/document-new.svg</normaloff>:/system_icons/data/img/system_icons/document-new.svg</iconset>
@@ -2418,6 +2497,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>Ostat_resurs</class>
    <extends>QWidget</extends>
    <header>ostat_resurs.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Gybrid_tepl_model</class>
+   <extends>QWidget</extends>
+   <header>gybrid_tepl_model.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

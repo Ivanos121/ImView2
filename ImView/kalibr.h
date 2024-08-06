@@ -19,7 +19,7 @@
 
 #include "datasourcebvas.h"
 #include "modell.h"
-#include "QtSql"
+#include <QSqlTableModel>
 #include "QSqlDatabase"
 #include "base.h"
 

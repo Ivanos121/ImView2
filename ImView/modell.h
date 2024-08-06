@@ -3,7 +3,7 @@
 
 #include "QSqlDatabase"
 #include <QSqlError>
-#include "QtSql"
+#include <QSqlTableModel>
 
 
 class Modell : public QSqlTableModel

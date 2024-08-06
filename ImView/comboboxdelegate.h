@@ -5,8 +5,8 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 #include <QMainWindow>
-#include <QtSerialPort>
-#include "QtSql"
+#include <QSerialPort>
+#include <QSqlTableModel>
 #include "QSqlDatabase"
 #include <QSqlError>
 #include <QStandardItemModel>

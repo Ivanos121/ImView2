@@ -7,6 +7,7 @@
 #include <QIcon>
 #include <QuaZip-Qt5-1.4/quazip/JlCompress.h>
 #include <QTranslator>
+#include <QSettings>
 
 int main(int argc, char *argv[])
 {

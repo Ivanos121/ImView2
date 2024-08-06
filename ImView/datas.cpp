@@ -1,4 +1,6 @@
 #include "datas.h"
+#include "qsortfilterproxymodel.h"
+#include "qsqlquery.h"
 #include "ui_datas.h"
 #include "base.h"
 

@@ -11,6 +11,7 @@
 #include "datasourcebvasw.h"
 #include "datasource.h"
 #include "plot.h"
+#include "qcombobox.h"
 
 namespace Ui {
 class electromagn;

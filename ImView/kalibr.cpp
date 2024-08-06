@@ -7,6 +7,8 @@
 #include <QStatusBar>
 
 #include "kalibr.h"
+#include "qserialportinfo.h"
+#include "qtextcodec.h"
 #include "ui_kalibr.h"
 #include "checkboxdelegate.h"
 #include "comboboxdelegate.h"
@@ -17,7 +19,6 @@
 #include "comboboxcurrentdelegate.h"
 #include "paintdelegate.h"
 #include "archiverchannel.h"
-#include "align.h"
 #include "modell.h"
 #include "mainwindow.h"
 #include "datasourcedigitosc.h"

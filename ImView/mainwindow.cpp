@@ -36,6 +36,8 @@
 #include "settings.h"
 #include "poisk.h"
 #include "intens_star_izol.h"
+#include "gybrid_tepl_model.h"
+#include "cmydelegate.h"
 
 #include <QStyle>
 #include <QDesktopWidget>
@@ -161,8 +163,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_6->ui->plot->margin_left = 100;
     ui->widget_6->ui->plot->reset();
 
-    connect(ui->action_26, &QAction::triggered, this, &MainWindow::create_new);
-    connect(ui->action, &QAction::triggered, this, &MainWindow::open_file);
+    connect(ui->create_new, &QAction::triggered, this, &MainWindow::create_new);
+    connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
     connect(ui->action_2, &QAction::triggered, this, &MainWindow::save_file);
     connect(ui->action_6, &QAction::triggered, this, &MainWindow::save_as_file);
     connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
@@ -234,19 +236,19 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
 
-    QStandardItemModel* model2=new QStandardItemModel(ui->treeView);
+    model2=new QStandardItemModel(ui->treeView);
 
 
     model2->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
     ui->treeView->setStyleSheet(
-                            "*{"
-                            "background: rgb(255, 255, 222);"
-                            "}"
-                            "*{"
-                            "alternate-background-color: rgb(255, 255, 191);"
-                            "}"
+                          //  "*{"
+                          //  "background: rgb(255, 255, 222);"
+                          //  "}"
+                          //  "*{"
+                          //  "alternate-background-color: rgb(255, 255, 191);"
+                          // "}"
                             "*::item{"
                             "    border-top-width: 0px;"
                             "    border-right-width: 1px;"
@@ -261,6 +263,10 @@ MainWindow::MainWindow(QWidget *parent)
 //                            "*::item:has-children{"
 //                            "    background: rgb(128,128,128);"
 //                            "}"
+                            "::branch"
+                            "{"
+                            "border-bottom: 1px solid silver;"
+                            "}"
                                     "::branch:has-children:!has-siblings:closed,"
                                     "::branch:closed:has-children:has-siblings {"
                                     "        border-image: none;"
@@ -287,6 +293,7 @@ MainWindow::MainWindow(QWidget *parent)
     item2->setEditable(false);
     QFont newFont("DroidSans", 10, QFont::Bold,false);
     item1->setFont(newFont);
+
 
     QList<QStandardItem*> items2;
     item3 = new QStandardItem(tr("Название сеанса"));
@@ -903,6 +910,43 @@ MainWindow::MainWindow(QWidget *parent)
     item121->appendRow(items18);
     items18.clear();
 
+    QList<QStandardItem*> items19;
+    item133 = new QStandardItem(tr ("Тепловентиляционная модель"));
+    item134 = new QStandardItem();
+    items19.append(item133);
+    items19.append(item134);
+    model2->appendRow(items19);
+    items19.clear();
+    item133->setSelectable(false);
+    item133->setEditable(false);
+    item134->setSelectable(false);
+    item134->setEditable(false);
+    QFont newFont19("SansSerif", 10, QFont::Bold,false);
+    item133->setFont(newFont19);
+
+    QList<QStandardItem*> items20;
+    item135 = new QStandardItem(tr ("Выбор типа модели"));
+    item135->setEditable(false);
+    item136 = new QStandardItem(tr ("Выберите тип"));
+    items20.append(item135);
+    items20.append(item136);
+    item133->appendRow(items20);
+    items20.clear();
+    item137 = new QStandardItem(tr ("Условие 23"));
+    item137->setEditable(false);
+    item138 = new QStandardItem(QString ("Значение 24"));
+    items20.append(item137);
+    items20.append(item138);
+    item133->appendRow(items20);
+    items20.clear();
+    item139 = new QStandardItem(tr ("Условие 24"));
+    item139->setEditable(false);
+    item140 = new QStandardItem(tr ("Значение 25"));
+    items20.append(item139);
+    items20.append(item140);
+    item133->appendRow(items20);
+    items20.clear();
+
     ui->treeView->setModel(model2);
 
     ui->treeView->header()->resizeSection(0,270);
@@ -913,10 +957,17 @@ MainWindow::MainWindow(QWidget *parent)
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
-    QPalette p99=ui->treeView->palette();
-    p99.setColor(QPalette::Base, QColor(255, 255, 222));
-    p99.setColor(QPalette::AlternateBase, QColor(255, 255, 191));
-    ui->treeView->setPalette(p99);
+   // QPalette p99=ui->treeView->palette();
+   // p99.setColor(QPalette::Base, QColor(255, 155, 222));
+   // p99.setColor(QPalette::AlternateBase, QColor(155, 255, 191));
+   // ui->treeView->setPalette(p99);
+
+    ui->treeView->setRootIsDecorated(true);
+
+    ui->treeView->setAlternatingRowColors(true);
+    ui->treeView->setStyleSheet("{alternate-background-color: red; background: green;}");
+
+    //color_treview(model2->index(0,0), model2);
 
     ui->tabWidget->setCurrentIndex(0);
     currentTabText = ui->tabWidget->tabText(0);
@@ -1302,6 +1353,7 @@ MainWindow::MainWindow(QWidget *parent)
     p2.setColor(QPalette::Base, QColor(255, 255, 191));
     p2.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget_2->setPalette(p2);
+
 
     //вставка таблицы тепловые характеристики
     ui->tableWidget_3->setRowCount(17);
@@ -2670,6 +2722,94 @@ MainWindow::MainWindow(QWidget *parent)
     p_17.setColor(QPalette::Base, QColor(255, 255, 191));
     p_17.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget_17->setPalette(p_17);
+
+    ui->tableWidget_18->setRowCount(30);
+    ui->tableWidget_18->setColumnCount(4);
+    QStringList name_18;
+    name_18 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+
+    ui->tableWidget_18->setHorizontalHeaderLabels(name_16);
+    ui->tableWidget_18->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_18->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_18->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_18->verticalHeader()->setVisible(true);
+    ui->tableWidget_18->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_18->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_18->columnCount(); column++)
+        {
+            ui->tableWidget_18->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_18->rowCount(); row++)
+    {
+        if (ui->tableWidget_18->item(row,0) != 0)
+        {
+            ui->tableWidget_18->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_18->item(row,1) != 0)
+        {
+            ui->tableWidget_18->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_18->item(row,1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_18->item(row,2) != 0)
+        {
+            ui->tableWidget_18->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_18->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_18->item(row,3) != 0)
+        {
+            ui->tableWidget_18->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            ui->tableWidget_18->item(row,3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    QPalette p_18=ui->tableWidget_18->palette();
+    p_18.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_18.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_18->setPalette(p_18);
+
+    ui->tableWidget_19->setRowCount(8);
+    ui->tableWidget_19->setColumnCount(3);
+    QStringList name_19;
+    name_19 << " № " << "Сигнал" << "Величина";
+    ui->tableWidget_19->setHorizontalHeaderLabels(name_19);
+    ui->tableWidget_19->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget_19->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_19->verticalHeader()->setVisible(false);
+    ui->tableWidget_19->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_19->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_19->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_19->setColumnWidth(0, 100);
+    ui->tableWidget_19->setColumnWidth(1, 400);
+
+    for(int row = 0; row<ui->tableWidget_19->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_19->columnCount(); column++)
+        {
+            ui->tableWidget_19->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    for (int i=0; i<8; i++)
+    {
+        if (ui->tableWidget_9->item(i, 0) != 0)
+        {
+            ui->tableWidget_9->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget_9->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    QPalette p19=ui->tableWidget_19->palette();
+    p19.setColor(QPalette::Base, QColor(225, 255, 255));
+    p19.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_19->setPalette(p19);
 
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
@@ -4308,6 +4448,12 @@ void MainWindow::tabClicked()
     {
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(4);
+    }
+
+    if(ui->tabWidget->currentIndex()==6)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(22);
     }
 }
 
@@ -9791,7 +9937,7 @@ void MainWindow::poisk()
     jz = settings.value( "jz", "").toInt();
     number=settings.value( "number", "").toInt();
 
-  /* if(ui->widget->ui->tableView->isEnabled()==true)
+   /*if(ui->widget->ui->tableView->isEnabled()==true)
     {        
         //int i,x,xx, ii, number;
         str = ui->widget_12->ui->lineEdit->text();
@@ -9893,30 +10039,25 @@ void MainWindow::poisk()
             {
                 for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
                 {
-                    moc_2 = ui->tableWidget_16->item(x,i)->text();
+                    moc_2 = ui->tableWidget_2->item(x,i)->text();
 
-                    int j = 0;
+                    j = jz;
                     while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
                     {
-                        ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
-                        ui->widget_12->ui->plainTextEdit->appendPlainText(moc_2);
+                        ui->tableWidget_2->item(x,i)->setBackground(Qt::green);
 
-                        QTextCursor c = ui->widget_12->ui->plainTextEdit->textCursor();
-                        c.setPosition(j);
-                        c.setPosition(j+str.size()+2, QTextCursor::KeepAnchor);
-                        ui->widget_12->ui->plainTextEdit->setTextCursor(c);
-                        ++j;
-                    }
-                    QSettings settings( "BRU", "IM View");
-                    settings.setValue( "iz", i+1);
-                    settings.setValue( "jz", j+1);
-                    settings.setValue( "xz", x);
-
-                    if(x == ui->tableWidget_16->rowCount()-1)
-                    {
+                        QSettings settings( "BRU", "IM View");
                         settings.setValue( "iz", i+1);
+                        settings.setValue( "jz", j+1);
+                        settings.setValue( "xz", x);
+
+                        if(x == ui->tableWidget_2->rowCount()-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
                     }
-                    return;
+                    jz = 0;
                 }
                 iz = 0;
             }
@@ -11235,8 +11376,19 @@ void MainWindow::read_klass_izol()
         ui->widget_13->ui->plots->addPoint(0, Q, T);
 
     }
+}
 
+void MainWindow::color_treview(const QModelIndex & index, const QStandardItemModel * model2)
+{
+    int rows = model2->rowCount(index);
+    int cols = model2->columnCount(index);
 
+    for (int i = 0; i < cols; ++i)
+            for (int j = 0; j < 8; ++j){
+                QPalette p109=ui->treeView->palette();
+                p109.setColor(QPalette::Base, QColor(255, 255, 222));
+                p109.setColor(QPalette::AlternateBase, QColor(255, 255, 191));
+                ui->treeView->setPalette(p109);
 
-
+            }
 }

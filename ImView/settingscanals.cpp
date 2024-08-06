@@ -1,7 +1,10 @@
 #include "settingscanals.h"
+#include "qfileinfo.h"
+#include "qsqlquery.h"
 #include "ui_settingscanals.h"
 #include "kalibr.h"
 #include "ui_kalibr.h"
+#include <QSettings>
 
 int j=0;
 

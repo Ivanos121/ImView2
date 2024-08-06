@@ -224,6 +224,8 @@ private slots:
     void save_graphs();
     void load_graphs();
     void read_klass_izol();
+
+    void color_treview(const QModelIndex &index, const QStandardItemModel *model);
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
@@ -244,6 +246,7 @@ public:
     QAction *recentFileActs[MaxRecentFiles];
     QString curFile;
     datas *dat;
+    QStandardItemModel* model2;
 
     QTimer *timer;
     QAction *undoAction;
@@ -280,6 +283,7 @@ public:
     QStandardItem *item113,*item114, *item115, *item116, *item117, *item118, *item119, *item120;
     QStandardItem *item121,*item122,*item123,*item124,*item125,*item126,*item127,*item128;
     QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;
+    QStandardItem *item137,*item138,*item139,*item140,*item141,*item142,*item143,*item144;
     void changeEvent(QEvent *event);
 };
 

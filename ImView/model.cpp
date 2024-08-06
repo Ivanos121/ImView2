@@ -1,16 +1,11 @@
-
 #include "model.h"
 #include <QDebug>
-#include <fstream>
 #include <cmath>
 #include "device.h"
-//double ua,X1,X2,X3,X4,b,ia,d,w,psia_nev,g,k,l,m,n,o,p,r,q,t,u,sigma,alfa;
+
 double X1,X2,X3,X4,b,d,psia_nev,g,k,l,m,n,o,p,q,t,u,sigma,alfa;
-//double ua_1,X1_1,X2_1,X3_1,X4_1,X5_1,b_1,ub_1,c_1,d_1,e_1,f_1,g_1,k_1,l_1,
-//m_1,n_1,o_1,p_1,r_1,q_1,t_1,u_1,sigma_1,alfa_1;
 double R2_1,L_1,Lm_1;
 double kpsi, pn, ki, R1,kk, Ts, gpsi, gd, gb, gp;
-
 
 Model::Model()
 {
@@ -22,7 +17,7 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
                  double _ki, double _kpsi, double _gpsi)
 {
     double dP_mxnom,dP_dob,dP_nom,dP_per2nom,dP_pernom,dP_post,dP_per1nom;
-    double I_1nom,s_nom,w_0,w_nom,M_nom,M_0,M_elmnom,M_elmax,K_z,R10,bb,Z,R20,X_k,s_k,aa,M;
+    double I_1nom,s_nom,w_0,w_nom,M_nom,M_0,M_elmnom,M_elmax,K_z,R10,bb,Z,R20,X_k;
     double I_0,X10,dP_ct,L10,Rm,sinf_0,Xm,Lm0;
     gb=_gb;
     gd=_gd;
@@ -56,9 +51,9 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    Z=(3*U_fnom*U_fnom)/(2*w_0*M_elmax)-R10; //Сопротивление z
    R20=0.5*s_nom*(bb+sqrt(pow(bb,2)-4*pow(Z,2))); //приведенное активное сопротивление ротора
    X_k=sqrt(Z*Z-R10*R10); //Индуктивное сопротивление короткого замыкания
-   s_k=R20/Z; //критическое скольжение
-   aa=R10/R20; //коэффициент а
-   M=(2*M_elmax*(1+aa*s_k))/((s_nom/s_k)+(s_k/s_nom)+2*aa*s_k); //Электомагнитный момент при номинальном скольжении
+   //s_k=R20/Z; //критическое скольжение
+   //aa=R10/R20; //коэффициент а
+   //M=(2*M_elmax*(1+aa*s_k))/((s_nom/s_k)+(s_k/s_nom)+2*aa*s_k); //Электомагнитный момент при номинальном скольжении
    I_0=I_1nom*sqrt(1-pow(cosf_nom,2)); //ток холостого хода
    X10=0.5*X_k; //индуктивное сопротивление статора
    L10=X10/314; //Индуктивность рассеяния фазы статора

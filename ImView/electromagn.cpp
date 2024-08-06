@@ -15,7 +15,7 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QScrollArea>
-
+#include <QSettings>
 
 DataSource_file dataSource_file;
 Model_el Model_el;

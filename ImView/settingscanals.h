@@ -4,7 +4,7 @@
 #include "mainwindow.h"
 #include <QDialog>
 
-#include "QtSql"
+#include "QSqlTableModel"
 #include "QSqlDatabase"
 
 namespace Ui {

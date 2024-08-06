@@ -1,6 +1,7 @@
 #include "ui_mainwindow.h"
 #include "datasource_el.h"
 #include "ui_datas.h"
+#include <cmath>
 
 DataSource_el::DataSource_el(double P_nom, double n_nom, double U_fnom,
                              double cosf_nom, double kpd_nom, double muk, double n_0)

@@ -22,6 +22,7 @@ SOURCES += \
     bvas.cpp \
     checkboxdelegate.cpp \
     checkboxheader.cpp \
+    cmydelegate.cpp \
     comboboxbitdelegate.cpp \
     comboboxcurrentdelegate.cpp \
     comboboxdelegate.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
     draw_poper.cpp \
     electromagn.cpp \
     gridlinedelegate.cpp \
+    gybrid_tepl_model.cpp \
     identf.cpp \
     ischodn_dannie.cpp \
     itogs.cpp \
@@ -81,6 +83,7 @@ HEADERS += \
     bvas.h \
     checkboxdelegate.h \
     checkboxheader.h \
+    cmydelegate.h \
     comboboxbitdelegate.h \
     comboboxcurrentdelegate.h \
     comboboxdelegate.h \
@@ -103,6 +106,7 @@ HEADERS += \
     draw_poper.h \
     electromagn.h \
     gridlinedelegate.h \
+    gybrid_tepl_model.h \
     identf.h \
     intens_star_izol.h \
     ischodn_dannie.h \
@@ -142,6 +146,7 @@ FORMS += \
     draw_poper.ui \
     electromagn.ui \
     graph_Settings.ui \
+    gybrid_tepl_model.ui \
     identf.ui \
     ischodn_dannie.ui \
     itogs.ui \

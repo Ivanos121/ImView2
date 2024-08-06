@@ -10,6 +10,7 @@
 #include <cfloat>
 #include <QLinearGradient>
 #include <QColorDialog>
+#include <cmath>
 
 double key;
 Model model;
