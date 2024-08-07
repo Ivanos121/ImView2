@@ -58,6 +58,7 @@ struct Base
     QString electromagnFilename;
     QString teplFilename;
     QString name;
+    QString ki;
     double i_a;
     double u_a;
     double p_akt_a;

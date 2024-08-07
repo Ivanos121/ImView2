@@ -91,8 +91,8 @@ void datas::table()
 void datas::zapis()
 {
     QSqlQuery query=QSqlQuery(sdb);
-    query.prepare("INSERT INTO dvigatels (id, name, pn, n, un, cosf, kpd, mk, n0) "
-                  "VALUES (:id, :name, :pn, :n, :un, :cosf, :kpd, :mk, :n0)");
+    query.prepare("INSERT INTO dvigatels (id, name, pn, n, un, cosf, kpd, mk, n0, ki) "
+                  "VALUES (:id, :name, :pn, :n, :un, :cosf, :kpd, :mk, :n0, :ki)");
     query.bindValue(":id", QVariant(QVariant::String));
     query.bindValue(":name", QString(base.name));
     query.bindValue(":pn",QString("%1").arg(base.P_nom, 0, 'f', 3));
@@ -102,6 +102,7 @@ void datas::zapis()
     query.bindValue(":kpd",QString("%1").arg(base.kpd_nom, 0, 'f', 3));
     query.bindValue(":mk",QString("%1").arg(base.muk, 0, 'f', 3));
     query.bindValue(":n0",QString("%1").arg(base.n_0, 0, 'f', 3));
+    query.bindValue(":ki",QString("%1").arg(base.ki));
     if(!query.exec()){
         qDebug() << query.lastError().databaseText();
         qDebug() << query.lastError().driverText();

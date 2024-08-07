@@ -36,8 +36,6 @@
 #include "settings.h"
 #include "poisk.h"
 #include "intens_star_izol.h"
-#include "gybrid_tepl_model.h"
-#include "cmydelegate.h"
 
 #include <QStyle>
 #include <QDesktopWidget>
@@ -154,8 +152,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->LoadProgect->setVisible(false);
     ui->SaveProgectToFile->setVisible(false);
-    ui->action_2->setEnabled(false);
-    ui->action_6->setEnabled(false);
+    ui->save_file->setEnabled(false);
+    ui->save_as_file->setEnabled(false);
 
     ui->widget_6->ui->plot->t_max = 0.01;
     ui->widget_6->ui->plot->U_max = 500.0;
@@ -165,8 +163,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->create_new, &QAction::triggered, this, &MainWindow::create_new);
     connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
-    connect(ui->action_2, &QAction::triggered, this, &MainWindow::save_file);
-    connect(ui->action_6, &QAction::triggered, this, &MainWindow::save_as_file);
+    connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
+    connect(ui->save_as_file, &QAction::triggered, this, &MainWindow::save_as_file);
     connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
     connect(ui->action_3, &QAction::triggered, this, &MainWindow::pagePrint);
     connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
@@ -211,8 +209,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->action_15, &QAction::triggered, this, &MainWindow::onButtonClicked);
     connect(ui->action_23, &QAction::triggered, this, &MainWindow::onButtonClicked2);
-
-
+    connect(ui->enter_dannie, &QAction::triggered, this, &MainWindow::enter_dannie);
+    connect(ui->save_dannie, &QAction::triggered, this, &MainWindow::save_dannie);
+    connect(ui->delete_dannie, &QAction::triggered, this, &MainWindow::delete_dannie);
 
 
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
@@ -2988,17 +2987,17 @@ void MainWindow::titleChanged(const QString &title)
     view->setWindowTitle(title);
 }
 
-void MainWindow::on_action_16_triggered()
+void MainWindow::save_dannie()
 {
     ui->widget->on_saveDannie_clicked();
 }
 
-void MainWindow::on_action_12_triggered()
+void MainWindow::enter_dannie()
 {
     ui->widget->on_enterDannie_clicked();
 }
 
-void MainWindow::on_action_17_triggered()
+void MainWindow::delete_dannie()
 {
     ui->widget->on_deleteDannie_clicked();
 }
@@ -4344,8 +4343,8 @@ void MainWindow::LoadProject(QString str)
 
     item4->setText(sessionFileName);
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
-    ui->action_2->setEnabled(true);
-    ui->action_6->setEnabled(true);
+    ui->save_file->setEnabled(true);
+    ui->save_as_file->setEnabled(true);
     setCurrentFile(str);
     ui->widget_2->ui->plot->load();
 }
@@ -9022,7 +9021,7 @@ void MainWindow::open_file()
 
 void MainWindow::save_file()
 {
-    sessionFileName = item4->text();
+    sessionFileName = QFileInfo(item4->text()).fileName();
     QDir dir("../Output");
     if (!dir.exists())
     {
@@ -9169,10 +9168,10 @@ void MainWindow::save_file()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
-    ui->widget_2->ui->plot->save();
+    //ui->widget_2->ui->plot->save();
 
     JlCompress::compressDir(QString("../Output/") + sessionFileName, "../save/");
-    ui->action_2->setEnabled(false);
+    ui->save_file->setEnabled(false);
 }
 
 void MainWindow::save_as_file()
@@ -9271,12 +9270,12 @@ void MainWindow::pagePrint()
 
 void MainWindow::button_visible()
 {
-    ui->action_2->setEnabled(true);
+    ui->save_file->setEnabled(true);
 }
 
 void MainWindow::button_visible_2()
 {
-    ui->action_6->setEnabled(true);
+    ui->save_as_file->setEnabled(true);
 }
 
 void MainWindow::createUndoView()

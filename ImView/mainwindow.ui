@@ -1875,8 +1875,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </widget>
     <addaction name="create_new"/>
     <addaction name="open_file"/>
-    <addaction name="action_2"/>
-    <addaction name="action_6"/>
+    <addaction name="save_file"/>
+    <addaction name="save_as_file"/>
     <addaction name="action_close_progect"/>
     <addaction name="menu_6"/>
     <addaction name="separator"/>
@@ -1909,7 +1909,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="actioncut"/>
     <addaction name="actioncopy"/>
     <addaction name="actionpaste"/>
-    <addaction name="action_4"/>
+    <addaction name="deletes"/>
     <addaction name="separator"/>
     <addaction name="actionpoisk"/>
    </widget>
@@ -1926,9 +1926,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>Исходные данные</string>
     </property>
-    <addaction name="action_12"/>
-    <addaction name="action_16"/>
-    <addaction name="action_17"/>
+    <addaction name="enter_dannie"/>
+    <addaction name="save_dannie"/>
+    <addaction name="delete_dannie"/>
    </widget>
    <widget class="QMenu" name="menu_5">
     <property name="title">
@@ -1959,8 +1959,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </attribute>
    <addaction name="create_new"/>
    <addaction name="open_file"/>
-   <addaction name="action_2"/>
-   <addaction name="action_6"/>
+   <addaction name="save_file"/>
+   <addaction name="save_as_file"/>
    <addaction name="separator"/>
    <addaction name="print_preview"/>
    <addaction name="action_3"/>
@@ -2038,7 +2038,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="save_file">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/document-save.svg</normaloff>:/system_icons/data/img/system_icons/document-save.svg</iconset>
@@ -2062,7 +2062,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="action_6">
+  <action name="save_as_file">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/document-save-as.svg</normaloff>:/system_icons/data/img/system_icons/document-save-as.svg</iconset>
@@ -2146,7 +2146,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+F</string>
    </property>
   </action>
-  <action name="action_4">
+  <action name="deletes">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</iconset>
@@ -2200,7 +2200,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="action_12">
+  <action name="enter_dannie">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/document-open.svg</normaloff>:/system_icons/data/img/system_icons/document-open.svg</iconset>
@@ -2212,7 +2212,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+Z</string>
    </property>
   </action>
-  <action name="action_16">
+  <action name="save_dannie">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/document-save.svg</normaloff>:/system_icons/data/img/system_icons/document-save.svg</iconset>
@@ -2224,7 +2224,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="action_17">
+  <action name="delete_dannie">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</iconset>

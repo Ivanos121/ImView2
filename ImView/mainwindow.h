@@ -116,10 +116,10 @@ private slots:
     void on_tabWidget_currentChanged(int index);
     void on_action_5_triggered();
     void on_action_9_triggered();
-    void on_action_12_triggered();
+    void enter_dannie();
     void on_action_15_triggered();
-    void on_action_16_triggered();
-    void on_action_17_triggered();
+    void save_dannie();
+    void delete_dannie();
     void on_action_20_triggered();
     void on_action_21_triggered();
     void on_action_22_triggered();
@@ -216,10 +216,6 @@ private slots:
     void open_panel();
     void zakr();
     void rename();
-
-
-
-
     void close_progect();
     void save_graphs();
     void load_graphs();
