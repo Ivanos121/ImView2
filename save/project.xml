@@ -2,7 +2,7 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="zxc5.imview"/>
+            <project_name value="zxc5"/>
             <combobox_1 value="Внутренний источник данных"/>
             <project_path value="Указать каталог"/>
             <combobox_2 value="Внутренний источник данных"/>
@@ -25,10 +25,10 @@
             <time_raboty value="0"/>
             <combobox_5 value="Выбрать режим"/>
             <moment2 value="311"/>
-            <napragenie value="5"/>
+            <napragenie value="10"/>
             <start_temp value="20"/>
             <combobox_6 value="Выберите режим"/>
-            <time_step value="10"/>
+            <time_step value="30"/>
             <combobox_7 value="Выберите режим"/>
             <combobox_8 value="Выберите конструкцию"/>
         </general_settings>

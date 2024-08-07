@@ -69,8 +69,8 @@ void identf::realtimeDataSlot()
        if (fabs((maxR2 - minR2)/middleR2) < 0.006)
        {
             dataSource->stop();
-            wf->ui->action_9->setEnabled(false);
-            wf->ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
+            wf->ui->identf_stop->setEnabled(false);
+            wf->ui->identf_pusk->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
             QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
             wf->ui->stackedWidget->show();
             wf->ui->stackedWidget->setCurrentIndex(1);

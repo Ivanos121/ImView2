@@ -133,6 +133,7 @@ MainWindow::MainWindow(QWidget *parent)
     settings.setValue( "jz", 0);
     settings.setValue( "number", 0);
 
+    //поиск информации
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
     connect(ui->widget_12->ui->pushButton_7,&QPushButton::clicked, this, &MainWindow::zakr);
     connect(ui->widget_12->ui->pushButton, &QPushButton::pressed, this, &MainWindow::poisk);
@@ -166,7 +167,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
     connect(ui->save_as_file, &QAction::triggered, this, &MainWindow::save_as_file);
     connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
-    connect(ui->action_3, &QAction::triggered, this, &MainWindow::pagePrint);
+    connect(ui->print_file, &QAction::triggered, this, &MainWindow::pagePrint);
     connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
 
     connect(ui->pushButton_8, &QPushButton::clicked, this, &MainWindow::save_graphs);
@@ -196,7 +197,7 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::TimeOut);
 
-    ui->action_9->setEnabled(false);
+    ui->identf_stop->setEnabled(false);
     ui->action_21->setEnabled(false);
     ui->action_32->setEnabled(false);
 
@@ -212,6 +213,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->enter_dannie, &QAction::triggered, this, &MainWindow::enter_dannie);
     connect(ui->save_dannie, &QAction::triggered, this, &MainWindow::save_dannie);
     connect(ui->delete_dannie, &QAction::triggered, this, &MainWindow::delete_dannie);
+    connect(ui->identf_pusk, &QAction::triggered, this, &MainWindow::identf_pusk);
+    connect(ui->identf_stop, &QAction::triggered, this, &MainWindow::identf_stop);
 
 
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
@@ -3002,7 +3005,7 @@ void MainWindow::delete_dannie()
     ui->widget->on_deleteDannie_clicked();
 }
 
-void MainWindow::on_action_5_triggered()
+void MainWindow::identf_pusk()
 {
     if (item88->text() == "Выбрать тип эксперимента")
     {
@@ -3034,8 +3037,8 @@ void MainWindow::on_action_5_triggered()
         myIndex8 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
         klass=ui->widget->ui->tableView->model()->data(myIndex8).toString();
 
-        ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-        ui->action_9->setEnabled(true);
+        ui->identf_pusk->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+        ui->identf_stop->setEnabled(true);
 
         //создание папки текущего сеанса
         QDateTime currentDateTime = QDateTime::currentDateTime();
@@ -3088,10 +3091,10 @@ void MainWindow::on_action_5_triggered()
     }
 }
 
-void MainWindow::on_action_9_triggered()
+void MainWindow::identf_stop()
 {
-    ui->action_5->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
-    ui->action_9->setEnabled(false);
+    ui->identf_pusk->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
+    ui->identf_stop->setEnabled(false);
     ui->widget_2->dataSource->stop();
 }
 
@@ -3660,7 +3663,7 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
 void MainWindow::on_SaveProgectToFile_clicked()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter) + ".imview";
+    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
 
     QFile file(QString("../save/project.xml"));
     file.open(QIODevice::WriteOnly);
@@ -4339,7 +4342,7 @@ void MainWindow::LoadProject(QString str)
         file.close(); // Закрываем файл
     }
 
-    sessionFileName = QFileInfo(str).fileName();
+    sessionFileName = QFileInfo(str).baseName();
 
     item4->setText(sessionFileName);
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
@@ -9022,18 +9025,12 @@ void MainWindow::open_file()
 void MainWindow::save_file()
 {
     sessionFileName = QFileInfo(item4->text()).fileName();
-    QDir dir("../Output");
-    if (!dir.exists())
-    {
-        QMessageBox::critical(this, "dd","Cannot find the example directory");
-    }
-    else
-    {
-        if (!QFile(sessionFileName).exists()) {
-          QMessageBox::critical(this, "dd","The file does not exist"); // если файл не найден, то выводим предупреждение и завершаем работу программы
-        }
 
+    if (sessionFileName.isEmpty())
+    {
+        return;
     }
+
     QFile file(QString("../save/project.xml"));
     file.open(QIODevice::WriteOnly);
 
@@ -9168,9 +9165,9 @@ void MainWindow::save_file()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
-    //ui->widget_2->ui->plot->save();
+    ui->widget_2->ui->plot->save();
 
-    JlCompress::compressDir(QString("../Output/") + sessionFileName, "../save/");
+    JlCompress::compressDir(QString("../Output/") + sessionFileName + ".imview", "../save/");
     ui->save_file->setEnabled(false);
 }
 

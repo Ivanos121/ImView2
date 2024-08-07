@@ -114,8 +114,8 @@ private slots:
     void onButtonClicked2();
     void titleChanged(const QString &title);
     void on_tabWidget_currentChanged(int index);
-    void on_action_5_triggered();
-    void on_action_9_triggered();
+    void identf_pusk();
+    void identf_stop();
     void enter_dannie();
     void on_action_15_triggered();
     void save_dannie();

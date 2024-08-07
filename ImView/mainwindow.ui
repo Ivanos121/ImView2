@@ -1856,7 +1856,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1499</width>
-     <height>26</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -1881,7 +1881,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="menu_6"/>
     <addaction name="separator"/>
     <addaction name="print_preview"/>
-    <addaction name="action_3"/>
+    <addaction name="print_file"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -1917,8 +1917,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>&amp;Идентификация параметров</string>
     </property>
-    <addaction name="action_5"/>
-    <addaction name="action_9"/>
+    <addaction name="identf_pusk"/>
+    <addaction name="identf_stop"/>
     <addaction name="separator"/>
     <addaction name="action_14"/>
    </widget>
@@ -1963,7 +1963,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="save_as_file"/>
    <addaction name="separator"/>
    <addaction name="print_preview"/>
-   <addaction name="action_3"/>
+   <addaction name="print_file"/>
    <addaction name="separator"/>
    <addaction name="actionundo"/>
    <addaction name="actionredo"/>
@@ -1972,8 +1972,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="actioncopy"/>
    <addaction name="actionpaste"/>
    <addaction name="separator"/>
-   <addaction name="action_5"/>
-   <addaction name="action_9"/>
+   <addaction name="identf_pusk"/>
+   <addaction name="identf_stop"/>
    <addaction name="separator"/>
    <addaction name="action_31"/>
    <addaction name="action_32"/>
@@ -2050,7 +2050,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="print_file">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/document-print.svg</normaloff>:/system_icons/data/img/system_icons/document-print.svg</iconset>
@@ -2158,7 +2158,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+R</string>
    </property>
   </action>
-  <action name="action_5">
+  <action name="identf_pusk">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/media-playback-start_2.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start_2.svg</iconset>
@@ -2170,7 +2170,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Запуск предварительной идентификации параметров схемы замещения</string>
    </property>
   </action>
-  <action name="action_9">
+  <action name="identf_stop">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/media-playback-stop_2.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop_2.svg</iconset>
