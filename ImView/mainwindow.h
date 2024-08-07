@@ -120,9 +120,9 @@ private slots:
     void on_action_15_triggered();
     void save_dannie();
     void delete_dannie();
-    void on_action_20_triggered();
-    void on_action_21_triggered();
-    void on_action_22_triggered();
+    void electromagn_start();
+    void electromagn_stop();
+    void kalibr_osc();
     void on_action_23_triggered();
     void on_action_24_triggered();
     void on_action_25_triggered();
@@ -250,7 +250,7 @@ public:
     QProgressBar *progress;
     QWebEngineView * view;
     QLabel *statusbar_label, *statusbar_label_2, *statusbar_label_3, *statusbar_label_4,
-         *statusbar_label_5, *statusbar_label_6, *statusbar_label_7, *statusbar_label_8;
+           *statusbar_label_5, *statusbar_label_6, *statusbar_label_7, *statusbar_label_8;
 
     QTreeWidgetItem *treeItem, *child3, *child, *child2;
     QTreeWidgetItem *currentItem;

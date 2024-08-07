@@ -1285,8 +1285,8 @@ void electromagn::on_pushButton_2_clicked()
 
 void electromagn::bvasFailureSlot()
 {
-    wf->ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
-    wf->ui->action_21->setEnabled(false);
+    wf->ui->electromagn_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
+    wf->ui->electromagn_stop->setEnabled(false);
     QMessageBox::critical(this, tr("Ошибка!"), tr("Ошибка подключения BVAS!"));
 }
 

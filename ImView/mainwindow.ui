@@ -1896,7 +1896,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>&amp;Инструменты</string>
     </property>
-    <addaction name="action_15"/>
+    <addaction name="settings"/>
     <addaction name="action_23"/>
    </widget>
    <widget class="QMenu" name="menu_2">
@@ -1920,7 +1920,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="identf_pusk"/>
     <addaction name="identf_stop"/>
     <addaction name="separator"/>
-    <addaction name="action_14"/>
+    <addaction name="identf_nastr"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
@@ -1934,9 +1934,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>&amp;Энергетические показатели</string>
     </property>
-    <addaction name="action_20"/>
-    <addaction name="action_21"/>
-    <addaction name="action_22"/>
+    <addaction name="electromagn_start"/>
+    <addaction name="electromagn_stop"/>
+    <addaction name="kalibr_osc"/>
    </widget>
    <addaction name="menufile"/>
    <addaction name="menu_2"/>
@@ -1978,11 +1978,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="action_31"/>
    <addaction name="action_32"/>
    <addaction name="separator"/>
-   <addaction name="action_20"/>
-   <addaction name="action_21"/>
-   <addaction name="action_22"/>
+   <addaction name="electromagn_start"/>
+   <addaction name="electromagn_stop"/>
+   <addaction name="kalibr_osc"/>
    <addaction name="separator"/>
-   <addaction name="action_15"/>
+   <addaction name="settings"/>
    <addaction name="action_25"/>
    <addaction name="action_23"/>
    <addaction name="action_24"/>
@@ -2179,7 +2179,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Стоп</string>
    </property>
   </action>
-  <action name="action_14">
+  <action name="identf_nastr">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
@@ -2188,7 +2188,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Настройки</string>
    </property>
   </action>
-  <action name="action_15">
+  <action name="settings">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/icons/data/img/icons/NP_24.svg</normaloff>:/icons/data/img/icons/NP_24.svg</iconset>
@@ -2236,7 +2236,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Ctrl+U</string>
    </property>
   </action>
-  <action name="action_20">
+  <action name="electromagn_start">
    <property name="checkable">
     <bool>false</bool>
    </property>
@@ -2251,7 +2251,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Запуск</string>
    </property>
   </action>
-  <action name="action_21">
+  <action name="electromagn_stop">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/media-playback-stop.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop.svg</iconset>
@@ -2260,7 +2260,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Останов</string>
    </property>
   </action>
-  <action name="action_22">
+  <action name="kalibr_osc">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>

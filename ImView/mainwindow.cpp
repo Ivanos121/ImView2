@@ -133,7 +133,6 @@ MainWindow::MainWindow(QWidget *parent)
     settings.setValue( "jz", 0);
     settings.setValue( "number", 0);
 
-    //поиск информации
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
     connect(ui->widget_12->ui->pushButton_7,&QPushButton::clicked, this, &MainWindow::zakr);
     connect(ui->widget_12->ui->pushButton, &QPushButton::pressed, this, &MainWindow::poisk);
@@ -141,6 +140,27 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_12->ui->pushButton_2, &QPushButton::pressed, this, &MainWindow::rename);
     connect(ui->widget_12->ui->pushButton_6, &QPushButton::pressed, this, &MainWindow::rename_all);
     connect(ui->widget_12->ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::tab_open);
+    connect(ui->create_new, &QAction::triggered, this, &MainWindow::create_new);
+    connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
+    connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
+    connect(ui->save_as_file, &QAction::triggered, this, &MainWindow::save_as_file);
+    connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
+    connect(ui->print_file, &QAction::triggered, this, &MainWindow::pagePrint);
+    connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
+    connect(ui->pushButton_8, &QPushButton::clicked, this, &MainWindow::save_graphs);
+    connect(ui->pushButton_9, &QPushButton::clicked, this, &MainWindow::load_graphs);
+    connect(ui->pushButton_10, &QPushButton::clicked, this, &MainWindow::read_klass_izol);
+    connect(ui->settings, &QAction::triggered, this, &MainWindow::onButtonClicked);
+    connect(ui->settings, &QAction::triggered, this, &MainWindow::settings);
+    connect(ui->action_23, &QAction::triggered, this, &MainWindow::onButtonClicked2);
+    connect(ui->enter_dannie, &QAction::triggered, this, &MainWindow::enter_dannie);
+    connect(ui->save_dannie, &QAction::triggered, this, &MainWindow::save_dannie);
+    connect(ui->delete_dannie, &QAction::triggered, this, &MainWindow::delete_dannie);
+    connect(ui->identf_pusk, &QAction::triggered, this, &MainWindow::identf_pusk);
+    connect(ui->identf_stop, &QAction::triggered, this, &MainWindow::identf_stop);
+    connect(ui->electromagn_start, &QAction::triggered, this, &MainWindow::electromagn_start);
+    connect(ui->electromagn_stop, &QAction::triggered, this, &MainWindow::electromagn_stop);
+    connect(ui->kalibr_osc, &QAction::triggered, this, &MainWindow::kalibr_osc);
 
     //createUndoView();
 
@@ -162,20 +182,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_6->ui->plot->margin_left = 100;
     ui->widget_6->ui->plot->reset();
 
-    connect(ui->create_new, &QAction::triggered, this, &MainWindow::create_new);
-    connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
-    connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
-    connect(ui->save_as_file, &QAction::triggered, this, &MainWindow::save_as_file);
-    connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
-    connect(ui->print_file, &QAction::triggered, this, &MainWindow::pagePrint);
-    connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
-
-    connect(ui->pushButton_8, &QPushButton::clicked, this, &MainWindow::save_graphs);
-    connect(ui->pushButton_9, &QPushButton::clicked, this, &MainWindow::load_graphs);
-
-    connect(ui->pushButton_10, &QPushButton::clicked, this, &MainWindow::read_klass_izol);
-
-
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
@@ -191,14 +197,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 
-
     showMaximized();
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::TimeOut);
 
     ui->identf_stop->setEnabled(false);
-    ui->action_21->setEnabled(false);
+    ui->electromagn_stop->setEnabled(false);
     ui->action_32->setEnabled(false);
 
     ui->pushButton_5->setCheckable(true);
@@ -207,15 +212,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_5, &QPushButton::clicked, this, &MainWindow::on_pushButton_5_clicked);
 
     ui->stackedWidget->setCurrentIndex(0);
-
-    connect(ui->action_15, &QAction::triggered, this, &MainWindow::onButtonClicked);
-    connect(ui->action_23, &QAction::triggered, this, &MainWindow::onButtonClicked2);
-    connect(ui->enter_dannie, &QAction::triggered, this, &MainWindow::enter_dannie);
-    connect(ui->save_dannie, &QAction::triggered, this, &MainWindow::save_dannie);
-    connect(ui->delete_dannie, &QAction::triggered, this, &MainWindow::delete_dannie);
-    connect(ui->identf_pusk, &QAction::triggered, this, &MainWindow::identf_pusk);
-    connect(ui->identf_stop, &QAction::triggered, this, &MainWindow::identf_stop);
-
 
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
@@ -3098,7 +3094,7 @@ void MainWindow::identf_stop()
     ui->widget_2->dataSource->stop();
 }
 
-void MainWindow::on_action_20_triggered()
+void MainWindow::electromagn_start()
 {
     isNablLaunched = true;
     ui->tabWidget->show();
@@ -3114,8 +3110,8 @@ void MainWindow::on_action_20_triggered()
     base.L1 = ui->lineEdit_10->text().toDouble();
     base.L2 = ui->lineEdit_9->text().toDouble();
     base.Lm = ui->lineEdit_8->text().toDouble();
-    ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-    ui->action_21->setEnabled(true);
+    ui->electromagn_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+    ui->electromagn_stop->setEnabled(true);
 
     if(item70->checkState() == Qt::Checked)
     {
@@ -3220,11 +3216,11 @@ void MainWindow::on_action_20_triggered()
     //ui->widget_5->ui->widget_4->startTeplo();
 }
 
-void MainWindow::on_action_21_triggered()
+void MainWindow::electromagn_stop()
 {
     isNablLaunched = false;
-    ui->action_20->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
-    ui->action_21->setEnabled(false);
+    ui->electromagn_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
+    ui->electromagn_stop->setEnabled(false);
     ui->widget_5->ui->widget_4->stopTeplo();
     ui->widget_3->stop();
 }
@@ -3248,7 +3244,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 //        setWindowTitle(currentTabText + "@" + QString(base5) + QString(" - Konfiguretor"));
 //    }
 //}
-void MainWindow::on_action_22_triggered()
+void MainWindow::kalibr_osc()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
     kalibr=new Kalibr(this);
