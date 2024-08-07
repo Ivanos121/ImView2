@@ -150,9 +150,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_8, &QPushButton::clicked, this, &MainWindow::save_graphs);
     connect(ui->pushButton_9, &QPushButton::clicked, this, &MainWindow::load_graphs);
     connect(ui->pushButton_10, &QPushButton::clicked, this, &MainWindow::read_klass_izol);
-    connect(ui->settings, &QAction::triggered, this, &MainWindow::onButtonClicked);
-    connect(ui->settings, &QAction::triggered, this, &MainWindow::settings);
-    connect(ui->action_23, &QAction::triggered, this, &MainWindow::onButtonClicked2);
+    connect(ui->nastroiki, &QAction::triggered, this, &MainWindow::onButtonClicked);
+    connect(ui->nastroiki, &QAction::triggered, this, &MainWindow::nastroiki);
+    connect(ui->nastr_graph, &QAction::triggered, this, &MainWindow::onButtonClicked2);
+    connect(ui->nastr_graph, &QAction::triggered, this, &MainWindow::nastr_graph);
     connect(ui->enter_dannie, &QAction::triggered, this, &MainWindow::enter_dannie);
     connect(ui->save_dannie, &QAction::triggered, this, &MainWindow::save_dannie);
     connect(ui->delete_dannie, &QAction::triggered, this, &MainWindow::delete_dannie);
@@ -161,6 +162,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->electromagn_start, &QAction::triggered, this, &MainWindow::electromagn_start);
     connect(ui->electromagn_stop, &QAction::triggered, this, &MainWindow::electromagn_stop);
     connect(ui->kalibr_osc, &QAction::triggered, this, &MainWindow::kalibr_osc);
+    connect(ui->actionresult, &QAction::triggered, this, &MainWindow::actionresult);
+    connect(ui->actionresultidentf, &QAction::triggered, this, &MainWindow::actionresultidentf);
+    connect(ui->actionteplident_start, &QAction::triggered, this, &MainWindow::actionteplident_start);
+    connect(ui->actionteplident_stop, &QAction::triggered, this, &MainWindow::actionteplident_stop);
+    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::actionExit);
+    connect(ui->actionabout, &QAction::triggered, this, &MainWindow::actionabout);
+    connect(ui->actionhelp, &QAction::triggered, this, &MainWindow::actionhelp);
+    //connect(ui->actionclose,&QPushButton::clicked, this, &AboutDialog->actionclose);
+
 
     //createUndoView();
 
@@ -204,7 +214,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->identf_stop->setEnabled(false);
     ui->electromagn_stop->setEnabled(false);
-    ui->action_32->setEnabled(false);
+    ui->actionteplident_stop->setEnabled(false);
 
     ui->pushButton_5->setCheckable(true);
     ui->pushButton_5->setChecked(true);
@@ -2954,7 +2964,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionabout_triggered()
+void MainWindow::actionabout()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
     rsc= new AboutDialog(this);
@@ -2967,12 +2977,12 @@ void MainWindow::on_actionabout_triggered()
                     screen->geometry()));
 }
 
-void MainWindow::on_actionExit_triggered()
+void MainWindow::actionExit()
 {
     close();
 }
 
-void MainWindow::on_actionhelp_triggered()
+void MainWindow::actionhelp()
 {
     view = new QWebEngineView;
     connect(view, &QWebEngineView::titleChanged, this, &MainWindow::titleChanged);
@@ -3225,25 +3235,12 @@ void MainWindow::electromagn_stop()
     ui->widget_3->stop();
 }
 
-void MainWindow::on_tabWidget_currentChanged(int index)
+void MainWindow::currentChanged(int index)
 {
     QString currentTabText = ui->tabWidget->tabText(index);
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
 }
 
-//void MainWindow::on_tabWidget_currentChanged(int index)
-//{
-//    QString currentTabText = ui->tabWidget->tabText(index);
-//    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor"));
-//    if(sdb.isOpen())
-//    {
-//        QFileInfo fi5(fileName);
-//        QString base5 = fi5.baseName();
-//        ui->label_2->setText(base5);
-//        QString currentTabText = ui->tabWidget->tabText(index);
-//        setWindowTitle(currentTabText + "@" + QString(base5) + QString(" - Konfiguretor"));
-//    }
-//}
 void MainWindow::kalibr_osc()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -3257,7 +3254,7 @@ void MainWindow::kalibr_osc()
     screen->geometry()));
 }
 
-void MainWindow::on_action_23_triggered()
+void MainWindow::nastr_graph()
 {
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-next.svg");
     QIcon ButtonIcon_2(pixmap);
@@ -3273,7 +3270,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void AboutDialog::on_pushButton_clicked()
+void AboutDialog::actionclose()
 {
     close();
 }
@@ -3310,74 +3307,8 @@ void MainWindow::translator()
     qtLanguageTranslator.load("QtLanguage_" + lokal);   // Загружаем перевод
     qApp->installTranslator(&qtLanguageTranslator);
 }
-/*
-void Settings::on_pushButton_clicked()
-{
 
-    if(ui->comboBox->currentText() == "Русский язык")
-    {
-        ui->comboBox->setCurrentIndex(0);
-        wf->translate_ru();
-        QSettings settings( "BRU", "IM View");
-            settings.beginGroup( "language interface" );
-            settings.setValue( "QtLanguage_", "ru_RU");
-        settings.endGroup();
-
-    }
-    else if(ui->comboBox->currentText()  == "English language")
-    {
-        ui->comboBox->setCurrentIndex(1);
-        wf->translate_en();
-        QSettings settings( "BRU", "IM View");
-            settings.beginGroup( "language interface" );
-            settings.setValue( "QtLanguage_", "en_US");
-        settings.endGroup();
-
-    }
-    close();
-}
-
-void Settings::on_pushButton_2_clicked()
-{
-    if(ui->comboBox->currentText() == "Русский язык")
-    {
-        ui->comboBox->setCurrentIndex(0);
-        wf->translate_ru();
-        QSettings settings( "BRU", "IM View");
-            settings.beginGroup( "language interface" );
-            settings.setValue( "QtLanguage_", "ru_RU");
-        settings.endGroup();
-
-    }
-    else if(ui->comboBox->currentText()  == "English language")
-    {
-        ui->comboBox->setCurrentIndex(1);
-        wf->translate_en();
-        QSettings settings( "BRU", "IM View");
-            settings.beginGroup( "language interface" );
-            settings.setValue( "QtLanguage_", "en_US");
-        settings.endGroup();
-
-    }
-    ui->pushButton_2->setEnabled(false);
-}
-
-void Settings::on_pushButton_3_clicked()
-{
-   close();
-}
-
-void Settings::on_pushButton_4_clicked()
-{
-    ui->label_9->setText(ui->comboBox->currentText());
-}
-
-void Settings::on_listWidget_itemSelectionChanged()
-{
-    ui->stackedWidget->setCurrentIndex(ui->listWidget->currentRow());
-}*/
-
-void MainWindow::on_action_15_triggered()
+void MainWindow::nastroiki()
 {
     QPixmap pixmap(":/system_icons//data/img/system_icons/go-next.svg");
     QIcon ButtonIcon_2(pixmap);
@@ -4374,13 +4305,13 @@ void MainWindow::onButtonClicked2()
     ui->stackedWidget->setCurrentIndex( 6 );
 }
 
-void MainWindow::on_action_24_triggered()
+void MainWindow::actionresult()
 {
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex( 3 );
 }
 
-void MainWindow::on_action_25_triggered()
+void MainWindow::actionresultidentf()
 {
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex( 2 );
@@ -8903,7 +8834,7 @@ SettinsKanals::SettinsKanals(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void MainWindow::on_action_31_triggered()
+void MainWindow::actionteplident_start()
 {
     isNablLaunched = true;
     ui->tabWidget->show();
@@ -8912,8 +8843,8 @@ void MainWindow::on_action_31_triggered()
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
     ui->pushButton_5->setIcon(ButtonIcon_1);
-    ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-    ui->action_32->setEnabled(true);
+    ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+    ui->actionteplident_stop->setEnabled(true);
 
     base.R1 = ui->lineEdit_12->text().toDouble();
     base.R2 = ui->lineEdit_11->text().toDouble();
@@ -8959,11 +8890,11 @@ void MainWindow::on_action_31_triggered()
     ui->tableWidget_16->item(13,2)->setText(QString::number(M,'f',3));
 }
 
-void MainWindow::on_action_32_triggered()
+void MainWindow::actionteplident_stop()
 {
     isNablLaunched = false;
-    ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
-    ui->action_32->setEnabled(false);
+    ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
+    ui->actionteplident_stop->setEnabled(false);
     timer->stop();
     ui->widget_3->stop();
 }
@@ -8991,8 +8922,8 @@ void MainWindow::TimeOut()
         isNablLaunched = false;
         timer->stop();
         ui->widget_3->stop();
-        ui->action_31->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
-        ui->action_32->setEnabled(false);
+        ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
+        ui->actionteplident_stop->setEnabled(false);
         QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
         ui->stackedWidget->show();
         ui->stackedWidget->setCurrentIndex(8);
@@ -11372,7 +11303,7 @@ void MainWindow::read_klass_izol()
 
 void MainWindow::color_treview(const QModelIndex & index, const QStandardItemModel * model2)
 {
-    int rows = model2->rowCount(index);
+   // int rows = model2->rowCount(index);
     int cols = model2->columnCount(index);
 
     for (int i = 0; i < cols; ++i)

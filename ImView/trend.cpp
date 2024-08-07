@@ -13,9 +13,7 @@
 #include "ui_mainwindow.h"
 #include "ui_draw_poper.h"
 #include "ui_draw_line.h"
-#include "ui_vent_tract.h"
 #include "ui_teplovent.h"
-#include "ui_vent_model.h"
 
 int position_2;
 double t_max;

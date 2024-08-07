@@ -37,7 +37,7 @@ Q_SIGNALS:
     void timeout(QPrivateSignal);
 
 private slots:
-    void on_pushButton_clicked();
+    void actionclose();
 
 private:
     Ui::aboutDialog *ui;
@@ -107,27 +107,27 @@ private:
     QString strippedName(const QString &fullFileName);
     void loadFile(const QString &fileName);
 private slots:
-    void on_actionabout_triggered();
-    void on_actionExit_triggered();
-    void on_actionhelp_triggered();
+    void actionabout();
+    void actionExit();
+    void actionhelp();
     void onButtonClicked();
     void onButtonClicked2();
     void titleChanged(const QString &title);
-    void on_tabWidget_currentChanged(int index);
+    void currentChanged(int index);
     void identf_pusk();
     void identf_stop();
     void enter_dannie();
-    void on_action_15_triggered();
+    void nastroiki();
     void save_dannie();
     void delete_dannie();
     void electromagn_start();
     void electromagn_stop();
     void kalibr_osc();
-    void on_action_23_triggered();
-    void on_action_24_triggered();
-    void on_action_25_triggered();
-    void on_action_31_triggered();
-    void on_action_32_triggered();
+    void nastr_graph();
+    void actionresult();
+    void actionresultidentf();
+    void actionteplident_start();
+    void actionteplident_stop();
 
     void open_file();
     void create_new();
