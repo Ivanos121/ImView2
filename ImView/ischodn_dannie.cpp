@@ -47,11 +47,18 @@ ischodn_dannie::ischodn_dannie(QWidget *parent) :
     ui->tableWidget->setItem(7, 1, new QTableWidgetItem());
     ui->tableWidget->setItem(8, 1, new QTableWidgetItem());
 
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        if (ui->tableWidget->item(row,0) != 0)
+        {
+            ui->tableWidget->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
 
-//    QPalette p99=ui->tableWidget->palette();
-//    p99.setColor(QPalette::Base, QColor(225, 255, 255));
-//    p99.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
-//    ui->tableWidget->setPalette(p99);
+    QPalette p_17=ui->tableWidget->palette();
+    p_17.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_17.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget->setPalette(p_17);
 }
 
 ischodn_dannie::~ischodn_dannie()

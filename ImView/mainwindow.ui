@@ -80,7 +80,7 @@
            <number>-3</number>
           </property>
           <property name="alternatingRowColors">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="animated">
            <bool>true</bool>

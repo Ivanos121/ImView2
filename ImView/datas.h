@@ -7,7 +7,8 @@
 #include "ischodn_dannie.h"
 #include <QButtonGroup>
 #include <QDialog>
-#include "mainwindow.h"
+
+class MainWindow;
 
 namespace Ui {
 class datas;

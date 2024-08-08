@@ -36,6 +36,7 @@
 #include "settings.h"
 #include "poisk.h"
 #include "intens_star_izol.h"
+#include "pushbuttondelegate.h"
 
 #include <QStyle>
 #include <QDesktopWidget>
@@ -169,7 +170,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::actionExit);
     connect(ui->actionabout, &QAction::triggered, this, &MainWindow::actionabout);
     connect(ui->actionhelp, &QAction::triggered, this, &MainWindow::actionhelp);
-    //connect(ui->actionclose,&QPushButton::clicked, this, &AboutDialog->actionclose);
+
 
 
     //createUndoView();
@@ -251,12 +252,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
     ui->treeView->setStyleSheet(
-                          //  "*{"
-                          //  "background: rgb(255, 255, 222);"
-                          //  "}"
-                          //  "*{"
-                          //  "alternate-background-color: rgb(255, 255, 191);"
-                          // "}"
+                            "*{"
+                            "background: rgb(255, 255, 222);"
+                            "}"
+                            "*{"
+                            "alternate-background-color: rgb(255, 255, 191);"
+                           "}"
                             "*::item{"
                             "    border-top-width: 0px;"
                             "    border-right-width: 1px;"
@@ -971,9 +972,6 @@ MainWindow::MainWindow(QWidget *parent)
    // ui->treeView->setPalette(p99);
 
     ui->treeView->setRootIsDecorated(true);
-
-    ui->treeView->setAlternatingRowColors(true);
-    ui->treeView->setStyleSheet("{alternate-background-color: red; background: green;}");
 
     //color_treview(model2->index(0,0), model2);
 
@@ -2967,7 +2965,8 @@ MainWindow::~MainWindow()
 void MainWindow::actionabout()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
-    rsc= new AboutDialog(this);
+    rsc = new AboutDialog(this);
+    rsc->wf = this;
     rsc->exec();
     rsc->setGeometry(
                 QStyle::alignedRect(
@@ -3261,18 +3260,6 @@ void MainWindow::nastr_graph()
     ui->pushButton_5->setIcon(ButtonIcon_2);
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(6);
-}
-
-AboutDialog::AboutDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::aboutDialog)
-{
-    ui->setupUi(this);
-}
-
-void AboutDialog::actionclose()
-{
-    close();
 }
 
 void MainWindow::changeEvent(QEvent *event)

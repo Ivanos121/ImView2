@@ -2,13 +2,13 @@ QT       += core gui sql webenginewidgets serialport printsupport svg xml networ
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
-CONFIG += c++11 debug
+CONFIG += c++20 debug
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS QCUSTOMPLOT_USE_OPENGL
+#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS QCUSTOMPLOT_USE_OPENGL
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    aboutdialog.cpp \
     archiverchannel.cpp \
     base.cpp \
     bvasthread.cpp \
@@ -58,6 +59,7 @@ SOURCES += \
     nabludatel.cpp \
     nabludatel_part.cpp \
     nastroiki.cpp \
+    obr_sviaz_tepl.cpp \
     ostat_resurs.cpp \
     paintdelegate.cpp \
     plot.cpp \
@@ -76,6 +78,7 @@ SOURCES += \
     zerocorrector.cpp
 
 HEADERS += \
+    aboutdialog.h \
     archiverchannel.h \
     base.h \
     base_tepl.h \
@@ -121,6 +124,7 @@ HEADERS += \
     nabludatel_base.h \
     nabludatel_part.h \
     nastroiki.h \
+    obr_sviaz_tepl.h \
     ostat_resurs.h \
     paintdelegate.h \
     plot.h \
@@ -141,6 +145,7 @@ HEADERS += \
 
 FORMS += \
     about_dialog.ui \
+    aboutdialog.ui \
     datas.ui \
     draw_line.ui \
     draw_poper.ui \

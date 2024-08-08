@@ -1,23 +1,23 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include "kalibr.h"
+#include <QMainWindow>
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QWebEngineView>
 #include <QTreeWidgetItem>
 #include <QStandardItem>
+
 #include "settings.h"
 #include "datas.h"
 #include "nastroiki.h"
-
 #include "qundostack.h"
 #include "qundoview.h"
-#include "ui_about_dialog.h"
-#include "pushbuttondelegate.h"
 //#include "ui_graph_Settings.h"
 #include "ui_settinsKanals.h"
+#include "aboutdialog.h"
+//#include "ui_aboutdialog.h"
 
 //#include "base_tepl.h"
 #include <QProgressBar>
@@ -26,45 +26,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class AboutDialog : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit AboutDialog(QWidget *parent = nullptr);
-
-Q_SIGNALS:
-    void timeout(QPrivateSignal);
-
-private slots:
-    void actionclose();
-
-private:
-    Ui::aboutDialog *ui;
-};
-
 class MainWindow;
-
-/*class Settings : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit Settings(QWidget *parent = nullptr);
-
-private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
-    void on_listWidget_itemSelectionChanged();
-    void on_pushButton_4_clicked();
-
-public:
-    Ui::settings *ui;
-    QTranslator qtLanguageTranslator;
-    MainWindow *wf;
-
-};*/
 
 class SettinsKanals : public QDialog
 {
@@ -280,7 +242,7 @@ public:
     QStandardItem *item121,*item122,*item123,*item124,*item125,*item126,*item127,*item128;
     QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;
     QStandardItem *item137,*item138,*item139,*item140,*item141,*item142,*item143,*item144;
-    void changeEvent(QEvent *event);
+    void changeEvent(QEvent *event) override;
 };
 
 #endif // MAINWINDOW_H
