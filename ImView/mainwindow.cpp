@@ -107,6 +107,9 @@ MainWindow::MainWindow(QWidget *parent)
     , undoOperation(false)
 {
     ui->setupUi(this);
+    ui->tabWidget->hide();
+    ui->stackedWidget->hide();
+    ui->switch_regim_upr->hide();
 
     undoStack = new QUndoStack(this);
     undoStack->setUndoLimit(100);
@@ -142,7 +145,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_12->ui->pushButton_2, &QPushButton::pressed, this, &MainWindow::rename);
     connect(ui->widget_12->ui->pushButton_6, &QPushButton::pressed, this, &MainWindow::rename_all);
     connect(ui->widget_12->ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::tab_open);
-    connect(ui->create_new, &QAction::triggered, this, &MainWindow::create_new);
+    connect(ui->create_new_session, &QAction::triggered, this, &MainWindow::create_new);
     connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
     connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
     connect(ui->save_as_file, &QAction::triggered, this, &MainWindow::save_as_file);
@@ -177,8 +180,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionundo, &QAction::triggered, this, &MainWindow::actionundo);
     connect(ui->actionredo, &QAction::triggered, this, &MainWindow::actionredo);
     connect(ui->actioncut, &QAction::triggered, this, &MainWindow::actioncut);
-
-
+    connect(ui->action_close_session, &QAction::triggered, this, &MainWindow::action_close_session);
 
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -259,7 +261,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     QList<QStandardItem*> items1;
-    item1 = new QStandardItem(tr("Общее название сеанса"));
+    item1 = new QStandardItem(tr("Общее настройки сессии"));
     QString w0=item1->text();
     item1->setToolTip(w0);
     item2 = new QStandardItem();
@@ -277,7 +279,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     QList<QStandardItem*> items2;
-    item3 = new QStandardItem(tr("Название сеанса"));
+    item3 = new QStandardItem(tr("Название сессии"));
     item3->setEditable(false);
     QString w1=item3->text();
     item3->setToolTip(w1);
@@ -392,8 +394,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item66);
     item1->appendRow(items2);
     items2.clear();
-    item65->setBackground(QColor(225, 255, 255));
-    item66->setBackground(QColor(225, 255, 255));
+    item65->setBackground(QColor(255, 255, 222));
+    item66->setBackground(QColor(255, 255, 222));
 
     item67 = new QStandardItem(tr("Данные идентификации"));
     item67->setEditable(false);
@@ -407,8 +409,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item68);
     item65->appendRow(items2);
     items2.clear();
-    item67->setBackground(QColor(200, 255, 255));
-    item68->setBackground(QColor(200, 255, 255));
+    item67->setBackground(QColor(255, 255, 191));
+    item68->setBackground(QColor(255, 255, 191));
 
     item69 = new QStandardItem(tr("Данные электромагнитных процессов"));
     item69->setEditable(false);
@@ -422,8 +424,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item70);
     item65->appendRow(items2);
     items2.clear();
-    item69->setBackground(QColor(225, 255, 255));
-    item70->setBackground(QColor(225, 255, 255));
+    item69->setBackground(QColor(255, 255, 222));
+    item70->setBackground(QColor(255, 255, 222));
 
     item71 = new QStandardItem(tr("Данные тепловых процессов"));
     item71->setEditable(false);
@@ -437,8 +439,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item72);
     item65->appendRow(items2);
     items2.clear();
-    item71->setBackground(QColor(200, 255, 255));
-    item72->setBackground(QColor(200, 255, 255));
+    item71->setBackground(QColor(255, 255, 191));
+    item72->setBackground(QColor(255, 255, 191));
 
     item73 = new QStandardItem(tr("Данные вентиляционных процессов"));
     item73->setEditable(false);
@@ -452,8 +454,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item74);
     item65->appendRow(items2);
     items2.clear();
-    item73->setBackground(QColor(225, 255, 255));
-    item74->setBackground(QColor(225, 255, 255));
+    item73->setBackground(QColor(255, 255, 222));
+    item74->setBackground(QColor(255, 255, 222));
 
     item75 = new QStandardItem(tr("Данные прогноза температур"));
     item75->setEditable(false);
@@ -467,8 +469,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item76);
     item65->appendRow(items2);
     items2.clear();
-    item75->setBackground(QColor(200, 255, 255));
-    item76->setBackground(QColor(200, 255, 255));
+    item75->setBackground(QColor(255, 255, 191));
+    item76->setBackground(QColor(255, 255, 191));;
 
     item77 = new QStandardItem(tr("Данные остаточного теплового ресурса"));
     item77->setEditable(false);
@@ -482,8 +484,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item78);
     item65->appendRow(items2);
     items2.clear();
-    item77->setBackground(QColor(225, 255, 255));
-    item78->setBackground(QColor(225, 255, 255));
+    item77->setBackground(QColor(255, 255, 222));
+    item78->setBackground(QColor(255, 255, 222));
 
     QList<QStandardItem*> items3;
     item9 = new QStandardItem(tr("Идентификация параметров схемы замещения"));
@@ -502,6 +504,8 @@ MainWindow::MainWindow(QWidget *parent)
     item10->setToolTip(w32);
     QFont newFont2("SansSerif", 10, QFont::Bold,false);
     item9->setFont(newFont2);
+    item9->setBackground(QColor(200, 255, 255));
+    item10->setBackground(QColor(200, 255, 255));
 
     QList<QStandardItem*> items4;
     item13 = new QStandardItem(tr("Режим расчета"));
@@ -515,6 +519,8 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item14);
     item9->appendRow(items4);
     items4.clear();
+    item13->setBackground(QColor(225, 255, 255));
+    item14->setBackground(QColor(225, 255, 255));
 
     item93 = new QStandardItem(tr("Настроечный коэффициент gd="));
     item93->setEditable(false);
@@ -530,6 +536,8 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item94);
     item9->appendRow(items4);
     items4.clear();
+    item93->setBackground(QColor(200, 255, 255));
+    item94->setBackground(QColor(200, 255, 255));
 
     item95 = new QStandardItem(tr("Настроечный коэффициент ki="));
     item95->setEditable(false);
@@ -545,6 +553,8 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item96);
     item9->appendRow(items4);
     items4.clear();
+    item95->setBackground(QColor(225, 255, 255));
+    item96->setBackground(QColor(225, 255, 255));
 
     item97 = new QStandardItem(tr("Настроечный коэффициент gb="));
     item97->setEditable(false);
@@ -560,6 +570,8 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item98);
     item9->appendRow(items4);
     items4.clear();
+    item97->setBackground(QColor(200, 255, 255));
+    item98->setBackground(QColor(200, 255, 255));
 
     item99 = new QStandardItem(tr("Настроечный коэффициент kpsi="));
     item99->setEditable(false);
@@ -575,6 +587,8 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item100);
     item9->appendRow(items4);
     items4.clear();
+    item99->setBackground(QColor(225, 255, 255));
+    item100->setBackground(QColor(225, 255, 255));
 
     item101 = new QStandardItem(tr("Настроечный коэффициент gp="));
     item101->setEditable(false);
@@ -590,6 +604,8 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item102);
     item9->appendRow(items4);
     items4.clear();
+    item101->setBackground(QColor(200, 255, 255));
+    item102->setBackground(QColor(200, 255, 255));
 
     item103 = new QStandardItem(tr("Настроечный коэффициент gpsi="));
     item103->setEditable(false);
@@ -605,6 +621,8 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item104);
     item9->appendRow(items4);
     items4.clear();
+    item103->setBackground(QColor(225, 255, 255));
+    item104->setBackground(QColor(225, 255, 255));
 
     QList<QStandardItem*> items5;
     item17 = new QStandardItem(tr("Электромагнитная модель"));
@@ -621,6 +639,8 @@ MainWindow::MainWindow(QWidget *parent)
     item18->setEditable(false);
     QFont newFont3("SansSerif", 10, QFont::Bold,false);
     item17->setFont(newFont3);
+    item17->setBackground(QColor(250, 235, 215));
+    item18->setBackground(QColor(250, 235, 215));
 
     QList<QStandardItem*> items6;
     item19 = new QStandardItem(tr("Pежим работы двигателя"));
@@ -634,6 +654,8 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item20);
     item17->appendRow(items6);
     items6.clear();
+    item19->setBackground(QColor(252, 216, 191));
+    item20->setBackground(QColor(252, 216, 191));
 
     item21 = new QStandardItem(tr("Время цикла, с:"));
     item21->setEditable(false);
@@ -646,6 +668,8 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item22);
     item17->appendRow(items6);
     items6.clear();
+    item21->setBackground(QColor(250, 235, 215));
+    item22->setBackground(QColor(250, 235, 215));
 
     item23 = new QStandardItem(tr("Время работы, с:"));
     item23->setEditable(false);
@@ -658,6 +682,8 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item24);
     item17->appendRow(items6);
     items6.clear();
+    item23->setBackground(QColor(252, 216, 191));
+    item24->setBackground(QColor(252, 216, 191));
 
     item91 = new QStandardItem(tr("Выбор системы электропривода"));
     item91->setEditable(false);
@@ -670,6 +696,8 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item92);
     item17->appendRow(items6);
     items6.clear();
+    item91->setBackground(QColor(250, 235, 215));
+    item92->setBackground(QColor(250, 235, 215));
 
     item129 = new QStandardItem(tr("Ввод напряжения питания двигателя"));
     item129->setEditable(false);
@@ -682,6 +710,8 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item130);
     item17->appendRow(items6);
     items6.clear();
+    item129->setBackground(QColor(252, 216, 191));
+    item130->setBackground(QColor(252, 216, 191));
 
     item131 = new QStandardItem(tr("Ввод значение момента нагрузки"));
     item131->setEditable(false);
@@ -694,6 +724,8 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item132);
     item17->appendRow(items6);
     items6.clear();
+    item131->setBackground(QColor(250, 235, 215));
+    item132->setBackground(QColor(250, 235, 215));
 
     QList<QStandardItem*> items7;
     item25 = new QStandardItem(tr("Тепловая модель"));
@@ -708,6 +740,8 @@ MainWindow::MainWindow(QWidget *parent)
     item26->setEditable(false);
     QFont newFont4("SansSerif", 10, QFont::Bold,false);
     item25->setFont(newFont4);
+    item25->setBackground(QColor(198, 251, 198));
+    item26->setBackground(QColor(198, 251, 198));
 
     QList<QStandardItem*> items8;
     item27 = new QStandardItem(tr("Начальное значение температуры, °C"));
@@ -717,6 +751,8 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item28);
     item25->appendRow(items8);
     items8.clear();
+    item27->setBackground(QColor(152, 251, 152));
+    item28->setBackground(QColor(152, 251, 152));
 
     item29 = new QStandardItem(tr("Температурный режим"));
     item29->setEditable(false);
@@ -725,6 +761,9 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item30);
     item25->appendRow(items8);
     items8.clear();
+    item29->setBackground(QColor(198, 251, 198));
+    item30->setBackground(QColor(198, 251, 198));
+
     item23 = new QStandardItem(tr("Шаг выбора точек"));
     item23->setEditable(false);
     item107 = new QStandardItem(tr("0"));
@@ -732,6 +771,8 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item107);
     item25->appendRow(items8);
     items8.clear();
+    item23->setBackground(QColor(152, 251, 152));
+    item107->setBackground(QColor(152, 251, 152));
 
     QList<QStandardItem*> items9;
     item31 = new QStandardItem(tr("Вентиляционная модель"));
@@ -3865,6 +3906,12 @@ void MainWindow::SaveProgectToFile()
     file.close();   // Закрываем файл
 
     JlCompress::compressDir(str, "../save/");
+
+    sessionFileName = QFileInfo(str).baseName();
+
+    item4->setText(sessionFileName);
+    //setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+    setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
 }
 
 void MainWindow::LoadProject(QString str)
@@ -4350,6 +4397,7 @@ void MainWindow::LoadProject(QString str)
     sessionFileName = QFileInfo(str).baseName();
 
     item4->setText(sessionFileName);
+    //setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
     ui->save_file->setEnabled(true);
     ui->save_as_file->setEnabled(true);
@@ -9019,11 +9067,16 @@ void MainWindow::TimeOut()
 
 void MainWindow::create_new()
 {
-    QMessageBox::critical(this, "начало нового сеанса", "Введите исходные данные");
+    ui->tabWidget->show();
+    ui->stackedWidget->show();
+    ui->switch_regim_upr->show();
 }
 
 void MainWindow::open_file()
 {
+    ui->tabWidget->show();
+    ui->stackedWidget->show();
+    ui->switch_regim_upr->show();
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
     LoadProject(str);
@@ -9227,7 +9280,7 @@ void MainWindow::save_file()
     file.close();   // Закрываем файл
 
 
-    ui->widget_2->ui->plot->save();
+    //ui->widget_2->ui->plot->save();
 
     JlCompress::compressDir(QString("../Output/") + sessionFileName + ".imview", "../save/");
     ui->save_file->setEnabled(false);
@@ -9860,6 +9913,9 @@ void MainWindow::edit_treeview()
 
 void MainWindow::openRecentFile()
 {
+    ui->tabWidget->show();
+    ui->stackedWidget->show();
+    ui->switch_regim_upr->show();
     QAction *action = qobject_cast<QAction *>(sender());
     if (action)
     {
@@ -9936,6 +9992,9 @@ void MainWindow::loadFile(const QString &fileName)
 
 void::MainWindow::close_progect()
 {
+    //ui->tabWidget->hide();
+    //ui->stackedWidget->hide();
+    //ui->switch_regim_upr->hide();
     item4->setText(tr("Имя сеанса"));
     item88->setText(tr("Выбрать тип эксперимента"));
     item106->setText(tr("Указать каталог"));
@@ -9956,6 +10015,13 @@ void::MainWindow::close_progect()
     item34->setText(tr("Выберите режим"));
     item36->setText(tr("Выберите конструкцию"));
     item38->setText(tr("0"));
+    item68->setText(tr("Выбрать режим"));
+    item70->setText(tr("Выбрать режим"));
+    item72->setText(tr("Выбрать режим"));
+    item74->setText(tr("Выбрать режим"));
+    item76->setText(tr("Выбрать режим"));
+    item78->setText(tr("Выбрать режим"));
+
 
     ui->lineEdit_12->clear();
     ui->lineEdit_11->clear();
@@ -9971,7 +10037,7 @@ void::MainWindow::close_progect()
     ui->lineEdit_15->clear();
     ui->lineEdit_18->clear();
 
-    ui->widget_2->ui->plot->save();
+    //ui->widget_2->ui->plot->save();
     ui->widget_2->ui->plot->clear();
 
 }
@@ -10034,60 +10100,6 @@ void MainWindow::poisk()
             iz = 0;
         }
     }
-
-    /*if (number < 1)
-    {
-        ui->tabWidget->setCurrentIndex(2);
-        ui->tableWidget_16->setFocus();
-
-        if(ui->tableWidget_16->isEnabled() == true)
-        {
-            for(x = xz; x <ui->tableWidget_16->rowCount(); x++)
-            {
-                for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
-                {
-                    moc_2 = ui->tableWidget_16->item(x,i)->text();
-
-                    j = jz;
-                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
-                    {
-                        ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
-                        ui->widget_12->ui->plainTextEdit->appendPlainText(moc_2);
-
-                        QTextCursor c = ui->widget_12->ui->plainTextEdit->textCursor();
-                        c.setPosition(j);
-                        c.setPosition(j+1, QTextCursor::KeepAnchor);
-                        ui->widget_12->ui->plainTextEdit->setTextCursor(c);
-
-                        QSettings settings( "BRU", "IM View");
-                        settings.setValue( "iz", i+1);
-                        settings.setValue( "jz", j+1);
-                        settings.setValue( "xz", x);
-
-                        if(x == ui->tableWidget_16->rowCount()-1)
-                        {
-                            settings.setValue( "iz", i+1);
-                        }
-                        return;
-                    }
-                    jz = 0;
-                }
-                iz = 0;
-            }
-
-            QSettings settings( "BRU", "IM View");
-            settings.setValue( "iz", 0);
-            settings.setValue( "xz", 0);
-            settings.setValue( "jz", 0);
-            settings.setValue( "number", 1);
-            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
-            ui->tabWidget->setCurrentIndex(3);
-            ui->tabWidget_2->setCurrentIndex(0);
-            ui->tableWidget_2->setFocus();
-        }
-    }*/
-
-
 
     if (number < 1)
     {
@@ -10761,6 +10773,21 @@ void MainWindow::zakr()
 {
     ui->widget_12->setVisible(false);
 
+    int currentRow = ui->widget->ui->tableView->model()->rowCount();
+    int currentCol = ui->widget->ui->tableView->model()->columnCount();
+
+    for(int i = 0; i < currentCol; i ++)
+    {
+        for(int x = 0; x < currentRow; x ++)
+        {
+            QString color=ui->widget->modd->item(x,i)->background().color().name();
+            if(color == "#FFFF00")
+            {
+                ui->widget->modd->item(x,i)->setBackground(QColor(255, 255, 255));
+            }
+        }
+    }
+
     for(int i = 0; i < ui->tableWidget_16->columnCount(); i++)
     {
         for(int x = 0; x < ui->tableWidget_16->rowCount(); x++)
@@ -10805,7 +10832,6 @@ void MainWindow::zakr()
             }
         }
     }
-
 
     for(int i=0; i<ui->widget_5->ui->widget_2->ui->tableWidget->columnCount();i++)
     {
@@ -11471,4 +11497,11 @@ void MainWindow::color_treview(const QModelIndex & index, const QStandardItemMod
                 ui->treeView->setPalette(p109);
 
             }
+}
+
+void MainWindow::action_close_session()
+{
+    ui->tabWidget->hide();
+    ui->stackedWidget->hide();
+    ui->switch_regim_upr->hide();
 }

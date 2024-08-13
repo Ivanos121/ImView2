@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1499</width>
-    <height>890</height>
+    <height>999</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,7 +52,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -367,6 +367,9 @@
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_2">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -389,6 +392,26 @@
            <string/>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_15">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги предварительной идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Индуктивность фазы ротора, Гн =</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="0" alignment="Qt::AlignmentFlag::AlignRight">
             <widget class="QLabel" name="label_11">
              <property name="text">
@@ -396,7 +419,71 @@
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEdit_12">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+            <widget class="QLabel" name="label_10">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Активное сопротивление фазы статора, Ом =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="lineEdit_9">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Индуктивность фазы статора, Гн =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
             <widget class="QLineEdit" name="lineEdit_8">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -440,31 +527,6 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="lineEdit_12">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>152</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="1">
             <widget class="QLineEdit" name="lineEdit_11">
              <property name="sizePolicy">
@@ -487,32 +549,46 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="0" alignment="Qt::AlignmentFlag::AlignRight">
-            <widget class="QLabel" name="label_10">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
-             </property>
-             <property name="text">
-              <string>Активное сопротивление фазы статора, Ом =</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="6" column="0" alignment="Qt::AlignmentFlag::AlignRight">
             <widget class="QLabel" name="label_14">
              <property name="text">
               <string>Индуктивность взаимоиндукции, Гн =</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="0" alignment="Qt::AlignmentFlag::AlignRight">
-            <widget class="QLabel" name="label_13">
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>550</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_32">
+           <item row="1" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+            <widget class="QLabel" name="label_42">
              <property name="text">
-              <string>Индуктивность фазы ротора, Гн =</string>
+              <string>TextLabel</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
-            <widget class="QLineEdit" name="lineEdit_9">
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEdit_3">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -525,23 +601,79 @@
                <height>0</height>
               </size>
              </property>
-             <property name="maximumSize">
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+            <widget class="QLabel" name="label_43">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="lineEdit_4">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
               <size>
-               <width>16777215</width>
-               <height>16777215</height>
+               <width>152</width>
+               <height>0</height>
               </size>
              </property>
             </widget>
            </item>
-           <item row="3" column="0" alignment="Qt::AlignmentFlag::AlignRight">
-            <widget class="QLabel" name="label_12">
+           <item row="3" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+            <widget class="QLabel" name="label_44">
              <property name="text">
-              <string>Индуктивность фазы статора, Гн =</string>
+              <string>TextLabel</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_15">
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="lineEdit_5">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+            <widget class="QLabel" name="label_45">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLineEdit" name="lineEdit_6">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_41">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -549,7 +681,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги расчета&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги текущей идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -1669,7 +1801,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1688,7 +1820,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </font>
        </property>
        <attribute name="title">
-        <string>Предварительная идентификация параметров схемы замещения</string>
+        <string>Предварительная и текущая идентификация параметров схемы замещения</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
@@ -1705,7 +1837,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </widget>
       <widget class="QWidget" name="tab_14">
        <attribute name="title">
-        <string>Предварительная идентификация параметров тепловой модели</string>
+        <string>Предварительная и текущая идентификация параметров тепловой модели</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10">
         <item row="0" column="0">
@@ -1859,11 +1991,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <addaction name="actionmy4"/>
      <addaction name="actionmy5"/>
     </widget>
-    <addaction name="create_new"/>
+    <addaction name="create_new_session"/>
     <addaction name="open_file"/>
     <addaction name="save_file"/>
     <addaction name="save_as_file"/>
+    <addaction name="action_save_graph_file"/>
     <addaction name="action_close_progect"/>
+    <addaction name="action_close_session"/>
     <addaction name="menu_6"/>
     <addaction name="separator"/>
     <addaction name="print_preview"/>
@@ -1943,7 +2077,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="create_new"/>
+   <addaction name="create_new_session"/>
    <addaction name="open_file"/>
    <addaction name="save_file"/>
    <addaction name="save_as_file"/>
@@ -2282,13 +2416,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Итоги идентификации</string>
    </property>
   </action>
-  <action name="create_new">
+  <action name="create_new_session">
    <property name="icon">
     <iconset resource="Images.qrc">
      <normaloff>:/system_icons/data/img/system_icons/document-new.svg</normaloff>:/system_icons/data/img/system_icons/document-new.svg</iconset>
    </property>
    <property name="text">
-    <string>Создать</string>
+    <string>Создать сессию</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -2416,6 +2550,24 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+W</string>
+   </property>
+  </action>
+  <action name="action_close_session">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-close.svg</normaloff>:/system_icons/data/img/system_icons/document-close.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Закрыть сессию</string>
+   </property>
+  </action>
+  <action name="action_save_graph_file">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-save.svg</normaloff>:/system_icons/data/img/system_icons/document-save.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить график в файл</string>
    </property>
   </action>
  </widget>
