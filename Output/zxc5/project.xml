@@ -2,7 +2,7 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="zxc6"/>
+            <project_name value="zxc5"/>
             <combobox_1 value="Внутренний источник данных"/>
             <project_path value="Указать каталог"/>
             <combobox_2 value="Внутренний источник данных"/>
@@ -27,8 +27,8 @@
             <moment2 value="311"/>
             <napragenie value="20"/>
             <start_temp value="20"/>
-            <combobox_6 value="Динамика (расчет)"/>
-            <time_step value="100"/>
+            <combobox_6 value="Статика (статор)"/>
+            <time_step value="10"/>
             <combobox_7 value="Статика"/>
             <combobox_8 value="Один вентилятор"/>
         </general_settings>

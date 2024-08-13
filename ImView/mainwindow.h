@@ -57,6 +57,7 @@ public:
     void translate_en();
     void translate_ru();
     void translator();
+    void open_file();
 
 private:
     QString sessionFileName;
@@ -68,6 +69,7 @@ private:
     void setCurrentFile(const QString &fileName);
     QString strippedName(const QString &fullFileName);
     void loadFile(const QString &fileName);
+
 private slots:
     void actionabout();
     void actionExit();
@@ -90,8 +92,6 @@ private slots:
     void actionresultidentf();
     void actionteplident_start();
     void actionteplident_stop();
-
-    void open_file();
     void create_new();
     void save_file();
     void save_as_file();
@@ -101,7 +101,6 @@ private slots:
     void pagePrint();
     void button_visible();
     void button_visible_2();
-
     void tabClicked();
     void tabClicked_2();
     void tabClicked_3();
@@ -118,14 +117,11 @@ private slots:
     void edit_5();
     void edit_6();
     void edit_treeview();
-    void on_actioncopy_triggered();
-    void on_actionpaste_triggered();
-    void on_actionundo_triggered();
-    void on_actionredo_triggered();
-    void on_actioncut_triggered();
-
-
-
+    void actioncopy();
+    void actionpaste();
+    void actionundo();
+    void actionredo();
+    void actioncut();
     void modelItemChangedSlot(QStandardItem *item);
     void modelItemChangedSlot_2(QStandardItem *item);
     void modelItemChangedSlot_3(QStandardItem *item);
@@ -136,8 +132,9 @@ private slots:
     void projectFileSelectedSlot_4(QString projectFile_4);
     void projectFileSelectedSlot_5(QString projectFile_5);
     void projectFileSelectedSlot_6(QString projectFile_6);
-    void on_SaveProgectToFile_clicked();
-    void on_pushButton_5_clicked(bool checked);
+    void SaveProgectToFile();
+    void switch_regim_upr(bool checked);
+
     void on_LoadProgect_clicked();
     void on_save_tepl_dannie_clicked();
     void on_save_Vent_dannie_clicked();
@@ -184,6 +181,7 @@ private slots:
     void read_klass_izol();
 
     void color_treview(const QModelIndex &index, const QStandardItemModel *model);
+    void treview_changed();
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
@@ -197,6 +195,7 @@ public:
     bool isChanged = false;
     QAction *separatorAct;
     QMenu *fileMenu;
+    QItemSelectionModel *selectionModel, *selectionModel2, *selectionModel3;
 
     QMenu *recentFilesMenu;
     QMenu *helpMenu;

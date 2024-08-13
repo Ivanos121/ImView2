@@ -70,6 +70,7 @@
 #include <QEvent>
 #include <QSettings>
 #include <cmath>
+#include <QSqlRecord>
 
 Base base;
 Base_tepl base_tepl;
@@ -170,10 +171,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::actionExit);
     connect(ui->actionabout, &QAction::triggered, this, &MainWindow::actionabout);
     connect(ui->actionhelp, &QAction::triggered, this, &MainWindow::actionhelp);
+    connect(ui->switch_regim_upr,&QPushButton::clicked, this, &MainWindow::switch_regim_upr);
+    connect(ui->actioncopy, &QAction::triggered, this, &MainWindow::actioncopy);
+    connect(ui->actionpaste, &QAction::triggered, this, &MainWindow::actionpaste);
+    connect(ui->actionundo, &QAction::triggered, this, &MainWindow::actionundo);
+    connect(ui->actionredo, &QAction::triggered, this, &MainWindow::actionredo);
+    connect(ui->actioncut, &QAction::triggered, this, &MainWindow::actioncut);
 
 
-
-    //createUndoView();
 
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -217,10 +222,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->electromagn_stop->setEnabled(false);
     ui->actionteplident_stop->setEnabled(false);
 
-    ui->pushButton_5->setCheckable(true);
-    ui->pushButton_5->setChecked(true);
-    QObject::connect(ui->pushButton_5, &QPushButton::clicked, ui->stackedWidget, &MainWindow::setVisible);
-    connect(ui->pushButton_5, &QPushButton::clicked, this, &MainWindow::on_pushButton_5_clicked);
+    ui->switch_regim_upr->setCheckable(true);
+    ui->switch_regim_upr->setChecked(true);
+    QObject::connect(ui->switch_regim_upr, &QPushButton::clicked, ui->stackedWidget, &MainWindow::setVisible);
+    //connect(ui->switch_regim_upr, &QPushButton::clicked, this, &MainWindow::on_pushButton_5_clicked);
 
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -235,7 +240,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setBackgroundRole(QPalette :: Dark);
 
     ui->treeView->setExpandsOnDoubleClick(false);
-    QObject::connect(ui->treeView, &QTreeView::clicked, [this]()
+    QObject::connect(ui->treeView, &QTreeView::clicked,this, [this]()
     {
         if (ui->treeView->isExpanded(ui->treeView->currentIndex()))
         {
@@ -251,42 +256,7 @@ MainWindow::MainWindow(QWidget *parent)
     model2->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
-    ui->treeView->setStyleSheet(
-                            "*{"
-                            "background: rgb(255, 255, 222);"
-                            "}"
-                            "*{"
-                            "alternate-background-color: rgb(255, 255, 191);"
-                           "}"
-                            "*::item{"
-                            "    border-top-width: 0px;"
-                            "    border-right-width: 1px;"
-                            "    border-bottom-width: 1px;"
-                            "    border-left-width: 0px;"
-                            "    border-style: solid;"
-                            "    border-color: silver;"
-                            "}"
-                            "*::item:selected{"
-                            "    background: palette(Highlight);"
-                            "}"
-//                            "*::item:has-children{"
-//                            "    background: rgb(128,128,128);"
-//                            "}"
-                            "::branch"
-                            "{"
-                            "border-bottom: 1px solid silver;"
-                            "}"
-                                    "::branch:has-children:!has-siblings:closed,"
-                                    "::branch:closed:has-children:has-siblings {"
-                                    "        border-image: none;"
-                                    "        image: url(:/image/data/img/icons/branch-closed.png);"
-                                    "}"
-                                    "::branch:open:has-children:!has-siblings,"
-                                    "::branch:open:has-children:has-siblings  {"
-                                   "        border-image: none;"
-                                    "        image: url(:/image/data/img/icons/branch-open.png);"
-                                    "}"
-                                    );
+
 
     QList<QStandardItem*> items1;
     item1 = new QStandardItem(tr("Общее название сеанса"));
@@ -302,6 +272,8 @@ MainWindow::MainWindow(QWidget *parent)
     item2->setEditable(false);
     QFont newFont("DroidSans", 10, QFont::Bold,false);
     item1->setFont(newFont);
+    item1->setBackground(QColor(255, 255, 222));
+    item2->setBackground(QColor(255, 255, 222));
 
 
     QList<QStandardItem*> items2;
@@ -316,6 +288,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item4);
     item1->appendRow(items2);
     items2.clear();
+    item3->setBackground(QColor(255, 255, 191));
+    item4->setBackground(QColor(255, 255, 191));
 
     item7 = new QStandardItem(tr("Тип эксперимента"));
     item7->setEditable(false);
@@ -329,6 +303,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item8);
     item1->appendRow(items2);
     items2.clear();
+    item7->setBackground(QColor(255, 255, 222));
+    item8->setBackground(QColor(255, 255, 222));
 
     item87 = new QStandardItem(tr("Идентификация данных схемы замещения"));
     item87->setEditable(false);
@@ -341,6 +317,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item88);
     item7->appendRow(items2);
     items2.clear();
+    item87->setBackground(QColor(255, 255, 191));
+    item88->setBackground(QColor(255, 255, 191));
 
     item105 = new QStandardItem(tr("Загрузка данных ручной идентификации"));
     item105->setEditable(false);
@@ -355,6 +333,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item106);
     item7->appendRow(items2);
     items2.clear();
+    item105->setBackground(QColor(255, 255, 222));
+    item106->setBackground(QColor(255, 255, 222));
 
     item79 = new QStandardItem(tr("Наблюдатель состояния"));
     item79->setEditable(false);
@@ -367,6 +347,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item80);
     item7->appendRow(items2);
     items2.clear();
+    item79->setBackground(QColor(255, 255, 191));
+    item80->setBackground(QColor(255, 255, 191));
 
     item81 = new QStandardItem(tr("Чтение данных для наблюдателя скорости"));
     item81->setEditable(false);
@@ -381,6 +363,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item82);
     item7->appendRow(items2);
     items2.clear();
+    item81->setBackground(QColor(255, 255, 222));
+    item82->setBackground(QColor(255, 255, 222));
 
     item116 = new QStandardItem(tr("Настройка каналов"));
     item116->setEditable(false);
@@ -393,7 +377,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item117);
     item7->appendRow(items2);
     items2.clear();
-
+    item116->setBackground(QColor(255, 255, 191));
+    item117->setBackground(QColor(255, 255, 191));
 
     item65 = new QStandardItem(tr("Сохранение данных"));
     item65->setEditable(false);
@@ -407,6 +392,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item66);
     item1->appendRow(items2);
     items2.clear();
+    item65->setBackground(QColor(225, 255, 255));
+    item66->setBackground(QColor(225, 255, 255));
 
     item67 = new QStandardItem(tr("Данные идентификации"));
     item67->setEditable(false);
@@ -420,6 +407,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item68);
     item65->appendRow(items2);
     items2.clear();
+    item67->setBackground(QColor(200, 255, 255));
+    item68->setBackground(QColor(200, 255, 255));
 
     item69 = new QStandardItem(tr("Данные электромагнитных процессов"));
     item69->setEditable(false);
@@ -433,6 +422,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item70);
     item65->appendRow(items2);
     items2.clear();
+    item69->setBackground(QColor(225, 255, 255));
+    item70->setBackground(QColor(225, 255, 255));
 
     item71 = new QStandardItem(tr("Данные тепловых процессов"));
     item71->setEditable(false);
@@ -446,6 +437,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item72);
     item65->appendRow(items2);
     items2.clear();
+    item71->setBackground(QColor(200, 255, 255));
+    item72->setBackground(QColor(200, 255, 255));
 
     item73 = new QStandardItem(tr("Данные вентиляционных процессов"));
     item73->setEditable(false);
@@ -459,6 +452,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item74);
     item65->appendRow(items2);
     items2.clear();
+    item73->setBackground(QColor(225, 255, 255));
+    item74->setBackground(QColor(225, 255, 255));
 
     item75 = new QStandardItem(tr("Данные прогноза температур"));
     item75->setEditable(false);
@@ -472,6 +467,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item76);
     item65->appendRow(items2);
     items2.clear();
+    item75->setBackground(QColor(200, 255, 255));
+    item76->setBackground(QColor(200, 255, 255));
 
     item77 = new QStandardItem(tr("Данные остаточного теплового ресурса"));
     item77->setEditable(false);
@@ -485,6 +482,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item78);
     item65->appendRow(items2);
     items2.clear();
+    item77->setBackground(QColor(225, 255, 255));
+    item78->setBackground(QColor(225, 255, 255));
 
     QList<QStandardItem*> items3;
     item9 = new QStandardItem(tr("Идентификация параметров схемы замещения"));
@@ -966,14 +965,99 @@ MainWindow::MainWindow(QWidget *parent)
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
-   // QPalette p99=ui->treeView->palette();
-   // p99.setColor(QPalette::Base, QColor(255, 155, 222));
-   // p99.setColor(QPalette::AlternateBase, QColor(155, 255, 191));
-   // ui->treeView->setPalette(p99);
-
+    /*ui->treeView->setStyleSheet(
+                           // "*{"
+                           // "background: rgb(255, 255, 222);"
+                          //  "}"
+                           // "*{"
+                          //  "alternate-background-color: rgb(255, 255, 191);"
+                          // "}"
+                            "*::item{"
+                            "    border-top-width: 0px;"
+                            "    border-right-width: 1px;"
+                            "    border-bottom-width: 1px;"
+                            "    border-left-width: 0px;"
+                            "    border-style: solid;"
+                            "    border-color: silver;"
+                            "}"
+                            "*::item:selected{"
+                            "    background: palette(Highlight);"
+                            "}"
+//                            "*::item:has-children{"
+//                            "    background: rgb(128,128,128);"
+//                            "}"
+                            "::branch"
+                            "{"
+                            "border-bottom: 1px solid silver;"
+                            "}"
+                                    "::branch:has-children:!has-siblings:closed,"
+                                    "::branch:closed:has-children:has-siblings {"
+                                    "        border-image: none;"
+                                    "        image: url(:/image/data/img/icons/branch-closed.png);"
+                                    "}"
+                                    "::branch:open:has-children:!has-siblings,"
+                                    "::branch:open:has-children:has-siblings  {"
+                                   "        border-image: none;"
+                                    "        image: url(:/image/data/img/icons/branch-open.png);"
+                                    "}"
+                                    );
+*/
     ui->treeView->setRootIsDecorated(true);
 
     //color_treview(model2->index(0,0), model2);
+
+    //Проверка сохранения данных при закрытии программы
+
+    selectionModel = ui->treeView->selectionModel();
+    //connect(selectionModel, &QItemSelectionModel::selectionChanged, this, &MainWindow::treview_changed);
+    connect(selectionModel, &QItemSelectionModel::currentChanged,
+                     this, [this]() {   int index = 0;
+        QString currentTabText = ui->tabWidget->tabText(index);
+        setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView*"));
+        isNablLaunched = true;
+    });
+
+    selectionModel2 = ui->widget->ui->tableView->selectionModel();
+    //connect(selectionModel, &QItemSelectionModel::selectionChanged, this, &MainWindow::treview_changed);
+    connect(selectionModel2, &QItemSelectionModel::currentChanged,
+                     this, []() {  isNablLaunched = true;
+    });
+
+    connect(ui->lineEdit_13, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_14, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_15, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_16, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_17, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_18, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_8, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_9, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_10, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_11, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+    connect(ui->lineEdit_12, &QLineEdit::textChanged, this, []() {
+      isNablLaunched = true;
+    });
+
+    //createUndoView();
 
     ui->tabWidget->setCurrentIndex(0);
     currentTabText = ui->tabWidget->tabText(0);
@@ -2729,6 +2813,14 @@ MainWindow::MainWindow(QWidget *parent)
     p_17.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget_17->setPalette(p_17);
 
+    selectionModel3 = ui->tableWidget_17->selectionModel();
+    connect(selectionModel3, &QItemSelectionModel::currentChanged,
+                     this, [this]() {  int index = 0;
+        QString currentTabText = ui->tabWidget->tabText(index);
+        setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView*"));
+        isNablLaunched = true;
+    });
+
     ui->tableWidget_18->setRowCount(30);
     ui->tableWidget_18->setColumnCount(4);
     QStringList name_18;
@@ -2894,6 +2986,12 @@ MainWindow::MainWindow(QWidget *parent)
     updateRecentFileActions();
 }
 
+void MainWindow::treview_changed()
+{
+     qDebug() << "Item selection changed";
+    isNablLaunched = true;
+}
+
 QImage fromSvg(const QString &path, int size)
 {
     QSvgRenderer renderer(path);
@@ -3022,7 +3120,7 @@ void MainWindow::identf_pusk()
         ui->tabWidget->setCurrentIndex(1);
         QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
         QIcon ButtonIcon_1(pixmap);
-        ui->pushButton_5->setIcon(ButtonIcon_1);
+        ui->switch_regim_upr->setIcon(ButtonIcon_1);
         ui->stackedWidget->setVisible(false);
         QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7,myIndex8;
         myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
@@ -3112,7 +3210,7 @@ void MainWindow::electromagn_start()
     ui->stackedWidget->setCurrentIndex(7);
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
-    ui->pushButton_5->setIcon(ButtonIcon_1);
+    ui->switch_regim_upr->setIcon(ButtonIcon_1);
     //ui->stackedWidget->hide();
     base.R1 = ui->lineEdit_12->text().toDouble();
     base.R2 = ui->lineEdit_11->text().toDouble();
@@ -3257,7 +3355,7 @@ void MainWindow::nastr_graph()
 {
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-next.svg");
     QIcon ButtonIcon_2(pixmap);
-    ui->pushButton_5->setIcon(ButtonIcon_2);
+    ui->switch_regim_upr->setIcon(ButtonIcon_2);
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(6);
 }
@@ -3299,7 +3397,7 @@ void MainWindow::nastroiki()
 {
     QPixmap pixmap(":/system_icons//data/img/system_icons/go-next.svg");
     QIcon ButtonIcon_2(pixmap);
-    ui->pushButton_5->setIcon(ButtonIcon_2);
+    ui->switch_regim_upr->setIcon(ButtonIcon_2);
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -3574,7 +3672,7 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     }
 }
 
-void MainWindow::on_SaveProgectToFile_clicked()
+void MainWindow::SaveProgectToFile()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
@@ -4266,19 +4364,19 @@ void MainWindow::LoadProject(QString str)
     ui->widget_2->ui->plot->load();
 }
 
-void MainWindow::on_pushButton_5_clicked(bool checked)
+void MainWindow::switch_regim_upr(bool checked)
 {
     if(checked)
     {
         QPixmap pixmap(":/system_icons/data/img/system_icons/go-next.svg");
         QIcon ButtonIcon_1(pixmap);
-        ui->pushButton_5->setIcon(ButtonIcon_1);
+        ui->switch_regim_upr->setIcon(ButtonIcon_1);
     }
     else
     {
         QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
         QIcon ButtonIcon_2(pixmap);
-        ui->pushButton_5->setIcon(ButtonIcon_2);
+        ui->switch_regim_upr->setIcon(ButtonIcon_2);
     }
 }
 
@@ -8829,7 +8927,7 @@ void MainWindow::actionteplident_start()
     ui->stackedWidget->hide();
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
-    ui->pushButton_5->setIcon(ButtonIcon_1);
+    ui->switch_regim_upr->setIcon(ButtonIcon_1);
     ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->actionteplident_stop->setEnabled(true);
 
@@ -9087,7 +9185,7 @@ void MainWindow::save_file()
 
 void MainWindow::save_as_file()
 {
-    on_SaveProgectToFile_clicked();
+    SaveProgectToFile();
 }
 
 void MainWindow::print_preview_file()
@@ -9273,7 +9371,7 @@ void MainWindow::edit_6()
     ui->actionredo->setEnabled(true);
 }
 
-void MainWindow::on_actioncopy_triggered()
+void MainWindow::actioncopy()
 {
     if(ui->lineEdit_13->text().isEmpty())
     {
@@ -9397,7 +9495,7 @@ void MainWindow::on_actioncopy_triggered()
 }
 
 
-void MainWindow::on_actionpaste_triggered()
+void MainWindow::actionpaste()
 {
     if(ui->lineEdit_13->hasFocus())
     {
@@ -9496,7 +9594,7 @@ void MainWindow::on_actionpaste_triggered()
     }
 }
 
-void MainWindow::on_actionundo_triggered()
+void MainWindow::actionundo()
 {
     QString undoText = undoStack->undoText();
     ui->actionredo->setEnabled(true);
@@ -9551,7 +9649,7 @@ void MainWindow::on_actionundo_triggered()
     }
 }
 
-void MainWindow::on_actionredo_triggered()
+void MainWindow::actionredo()
 {
     QString redoText = undoStack->redoText();
     ui->actionundo->setEnabled(true);
@@ -9605,7 +9703,7 @@ void MainWindow::on_actionredo_triggered()
     }
 }
 
-void MainWindow::on_actioncut_triggered()
+void MainWindow::actioncut()
 {
     if(ui->lineEdit_13->text().isEmpty())
     {
@@ -9949,19 +10047,19 @@ void MainWindow::poisk()
             {
                 for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
                 {
-                    moc_2 = ui->tableWidget_2->item(x,i)->text();
+                    moc_2 = ui->tableWidget_16->item(x,i)->text();
 
                     j = jz;
                     while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
                     {
-                        ui->tableWidget_2->item(x,i)->setBackground(Qt::green);
+                        ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
 
                         QSettings settings( "BRU", "IM View");
                         settings.setValue( "iz", i+1);
                         settings.setValue( "jz", j+1);
                         settings.setValue( "xz", x);
 
-                        if(x == ui->tableWidget_2->rowCount()-1)
+                        if(x == ui->tableWidget_16->rowCount()-1)
                         {
                             settings.setValue( "iz", i+1);
                         }
@@ -10573,25 +10671,37 @@ void MainWindow::poisk()
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
             settings.setValue( "number", 13);
-            //QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
-           // ui->tabWidget->setCurrentIndex(4);
-           // ui->widget_5->ui->tableWidget->setFocus();
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(0);
+            ui->treeView->setFocus();
         }
     }
 
-    if(number == 13)
+
+
+    if ((number == 13) && (number < 14))
+    {
+        QSettings settings( "BRU", "IM View");
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
+        jz = settings.value( "jz", "").toInt();
+        if(ui->treeView->isEnabled()==true)
+        {
+            iterate(model2->index(0,0), model2, str);
+
+            QSettings settings( "BRU", "IM View");
+            settings.setValue( "iz", 0);
+            settings.setValue( "xz", 0);
+            settings.setValue( "jz", 0);
+            settings.setValue( "number", 14);
+        }
+    }
+
+    if(number == 14)
     {
         QMessageBox::information(this, tr("IM View"), tr("Поиск закончен"));
 
     }
-
-
-    /*if(ui->treeView->isEnabled()==true)
-    {
-        QSettings settings( "BRU", "IM View");
-        //iterate(model2->index(0,0), model2, str);
-        item2->setBackground(QColor(255,255,255));
-    }*/
 }
 
 void MainWindow::zakr()
@@ -10807,20 +10917,26 @@ void MainWindow::zakr()
 void MainWindow::select_all()
 {
     QString str = ui->widget_12->ui->lineEdit->text();
-   /* if(str!=nullptr)
+    int currentRow = ui->widget->ui->tableView->model()->rowCount();
+    int currentCol = ui->widget->ui->tableView->model()->columnCount();
+    if(str!=nullptr)
     {
-        for(int i=0;i<=model->columnCount();i++)
+        for(int i=0;i<currentCol;i++)
         {
-            for(int x=0;x<=model->rowCount();x++)
+            for(int x=0;x<currentRow;x++)
             {
-                QModelIndex ind = model->index(x,i);
-                if(ind.data().toString()==str)
+                QModelIndex index = ui->widget->ui->tableView->model()->index(x, i, QModelIndex());
+                QString s = ui->widget->ui->tableView->model()->data(index).toString();
+                if(s==str)
                 {
-                    modd->item( x, i )->setBackground( Qt::yellow );
+                    QColor color("#00FFA6");
+                    QBrush br(color);
+                    br.setColor(color);
+                    modd->item(x,i)->setBackground(br);
                 }
             }
         }
-    }*/
+    }
 
     //select all tableWidget
 
@@ -11159,6 +11275,7 @@ void MainWindow::rename_all()
 
 bool MainWindow::iterate(const QModelIndex & index, const QStandardItemModel * model, QString searchStr)
 {
+    searchStr = ui->widget_12->ui->lineEdit->text();
     if (index.isValid())
     {
         // Do action here
@@ -11168,8 +11285,8 @@ bool MainWindow::iterate(const QModelIndex & index, const QStandardItemModel * m
 
     if (itemText == searchStr)
     {
-        model->itemFromIndex(index)->setText("rrr");
-
+        model->itemFromIndex(index)->setBackground(Qt::green);
+        //item2->setBackground(Qt::green);
         return false;
     }
 

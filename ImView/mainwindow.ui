@@ -52,7 +52,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -794,7 +794,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_10">
            <attribute name="title">
@@ -827,13 +827,6 @@
             <string>Энергетические характеристики</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_12">
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="radioButton_14">
-              <property name="text">
-               <string>Обозначение</string>
-              </property>
-             </widget>
-            </item>
             <item row="0" column="0">
              <widget class="QTableWidget" name="tableWidget_4">
               <property name="sizePolicy">
@@ -850,13 +843,6 @@
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QRadioButton" name="radioButton_15">
-              <property name="text">
-               <string>Значение</string>
               </property>
              </widget>
             </item>
@@ -1649,7 +1635,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
     </item>
     <item row="0" column="1" rowspan="2">
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="switch_regim_upr">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -1683,7 +1669,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
