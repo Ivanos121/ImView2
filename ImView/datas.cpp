@@ -46,7 +46,7 @@ void datas::table()
     QSortFilterProxyModel *proxy1=new QSortFilterProxyModel();
     proxy1->setSourceModel(model);
 
-    QStandardItemModel *modd=new QStandardItemModel();
+    modd = new QStandardItemModel();
 
     for (int z =0; z< proxy1->rowCount(); ++z)
     {

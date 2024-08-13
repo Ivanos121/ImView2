@@ -3867,13 +3867,6 @@ void MainWindow::SaveProgectToFile()
     JlCompress::compressDir(str, "../save/");
 }
 
-void MainWindow::on_LoadProgect_clicked()
-{
-    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-    QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
-    LoadProject(str);
-}
-
 void MainWindow::LoadProject(QString str)
 {
    // sdb = QSqlDatabase::addDatabase("QSQLITE");
@@ -9031,7 +9024,9 @@ void MainWindow::create_new()
 
 void MainWindow::open_file()
 {
-    on_LoadProgect_clicked();
+    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+    QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
+    LoadProject(str);
 }
 
 void MainWindow::save_file()
@@ -9055,6 +9050,8 @@ void MainWindow::save_file()
 
     xmlWriter.writeStartElement("general_settings");
 
+    xmlWriter.writeStartElement("general_settings");
+
     xmlWriter.writeStartElement("project_name");
     xmlWriter.writeAttribute("value", (item4->text()));
     xmlWriter.writeEndElement();
@@ -9075,31 +9072,31 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item82->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("checkbox_1");
-    xmlWriter.writeAttribute("boolean", (item68->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_2");
-    xmlWriter.writeAttribute("boolean", (item70->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_3");
-    xmlWriter.writeAttribute("boolean", (item72->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_4");
-    xmlWriter.writeAttribute("boolean", (item74->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_5");
-    xmlWriter.writeAttribute("boolean", (item76->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("checkbox_6");
-    xmlWriter.writeAttribute("boolean", (item78->checkState()? "true" : "false"));
-    xmlWriter.writeEndElement();
-
     xmlWriter.writeStartElement("combobox_3");
+    xmlWriter.writeAttribute("value", (item68->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_4");
+    xmlWriter.writeAttribute("value", (item70->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_5");
+    xmlWriter.writeAttribute("value", (item72->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_6");
+    xmlWriter.writeAttribute("value", (item74->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_7");
+    xmlWriter.writeAttribute("value", (item76->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_8");
+    xmlWriter.writeAttribute("value", (item78->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_9");
     xmlWriter.writeAttribute("value", (item14->text()));
     xmlWriter.writeEndElement();
 
@@ -9127,7 +9124,7 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item104->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_4");
+    xmlWriter.writeStartElement("combobox_10");
     xmlWriter.writeAttribute("value", (item20->text()));
     xmlWriter.writeEndElement();
 
@@ -9139,7 +9136,7 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item24->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_5");
+    xmlWriter.writeStartElement("combobox_11");
     xmlWriter.writeAttribute("value", (item92->text()));
     xmlWriter.writeEndElement();
 
@@ -9155,7 +9152,7 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item28->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_6");
+    xmlWriter.writeStartElement("combobox_12");
     xmlWriter.writeAttribute("value", (item30->text()));
     xmlWriter.writeEndElement();
 
@@ -9163,19 +9160,72 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item107->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_7");
+    xmlWriter.writeStartElement("combobox_13");
     xmlWriter.writeAttribute("value", (item34->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_8");
+    xmlWriter.writeStartElement("combobox_14");
     xmlWriter.writeAttribute("value", (item36->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("pressure");
+    xmlWriter.writeAttribute("value", (item38->text()));
+    xmlWriter.writeEndElement();
+
+    if(item68->text() == "Сохранить")
+    {
+        xmlWriter.writeStartElement("sopr_R1");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_12->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("sopr_R2");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_11->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("ind_L1");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_10->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("ind_L2");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_9->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("ind_Lm");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_8->text()));
+        xmlWriter.writeEndElement();
+    }
+    if(item14->text() == "Автоматический")
+    {
+        xmlWriter.writeStartElement("koeff_gd");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_13->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_ki");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_16->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_gb");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_14->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_kpsi");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_17->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_gp");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_15->text()));
+        xmlWriter.writeEndElement();
+
+        xmlWriter.writeStartElement("koeff_gpsi");
+        xmlWriter.writeAttribute("value", (ui->lineEdit_18->text()));
+        xmlWriter.writeEndElement();
+    }
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
+
 
     ui->widget_2->ui->plot->save();
 
@@ -9945,44 +9995,47 @@ void MainWindow::poisk()
     jz = settings.value( "jz", "").toInt();
     number=settings.value( "number", "").toInt();
 
-   /*if(ui->widget->ui->tableView->isEnabled()==true)
+   if(ui->widget->ui->tableView->isEnabled()==true)
     {        
         //int i,x,xx, ii, number;
         str = ui->widget_12->ui->lineEdit->text();
 
         QSettings settings( "BRU", "IM View");
-        xx = settings.value( "xx", "").toInt();
-        ii = settings.value( "ii", "").toInt();
+        xz = settings.value( "xz", "").toInt();
+        iz = settings.value( "iz", "").toInt();
         number = settings.value( "number", "").toInt();
+        int currentRow = ui->widget->ui->tableView->model()->rowCount();
+        int currentCol = ui->widget->ui->tableView->model()->columnCount();
 
-        for(x=xx;x<model->rowCount();x++)
+        for(x=xz;x<currentRow;x++)
         {
-            for(i=ii;i<model->columnCount();i++)
+            for(i=iz;i<currentCol;i++)
             {
-                moc_2 = ui->widget->ui->tableView->model()->data(ui->widget->ui->tableView->model()->index(x,i)).toString();
+                QModelIndex index = ui->widget->ui->tableView->model()->index(x, i, QModelIndex());
+                moc_2 = ui->widget->ui->tableView->model()->data(index).toString();
 
                 if(moc_2==str)
                 {
-                    QModelIndex newIndex = ui->widget->ui->tableView->model()->index(x,i);
-                    ui->widget->ui->tableView->setCurrentIndex(newIndex);
-                    modd->item(x,i)->setBackground(Qt::yellow);
-                    ui->widget->ui->tableView->model()->setData(ui->widget->ui->tableView->model()->index(x, i, QModelIndex()), QVariant(QColor(Qt::red)), Qt::ForegroundRole);
+                    QColor color(Qt::green);
+                    QBrush br(color);
+                    br.setColor(color);
+                    ui->widget->modd->item(x,i)->setBackground(br);
 
                     QSettings settings( "BRU", "IM View");
-                    settings.setValue( "ii", i+1);
-                    settings.setValue( "xx", x);
-                    if(x==model->rowCount()-1)
+                    settings.setValue( "iz", i+1);
+                    settings.setValue( "xz", x);
+                    if(x==currentRow-1)
                     {
-                        settings.setValue( "ii", i+1);
+                        settings.setValue( "iz", i+1);
                     }
                     return;
                 }
             }
-            ii = 0;
+            iz = 0;
         }
     }
 
-    if (number < 1)
+    /*if (number < 1)
     {
         ui->tabWidget->setCurrentIndex(2);
         ui->tableWidget_16->setFocus();
@@ -10929,10 +10982,10 @@ void MainWindow::select_all()
                 QString s = ui->widget->ui->tableView->model()->data(index).toString();
                 if(s==str)
                 {
-                    QColor color("#00FFA6");
+                    QColor color(Qt::yellow);
                     QBrush br(color);
                     br.setColor(color);
-                    modd->item(x,i)->setBackground(br);
+                    ui->widget->modd->item(x,i)->setBackground(br);
                 }
             }
         }

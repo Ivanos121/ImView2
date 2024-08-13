@@ -135,7 +135,6 @@ private slots:
     void SaveProgectToFile();
     void switch_regim_upr(bool checked);
 
-    void on_LoadProgect_clicked();
     void on_save_tepl_dannie_clicked();
     void on_save_Vent_dannie_clicked();
     void on_load_tepl_dannie_clicked();
@@ -202,7 +201,6 @@ public:
     enum { MaxRecentFiles = 5 };
     QAction *recentFileActs[MaxRecentFiles];
     QString curFile;
-    datas *dat;
     QStandardItemModel* model2;
 
     QTimer *timer;

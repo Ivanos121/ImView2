@@ -7,6 +7,7 @@
 #include "ischodn_dannie.h"
 #include <QButtonGroup>
 #include <QDialog>
+#include <QStandardItem>
 
 class MainWindow;
 
@@ -38,6 +39,7 @@ public:
     void zapis();
     void table();
     MainWindow *wf;
+    QStandardItemModel *modd;
 private:
     QSqlDatabase sdb;
     QString dataSourceFilename;
