@@ -152,8 +152,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
     connect(ui->print_file, &QAction::triggered, this, &MainWindow::pagePrint);
     connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
-    connect(ui->pushButton_8, &QPushButton::clicked, this, &MainWindow::save_graphs);
-    connect(ui->pushButton_9, &QPushButton::clicked, this, &MainWindow::load_graphs);
     connect(ui->pushButton_10, &QPushButton::clicked, this, &MainWindow::read_klass_izol);
     connect(ui->nastroiki, &QAction::triggered, this, &MainWindow::onButtonClicked);
     connect(ui->nastroiki, &QAction::triggered, this, &MainWindow::nastroiki);
@@ -181,6 +179,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionredo, &QAction::triggered, this, &MainWindow::actionredo);
     connect(ui->actioncut, &QAction::triggered, this, &MainWindow::actioncut);
     connect(ui->action_close_session, &QAction::triggered, this, &MainWindow::action_close_session);
+    connect(ui->radioButton,&QRadioButton::toggled, this, &MainWindow::radioButton_toggled);
+    connect(ui->radioButton_2,&QRadioButton::toggled, this, &MainWindow::radioButton_2_toggled);
+    connect(ui->radioButton_3,&QRadioButton::toggled, this, &MainWindow::radioButton_3_toggled);
+    connect(ui->radioButton_4,&QRadioButton::toggled, this, &MainWindow::radioButton_4_toggled);
+    connect(ui->radioButton_5,&QRadioButton::toggled, this, &MainWindow::radioButton_5_toggled);
+    connect(ui->radioButton_6,&QRadioButton::toggled, this, &MainWindow::radioButton_6_toggled);
+    connect(ui->radioButton_7,&QRadioButton::toggled, this, &MainWindow::radioButton_7_toggled);
+    connect(ui->radioButton_8,&QRadioButton::toggled, this, &MainWindow::radioButton_8_toggled);
+    connect(ui->radioButton_9,&QRadioButton::toggled, this, &MainWindow::radioButton_9_toggled);
+    connect(ui->radioButton_10,&QRadioButton::toggled, this, &MainWindow::radioButton_10_toggled);
+    connect(ui->action_save_graph_file,&QAction::triggered, this, &MainWindow::save_electromagn_graph_file);
 
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -4653,7 +4662,7 @@ void MainWindow::setcolorincell(int row, int column)
     }
 }
 
-void MainWindow::on_radioButton_toggled(bool checked)
+void MainWindow::radioButton_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -4716,7 +4725,7 @@ void MainWindow::on_radioButton_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_2_toggled(bool checked)
+void MainWindow::radioButton_2_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -4801,7 +4810,7 @@ void MainWindow::on_radioButton_2_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_3_toggled(bool checked)
+void MainWindow::radioButton_3_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -4890,7 +4899,7 @@ void MainWindow::on_radioButton_3_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_4_toggled(bool checked)
+void MainWindow::radioButton_4_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -4969,7 +4978,7 @@ void MainWindow::on_radioButton_4_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_5_toggled(bool checked)
+void MainWindow::radioButton_5_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -5058,7 +5067,7 @@ void MainWindow::on_radioButton_5_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_6_toggled(bool checked)
+void MainWindow::radioButton_6_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -5147,7 +5156,7 @@ void MainWindow::on_radioButton_6_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_7_toggled(bool checked)
+void MainWindow::radioButton_7_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -5237,7 +5246,7 @@ void MainWindow::on_radioButton_7_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_8_toggled(bool checked)
+void MainWindow::radioButton_8_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -5330,7 +5339,7 @@ void MainWindow::on_radioButton_8_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_9_toggled(bool checked)
+void MainWindow::radioButton_9_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -5432,7 +5441,7 @@ void MainWindow::on_radioButton_9_toggled(bool checked)
     }
 }
 
-void MainWindow::on_radioButton_10_toggled(bool checked)
+void MainWindow::radioButton_10_toggled(bool checked)
 {
     if (item30->text() == "Выберите режим")
     {
@@ -8798,7 +8807,7 @@ void MainWindow::on_vent_result_clicked()
     }
 }
 
-void MainWindow::on_save_electromagn_graph_file_clicked()
+void MainWindow::save_electromagn_graph_file()
 {
     QString filters;
     foreach(QByteArray byte, QImageWriter::supportedImageFormats())

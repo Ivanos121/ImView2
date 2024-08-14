@@ -145,18 +145,18 @@ private slots:
     void on_vent_result_clicked();
     void createUndoStackAndActions();
 
-    void on_radioButton_toggled(bool checked);
-    void on_radioButton_2_toggled(bool checked);
-    void on_radioButton_3_toggled(bool checked);
-    void on_radioButton_4_toggled(bool checked);
-    void on_radioButton_5_toggled(bool checked);
-    void on_radioButton_6_toggled(bool checked);
-    void on_radioButton_7_toggled(bool checked);
-    void on_radioButton_8_toggled(bool checked);
-    void on_radioButton_9_toggled(bool checked);
-    void on_radioButton_10_toggled(bool checked);
+    void radioButton_toggled(bool checked);
+    void radioButton_2_toggled(bool checked);
+    void radioButton_3_toggled(bool checked);
+    void radioButton_4_toggled(bool checked);
+    void radioButton_5_toggled(bool checked);
+    void radioButton_6_toggled(bool checked);
+    void radioButton_7_toggled(bool checked);
+    void radioButton_8_toggled(bool checked);
+    void radioButton_9_toggled(bool checked);
+    void radioButton_10_toggled(bool checked);
 
-    void on_save_electromagn_graph_file_clicked();
+    void save_electromagn_graph_file();
     void on_save_electromagn2_file_clicked();
     void on_save_tepl_graph_file_clicked();
     void on_horizontalSlider_valueChanged(int value);
