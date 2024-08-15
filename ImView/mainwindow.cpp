@@ -138,6 +138,7 @@ MainWindow::MainWindow(QWidget *parent)
     settings.setValue( "jz", 0);
     settings.setValue( "number", 0);
 
+    //поиск - замена
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
     connect(ui->widget_12->ui->pushButton_7,&QPushButton::clicked, this, &MainWindow::zakr);
     connect(ui->widget_12->ui->pushButton, &QPushButton::pressed, this, &MainWindow::poisk);
@@ -145,6 +146,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_12->ui->pushButton_2, &QPushButton::pressed, this, &MainWindow::rename);
     connect(ui->widget_12->ui->pushButton_6, &QPushButton::pressed, this, &MainWindow::rename_all);
     connect(ui->widget_12->ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::tab_open);
+
+    //инструментальное меню
+    //файловые операции
     connect(ui->create_new_session, &QAction::triggered, this, &MainWindow::create_new);
     connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
     connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
@@ -152,6 +156,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
     connect(ui->print_file, &QAction::triggered, this, &MainWindow::pagePrint);
     connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
+
     connect(ui->pushButton_10, &QPushButton::clicked, this, &MainWindow::read_klass_izol);
     connect(ui->nastroiki, &QAction::triggered, this, &MainWindow::onButtonClicked);
     connect(ui->nastroiki, &QAction::triggered, this, &MainWindow::nastroiki);
@@ -173,12 +178,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionabout, &QAction::triggered, this, &MainWindow::actionabout);
     connect(ui->actionhelp, &QAction::triggered, this, &MainWindow::actionhelp);
     connect(ui->switch_regim_upr,&QPushButton::clicked, this, &MainWindow::switch_regim_upr);
+
+    //операции правки
     connect(ui->actioncopy, &QAction::triggered, this, &MainWindow::actioncopy);
     connect(ui->actionpaste, &QAction::triggered, this, &MainWindow::actionpaste);
     connect(ui->actionundo, &QAction::triggered, this, &MainWindow::actionundo);
     connect(ui->actionredo, &QAction::triggered, this, &MainWindow::actionredo);
     connect(ui->actioncut, &QAction::triggered, this, &MainWindow::actioncut);
+
     connect(ui->action_close_session, &QAction::triggered, this, &MainWindow::action_close_session);
+    connect(ui->action_save_graph_file,&QAction::triggered, this, &MainWindow::save_electromagn_graph_file);
+
+    //выбор режимов отображения информации
     connect(ui->radioButton,&QRadioButton::toggled, this, &MainWindow::radioButton_toggled);
     connect(ui->radioButton_2,&QRadioButton::toggled, this, &MainWindow::radioButton_2_toggled);
     connect(ui->radioButton_3,&QRadioButton::toggled, this, &MainWindow::radioButton_3_toggled);
@@ -189,7 +200,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->radioButton_8,&QRadioButton::toggled, this, &MainWindow::radioButton_8_toggled);
     connect(ui->radioButton_9,&QRadioButton::toggled, this, &MainWindow::radioButton_9_toggled);
     connect(ui->radioButton_10,&QRadioButton::toggled, this, &MainWindow::radioButton_10_toggled);
-    connect(ui->action_save_graph_file,&QAction::triggered, this, &MainWindow::save_electromagn_graph_file);
+    //connect(ui->radioButton_11,&QRadioButton::toggled, this, &MainWindow::radioButton_11_toggled);
+    //connect(ui->radioButton_12,&QRadioButton::toggled, this, &MainWindow::radioButton_12_toggled);
+    //connect(ui->radioButton_13,&QRadioButton::toggled, this, &MainWindow::radioButton_13_toggled);
+
+    //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
+    //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
+
 
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -10070,50 +10087,79 @@ void MainWindow::poisk()
     jz = settings.value( "jz", "").toInt();
     number=settings.value( "number", "").toInt();
 
-   if(ui->widget->ui->tableView->isEnabled()==true)
-    {        
-        //int i,x,xx, ii, number;
-        str = ui->widget_12->ui->lineEdit->text();
+    if (number < 1)
+    {
+        ui->tabWidget->setCurrentIndex(0);
+        ui->widget->ui->tableView->setFocus();
 
-        QSettings settings( "BRU", "IM View");
-        xz = settings.value( "xz", "").toInt();
-        iz = settings.value( "iz", "").toInt();
-        number = settings.value( "number", "").toInt();
-        int currentRow = ui->widget->ui->tableView->model()->rowCount();
-        int currentCol = ui->widget->ui->tableView->model()->columnCount();
-
-        for(x=xz;x<currentRow;x++)
+        if(ui->widget->ui->tableView->isEnabled()==true)
         {
-            for(i=iz;i<currentCol;i++)
+            //int i,x,xx, ii, number;
+            str = ui->widget_12->ui->lineEdit->text();
+
+            QSettings settings( "BRU", "IM View");
+            xz = settings.value( "xz", "").toInt();
+            iz = settings.value( "iz", "").toInt();
+            number = settings.value( "number", "").toInt();
+            int currentRow = ui->widget->ui->tableView->model()->rowCount();
+            int currentCol = ui->widget->ui->tableView->model()->columnCount();
+
+            for(x=xz;x<currentRow;x++)
             {
-                QModelIndex index = ui->widget->ui->tableView->model()->index(x, i, QModelIndex());
-                moc_2 = ui->widget->ui->tableView->model()->data(index).toString();
-
-                if(moc_2==str)
+                for(i=iz;i<currentCol;i++)
                 {
-                    QColor color(Qt::green);
-                    QBrush br(color);
-                    br.setColor(color);
-                    ui->widget->modd->item(x,i)->setBackground(br);
+                    QModelIndex index = ui->widget->ui->tableView->model()->index(x, i, QModelIndex());
+                    moc_2 = ui->widget->ui->tableView->model()->data(index).toString();
 
-                    QSettings settings( "BRU", "IM View");
-                    settings.setValue( "iz", i+1);
-                    settings.setValue( "xz", x);
-                    if(x==currentRow-1)
+                    if(moc_2==str)
                     {
+                       /* QColor color(Qt::green);
+                        QBrush br(color);
+                        br.setColor(color);
+                        ui->widget->modd->item(x,i)->setBackground(br);
+
+                        QSettings settings( "BRU", "IM View");
                         settings.setValue( "iz", i+1);
+                        settings.setValue( "xz", x);
+                        if(x==currentRow-1)
+                        {
+                            settings.setValue( "iz", i+1);
+                        }
+                        return;
+                    */
+                        j = jz;
+                        while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+                        {
+                            QColor color(Qt::green);
+                            QBrush br(color);
+                            br.setColor(color);
+                            ui->widget->modd->item(x,i)->setBackground(br);
+
+                            QSettings settings( "BRU", "IM View");
+                            settings.setValue( "iz", i+1);
+                            settings.setValue( "jz", j+1);
+                            settings.setValue( "xz", x);
+                            if(x == currentRow-1)
+                            {
+                                settings.setValue( "iz", i+1);
+                            }
+                            return;
+                        }
+                        jz = 0;
                     }
-                    return;
                 }
+                iz = 0;
             }
-            iz = 0;
+            settings.setValue( "number", 1);
+            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+            ui->tabWidget->setCurrentIndex(2);
+            ui->tableWidget_16->setFocus();
         }
     }
 
-    if (number < 1)
-    {
-        ui->tabWidget->setCurrentIndex(2);
-        ui->tableWidget_16->setFocus();
+
+if ((number == 1) && (number < 2))    {
+
 
         if(ui->tableWidget_16->isEnabled() == true)
         {
@@ -10148,7 +10194,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 1);
+            settings.setValue( "number", 2);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(3);
             ui->tabWidget_2->setCurrentIndex(0);
@@ -10156,7 +10202,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 1) && (number < 2))
+    if ((number == 2) && (number < 3))
     {
 
         QSettings settings( "BRU", "IM View");
@@ -10197,7 +10243,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 2);
+            settings.setValue( "number", 3);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(3);
             ui->tabWidget_2->setCurrentIndex(1);
@@ -10205,7 +10251,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 2) && (number < 3))
+    if ((number == 3) && (number < 4))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10246,7 +10292,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 3);
+            settings.setValue( "number", 4);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(4);
             ui->widget_5->ui->tabWidget->setCurrentIndex(0);
@@ -10254,7 +10300,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 3) && (number < 4))
+    if ((number == 4) && (number < 5))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10299,7 +10345,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 4);
+            settings.setValue( "number", 5);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(4);
             ui->widget_5->ui->tabWidget->setCurrentIndex(0);
@@ -10307,7 +10353,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 4) && (number < 5))
+    if ((number == 5) && (number < 6))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10348,7 +10394,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 5);
+            settings.setValue( "number", 6);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(4);
             ui->widget_5->ui->tabWidget->setCurrentIndex(1);
@@ -10356,7 +10402,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 5) && (number < 6))
+    if ((number == 6) && (number < 7))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10397,7 +10443,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 6);
+            settings.setValue( "number", 7);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(4);
             ui->widget_5->ui->tabWidget->setCurrentIndex(3);
@@ -10405,7 +10451,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 6) && (number < 7))
+    if ((number == 7) && (number < 8))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10454,7 +10500,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 7) && (number < 8))
+    if ((number == 8) && (number < 9))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10495,7 +10541,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 8);
+            settings.setValue( "number", 9);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(4);
             ui->widget_5->ui->tabWidget->setCurrentIndex(5);
@@ -10504,7 +10550,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 8) && (number < 9))
+    if ((number == 9) && (number < 10))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10546,7 +10592,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 9);
+            settings.setValue( "number", 10);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(5);
             ui->widget_6->ui->tabWidget->setCurrentIndex(0);
@@ -10555,7 +10601,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 9) && (number < 10))
+    if ((number == 10) && (number < 11))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10596,7 +10642,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 10);
+            settings.setValue( "number", 11);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(5);
             ui->widget_6->ui->tabWidget->setCurrentIndex(1);
@@ -10605,7 +10651,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 10) && (number < 11))
+    if ((number == 11) && (number < 12))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10646,7 +10692,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 11);
+            settings.setValue( "number", 12);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(5);
             ui->widget_6->ui->tabWidget->setCurrentIndex(2);
@@ -10654,7 +10700,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 11) && (number < 12))
+    if ((number == 12) && (number < 13))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10695,7 +10741,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 12);
+            settings.setValue( "number", 13);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(5);
             ui->widget_6->ui->tabWidget->setCurrentIndex(3);
@@ -10703,7 +10749,7 @@ void MainWindow::poisk()
         }
     }
 
-    if ((number == 12) && (number < 13))
+    if ((number == 13) && (number < 14))
     {
         //i=0,x=0,j=0;
         QSettings settings( "BRU", "IM View");
@@ -10744,7 +10790,7 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 13);
+            settings.setValue( "number", 14);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(0);
             ui->treeView->setFocus();
@@ -10753,7 +10799,7 @@ void MainWindow::poisk()
 
 
 
-    if ((number == 13) && (number < 14))
+    if ((number == 14) && (number < 15))
     {
         QSettings settings( "BRU", "IM View");
         xz = settings.value( "xz", "").toInt();
@@ -10767,11 +10813,11 @@ void MainWindow::poisk()
             settings.setValue( "iz", 0);
             settings.setValue( "xz", 0);
             settings.setValue( "jz", 0);
-            settings.setValue( "number", 14);
+            settings.setValue( "number", 15);
         }
     }
 
-    if(number == 14)
+    if(number == 15)
     {
         QMessageBox::information(this, tr("IM View"), tr("Поиск закончен"));
 
@@ -10790,7 +10836,7 @@ void MainWindow::zakr()
         for(int x = 0; x < currentRow; x ++)
         {
             QString color=ui->widget->modd->item(x,i)->background().color().name();
-            if(color == "#FFFF00")
+            if(color == "#ffff00")
             {
                 ui->widget->modd->item(x,i)->setBackground(QColor(255, 255, 255));
             }
