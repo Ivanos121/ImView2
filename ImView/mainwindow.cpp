@@ -71,6 +71,7 @@
 #include <QSettings>
 #include <cmath>
 #include <QSqlRecord>
+#include <QFileDialog>
 
 Base base;
 Base_tepl base_tepl;
@@ -94,7 +95,7 @@ bool isNablLaunched = false;
 QString currentTabText;
 QString klass;
 double G,B;
-
+//v
 QVector<double> tepl_ident_t;
 QVector<double> tepl_ident_StatorTemp;
 
@@ -117,6 +118,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionundo->setEnabled(false);
     ui->actionredo->setEnabled(false);
     ui->widget_12->setVisible(false);
+    ui->widget_15->setEnabled(true);
+    ui->widget_15->showMaximized();
 
     recentFileActs[0] = ui->actionmy;
     recentFileActs[1] = ui->actionmy2;
@@ -3218,14 +3221,13 @@ void MainWindow::identf_pusk()
         QString setpath = "../Output";
         QDir dir(setpath);
 
-//        dirName= QString ("%1""%2""%3").arg("Сеанс ").arg(currentTime.toString("hh:mm:ss ").toUtf8().data()).
-//                arg(currentDate.toString("dd.MM.yyyy").toUtf8().data());
         dirName= QString ("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
                 currentDate.toString("dd.MM.yyyy").toUtf8().data());
 
         dir.mkdir(dirName);
 
-        if(item68->checkState() == Qt::Checked)
+        //if(item68->checkState() == Qt::Checked)
+        if(item68->text() == "Сохранить")
         {
             QString filename = "result_identf.csv";
             //создание файла сохранений идентификации параметров схемы замещения
@@ -3241,7 +3243,7 @@ void MainWindow::identf_pusk()
             fout << "Канал №1" << " - " << "Активное сопротивление фазы ротора" << std::endl;
             fout << "Канал №2" << " - " << "Индуктивность фазы статора" << std::endl;
             fout << "Канал №3" << " - " << "Индуктивность фазы ротора" << std::endl;
-            fout << "Канал №2" << " - " << "Индуктивность взаимоиндукции" << std::endl;
+            fout << "Канал №4" << " - " << "Индуктивность взаимоиндукции" << std::endl;
 
             fout << std::endl;
 
@@ -3741,8 +3743,18 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
 
 void MainWindow::SaveProgectToFile()
 {
-    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
+    QFileDialog saveDialog;
+    saveDialog.setAcceptMode(QFileDialog::AcceptSave);
+    saveDialog.setDefaultSuffix("imview");
+    saveDialog.setNameFilter(tr("Файл конфигурации проекта (*.imview);;Все файлы (*.*)"));
+    saveDialog.setViewMode(QFileDialog::Detail);
+    saveDialog.setDirectory("../Output");
+    saveDialog.exec();
+    QString str = saveDialog.selectedFiles().first();
+
+
+    //QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+   // QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter, &filter);
 
     QFile file(QString("../save/project.xml"));
     file.open(QIODevice::WriteOnly);
@@ -9306,7 +9318,7 @@ void MainWindow::save_file()
     file.close();   // Закрываем файл
 
 
-    //ui->widget_2->ui->plot->save();
+    ui->widget_2->ui->plot->save();
 
     JlCompress::compressDir(QString("../Output/") + sessionFileName + ".imview", "../save/");
     ui->save_file->setEnabled(false);
