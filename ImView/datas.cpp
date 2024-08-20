@@ -53,7 +53,9 @@ void datas::table()
         for (int y =0; y< proxy1->columnCount(); ++y)
         {
             QStandardItem *item= new QStandardItem();
+
             item->setText(proxy1->index(z,y).data().toString());
+            item->setData(proxy1->index(z,y).data().toInt());
             item->setTextAlignment(Qt::AlignCenter);
             modd->setItem(z,y,item);
         }
@@ -65,7 +67,7 @@ void datas::table()
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
 
     modd->setHeaderData(1, Qt::Horizontal, tr("Марка двигателя"), Qt::DisplayRole);
-    modd->setHeaderData(2, Qt::Horizontal, tr("Номинальная мощность двигателя, кВт"), Qt::DisplayRole);
+    modd->setHeaderData(2, Qt::Horizontal, tr("Номинальная мощность двигателя, Вт"), Qt::DisplayRole);
     modd->setHeaderData(3, Qt::Horizontal, tr("Номинальная частота вращения, об/мин"), Qt::DisplayRole);
     modd->setHeaderData(4, Qt::Horizontal, tr("Номинальное напряжение фазы, В"), Qt::DisplayRole);
     modd->setHeaderData(5, Qt::Horizontal, tr("Номинальный коэффициент мощности"), Qt::DisplayRole);
@@ -91,7 +93,7 @@ void datas::table()
     ui->tableView->verticalHeader()->hide();
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter | (Qt::Alignment)Qt::TextWordWrap);
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->horizontalHeader()->setFixedHeight(100);
     ui->tableView->setSortingEnabled(true);
 

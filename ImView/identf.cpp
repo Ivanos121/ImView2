@@ -15,7 +15,7 @@
 double key;
 Model model;
 Modell modell;
-const double R1=2.419;
+//const double R1=2.419;
 int count = 0;
 static double minR2, maxR2, middleR2;
 //double P_nom, n_nom, U_fnom, cosf_nom, kpd_nom, muk, n_0;
@@ -102,17 +102,11 @@ void identf::realtimeDataSlot()
 
         fout.close();
 
-        wf->ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
-        wf->ui->lineEdit_9->setText(QString::number(model.L,'f',3));
-        wf->ui->lineEdit_10->setText(QString::number(model.L,'f',3));
+        wf->ui->lineEdit_12->setText(QString::number(model.R1,'f',3));
         wf->ui->lineEdit_11->setText(QString::number(model.R2,'f',3));
-        wf->ui->lineEdit_12->setText(QString::number(R1));
-
-
-
-
-        //   printf("%f %f %f\n", model.R2, model.L, model.Lm);
-
+        wf->ui->lineEdit_10->setText(QString::number(model.L,'f',3));
+        wf->ui->lineEdit_9->setText(QString::number(model.L,'f',3));
+        wf->ui->lineEdit_8->setText(QString::number(model.Lm,'f',3));
     }
 }
 

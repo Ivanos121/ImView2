@@ -11589,24 +11589,24 @@ void MainWindow::save_identf_in_file()
 
     QModelIndex myIndex;
     myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 1, QModelIndex());
-    QString str = ui->widget->ui->tableView->model()->data(myIndex).toString();
-    char* ch = str.toLocal8Bit().data();
+    //QString str = ui->widget->ui->tableView->model()->data(myIndex).toString();
+    //char* ch = str.toLocal8Bit().data();
 
     double R1 = ui->lineEdit_12->text().toDouble();
     double R2 = ui->lineEdit_11->text().toDouble();
     double L = ui->lineEdit_10->text().toDouble();
     double Lm = ui->lineEdit_8->text().toDouble();
 
-    base.identfFilename = setpath+QDir::separator()+dirName+QDir::separator()+filename;
+    base.identfFilename = setpath+QDir::separator()+filename;
 
     fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios_base::app);
 
-    fout << "Марка двигателя: " << ch << std::endl;
-    fout << "Активное сопротивление фазы статора: " << R1 << std::endl;
-    fout << "Активное сопротивление фазы ротора: " << R2 << std::endl;
-    fout << "Индуктивность фазы статора: " << L << std::endl;
-    fout << "Индуктивность фазы ротора: " << L << std::endl;
-    fout << "Индуктивность взаимоиндукции: " << Lm << std::endl;
+    fout << "Марка двигателя:&" << ui->widget->ui->tableView->model()->data(myIndex).toString().toLocal8Bit().data() << std::endl;
+    fout << "Активное сопротивление фазы статора:&" << R1 << std::endl;
+    fout << "Активное сопротивление фазы ротора:&" << R2 << std::endl;
+    fout << "Индуктивность фазы статора:&" << L << std::endl;
+    fout << "Индуктивность фазы ротора:&" << L << std::endl;
+    fout << "Индуктивность взаимоиндукции:&" << Lm << std::endl;
 
     fout << std::endl;
 
