@@ -11583,31 +11583,30 @@ void MainWindow::sort_item()
 
 void MainWindow::save_identf_in_file()
 {
+    QString filename = "result_identf_final.csv";
+    QString setpath = "../Output";
+    std::ofstream fout;
+
     QModelIndex myIndex;
     myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 1, QModelIndex());
-    QString dvig = ui->widget->ui->tableView->model()->data(myIndex).toString();
+    QString str = ui->widget->ui->tableView->model()->data(myIndex).toString();
+    char* ch = str.toLocal8Bit().data();
 
     double R1 = ui->lineEdit_12->text().toDouble();
     double R2 = ui->lineEdit_11->text().toDouble();
-    QString L = ui->lineEdit_10->text();
-    //QString L = ui->lineEdit_9->text();
-    QString Lm = ui->lineEdit_8->text();
-
-    QString filename = "result_identf_final.csv";
-
-    QString setpath = "../Output";
-    std::ofstream fout;
+    double L = ui->lineEdit_10->text().toDouble();
+    double Lm = ui->lineEdit_8->text().toDouble();
 
     base.identfFilename = setpath+QDir::separator()+dirName+QDir::separator()+filename;
 
     fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios_base::app);
 
-   // fout << "Марка двигателя: " << modelss.dvig << std::endl;
-    fout << "Активное сопротивление фазы статора: " << modelss.R1 << std::endl;
-    fout << "Активное сопротивление фазы ротора: " << modelss.R2 << std::endl;
-    fout << "Индуктивность фазы статора: " << modelss.L << std::endl;
-    fout << "Индуктивность фазы ротора: " << modelss.L << std::endl;
-    fout << "Индуктивность взаимоиндукции: " << modelss.Lm << std::endl;
+    fout << "Марка двигателя: " << ch << std::endl;
+    fout << "Активное сопротивление фазы статора: " << R1 << std::endl;
+    fout << "Активное сопротивление фазы ротора: " << R2 << std::endl;
+    fout << "Индуктивность фазы статора: " << L << std::endl;
+    fout << "Индуктивность фазы ротора: " << L << std::endl;
+    fout << "Индуктивность взаимоиндукции: " << Lm << std::endl;
 
     fout << std::endl;
 
