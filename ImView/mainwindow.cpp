@@ -210,6 +210,9 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
     //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
 
+    //connect(ui->widget->ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, &MainWindow::sort_item);
+    connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_identf_in_file);
+
 
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -11572,3 +11575,42 @@ void MainWindow::action_close_session()
     ui->stackedWidget->hide();
     ui->switch_regim_upr->hide();
 }
+
+void MainWindow::sort_item()
+{
+
+}
+
+void MainWindow::save_identf_in_file()
+{
+    QModelIndex myIndex;
+    myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 1, QModelIndex());
+    QString dvig = ui->widget->ui->tableView->model()->data(myIndex).toString();
+
+    double R1 = ui->lineEdit_12->text().toDouble();
+    double R2 = ui->lineEdit_11->text().toDouble();
+    QString L = ui->lineEdit_10->text();
+    //QString L = ui->lineEdit_9->text();
+    QString Lm = ui->lineEdit_8->text();
+
+    QString filename = "result_identf_final.csv";
+
+    QString setpath = "../Output";
+    std::ofstream fout;
+
+    base.identfFilename = setpath+QDir::separator()+dirName+QDir::separator()+filename;
+
+    fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios_base::app);
+
+   // fout << "Марка двигателя: " << modelss.dvig << std::endl;
+    fout << "Активное сопротивление фазы статора: " << modelss.R1 << std::endl;
+    fout << "Активное сопротивление фазы ротора: " << modelss.R2 << std::endl;
+    fout << "Индуктивность фазы статора: " << modelss.L << std::endl;
+    fout << "Индуктивность фазы ротора: " << modelss.L << std::endl;
+    fout << "Индуктивность взаимоиндукции: " << modelss.Lm << std::endl;
+
+    fout << std::endl;
+
+    fout.close();
+}
+

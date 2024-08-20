@@ -692,6 +692,13 @@
           </property>
          </spacer>
         </item>
+        <item>
+         <widget class="QPushButton" name="save_identf_in_file">
+          <property name="text">
+           <string>сохранить параметры схемы замещения в файл</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_19">
@@ -1738,7 +1745,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">

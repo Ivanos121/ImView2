@@ -12,6 +12,7 @@ public:
                      double _ki, double _kpsi, double _gpsi);
     void rasch(DataSource *dataSource);
     double R1,R2,L,Lm;
+    QString dvig;
     const double Ts=0.0001;
     Model *model;
 };

@@ -75,9 +75,16 @@ void datas::table()
     modd->setHeaderData(9, Qt::Horizontal, tr("Класс изоляции"), Qt::DisplayRole);
 
     QHeaderView *header=ui->tableView->horizontalHeader();
+
     for(int i=1;i<=9;i++)
     {
         header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
+    }
+
+    for(int i=1;i<=9;i++)
+    {
+        ui->tableView->horizontalHeader()->setSectionsClickable(i);
+
     }
 
     ui->tableView->resizeRowsToContents();
@@ -86,6 +93,8 @@ void datas::table()
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter | (Qt::Alignment)Qt::TextWordWrap);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->horizontalHeader()->setFixedHeight(100);
+    ui->tableView->setSortingEnabled(true);
+
 }
 
 void datas::zapis()
