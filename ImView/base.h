@@ -48,6 +48,7 @@ struct Base
     double kpd_nom;
     double muk;
     double n_0;
+    double J_dv;
     double R1;
     double R2;
     double L1;

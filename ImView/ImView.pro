@@ -16,6 +16,7 @@ CONFIG += c++20 debug
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    MySortFilterProxyModel.cpp \
     aboutdialog.cpp \
     archiverchannel.cpp \
     base.cpp \
@@ -67,6 +68,7 @@ SOURCES += \
     pushbuttondelegate.cpp \
     settings.cpp \
     settingscanals.cpp \
+    start_app.cpp \
     tepl_dannie.cpp \
     tepl_identf.cpp \
     tepl_nabludatel.cpp \
@@ -78,6 +80,7 @@ SOURCES += \
     zerocorrector.cpp
 
 HEADERS += \
+    MySortFilterProxyModel.h \
     aboutdialog.h \
     archiverchannel.h \
     base.h \
@@ -130,8 +133,10 @@ HEADERS += \
     plot.h \
     poisk.h \
     pushbuttondelegate.h \
+    save_progect.h \
     settings.h \
     settingscanals.h \
+    start_app.h \
     tepl_dannie.h \
     tepl_identf.h \
     tepl_nabludatel.h \
@@ -163,6 +168,7 @@ FORMS += \
     settings.ui \
     settingscanals.ui \
     settinsKanals.ui \
+    start_app.ui \
     tepl_dannie.ui \
     tepl_identf.ui \
     tepl_nabludatel.ui \

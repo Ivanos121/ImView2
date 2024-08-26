@@ -3,6 +3,7 @@
 #include "qsqlquery.h"
 #include "ui_datas.h"
 #include "base.h"
+#include "MySortFilterProxyModel.h"
 
 #include <QMessageBox>
 #include <QDebug>
@@ -45,17 +46,20 @@ void datas::table()
 
     QSortFilterProxyModel *proxy1=new QSortFilterProxyModel();
     proxy1->setSourceModel(model);
+    proxy1->sort(2, Qt::AscendingOrder);
 
     modd = new QStandardItemModel();
+
 
     for (int z =0; z< proxy1->rowCount(); ++z)
     {
         for (int y =0; y< proxy1->columnCount(); ++y)
         {
             QStandardItem *item= new QStandardItem();
-
+            //const int sortRole = Qt::UserRole +1;
+            //QStandardItemModel().setSortRole(sortRole);
             item->setText(proxy1->index(z,y).data().toString());
-            item->setData(proxy1->index(z,y).data().toInt());
+            //item->setData(proxy1->index(z,y).data().toInt());
             item->setTextAlignment(Qt::AlignCenter);
             modd->setItem(z,y,item);
         }
@@ -74,16 +78,17 @@ void datas::table()
     modd->setHeaderData(6, Qt::Horizontal, tr("Номинальный коэффициент полезного действия"), Qt::DisplayRole);
     modd->setHeaderData(7, Qt::Horizontal, tr("Кратность максимального момента"), Qt::DisplayRole);
     modd->setHeaderData(8, Qt::Horizontal, tr("Синхронная частота вращения, об/мин"), Qt::DisplayRole);
-    modd->setHeaderData(9, Qt::Horizontal, tr("Класс изоляции"), Qt::DisplayRole);
+    modd->setHeaderData(9, Qt::Horizontal, tr("Момент инерции, кг*м2"), Qt::DisplayRole);
+    modd->setHeaderData(10, Qt::Horizontal, tr("Класс изоляции"), Qt::DisplayRole);
 
     QHeaderView *header=ui->tableView->horizontalHeader();
 
-    for(int i=1;i<=9;i++)
+    for(int i=1;i<=10;i++)
     {
         header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
     }
 
-    for(int i=1;i<=9;i++)
+    for(int i=1;i<=10;i++)
     {
         ui->tableView->horizontalHeader()->setSectionsClickable(i);
 
@@ -96,6 +101,7 @@ void datas::table()
     //ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->horizontalHeader()->setFixedHeight(100);
     ui->tableView->setSortingEnabled(true);
+
 
 }
 
@@ -113,6 +119,7 @@ void datas::zapis()
     query.bindValue(":kpd",QString("%1").arg(base.kpd_nom, 0, 'f', 3));
     query.bindValue(":mk",QString("%1").arg(base.muk, 0, 'f', 3));
     query.bindValue(":n0",QString("%1").arg(base.n_0, 0, 'f', 3));
+    query.bindValue(":j",QString("%1").arg(base.J_dv, 0, 'f', 3));
     query.bindValue(":ki",QString("%1").arg(base.ki));
     if(!query.exec()){
         qDebug() << query.lastError().databaseText();

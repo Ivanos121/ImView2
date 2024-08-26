@@ -37,6 +37,7 @@
 #include "poisk.h"
 #include "intens_star_izol.h"
 #include "pushbuttondelegate.h"
+#include "start_app.h"
 
 #include <QStyle>
 #include <QDesktopWidget>
@@ -111,6 +112,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget->hide();
     ui->stackedWidget->hide();
     ui->switch_regim_upr->hide();
+    ui->toolBar->hide();
+    ui->menu_2->menuAction()->setVisible(false);
+    ui->menu_3->menuAction()->setVisible(false);
+    ui->menu_4->menuAction()->setVisible(false);
+    ui->menu_5->menuAction()->setVisible(false);
 
     undoStack = new QUndoStack(this);
     undoStack->setUndoLimit(100);
@@ -140,6 +146,7 @@ MainWindow::MainWindow(QWidget *parent)
     settings.setValue( "iu", 0);
     settings.setValue( "jz", 0);
     settings.setValue( "number", 0);
+    settings.setValue( "kz", 0.5);
 
     //поиск - замена
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
@@ -210,7 +217,7 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
     //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
 
-    //connect(ui->widget->ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, &MainWindow::sort_item);
+   // connect(ui->widget->ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, &MainWindow::sort_item);
     connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_identf_in_file);
 
 
@@ -220,6 +227,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_6->wf=this;
     ui->widget_5->ui->widget_4->wf=this;
     ui->widget->wf=this;
+    ui->widget_15->wf=this;
 
     ui->LoadProgect->setVisible(false);
     ui->SaveProgectToFile->setVisible(false);
@@ -3183,6 +3191,8 @@ void MainWindow::delete_dannie()
 
 void MainWindow::identf_pusk()
 {
+    ui->widget_15->setEnabled(false);
+    ui->widget_15->setVisible(false);
     if (item88->text() == "Выбрать тип эксперимента")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
@@ -3195,7 +3205,7 @@ void MainWindow::identf_pusk()
         QIcon ButtonIcon_1(pixmap);
         ui->switch_regim_upr->setIcon(ButtonIcon_1);
         ui->stackedWidget->setVisible(false);
-        QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7,myIndex8;
+        QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7,myIndex8,myIndex9,myIndex10;
         myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
         base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
         myIndex2 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 3, QModelIndex());
@@ -3212,6 +3222,10 @@ void MainWindow::identf_pusk()
         base.n_0=ui->widget->ui->tableView->model()->data(myIndex7).toDouble();
         myIndex8 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
         klass=ui->widget->ui->tableView->model()->data(myIndex8).toString();
+        myIndex9 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
+        base.J_dv=ui->widget->ui->tableView->model()->data(myIndex9).toDouble();
+        myIndex10 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
+        klass=ui->widget->ui->tableView->model()->data(myIndex10).toString();
 
         ui->identf_pusk->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
         ui->identf_stop->setEnabled(true);
@@ -3392,7 +3406,7 @@ void MainWindow::electromagn_start()
     }
 
     ui->widget_3->raschet_el();
-    //ui->widget_5->ui->widget_4->startTeplo();
+    ui->widget_5->ui->widget_4->startTeplo();
 }
 
 void MainWindow::electromagn_stop()
@@ -3957,10 +3971,19 @@ void MainWindow::SaveProgectToFile()
 
 void MainWindow::LoadProject(QString str)
 {
-   // sdb = QSqlDatabase::addDatabase("QSQLITE");
-   // sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
-
-   // dat->table();
+    ui->tabWidget->show();
+    ui->stackedWidget->show();
+    ui->switch_regim_upr->show();
+    ui->toolBar->show();
+    ui->widget_15->hide();
+    ui->menu_2->show();
+    ui->menu_3->show();
+    ui->menu_4->show();
+    ui->menu_5->show();
+    ui->menu_2->menuAction()->setVisible(true);
+    ui->menu_3->menuAction()->setVisible(true);
+    ui->menu_4->menuAction()->setVisible(true);
+    ui->menu_5->menuAction()->setVisible(true);
 
     QDir().mkdir("/tmp/imview");
     JlCompress::extractDir(str,"/tmp/imview");
@@ -9111,6 +9134,8 @@ void MainWindow::create_new()
     ui->tabWidget->show();
     ui->stackedWidget->show();
     ui->switch_regim_upr->show();
+    ui->widget_15->setVisible(false);
+
 }
 
 void MainWindow::open_file()
@@ -9118,6 +9143,12 @@ void MainWindow::open_file()
     ui->tabWidget->show();
     ui->stackedWidget->show();
     ui->switch_regim_upr->show();
+    ui->toolBar->show();
+    ui->widget_15->hide();
+    ui->menu_2->menuAction()->setVisible(true);
+    ui->menu_3->menuAction()->setVisible(true);
+    ui->menu_4->menuAction()->setVisible(true);
+    ui->menu_5->menuAction()->setVisible(true);
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
     LoadProject(str);
@@ -10033,9 +10064,6 @@ void MainWindow::loadFile(const QString &fileName)
 
 void::MainWindow::close_progect()
 {
-    //ui->tabWidget->hide();
-    //ui->stackedWidget->hide();
-    //ui->switch_regim_upr->hide();
     item4->setText(tr("Имя сеанса"));
     item88->setText(tr("Выбрать тип эксперимента"));
     item106->setText(tr("Указать каталог"));
@@ -10080,6 +10108,15 @@ void::MainWindow::close_progect()
 
     //ui->widget_2->ui->plot->save();
     ui->widget_2->ui->plot->clear();
+    ui->tabWidget->hide();
+    ui->stackedWidget->hide();
+    ui->switch_regim_upr->hide();
+    ui->toolBar->hide();
+    ui->menu_2->menuAction()->setVisible(false);
+    ui->menu_3->menuAction()->setVisible(false);
+    ui->menu_4->menuAction()->setVisible(false);
+    ui->menu_5->menuAction()->setVisible(false);
+    ui->widget_15->show();
 
 }
 
@@ -11578,6 +11615,8 @@ void MainWindow::action_close_session()
 
 void MainWindow::sort_item()
 {
+
+
 
 }
 

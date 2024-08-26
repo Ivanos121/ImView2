@@ -26,7 +26,7 @@ void Model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _L
     alpha=R2/L2;
     beta=Lm/(sigma*L2);
     pn=2;
-    J=0.01;
+    J=base.J_dv;
     t=0;
     M=0;
     Mc=0;

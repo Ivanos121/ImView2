@@ -1943,7 +1943,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
     </item>
     <item row="2" column="0" colspan="3">
-     <widget class="QWidget" name="widget_15" native="true">
+     <widget class="Start_app" name="widget_15" native="true">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -1956,8 +1956,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>85</red>
-            <green>0</green>
+            <red>255</red>
+            <green>255</green>
             <blue>255</blue>
            </color>
           </brush>
@@ -1967,8 +1967,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>85</red>
-            <green>0</green>
+            <red>255</red>
+            <green>255</green>
             <blue>255</blue>
            </color>
           </brush>
@@ -2667,6 +2667,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>Gybrid_tepl_model</class>
    <extends>QWidget</extends>
    <header>gybrid_tepl_model.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Start_app</class>
+   <extends>QWidget</extends>
+   <header>start_app.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
