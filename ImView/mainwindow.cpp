@@ -3976,10 +3976,10 @@ void MainWindow::LoadProject(QString str)
     ui->switch_regim_upr->show();
     ui->toolBar->show();
     ui->widget_15->hide();
-    ui->menu_2->show();
-    ui->menu_3->show();
-    ui->menu_4->show();
-    ui->menu_5->show();
+    // ui->menu_2->show();
+    // ui->menu_3->show();
+    // ui->menu_4->show();
+    // ui->menu_5->show();
     ui->menu_2->menuAction()->setVisible(true);
     ui->menu_3->menuAction()->setVisible(true);
     ui->menu_4->menuAction()->setVisible(true);
@@ -9140,15 +9140,15 @@ void MainWindow::create_new()
 
 void MainWindow::open_file()
 {
-    ui->tabWidget->show();
-    ui->stackedWidget->show();
-    ui->switch_regim_upr->show();
-    ui->toolBar->show();
-    ui->widget_15->hide();
-    ui->menu_2->menuAction()->setVisible(true);
-    ui->menu_3->menuAction()->setVisible(true);
-    ui->menu_4->menuAction()->setVisible(true);
-    ui->menu_5->menuAction()->setVisible(true);
+    // ui->tabWidget->show();
+    // ui->stackedWidget->show();
+    // ui->switch_regim_upr->show();
+    // ui->toolBar->show();
+    // ui->widget_15->hide();
+    // ui->menu_2->menuAction()->setVisible(true);
+    // ui->menu_3->menuAction()->setVisible(true);
+    // ui->menu_4->menuAction()->setVisible(true);
+    // ui->menu_5->menuAction()->setVisible(true);
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
     LoadProject(str);

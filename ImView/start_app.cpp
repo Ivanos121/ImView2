@@ -64,7 +64,7 @@ Start_app::Start_app(QWidget *parent)
         w2= QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
             currentDate.toString("dd.MM.yyyy").toUtf8().data());
 
-        w3="../Output";
+        w3="/home/elf/ImView2/Output";
 
         if (ui->tableWidget->item(i, 1) != 0)
         {            
@@ -96,8 +96,173 @@ Start_app::Start_app(QWidget *parent)
     }
     ui->label_2->setText("<a href=\"whatever\">Открыть файл сохранения</a>");
     ui->label_2->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    ui->label_2->setStyleSheet("QLabel { color : rgb(0, 0, 0)); }");
+
+    ui->label->setText("<a href=\"whatever\">Справка</a>");
+    ui->label->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    ui->label->setStyleSheet("QLabel { color : rgb(0, 0, 0)); }");
+
+    ui->label_16->setText("<a href=\"whatever\">Создать</a>");
+    ui->label_16->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    ui->label_16->setStyleSheet("QLabel { color : rgb(0, 0, 0)); }");
+
     connect(ui->label_2,&QLabel::linkActivated, this, &Start_app::click_open_file);
     connect(ui->tableWidget,&QTableWidget::itemActivated,this,&Start_app::click_open_progect);
+    connect(ui->tableWidget_2,&QAbstractItemView::clicked,this,&Start_app::click_open_progect_2);
+
+    ui->label_3->setText("IM View");
+    //set font
+    QFont font = ui->label_3->font();
+    font.setPointSize(200);
+    font.setBold(true);
+    font.setItalic(true);
+    ui->label_3->setFont(font);
+    ui->label_3->setStyleSheet("QLabel { color : rgb(200, 204, 208); }");
+    //ui->label_4->setPixmap(QPixmap("/home/elf/ImView2/data/img/system_icons/IM_256x256_gray.png"));
+
+    ui->tableWidget_2->setRowCount(4);
+    ui->tableWidget_2->setColumnCount(5);
+    //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
+    //ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidget_2->horizontalHeader()->hide();
+    ui->tableWidget_2->verticalHeader()->hide();
+    ui->tableWidget_2->resizeRowsToContents();
+    ui->tableWidget_2->verticalHeader()->hide();
+    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
+    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_2->columnCount(); column++)
+        {
+            ui->tableWidget_2->setItem(row, column, new QTableWidgetItem());
+        }
+    }
+
+    for (int i=0; i<ui->tableWidget_2->rowCount(); i++)
+    {
+        if (ui->tableWidget_2->item(i, 0) != 0)
+        {
+            //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
+            //svgwidget->setMaximumSize(100,100);
+            //ui->tableWidget->setCellWidget(i, 0, svgwidget);
+            ui->tableWidget_2->resizeRowToContents(i);
+            ui->tableWidget_2->resizeColumnToContents(i);
+        }
+    }
+
+    for (int i=0; i<ui->tableWidget_2->columnCount(); i++)
+    {
+        if (ui->tableWidget_2->item(1, i) != 0)
+        {
+            ui->tableWidget_2->item(1, i)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget_2->item(1, i)->setTextAlignment(Qt::AlignVCenter);
+        }
+        if (ui->tableWidget_2->item(3, i) != 0)
+        {
+            ui->tableWidget_2->item(3, i)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget_2->item(3, i)->setTextAlignment(Qt::AlignVCenter);
+        }
+
+    }
+
+    ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Идентификация параметров "));
+    ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Электромагнитная модель"));
+    ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem("Тепловая модель"));
+    ui->tableWidget_2->setItem(3, 0, new QTableWidgetItem("Вентиляционная модель"));
+    ui->tableWidget_2->setItem(3, 2, new QTableWidgetItem("Прогноз температур"));
+    ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem("Остаточный тепловой ресурс"));
+
+    QWidget *widget = new QWidget();
+    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg");
+    svgwidget->setMaximumSize(300,300);
+    QHBoxLayout *layout = new QHBoxLayout(widget);
+    layout->addWidget(svgwidget);
+    layout->setAlignment(Qt::AlignCenter);
+    layout->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(0, 0, widget);
+    ui->tableWidget_2->resizeRowToContents(0);
+    ui->tableWidget_2->resizeColumnToContents(0);
+    ui->tableWidget_2->item(1, 0)->setTextAlignment(Qt::AlignCenter);
+
+    QWidget *widget2 = new QWidget();
+    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg");
+    svgwidget->setMaximumSize(300,300);
+    QHBoxLayout *layout2 = new QHBoxLayout(widget2);
+    layout2->addWidget(svgwidget);
+    layout2->setAlignment(Qt::AlignCenter);
+    layout2->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(0, 2, widget2);
+    ui->tableWidget_2->resizeColumnToContents(1);
+    ui->tableWidget_2->resizeRowToContents(0);
+    ui->tableWidget_2->item(1, 2)->setTextAlignment(Qt::AlignCenter);
+
+
+    QWidget *widget3 = new QWidget();
+    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg");
+    svgwidget->setMaximumSize(300,300);
+    QHBoxLayout *layout3 = new QHBoxLayout(widget3);
+    layout3->addWidget(svgwidget);
+    layout3->setAlignment(Qt::AlignCenter);
+    layout3->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(0, 4, widget3);
+    ui->tableWidget_2->resizeColumnToContents(2);
+    ui->tableWidget_2->item(1, 4)->setTextAlignment(Qt::AlignCenter);
+
+    QWidget *widget4 = new QWidget();
+    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
+    svgwidget->setMaximumSize(300,300);
+    QHBoxLayout *layout4 = new QHBoxLayout(widget4);
+    layout4->addWidget(svgwidget);
+    layout4->setAlignment(Qt::AlignCenter);
+    layout4->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(2, 0, widget4);
+    ui->tableWidget_2->resizeRowToContents(2);
+    ui->tableWidget_2->item(3, 0)->setTextAlignment(Qt::AlignCenter);
+
+
+    QWidget *widget5 = new QWidget();
+    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
+    svgwidget->setMaximumSize(300,300);
+    QHBoxLayout *layout5 = new QHBoxLayout(widget5);
+    layout5->addWidget(svgwidget);
+    layout5->setAlignment(Qt::AlignCenter);
+    layout5->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(2, 2, widget5);
+    ui->tableWidget_2->item(3, 2)->setTextAlignment(Qt::AlignCenter);
+
+    QWidget *widget6 = new QWidget();
+    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tr.svg");
+    svgwidget->setMaximumSize(300,300);
+    QHBoxLayout *layout6 = new QHBoxLayout(widget6);
+    layout6->addWidget(svgwidget);
+    layout6->setAlignment(Qt::AlignCenter);
+    layout6->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(2, 4, widget6);
+    ui->tableWidget_2->item(3, 4)->setTextAlignment(Qt::AlignCenter);
+
+    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
+    {
+        if (ui->tableWidget_2->item(row,1) != 0)
+        {
+            ui->tableWidget_2->item(row,1)->setFlags(Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
+        }
+        if (ui->tableWidget_2->item(row,3) != 0)
+        {
+            ui->tableWidget_2->item(row,3)->setFlags(Qt::NoItemFlags);
+        }
+    }
+
+    ui->tableWidget_2->item(1,0)->setFlags(Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
+    ui->tableWidget_2->item(1,2)->setFlags(Qt::NoItemFlags);
+    ui->tableWidget_2->item(1,4)->setFlags(Qt::NoItemFlags);
+    ui->tableWidget_2->item(3,0)->setFlags(Qt::NoItemFlags);
+    ui->tableWidget_2->item(3,2)->setFlags(Qt::NoItemFlags);
+    ui->tableWidget_2->item(3,4)->setFlags(Qt::NoItemFlags);
+
 
 }
 
@@ -150,4 +315,46 @@ void Start_app::click_open_progect()
     wf->LoadProject(str);
 
 
+}
+
+void Start_app::click_open_progect_2(const QModelIndex& idx)
+{
+    int x = idx.row();
+    int y = idx.column();
+
+    int a =0,b = 0;
+    if((a==x)&&(b==y))
+    {
+        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается идентификация"));
+    }
+
+    int c = 0,d = 2;
+    if((c == x) && (d == y))
+    {
+        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается эл магн модель"));
+    }
+
+    int e = 0,f = 4;
+    if((e == x) && (f == y))
+    {
+        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается тепл модель"));
+    }
+
+    int g = 2, h = 0;
+    if((g == x) && (h == y))
+    {
+        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается вент модель"));
+    }
+
+    int m = 2, n = 2;
+    if((m == x) && (n == y))
+    {
+        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается темп прогноз"));
+    }
+
+    int o = 2, p = 4;
+    if((o == x) && (p == y))
+    {
+        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается темп ресурс"));
+    }
 }

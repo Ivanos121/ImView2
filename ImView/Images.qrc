@@ -38,6 +38,15 @@
         <file>../data/img/system_icons/document-preview-archive.svg</file>
         <file>../data/img/system_icons/document-close.svg</file>
         <file>../data/img/system_icons/window-close1.svg</file>
+        <file>../data/img/system_icons/IM_256x256.svg</file>
+        <file>../data/img/system_icons/IM_256x256.png</file>
+        <file>../data/img/system_icons/IM_256x256_gray.png</file>
+        <file>../data/img/system_icons/IM_96x96_elm.svg</file>
+        <file>../data/img/system_icons/IM_96x96_id.svg</file>
+        <file>../data/img/system_icons/IM_96x96_pt.svg</file>
+        <file>../data/img/system_icons/IM_96x96_tm.svg</file>
+        <file>../data/img/system_icons/IM_96x96_tr.svg</file>
+        <file>../data/img/system_icons/IM_96x96_vm.svg</file>
     </qresource>
     <qresource prefix="/icons">
         <file>../data/img/icons/IM_16x16.png</file>
