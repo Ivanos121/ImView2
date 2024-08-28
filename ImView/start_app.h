@@ -26,6 +26,8 @@ public slots:
 private:
     Ui::Start_app *ui;
     QSvgWidget *svgwidget;
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
 };
 
 #endif // START_APP_H

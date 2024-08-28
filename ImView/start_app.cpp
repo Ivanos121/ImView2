@@ -31,7 +31,7 @@ Start_app::Start_app(QWidget *parent)
     svgwidget->setMaximumSize(100,100);
 
 
-    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    for(int row = 0; row<ui->tableWidget->rowCount()-2; row++)
     {
         for(int column = 0; column<ui->tableWidget->columnCount(); column++)
         {
@@ -39,7 +39,7 @@ Start_app::Start_app(QWidget *parent)
         }
     }
 
-    for (int i=0; i<ui->tableWidget->rowCount(); i++)
+    for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
     {
         if (ui->tableWidget->item(i, 0) != 0)
         {
@@ -51,11 +51,11 @@ Start_app::Start_app(QWidget *parent)
         }
     }
 
-    for (int i=0; i<ui->tableWidget->rowCount(); i++)
+    for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
     {
         QString w1, w2,w3;
 
-        w1= "zxc.imview";
+        w1= "zxc8.imview";
 
         QDateTime currentDateTime = QDateTime::currentDateTime();
         QTime currentTime = currentDateTime.time();
@@ -73,7 +73,7 @@ Start_app::Start_app(QWidget *parent)
     }
 
 
-    for (int i=0; i<ui->tableWidget->rowCount(); i++)
+    for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
     {
         //ui->tableWidget->resizeRowToContents(i);
         if (ui->tableWidget->item(i, 1) != 0)
@@ -83,7 +83,7 @@ Start_app::Start_app(QWidget *parent)
         }
     }
 
-    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    for(int row = 0; row<ui->tableWidget->rowCount()-2; row++)
     {
         if (ui->tableWidget->item(row,0) != 0)
         {
@@ -110,15 +110,16 @@ Start_app::Start_app(QWidget *parent)
     connect(ui->tableWidget,&QTableWidget::itemActivated,this,&Start_app::click_open_progect);
     connect(ui->tableWidget_2,&QAbstractItemView::clicked,this,&Start_app::click_open_progect_2);
 
-    ui->label_3->setText("IM View");
+    /*ui->label_3->setText("IM View");
     //set font
     QFont font = ui->label_3->font();
-    font.setPointSize(200);
+    font.setPointSize(100);
     font.setBold(true);
     font.setItalic(true);
     ui->label_3->setFont(font);
     ui->label_3->setStyleSheet("QLabel { color : rgb(200, 204, 208); }");
     //ui->label_4->setPixmap(QPixmap("/home/elf/ImView2/data/img/system_icons/IM_256x256_gray.png"));
+*/
 
     ui->tableWidget_2->setRowCount(4);
     ui->tableWidget_2->setColumnCount(5);
@@ -129,7 +130,7 @@ Start_app::Start_app(QWidget *parent)
     //ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_2->horizontalHeader()->hide();
     ui->tableWidget_2->verticalHeader()->hide();
-    ui->tableWidget_2->resizeRowsToContents();
+    //ui->tableWidget_2->resizeRowsToContents();
     ui->tableWidget_2->verticalHeader()->hide();
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -140,18 +141,7 @@ Start_app::Start_app(QWidget *parent)
         {
             ui->tableWidget_2->setItem(row, column, new QTableWidgetItem());
         }
-    }
-
-    for (int i=0; i<ui->tableWidget_2->rowCount(); i++)
-    {
-        if (ui->tableWidget_2->item(i, 0) != 0)
-        {
-            //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
-            //svgwidget->setMaximumSize(100,100);
-            //ui->tableWidget->setCellWidget(i, 0, svgwidget);
-            ui->tableWidget_2->resizeRowToContents(i);
-            ui->tableWidget_2->resizeColumnToContents(i);
-        }
+        //ui->tableWidget_2->setRowHeight(row, 300);
     }
 
     for (int i=0; i<ui->tableWidget_2->columnCount(); i++)
@@ -178,55 +168,55 @@ Start_app::Start_app(QWidget *parent)
 
     QWidget *widget = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg");
-    svgwidget->setMaximumSize(300,300);
+    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout = new QHBoxLayout(widget);
     layout->addWidget(svgwidget);
     layout->setAlignment(Qt::AlignCenter);
     layout->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(0, 0, widget);
-    ui->tableWidget_2->resizeRowToContents(0);
-    ui->tableWidget_2->resizeColumnToContents(0);
+    //ui->tableWidget_2->resizeRowToContents(0);
+    //ui->tableWidget_2->resizeColumnToContents(0);
     ui->tableWidget_2->item(1, 0)->setTextAlignment(Qt::AlignCenter);
 
     QWidget *widget2 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg");
-    svgwidget->setMaximumSize(300,300);
+    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout2 = new QHBoxLayout(widget2);
     layout2->addWidget(svgwidget);
     layout2->setAlignment(Qt::AlignCenter);
     layout2->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(0, 2, widget2);
-    ui->tableWidget_2->resizeColumnToContents(1);
-    ui->tableWidget_2->resizeRowToContents(0);
+    //ui->tableWidget_2->resizeColumnToContents(1);
+    //ui->tableWidget_2->resizeRowToContents(0);
     ui->tableWidget_2->item(1, 2)->setTextAlignment(Qt::AlignCenter);
 
 
     QWidget *widget3 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg");
-    svgwidget->setMaximumSize(300,300);
+    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout3 = new QHBoxLayout(widget3);
     layout3->addWidget(svgwidget);
     layout3->setAlignment(Qt::AlignCenter);
     layout3->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(0, 4, widget3);
-    ui->tableWidget_2->resizeColumnToContents(2);
+    //ui->tableWidget_2->resizeColumnToContents(2);
     ui->tableWidget_2->item(1, 4)->setTextAlignment(Qt::AlignCenter);
 
     QWidget *widget4 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
-    svgwidget->setMaximumSize(300,300);
+    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout4 = new QHBoxLayout(widget4);
     layout4->addWidget(svgwidget);
     layout4->setAlignment(Qt::AlignCenter);
     layout4->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(2, 0, widget4);
-    ui->tableWidget_2->resizeRowToContents(2);
+    //ui->tableWidget_2->resizeRowToContents(2);
     ui->tableWidget_2->item(3, 0)->setTextAlignment(Qt::AlignCenter);
 
 
     QWidget *widget5 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
-    svgwidget->setMaximumSize(300,300);
+    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout5 = new QHBoxLayout(widget5);
     layout5->addWidget(svgwidget);
     layout5->setAlignment(Qt::AlignCenter);
@@ -236,7 +226,7 @@ Start_app::Start_app(QWidget *parent)
 
     QWidget *widget6 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tr.svg");
-    svgwidget->setMaximumSize(300,300);
+    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout6 = new QHBoxLayout(widget6);
     layout6->addWidget(svgwidget);
     layout6->setAlignment(Qt::AlignCenter);
@@ -305,16 +295,8 @@ void Start_app::click_open_progect()
             save_progect.progect_1.id_1 = settings.value( "id_1", "").toInt();
     }
 
-    QString str = save_progect.progect_1.name_1;
-
-    QFile file;
-    file.setFileName(save_progect.progect_1.name_1);
-    QDir::setCurrent(save_progect.progect_1.path_1);
-    file.open(QIODevice::ReadOnly);
-
+    QString str = save_progect.progect_1.path_1 + "/" + save_progect.progect_1.name_1;
     wf->LoadProject(str);
-
-
 }
 
 void Start_app::click_open_progect_2(const QModelIndex& idx)
@@ -322,8 +304,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
     int x = idx.row();
     int y = idx.column();
 
-    int a =0,b = 0;
-    if((a==x)&&(b==y))
+    if((x==0)&&(y==0))
     {
         QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается идентификация"));
     }
@@ -356,5 +337,26 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
     if((o == x) && (p == y))
     {
         QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается темп ресурс"));
+    }
+}
+
+void Start_app::resizeEvent(QResizeEvent *event)
+{
+    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
+    {
+        if ((row == 1) || (row == 3))
+        {
+            ui->tableWidget_2->setRowHeight(row, 30);
+        }
+        else
+        {
+            int max_height = (height() - 60 - ui->label_3->height() - ui->label_16->height() - 60) / 2;
+            int height = ui->tableWidget_2->columnWidth(0);
+            if (height > max_height)
+            {
+                height = max_height;
+            }
+            ui->tableWidget_2->setRowHeight(row, height);
+        }
     }
 }

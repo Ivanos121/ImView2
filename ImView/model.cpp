@@ -38,8 +38,8 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    s_nom=(w_0-w_nom)/w_0; //номинальное скольжение
    M_nom=P_nom/w_nom; //Номинальный момент
    dP_nom=(P_nom*(1-kpd_nom))/kpd_nom; //Номинальные потери мощности
-   dP_mxnom=0.1*dP_nom; //Номинальные механические потери мощности
-   dP_dob=0.02*dP_nom; //добавочные потери
+   dP_mxnom=0.05*dP_nom; //Номинальные механические потери мощности
+   dP_dob=0.0281*dP_nom; //добавочные потери
    M_0=(dP_mxnom+dP_dob)/w_0; //Момент холостого хода
    M_elmnom=M_0+M_nom; //Номинальный электромагнитный момент
    dP_per2nom=M_elmnom*w_0*s_nom; //номинальные переменные потери в роторе
@@ -47,7 +47,7 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    //L1:
    //QSettings settings( "BRU", "IM View");
    //K_z = settings.value( "kz", "").toDouble();
-   K_z=0.7; //Коэффициент запаса
+   K_z=0.61; //Коэффициент запаса
    dP_pernom=dP_nom/(1+pow(K_z,2)); //номинальные переменные потери мощности
    dP_post=dP_nom-dP_pernom; //Постоянные потери
    dP_per1nom=dP_pernom-dP_per2nom; //номинальные переменные потери в статоре
@@ -83,7 +83,7 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    sinf_0=sqrt(1-((R10+Rm)*I_0/U_fnom)*((R10+Rm)*I_0/U_fnom)); //??????
    Xm=(U_fnom*sinf_0/I_0)-X10; //индуктивное сопротивление взаимоиндукции
    Lm0=Xm/314; //Индуктивность рассеяния взаимоиндукции
-   L10 = L10 + 1.5*Lm0;
+   L10 = L10 + Lm0;
 
    //инициализация начальных значений
    sigma=L10-pow(Lm0,2)/L10;
