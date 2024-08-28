@@ -19,9 +19,7 @@ Start_app::Start_app(QWidget *parent)
 
     ui->tableWidget->setRowCount(10);
     ui->tableWidget->setColumnCount(2);
-    //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    //ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->horizontalHeader()->hide();
@@ -39,44 +37,43 @@ Start_app::Start_app(QWidget *parent)
         }
     }
 
-    for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
-    {
-        if (ui->tableWidget->item(i, 0) != 0)
-        {
-            svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
-            svgwidget->setMaximumSize(100,100);
-            ui->tableWidget->setCellWidget(i, 0, svgwidget);
-            ui->tableWidget->resizeRowToContents(i);
-            ui->tableWidget->resizeColumnToContents(i);
-        }
-    }
+    // for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
+    // {
+    //     if (ui->tableWidget->item(i, 0) != 0)
+    //     {
+    //         svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
+    //         svgwidget->setMaximumSize(100,100);
+    //         ui->tableWidget->setCellWidget(i, 0, svgwidget);
+    //         ui->tableWidget->resizeRowToContents(i);
+    //         ui->tableWidget->resizeColumnToContents(i);
+    //     }
+    // }
+
+    // for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
+    // {
+    //     QString w1, w2,w3;
+
+    //     w1= "zxc8.imview";
+
+    //     QDateTime currentDateTime = QDateTime::currentDateTime();
+    //     QTime currentTime = currentDateTime.time();
+    //     QDate currentDate = currentDateTime.date();
+
+    //     w2= QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
+    //         currentDate.toString("dd.MM.yyyy").toUtf8().data());
+
+    //     w3="/home/elf/ImView2/Output";
+
+    //     if (ui->tableWidget->item(i, 1) != 0)
+    //     {
+    //         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(QString("%1 \n %2 \n %3").arg(w1).arg(w2).arg(w3)));
+    //     }
+    // }
+
 
     for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
     {
-        QString w1, w2,w3;
-
-        w1= "zxc8.imview";
-
-        QDateTime currentDateTime = QDateTime::currentDateTime();
-        QTime currentTime = currentDateTime.time();
-        QDate currentDate = currentDateTime.date();
-
-        w2= QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
-            currentDate.toString("dd.MM.yyyy").toUtf8().data());
-
-        w3="/home/elf/ImView2/Output";
-
-        if (ui->tableWidget->item(i, 1) != 0)
-        {            
-            ui->tableWidget->setItem(i, 1, new QTableWidgetItem(QString("%1 \n %2 \n %3").arg(w1).arg(w2).arg(w3)));
-        }
-    }
-
-
-    for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
-    {
-        //ui->tableWidget->resizeRowToContents(i);
-        if (ui->tableWidget->item(i, 1) != 0)
+         if (ui->tableWidget->item(i, 1) != 0)
         {
             ui->tableWidget->item(i, 1)->setTextAlignment(Qt::AlignLeft);
             ui->tableWidget->item(i, 1)->setTextAlignment(Qt::AlignVCenter);
@@ -109,17 +106,6 @@ Start_app::Start_app(QWidget *parent)
     connect(ui->label_2,&QLabel::linkActivated, this, &Start_app::click_open_file);
     connect(ui->tableWidget,&QTableWidget::itemActivated,this,&Start_app::click_open_progect);
     connect(ui->tableWidget_2,&QAbstractItemView::clicked,this,&Start_app::click_open_progect_2);
-
-    /*ui->label_3->setText("IM View");
-    //set font
-    QFont font = ui->label_3->font();
-    font.setPointSize(100);
-    font.setBold(true);
-    font.setItalic(true);
-    ui->label_3->setFont(font);
-    ui->label_3->setStyleSheet("QLabel { color : rgb(200, 204, 208); }");
-    //ui->label_4->setPixmap(QPixmap("/home/elf/ImView2/data/img/system_icons/IM_256x256_gray.png"));
-*/
 
     ui->tableWidget_2->setRowCount(4);
     ui->tableWidget_2->setColumnCount(5);

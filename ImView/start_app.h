@@ -23,7 +23,7 @@ public slots:
     void click_open_file();
     void click_open_progect();
     void click_open_progect_2(const QModelIndex &idx);
-private:
+public:
     Ui::Start_app *ui;
     QSvgWidget *svgwidget;
 protected:

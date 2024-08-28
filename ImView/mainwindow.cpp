@@ -1,4 +1,5 @@
 #include "qimagewriter.h"
+#include "save_progect.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "base.h"
@@ -13,6 +14,7 @@
 #include "tepl_dannie.h"
 #include "ui_ostat_resurs.h"
 #include "ui_poisk.h"
+#include "ui_start_app.h"
 #include "ui_tepl_dannie.h"
 #include "ui_tepl_identf.h"
 #include "ui_teplovent.h"
@@ -117,6 +119,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menu_3->menuAction()->setVisible(false);
     ui->menu_4->menuAction()->setVisible(false);
     ui->menu_5->menuAction()->setVisible(false);
+    ui->save_file->setVisible(false);
+    ui->save_as_file->setVisible(false);
+    ui->action_save_graph_file->setVisible(false);
+    ui->action_close_progect->setVisible(false);
+    ui->action_close_session->setVisible(false);
+    ui->print_file->setVisible(false);
+    ui->print_preview->setVisible(false);
 
     undoStack = new QUndoStack(this);
     undoStack->setUndoLimit(100);
@@ -3115,7 +3124,7 @@ void MainWindow::closeEvent (QCloseEvent *event)
 {
     if(isNablLaunched == true)
     {
-        QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Программа еще работает", "Закрыть программу?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
+        QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Программа еще работает", "Сохранить данные?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
         QDir dir("/tmp/imview");
         switch (resBtn)
         {
@@ -3481,11 +3490,11 @@ void MainWindow::translator()
 
 void MainWindow::nastroiki()
 {
-    QPixmap pixmap(":/system_icons//data/img/system_icons/go-next.svg");
-    QIcon ButtonIcon_2(pixmap);
-    ui->switch_regim_upr->setIcon(ButtonIcon_2);
-    ui->stackedWidget->show();
-    ui->stackedWidget->setCurrentIndex(0);
+    // QPixmap pixmap(":/system_icons//data/img/system_icons/go-next.svg");
+    // QIcon ButtonIcon_2(pixmap);
+    // ui->switch_regim_upr->setIcon(ButtonIcon_2);
+    // ui->stackedWidget->show();
+    // ui->stackedWidget->setCurrentIndex(0);
 
     QScreen *screen = QGuiApplication::primaryScreen();
     nastr = new Nastroiki(this);
@@ -3967,6 +3976,58 @@ void MainWindow::SaveProgectToFile()
     item4->setText(sessionFileName);
     //setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
     setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+
+    // QList<QString> name = { "name_1", "name_2", "name_3", "name_4", "name_5", "name_6", "name_7", "name_8", "name_9", "name_10" };
+    // QList<QString> path = { "path_1", "path_2", "path_3", "path_4", "path_5", "path_6", "path_7", "path_8", "path_9", "path_10" };
+    // QList<QString> id = { "id_1", "id_2", "id_3", "id_4", "id_5", "id_6", "id_7", "id_8", "id_9", "id_10" };
+
+    QSettings settings( "BRU", "IM View");
+    QString names = settings.value( "name", "").toString();
+    QString paths = settings.value( "path", "").toString();
+    int ids = settings.value( "id", "").toInt();
+
+    if(names == "none")
+    {
+        QFile f(str);
+        QFileInfo fileInfo(f.fileName());
+        QString filename(fileInfo.fileName());
+
+        names = filename;
+        settings.setValue( "name", names);
+    }
+    if(paths == "none")
+    {
+        QFile f(str);
+        paths = QFileInfo(names).absoluteFilePath();
+        settings.setValue( "path", paths);
+    }
+
+    if(ids == 0)
+    {
+        int id = ids;
+        settings.setValue( "id", id);
+    }
+
+    QString w1, w2,w3;
+
+    w1 = names;
+
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    QTime currentTime = currentDateTime.time();
+    QDate currentDate = currentDateTime.date();
+
+    w2 = QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
+                                   currentDate.toString("dd.MM.yyyy").toUtf8().data());
+
+    w3 = paths;
+
+    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
+    svgwidget->setMaximumSize(100,100);
+    ui->widget_15->ui->tableWidget->setCellWidget(ids, 0, svgwidget);
+    ui->widget_15->ui->tableWidget->resizeRowToContents(ids);
+    ui->widget_15->ui->tableWidget->resizeColumnToContents(ids);
+    ui->widget_15->ui->tableWidget->setItem(ids, 1, new QTableWidgetItem(QString("%1 \n %2 \n %3").arg(w1, w2, w3)));
+
 }
 
 void MainWindow::LoadProject(QString str)
@@ -3976,14 +4037,17 @@ void MainWindow::LoadProject(QString str)
     ui->switch_regim_upr->show();
     ui->toolBar->show();
     ui->widget_15->hide();
-    // ui->menu_2->show();
-    // ui->menu_3->show();
-    // ui->menu_4->show();
-    // ui->menu_5->show();
     ui->menu_2->menuAction()->setVisible(true);
     ui->menu_3->menuAction()->setVisible(true);
     ui->menu_4->menuAction()->setVisible(true);
     ui->menu_5->menuAction()->setVisible(true);
+    ui->save_file->setVisible(true);
+    ui->save_as_file->setVisible(true);
+    ui->action_save_graph_file->setVisible(true);
+    ui->action_close_progect->setVisible(true);
+    ui->action_close_session->setVisible(true);
+    ui->print_file->setVisible(true);
+    ui->print_preview->setVisible(true);
 
     QDir().mkdir("/tmp/imview");
     JlCompress::extractDir(str,"/tmp/imview");
@@ -9140,15 +9204,6 @@ void MainWindow::create_new()
 
 void MainWindow::open_file()
 {
-    // ui->tabWidget->show();
-    // ui->stackedWidget->show();
-    // ui->switch_regim_upr->show();
-    // ui->toolBar->show();
-    // ui->widget_15->hide();
-    // ui->menu_2->menuAction()->setVisible(true);
-    // ui->menu_3->menuAction()->setVisible(true);
-    // ui->menu_4->menuAction()->setVisible(true);
-    // ui->menu_5->menuAction()->setVisible(true);
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
     LoadProject(str);

@@ -9,6 +9,7 @@
 #include <QTreeWidgetItem>
 #include <QStandardItem>
 
+#include "qsvgwidget.h"
 #include "settings.h"
 #include "datas.h"
 #include "nastroiki.h"
@@ -198,6 +199,7 @@ public:
     QAction *separatorAct;
     QMenu *fileMenu;
     QItemSelectionModel *selectionModel, *selectionModel2, *selectionModel3;
+    QSvgWidget *svgwidget;
 
     QMenu *recentFilesMenu;
     QMenu *helpMenu;
