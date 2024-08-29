@@ -59,6 +59,8 @@ public:
     void translate_ru();
     void translator();
     void open_file();
+    void loadFile(const QString &fileName);
+    void updateRecentFileActions();
 
 private:
     QString sessionFileName;
@@ -66,10 +68,8 @@ private:
     QSqlTableModel *model;
     QStandardItemModel *modd;
 
-    void updateRecentFileActions();
     void setCurrentFile(const QString &fileName);
-    QString strippedName(const QString &fullFileName);
-    void loadFile(const QString &fileName);
+    QString strippedName(const QString &fullFileName);    
 
 private slots:
     void actionabout();

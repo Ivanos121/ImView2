@@ -25,6 +25,21 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget->horizontalHeader()->hide();
     ui->tableWidget->verticalHeader()->hide();
 
+    //Настрока меню быстрого открытия файлов
+    recentFileActs[0] = ui->tableWidget->item(0,1);
+    recentFileActs[1] = ui->tableWidget->item(1,1);
+    recentFileActs[2] = ui->tableWidget->item(2,1);
+    recentFileActs[3] = ui->tableWidget->item(3,1);
+    recentFileActs[4] = ui->tableWidget->item(4,1);
+    recentFileActs[5] = ui->tableWidget->item(5,1);
+    recentFileActs[6] = ui->tableWidget->item(6,1);
+    recentFileActs[7] = ui->tableWidget->item(7,1);
+
+    for (int i = 0; i < MaxRecentFiles; i++)
+    {
+        connect(recentFileActs[i], &QTableWidgetItem::setSelected, this, &Start_app::openRecentFile);
+    }
+
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
     svgwidget->setMaximumSize(100,100);
 
@@ -345,4 +360,60 @@ void Start_app::resizeEvent(QResizeEvent *event)
             ui->tableWidget_2->setRowHeight(row, height);
         }
     }
+}
+
+void Start_app::openRecentFile()
+{
+    QTableWidgetItem *item = qobject_cast<QTableWidgetItem *>(sender());
+    if (item)
+    {
+        QString fileName = item->data(Qt::DisplayRole).toString();
+        wf->loadFile(fileName);
+    }
+}
+
+void Start_app::setCurrentFile(const QString &fileName)
+{
+    curFile = fileName;
+    setWindowFilePath(curFile);
+
+    QSettings settings("BRU", "IM View");
+    QStringList files = settings.value("recentFileList").toStringList();
+    files.removeAll(fileName);
+    files.prepend(fileName);
+    while (files.size() > MaxRecentFiles)
+        files.removeLast();
+
+    settings.setValue("recentFileList", files);
+
+    foreach (QWidget *widget, QApplication::topLevelWidgets())
+    {
+        MainWindow *mainWin = qobject_cast<MainWindow *>(widget);
+        if (mainWin)
+            mainWin->updateRecentFileActions();
+    }
+}
+
+void Start_app::updateRecentFileActions()
+{
+    QSettings settings("BRU", "IM View");
+    QStringList files = settings.value("recentFileList").toStringList();
+
+    int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
+
+    for (int i = 0; i < numRecentFiles; ++i) {
+        QString text = tr("&%1 %2").arg(i + 1).arg(strippedName(files[i]));
+        recentFileActs[i]->setText(text);
+        recentFileActs[i]->setData(Qt::UserRole, files[i]);
+        //recentFileActs[i]->setVisible(true);
+    }
+    // for (int j = numRecentFiles; j < MaxRecentFiles; ++j)
+    //     recentFileActs[j]->setVisible(false);
+
+    // recentFileActs[MaxRecentFiles-1]->setVisible(numRecentFiles > 0);
+}
+
+QString Start_app::strippedName(const QString &fullFileName)
+{
+    return QFileInfo(fullFileName).fileName();
 }

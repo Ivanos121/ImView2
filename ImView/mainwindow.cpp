@@ -1,5 +1,4 @@
 #include "qimagewriter.h"
-#include "save_progect.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "base.h"
@@ -111,6 +110,8 @@ MainWindow::MainWindow(QWidget *parent)
     , undoOperation(false)
 {
     ui->setupUi(this);
+
+    //настройка стартового экрана
     ui->tabWidget->hide();
     ui->stackedWidget->hide();
     ui->switch_regim_upr->hide();
@@ -127,6 +128,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->print_file->setVisible(false);
     ui->print_preview->setVisible(false);
 
+    //Настройка буфера обмена
     undoStack = new QUndoStack(this);
     undoStack->setUndoLimit(100);
 
@@ -136,6 +138,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_15->setEnabled(true);
     ui->widget_15->showMaximized();
 
+    //Настрока меню быстрого открытия файлов
     recentFileActs[0] = ui->actionmy;
     recentFileActs[1] = ui->actionmy2;
     recentFileActs[2] = ui->actionmy3;
@@ -147,6 +150,7 @@ MainWindow::MainWindow(QWidget *parent)
         connect(recentFileActs[i], &QAction::triggered, this, &MainWindow::openRecentFile);
     }
 
+    //Настройкак поиска
     QSettings settings( "BRU", "IM View");
     settings.setValue( "ii", 0);
     settings.setValue( "xx", 0);
@@ -229,7 +233,7 @@ MainWindow::MainWindow(QWidget *parent)
    // connect(ui->widget->ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, &MainWindow::sort_item);
     connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_identf_in_file);
 
-
+    //Настройка связи форм
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
     ui->widget_5->wf=this;
@@ -238,17 +242,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget->wf=this;
     ui->widget_15->wf=this;
 
+    //формирование поведения файловых операций
     ui->LoadProgect->setVisible(false);
     ui->SaveProgectToFile->setVisible(false);
     ui->save_file->setEnabled(false);
     ui->save_as_file->setEnabled(false);
 
+    //Настройка виджета График
     ui->widget_6->ui->plot->t_max = 0.01;
     ui->widget_6->ui->plot->U_max = 500.0;
     ui->widget_6->ui->plot->margin_bottom = 40;
     ui->widget_6->ui->plot->margin_left = 100;
     ui->widget_6->ui->plot->reset();
 
+    //Отображение картинов в приложении
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
@@ -259,7 +266,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_6->ui->webEngineView_3->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_4->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_energo_scheme/vent_energo_scheme.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_5->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_energo_scheme/vent_energo_scheme.html").absoluteFilePath()));
-
     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/energo_scheme/energo_scheme.html").absoluteFilePath()));
     ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
@@ -276,10 +282,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->switch_regim_upr->setCheckable(true);
     ui->switch_regim_upr->setChecked(true);
     QObject::connect(ui->switch_regim_upr, &QPushButton::clicked, ui->stackedWidget, &MainWindow::setVisible);
-    //connect(ui->switch_regim_upr, &QPushButton::clicked, this, &MainWindow::on_pushButton_5_clicked);
 
     ui->stackedWidget->setCurrentIndex(0);
 
+    //Настройка свойств QTreeView
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
     ui->treeView->setAlternatingRowColors(true); // Цвет каждой строки интервала разный, при наличии qss этот атрибут недействителен
@@ -289,8 +295,8 @@ MainWindow::MainWindow(QWidget *parent)
     QFont newFontt("DroidSans", 10, QFont::Normal, false);
     ui->treeView->setFont(newFontt);
     ui->treeView->setBackgroundRole(QPalette :: Dark);
-
     ui->treeView->setExpandsOnDoubleClick(false);
+
     QObject::connect(ui->treeView, &QTreeView::clicked,this, [this]()
     {
         if (ui->treeView->isExpanded(ui->treeView->currentIndex()))
@@ -301,14 +307,13 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
 
+    //Создание модели QTreeView
     model2=new QStandardItemModel(ui->treeView);
-
-
     model2->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
 
-
+    //настройка итемов QTreeView
     QList<QStandardItem*> items1;
     item1 = new QStandardItem(tr("Общее настройки сессии"));
     QString w0=item1->text();
@@ -325,7 +330,6 @@ MainWindow::MainWindow(QWidget *parent)
     item1->setFont(newFont);
     item1->setBackground(QColor(255, 255, 222));
     item2->setBackground(QColor(255, 255, 222));
-
 
     QList<QStandardItem*> items2;
     item3 = new QStandardItem(tr("Название сессии"));
@@ -1045,8 +1049,8 @@ MainWindow::MainWindow(QWidget *parent)
     item133->appendRow(items20);
     items20.clear();
 
+    //Настройка представления модели QTreeView
     ui->treeView->setModel(model2);
-
     ui->treeView->header()->resizeSection(0,270);
     ui->treeView->header()->setSectionResizeMode(0,QHeaderView::Interactive);
     ui->treeView->header()->setSectionResizeMode(1,QHeaderView::Fixed);
@@ -3776,11 +3780,7 @@ void MainWindow::SaveProgectToFile()
     saveDialog.setViewMode(QFileDialog::Detail);
     saveDialog.setDirectory("../Output");
     saveDialog.exec();
-    QString str = saveDialog.selectedFiles().first();
-
-
-    //QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
-   // QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter, &filter);
+    QString str = saveDialog.selectedFiles().constFirst();
 
     QFile file(QString("../save/project.xml"));
     file.open(QIODevice::WriteOnly);
@@ -10070,7 +10070,8 @@ void MainWindow::setCurrentFile(const QString &fileName)
 
     settings.setValue("recentFileList", files);
 
-    foreach (QWidget *widget, QApplication::topLevelWidgets()) {
+    foreach (QWidget *widget, QApplication::topLevelWidgets())
+    {
         MainWindow *mainWin = qobject_cast<MainWindow *>(widget);
         if (mainWin)
             mainWin->updateRecentFileActions();
