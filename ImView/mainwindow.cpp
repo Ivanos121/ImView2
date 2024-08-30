@@ -3981,7 +3981,7 @@ void MainWindow::SaveProgectToFile()
     // QList<QString> path = { "path_1", "path_2", "path_3", "path_4", "path_5", "path_6", "path_7", "path_8", "path_9", "path_10" };
     // QList<QString> id = { "id_1", "id_2", "id_3", "id_4", "id_5", "id_6", "id_7", "id_8", "id_9", "id_10" };
 
-    QSettings settings( "BRU", "IM View");
+    /*QSettings settings( "BRU", "IM View");
     QString names = settings.value( "name", "").toString();
     QString paths = settings.value( "path", "").toString();
     int ids = settings.value( "id", "").toInt();
@@ -4027,7 +4027,7 @@ void MainWindow::SaveProgectToFile()
     ui->widget_15->ui->tableWidget->resizeRowToContents(ids);
     ui->widget_15->ui->tableWidget->resizeColumnToContents(ids);
     ui->widget_15->ui->tableWidget->setItem(ids, 1, new QTableWidgetItem(QString("%1 \n %2 \n %3").arg(w1, w2, w3)));
-
+*/
 }
 
 void MainWindow::LoadProject(QString str)

@@ -34,9 +34,10 @@ public:
     QSvgWidget *svgwidget;
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void showEvent(QShowEvent *) override;
 private slots:
-    void openRecentFile();
-    void setCurrentFile(const QString &fileName);
+    void openRecentFile(int row, int column);
+    //void setCurrentFile(const QString &fileName);
     void updateRecentFileActions();
 };
 

@@ -26,19 +26,16 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget->verticalHeader()->hide();
 
     //Настрока меню быстрого открытия файлов
-    recentFileActs[0] = ui->tableWidget->item(0,1);
+    /*recentFileActs[0] = ui->tableWidget->item(0,1);
     recentFileActs[1] = ui->tableWidget->item(1,1);
     recentFileActs[2] = ui->tableWidget->item(2,1);
     recentFileActs[3] = ui->tableWidget->item(3,1);
     recentFileActs[4] = ui->tableWidget->item(4,1);
     recentFileActs[5] = ui->tableWidget->item(5,1);
     recentFileActs[6] = ui->tableWidget->item(6,1);
-    recentFileActs[7] = ui->tableWidget->item(7,1);
+    recentFileActs[7] = ui->tableWidget->item(7,1);*/
 
-    for (int i = 0; i < MaxRecentFiles; i++)
-    {
-        connect(recentFileActs[i], &QTableWidgetItem::setSelected, this, &Start_app::openRecentFile);
-    }
+    connect(ui->tableWidget, &QTableWidget::cellClicked, this, &Start_app::openRecentFile);
 
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
     svgwidget->setMaximumSize(100,100);
@@ -254,7 +251,7 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget_2->item(3,2)->setFlags(Qt::NoItemFlags);
     ui->tableWidget_2->item(3,4)->setFlags(Qt::NoItemFlags);
 
-
+    updateRecentFileActions();
 }
 
 Start_app::~Start_app()
@@ -362,17 +359,13 @@ void Start_app::resizeEvent(QResizeEvent *event)
     }
 }
 
-void Start_app::openRecentFile()
+void Start_app::openRecentFile(int row, int column)
 {
-    QTableWidgetItem *item = qobject_cast<QTableWidgetItem *>(sender());
-    if (item)
-    {
-        QString fileName = item->data(Qt::DisplayRole).toString();
-        wf->loadFile(fileName);
-    }
+    QString fileName = ui->tableWidget->item(row, column)->data(Qt::UserRole).toString();
+    wf->loadFile(fileName);
 }
 
-void Start_app::setCurrentFile(const QString &fileName)
+/*void Start_app::setCurrentFile(const QString &fileName)
 {
     curFile = fileName;
     setWindowFilePath(curFile);
@@ -392,7 +385,7 @@ void Start_app::setCurrentFile(const QString &fileName)
         if (mainWin)
             mainWin->updateRecentFileActions();
     }
-}
+}*/
 
 void Start_app::updateRecentFileActions()
 {
@@ -402,18 +395,37 @@ void Start_app::updateRecentFileActions()
     int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
 
     for (int i = 0; i < numRecentFiles; ++i) {
-        QString text = tr("&%1 %2").arg(i + 1).arg(strippedName(files[i]));
-        recentFileActs[i]->setText(text);
-        recentFileActs[i]->setData(Qt::UserRole, files[i]);
-        //recentFileActs[i]->setVisible(true);
-    }
-    // for (int j = numRecentFiles; j < MaxRecentFiles; ++j)
-    //     recentFileActs[j]->setVisible(false);
+        QString text = files[i];
+        //recentFileActs[i]->setText(text);
+        //recentFileActs[i]->setData(Qt::UserRole, files[i]);
 
-    // recentFileActs[MaxRecentFiles-1]->setVisible(numRecentFiles > 0);
+        QString w1, w2;
+
+        w1 = text;
+
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        QTime currentTime = currentDateTime.time();
+        QDate currentDate = currentDateTime.date();
+
+        w2 = QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
+                      currentDate.toString("dd.MM.yyyy").toUtf8().data());
+
+        svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
+        svgwidget->setMaximumSize(100,100);
+        ui->tableWidget->setCellWidget(i, 0, svgwidget);
+        ui->tableWidget->resizeRowToContents(i);
+        ui->tableWidget->resizeColumnToContents(i);
+        ui->tableWidget->item(i, 1)->setText(QString("%1 \n %2").arg(w1, w2));
+        ui->tableWidget->item(i, 1)->setData(Qt::UserRole, text);
+    }
 }
 
 QString Start_app::strippedName(const QString &fullFileName)
 {
     return QFileInfo(fullFileName).fileName();
+}
+
+void Start_app::showEvent(QShowEvent *)
+{
+    updateRecentFileActions();
 }
