@@ -105,15 +105,15 @@ Start_app::Start_app(QWidget *parent)
     }
     ui->label_2->setText("<a href=\"whatever\">Открыть файл сохранения</a>");
     ui->label_2->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    ui->label_2->setStyleSheet("QLabel { color : rgb(0, 0, 0)); }");
+    ui->label_2->setStyleSheet("color : rgb(0, 0, 0));");
 
     ui->label->setText("<a href=\"whatever\">Справка</a>");
     ui->label->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    ui->label->setStyleSheet("QLabel { color : rgb(0, 0, 0)); }");
+    ui->label->setStyleSheet("color : rgb(0, 0, 0));");
 
     ui->label_16->setText("<a href=\"whatever\">Создать</a>");
     ui->label_16->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    ui->label_16->setStyleSheet("QLabel { color : rgb(0, 0, 0)); }");
+    ui->label_16->setStyleSheet("color : rgb(0, 0, 0));");
 
     connect(ui->label_2,&QLabel::linkActivated, this, &Start_app::click_open_file);
     connect(ui->tableWidget,&QTableWidget::itemActivated,this,&Start_app::click_open_progect);

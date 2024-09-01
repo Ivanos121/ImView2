@@ -4,6 +4,12 @@
 #include <cmath>
 #include "device.h"
 
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include <base.h>
+#include <QDir>
+
 double X1,X2,X3,X4,b,d,psia_nev,g,k,l,m,n,o,p,q,t,u,sigma,alfa;
 double R2_1,L_1,Lm_1;
 double kpsi, pn, ki, R1,kk, Ts, gpsi, gd, gb, gp;
@@ -117,6 +123,16 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
 
 void Model::rasch(DataSource *dataSource)
 {
+    QString filename = "result_identf_2.csv";
+    QString setpath = "../Output";
+    std::ofstream fout;
+    base.identfFilename = setpath+QDir::separator()+filename;
+
+    fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios_base::app);
+
+    fout << "q" << " " << "o" << " " << "n" << std::endl;
+
+
     for (int i = 0; i < BUF_SIZE; i++)
     {
         double Ts=0.0001;
@@ -144,5 +160,10 @@ void Model::rasch(DataSource *dataSource)
         L=(p*sigma)/alfa;
         Lm=sqrt(L*(L-sigma));
         R2=alfa*L;
+
+        fout << q << " " << o << " " << n << std::endl;
     }
+
+    fout.close();
 }
+

@@ -15,12 +15,8 @@
 #include "nastroiki.h"
 #include "qundostack.h"
 #include "qundoview.h"
-//#include "ui_graph_Settings.h"
 #include "ui_settinsKanals.h"
 #include "aboutdialog.h"
-//#include "ui_aboutdialog.h"
-
-//#include "base_tepl.h"
 #include <QProgressBar>
 
 QT_BEGIN_NAMESPACE
@@ -93,7 +89,6 @@ private slots:
     void actionresultidentf();
     void actionteplident_start();
     void actionteplident_stop();
-    void create_new();
     void save_file();
     void save_as_file();
     void print_preview_file();
@@ -182,8 +177,6 @@ private slots:
 
     void color_treview(const QModelIndex &index, const QStandardItemModel *model);
     void treview_changed();
-    void action_close_session();
-    void sort_item();
     void save_identf_in_file();
 public:
     Ui::MainWindow *ui;

@@ -2017,13 +2017,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <addaction name="actionmy4"/>
      <addaction name="actionmy5"/>
     </widget>
-    <addaction name="create_new_session"/>
     <addaction name="open_file"/>
     <addaction name="save_file"/>
     <addaction name="save_as_file"/>
     <addaction name="action_save_graph_file"/>
     <addaction name="action_close_progect"/>
-    <addaction name="action_close_session"/>
     <addaction name="menu_6"/>
     <addaction name="separator"/>
     <addaction name="print_preview"/>
@@ -2043,7 +2041,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <string>&amp;Инструменты</string>
     </property>
     <addaction name="nastroiki"/>
-    <addaction name="nastr_graph"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -2103,7 +2100,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="create_new_session"/>
    <addaction name="open_file"/>
    <addaction name="save_file"/>
    <addaction name="save_as_file"/>
@@ -2440,18 +2436,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="text">
     <string>Итоги идентификации</string>
-   </property>
-  </action>
-  <action name="create_new_session">
-   <property name="icon">
-    <iconset resource="Images.qrc">
-     <normaloff>:/system_icons/data/img/system_icons/document-new.svg</normaloff>:/system_icons/data/img/system_icons/document-new.svg</iconset>
-   </property>
-   <property name="text">
-    <string>Создать сессию</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="action_27">

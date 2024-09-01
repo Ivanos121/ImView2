@@ -13,7 +13,6 @@
 #include "tepl_dannie.h"
 #include "ui_ostat_resurs.h"
 #include "ui_poisk.h"
-#include "ui_start_app.h"
 #include "ui_tepl_dannie.h"
 #include "ui_tepl_identf.h"
 #include "ui_teplovent.h"
@@ -172,7 +171,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     //инструментальное меню
     //файловые операции
-    connect(ui->create_new_session, &QAction::triggered, this, &MainWindow::create_new);
     connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
     connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
     connect(ui->save_as_file, &QAction::triggered, this, &MainWindow::save_as_file);
@@ -208,8 +206,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionundo, &QAction::triggered, this, &MainWindow::actionundo);
     connect(ui->actionredo, &QAction::triggered, this, &MainWindow::actionredo);
     connect(ui->actioncut, &QAction::triggered, this, &MainWindow::actioncut);
-
-    connect(ui->action_close_session, &QAction::triggered, this, &MainWindow::action_close_session);
     connect(ui->action_save_graph_file,&QAction::triggered, this, &MainWindow::save_electromagn_graph_file);
 
     //выбор режимов отображения информации
@@ -229,8 +225,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
     //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
-
-   // connect(ui->widget->ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, &MainWindow::sort_item);
     connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_identf_in_file);
 
     //Настройка связи форм
@@ -9193,15 +9187,6 @@ void MainWindow::TimeOut()
     }
 }
 
-void MainWindow::create_new()
-{
-    ui->tabWidget->show();
-    ui->stackedWidget->show();
-    ui->switch_regim_upr->show();
-    ui->widget_15->setVisible(false);
-
-}
-
 void MainWindow::open_file()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
@@ -11660,20 +11645,6 @@ void MainWindow::color_treview(const QModelIndex & index, const QStandardItemMod
                 ui->treeView->setPalette(p109);
 
             }
-}
-
-void MainWindow::action_close_session()
-{
-    ui->tabWidget->hide();
-    ui->stackedWidget->hide();
-    ui->switch_regim_upr->hide();
-}
-
-void MainWindow::sort_item()
-{
-
-
-
 }
 
 void MainWindow::save_identf_in_file()
