@@ -126,12 +126,16 @@ void Model::rasch(DataSource *dataSource)
     QString filename = "result_identf_2.csv";
     QString setpath = "../Output";
     std::ofstream fout;
-    base.identfFilename = setpath+QDir::separator()+filename;
+    base.identfFilename_result = setpath+QDir::separator()+filename;
 
-    fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios_base::app);
+    fout.open(QString(base.identfFilename_result).toStdString(),std::ios::out | std::ios_base::app);
 
-    fout << "psia_nev" << " " << "o" << " " << "n" << std::endl;
+    //fout << "psia_nev" << " " << "o" << " " << "n" << std::endl;
 
+    fout << "psia_nev" << " " << "i_alfa" << " " << "i_beta" << " " << "u_alfa" << " " << "u_beta" << " " << "m"
+         << " " << "g" << " " << "l"      << " " << "k"      << " " << "p"      << " " << "d"      << " " << "b"
+         << " " << "t" << " " << "n"      << " " << "o"      << " " << "u"      << " " << "q"      << " " << "R1"
+         << " " << "R2" << " " << "L"     << " " << "Lm"     << " " << "w"      << std::endl;
 
     for (int i = 0; i < BUF_SIZE; i++)
     {
@@ -161,15 +165,10 @@ void Model::rasch(DataSource *dataSource)
         Lm=sqrt(L*(L-sigma));
         R2=alfa*L;
 
-        fout << "psia_nev" << " " << "i_alfa" << " " << "i_beta" << " " << "u_alfa" << " " << "u_beta" << " " << "m"
-             << " " << "g" << " " << "l"      << " " << "k"      << " " << "p"      << " " << "d"      << " " << "b"
-             << " " << "t" << " " << "n"      << " " << "o"      << " " << "u"      << " " << "q"      << " " << "R1"
-             << std::endl;
-
         fout << psia_nev   << " " << i_alfa   << " " << i_beta   << " " << u_alfa   << " " << u_beta   << " " << m
              << " " << g   << " " << l        << " " << k        << " " << p        << " " << d        << " " << b
              << " " << t   << " " << n        << " " << o        << " " << u        << " " << q        << " " << R1
-             << std::endl;
+             << " " << R2  << " " << L        << " " << Lm       << " " << dataSource->getW()[i]       << std::endl;
     }
 
     fout.close();

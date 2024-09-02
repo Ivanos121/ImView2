@@ -56,6 +56,7 @@ struct Base
     double Lm;
     QString dataSourceFilename;
     QString identfFilename;
+    QString identfFilename_result;
     QString electromagnFilename;
     QString teplFilename;
     QString name;
