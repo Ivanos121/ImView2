@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "save_progect.h"
 #include "ui_start_app.h"
+#include "ui_mainwindow.h"
 
 #include <QDesktopServices>
 #include <QFileDialog>
@@ -24,16 +25,6 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget->horizontalHeader()->hide();
     ui->tableWidget->verticalHeader()->hide();
-
-    //Настрока меню быстрого открытия файлов
-    /*recentFileActs[0] = ui->tableWidget->item(0,1);
-    recentFileActs[1] = ui->tableWidget->item(1,1);
-    recentFileActs[2] = ui->tableWidget->item(2,1);
-    recentFileActs[3] = ui->tableWidget->item(3,1);
-    recentFileActs[4] = ui->tableWidget->item(4,1);
-    recentFileActs[5] = ui->tableWidget->item(5,1);
-    recentFileActs[6] = ui->tableWidget->item(6,1);
-    recentFileActs[7] = ui->tableWidget->item(7,1);*/
 
     connect(ui->tableWidget, &QTableWidget::cellClicked, this, &Start_app::openRecentFile);
 
@@ -157,7 +148,7 @@ Start_app::Start_app(QWidget *parent)
 
     }
 
-    ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Идентификация параметров "));
+    ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Открытие новой сессии"));
     ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Электромагнитная модель"));
     ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem("Тепловая модель"));
     ui->tableWidget_2->setItem(3, 0, new QTableWidgetItem("Вентиляционная модель"));
@@ -302,13 +293,28 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
     int x = idx.row();
     int y = idx.column();
 
-    if((x==0)&&(y==0))
+    if((x == 0) && (y == 0))
     {
-        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается идентификация"));
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+        //QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается идентификация"));
     }
 
-    int c = 0,d = 2;
-    if((c == x) && (d == y))
+    if((x == 0) && (y == 2))
     {
         QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается эл магн модель"));
     }
@@ -338,7 +344,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
     }
 }
 
-void Start_app::resizeEvent(QResizeEvent *event)
+void Start_app::resizeEvent(QResizeEvent *)
 {
     for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
     {
@@ -357,6 +363,18 @@ void Start_app::resizeEvent(QResizeEvent *event)
             ui->tableWidget_2->setRowHeight(row, height);
         }
     }
+
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+
+            int max_height = (height() - 60 - ui->label_2->height() - 60) / 2;
+            int height = ui->tableWidget->columnWidth(0);
+            if (height > max_height)
+            {
+                height = max_height;
+            }
+            ui->tableWidget->setRowHeight(row, height);
+    }
 }
 
 void Start_app::openRecentFile(int row, int column)
@@ -364,28 +382,6 @@ void Start_app::openRecentFile(int row, int column)
     QString fileName = ui->tableWidget->item(row, column)->data(Qt::UserRole).toString();
     wf->loadFile(fileName);
 }
-
-/*void Start_app::setCurrentFile(const QString &fileName)
-{
-    curFile = fileName;
-    setWindowFilePath(curFile);
-
-    QSettings settings("BRU", "IM View");
-    QStringList files = settings.value("recentFileList").toStringList();
-    files.removeAll(fileName);
-    files.prepend(fileName);
-    while (files.size() > MaxRecentFiles)
-        files.removeLast();
-
-    settings.setValue("recentFileList", files);
-
-    foreach (QWidget *widget, QApplication::topLevelWidgets())
-    {
-        MainWindow *mainWin = qobject_cast<MainWindow *>(widget);
-        if (mainWin)
-            mainWin->updateRecentFileActions();
-    }
-}*/
 
 void Start_app::updateRecentFileActions()
 {

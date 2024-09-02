@@ -1745,7 +1745,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">

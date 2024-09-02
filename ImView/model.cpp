@@ -130,7 +130,7 @@ void Model::rasch(DataSource *dataSource)
 
     fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios_base::app);
 
-    fout << "q" << " " << "o" << " " << "n" << std::endl;
+    fout << "psia_nev" << " " << "o" << " " << "n" << std::endl;
 
 
     for (int i = 0; i < BUF_SIZE; i++)
@@ -161,7 +161,15 @@ void Model::rasch(DataSource *dataSource)
         Lm=sqrt(L*(L-sigma));
         R2=alfa*L;
 
-        fout << q << " " << o << " " << n << std::endl;
+        fout << "psia_nev" << " " << "i_alfa" << " " << "i_beta" << " " << "u_alfa" << " " << "u_beta" << " " << "m"
+             << " " << "g" << " " << "l"      << " " << "k"      << " " << "p"      << " " << "d"      << " " << "b"
+             << " " << "t" << " " << "n"      << " " << "o"      << " " << "u"      << " " << "q"      << " " << "R1"
+             << std::endl;
+
+        fout << psia_nev   << " " << i_alfa   << " " << i_beta   << " " << u_alfa   << " " << u_beta   << " " << m
+             << " " << g   << " " << l        << " " << k        << " " << p        << " " << d        << " " << b
+             << " " << t   << " " << n        << " " << o        << " " << u        << " " << q        << " " << R1
+             << std::endl;
     }
 
     fout.close();

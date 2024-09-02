@@ -33,7 +33,7 @@ public:
     Ui::Start_app *ui;
     QSvgWidget *svgwidget;
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *) override;
     virtual void showEvent(QShowEvent *) override;
 private slots:
     void openRecentFile(int row, int column);

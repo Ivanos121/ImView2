@@ -35,7 +35,8 @@ ischodn_dannie::ischodn_dannie(QWidget *parent) :
     ui->tableWidget->setItem(5, 0, new QTableWidgetItem("Номинальный коэффициент полезного действия"));
     ui->tableWidget->setItem(6, 0, new QTableWidgetItem("Кратность максимального момента"));
     ui->tableWidget->setItem(7, 0, new QTableWidgetItem("Синхронная частота вращения, об/мин"));
-    ui->tableWidget->setItem(8, 0, new QTableWidgetItem("Класс изоляции"));
+    ui->tableWidget->setItem(8, 0, new QTableWidgetItem("Момент инерции, кг*м2"));
+    ui->tableWidget->setItem(9, 0, new QTableWidgetItem("Класс изоляции"));
 
     ui->tableWidget->setItem(0, 1, new QTableWidgetItem());
     ui->tableWidget->setItem(1, 1, new QTableWidgetItem());
@@ -46,6 +47,7 @@ ischodn_dannie::ischodn_dannie(QWidget *parent) :
     ui->tableWidget->setItem(6, 1, new QTableWidgetItem());
     ui->tableWidget->setItem(7, 1, new QTableWidgetItem());
     ui->tableWidget->setItem(8, 1, new QTableWidgetItem());
+    ui->tableWidget->setItem(9, 1, new QTableWidgetItem());
 
     for(int row = 0; row<ui->tableWidget->rowCount(); row++)
     {
@@ -82,7 +84,8 @@ void ischodn_dannie::on_pushButton_clicked()
     base.kpd_nom = ui->tableWidget->item(5,1)->text().toDouble();
     base.muk = ui->tableWidget->item(6,1)->text().toDouble();
     base.n_0 = ui->tableWidget->item(7,1)->text().toDouble();
-    base.ki = ui->tableWidget->item(8,1)->text();
+    base.J_dv = ui->tableWidget->item(8,1)->text().toDouble();
+    base.ki = ui->tableWidget->item(9,1)->text();
 
     if(ui->tableWidget->item(0,1)->text().isEmpty()||
             ui->tableWidget->item(1,1)->text().isEmpty()||
@@ -92,7 +95,8 @@ void ischodn_dannie::on_pushButton_clicked()
             ui->tableWidget->item(5,1)->text().isEmpty()||
             ui->tableWidget->item(6,1)->text().isEmpty()||
             ui->tableWidget->item(7,1)->text().isEmpty()||
-            ui->tableWidget->item(8,1)->text().isEmpty())
+            ui->tableWidget->item(8,1)->text().isEmpty()||
+            ui->tableWidget->item(9,1)->text().isEmpty())
     {
         QMessageBox::critical(this, "Ошибка!", "Заполните пустые поля");
     }
