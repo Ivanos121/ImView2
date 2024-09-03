@@ -112,14 +112,10 @@ Start_app::Start_app(QWidget *parent)
 
     ui->tableWidget_2->setRowCount(4);
     ui->tableWidget_2->setColumnCount(5);
-    //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    //ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
-    //ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_2->horizontalHeader()->hide();
     ui->tableWidget_2->verticalHeader()->hide();
-    //ui->tableWidget_2->resizeRowsToContents();
     ui->tableWidget_2->verticalHeader()->hide();
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -130,7 +126,6 @@ Start_app::Start_app(QWidget *parent)
         {
             ui->tableWidget_2->setItem(row, column, new QTableWidgetItem());
         }
-        //ui->tableWidget_2->setRowHeight(row, 300);
     }
 
     for (int i=0; i<ui->tableWidget_2->columnCount(); i++)
@@ -145,10 +140,9 @@ Start_app::Start_app(QWidget *parent)
             ui->tableWidget_2->item(3, i)->setTextAlignment(Qt::AlignCenter);
             ui->tableWidget_2->item(3, i)->setTextAlignment(Qt::AlignVCenter);
         }
-
     }
 
-    ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Открытие новой сессии"));
+    ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Открытие нового сеанса"));
     ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Электромагнитная модель"));
     ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem("Тепловая модель"));
     ui->tableWidget_2->setItem(3, 0, new QTableWidgetItem("Вентиляционная модель"));
@@ -157,26 +151,20 @@ Start_app::Start_app(QWidget *parent)
 
     QWidget *widget = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg");
-    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout = new QHBoxLayout(widget);
     layout->addWidget(svgwidget);
     layout->setAlignment(Qt::AlignCenter);
     layout->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(0, 0, widget);
-    //ui->tableWidget_2->resizeRowToContents(0);
-    //ui->tableWidget_2->resizeColumnToContents(0);
     ui->tableWidget_2->item(1, 0)->setTextAlignment(Qt::AlignCenter);
 
     QWidget *widget2 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg");
-    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout2 = new QHBoxLayout(widget2);
     layout2->addWidget(svgwidget);
     layout2->setAlignment(Qt::AlignCenter);
     layout2->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(0, 2, widget2);
-    //ui->tableWidget_2->resizeColumnToContents(1);
-    //ui->tableWidget_2->resizeRowToContents(0);
     ui->tableWidget_2->item(1, 2)->setTextAlignment(Qt::AlignCenter);
 
 
@@ -252,7 +240,6 @@ Start_app::~Start_app()
 
 void Start_app::click_open_file()
 {
-   // QDesktopServices::openUrl(QUrl("http://www.example.com/"));
     wf->open_file();
 }
 
@@ -363,18 +350,6 @@ void Start_app::resizeEvent(QResizeEvent *)
             ui->tableWidget_2->setRowHeight(row, height);
         }
     }
-
-    /*for(int row = 0; row<ui->tableWidget->rowCount(); row++)
-    {
-
-            int max_height = (height() - 60 - ui->label_2->height() - 60) / 2;
-            int height = ui->tableWidget->columnWidth(0);
-            if (height > max_height)
-            {
-                height = max_height;
-            }
-            ui->tableWidget->setRowHeight(row, height);
-    }*/
 }
 
 void Start_app::openRecentFile(int row, int column)

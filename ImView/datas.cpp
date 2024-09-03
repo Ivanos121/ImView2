@@ -78,7 +78,7 @@ void datas::table()
     modd->setHeaderData(6, Qt::Horizontal, tr("Номинальный коэффициент полезного действия"), Qt::DisplayRole);
     modd->setHeaderData(7, Qt::Horizontal, tr("Кратность максимального момента"), Qt::DisplayRole);
     modd->setHeaderData(8, Qt::Horizontal, tr("Синхронная частота вращения, об/мин"), Qt::DisplayRole);
-    modd->setHeaderData(9, Qt::Horizontal, tr("Момент инерции, кг*м2"), Qt::DisplayRole);
+    modd->setHeaderData(9, Qt::Horizontal, tr("Момент инерции, кг·м²"), Qt::DisplayRole);
     modd->setHeaderData(10, Qt::Horizontal, tr("Класс изоляции"), Qt::DisplayRole);
 
     QHeaderView *header=ui->tableView->horizontalHeader();

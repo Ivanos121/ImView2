@@ -14,7 +14,7 @@ ischodn_dannie::ischodn_dannie(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->tableWidget->setRowCount(9);
+    ui->tableWidget->setRowCount(10);
     ui->tableWidget->setColumnCount(2);
     QStringList name;
     name << "Величина" << "Значение";

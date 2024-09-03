@@ -3122,7 +3122,7 @@ void MainWindow::closeEvent (QCloseEvent *event)
 {
     if(isNablLaunched == true)
     {
-        QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Программа еще работает", "Сохранить данные?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
+        QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Завершение работы программы", "Сохранить данные сеанса перед закрытием?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
         QDir dir("/tmp/imview");
         switch (resBtn)
         {
@@ -3405,6 +3405,8 @@ void MainWindow::electromagn_start()
         fout.close();
     }
 
+    //Добавление линий графиков в виджет Plot
+
     ui->widget_3->ui->plot->clear();
 
     for (int i = 0; i < dataLineColors.size(); i++)
@@ -3412,8 +3414,26 @@ void MainWindow::electromagn_start()
         ui->widget_3->ui->plot->addDataLine(dataLineColors[i], 0);
     }
 
+    //Установка нулевой точки графиков
+
+    double b4 = ui->tableWidget->item(4,3)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(0, 0, b4);//u_a
+    double b5 = ui->tableWidget->item(5,3)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(1, 0, b5);//u_b
+    double b6 = ui->tableWidget->item(6,3)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(2, 0, b6);//u_c
+    double b10 = ui->tableWidget->item(7,3)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(3, 0, b10);//i_a
+    double b11 = ui->tableWidget->item(8,3)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(4, 0, b11);//i_b
+    double b12 = ui->tableWidget->item(9,3)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(5, 0, b12);//i_c
     double b15 = ui->tableWidget->item(10,3)->text().toDouble();
-    ui->widget_3->ui->plot->addPoint(6, 0, b15);
+    ui->widget_3->ui->plot->addPoint(6, 0, b15);//w
+    double b16 = ui->tableWidget->item(11,3)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(7, 0, b16);//moment
+    double b17 = ui->tableWidget->item(12,4)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(8, 0, b17);//moment_c
 
     ui->widget_3->raschet_el();
     ui->widget_5->ui->widget_4->startTeplo();

@@ -151,6 +151,12 @@ void identf::raschet_f()
         ui->plot->addDataLine(wf->dataLineColors[i], 0);
     }
 
+    ui->plot->addPoint(0, 0, model.R2);
+    ui->plot->addPoint(1, 0, model.L);
+    ui->plot->addPoint(2, 0, model.L);
+    ui->plot->addPoint(3, 0, model.Lm);
+
+
     if(wf->item14->text() == "Автоматический")
     {
         wf->ui->lineEdit_13->setText("0.01");
