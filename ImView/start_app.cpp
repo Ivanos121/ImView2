@@ -364,7 +364,7 @@ void Start_app::resizeEvent(QResizeEvent *)
         }
     }
 
-    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    /*for(int row = 0; row<ui->tableWidget->rowCount(); row++)
     {
 
             int max_height = (height() - 60 - ui->label_2->height() - 60) / 2;
@@ -374,7 +374,7 @@ void Start_app::resizeEvent(QResizeEvent *)
                 height = max_height;
             }
             ui->tableWidget->setRowHeight(row, height);
-    }
+    }*/
 }
 
 void Start_app::openRecentFile(int row, int column)

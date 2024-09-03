@@ -3412,6 +3412,9 @@ void MainWindow::electromagn_start()
         ui->widget_3->ui->plot->addDataLine(dataLineColors[i], 0);
     }
 
+    double b15 = ui->tableWidget->item(10,3)->text().toDouble();
+    ui->widget_3->ui->plot->addPoint(6, 0, b15);
+
     ui->widget_3->raschet_el();
     ui->widget_5->ui->widget_4->startTeplo();
 }
