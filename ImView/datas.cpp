@@ -41,7 +41,7 @@ void datas::table()
 {
     model = new QSqlTableModel;
     model->setTable("dvigatels");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model->setEditStrategy(QSqlTableModel::OnFieldChange);
     model->select();
 
     QSortFilterProxyModel *proxy1=new QSortFilterProxyModel();
@@ -95,7 +95,7 @@ void datas::table()
     ui->tableView->verticalHeader()->hide();
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter | (Qt::Alignment)Qt::TextWordWrap);
-    //ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->setEditTriggers(QAbstractItemView::AllEditTriggers);
     ui->tableView->horizontalHeader()->setFixedHeight(100);
     ui->tableView->setSortingEnabled(true);
 }
@@ -125,9 +125,99 @@ void datas::zapis()
 
 void datas::zapis_from_cell_tableview()
 {
-    QMessageBox::information(this, tr("ff"), tr("ff"));
     QModelIndex myIndexs;
-    QString strs =wf->ui->widget->ui->tableView->modd()->data(myIndexs).toString();
+    int id = ui->tableView->currentIndex().row();
+    int column = ui->tableView->currentIndex().column();
+    myIndexs = ui->tableView->model()->index(id, column, QModelIndex());
+    QString strs = ui->tableView->model()->data(myIndexs).toString();
+
+    int ids = 0;
+    if(id == 0) ids = 45;
+    if(id == 1) ids = 44;
+    if(id == 2) ids = 43;
+    if(id == 3) ids = 40;
+    if(id == 4) ids = 39;
+    if(id == 5) ids = 38;
+    if(id == 6) ids = 37;
+    if(id == 7) ids = 36;
+
+    QSqlQuery query = QSqlQuery(sdb);
+
+    if(column == 1)
+    {
+        query.prepare("UPDATE dvigatels SET name=:name WHERE id=:id");
+        query.bindValue(":id", ui->tableView->currentIndex().row());
+        query.bindValue(":name", strs);
+    }
+
+    if(column == 2)
+    {
+        query.prepare("UPDATE dvigatels SET pn=:pn WHERE id=:id");
+        query.bindValue(":id", ui->tableView->currentIndex().row());
+        query.bindValue(":pn", strs);
+    }
+
+    if(column == 3)
+    {
+        query.prepare("UPDATE dvigatels SET n=:n WHERE id=:id");
+        query.bindValue(":id", ui->tableView->currentIndex().row());
+        query.bindValue(":n", strs);
+    }
+
+    if(column == 4)
+    {
+        query.prepare("UPDATE dvigatels SET un=:un WHERE id=:id");
+        query.bindValue(":id", ui->tableView->currentIndex().row());
+        query.bindValue(":un", strs);
+    }
+
+    if(column == 5)
+    {
+        query.prepare("UPDATE dvigatels SET cosf=:cosf WHERE id=:id");
+        query.bindValue(":id", ui->tableView->currentIndex().row());
+        query.bindValue(":cosf", strs);
+    }
+
+    if(column == 6)
+    {
+        query.prepare("UPDATE dvigatels SET kpd=:kpd WHERE id=:id");
+        query.bindValue(":id", ui->tableView->currentIndex().row());
+        query.bindValue(":kpd", strs);
+    }
+
+    if(column == 7)
+    {
+        query.prepare("UPDATE dvigatels SET mk=:mk WHERE id=:id");
+        query.bindValue(":id", ids);
+        query.bindValue(":mk", strs);
+    }
+
+    if(column == 8)
+    {
+        query.prepare("UPDATE dvigatels SET n0=:n0 WHERE id=:id");
+        query.bindValue(":id", ui->tableView->currentIndex().row());
+        query.bindValue(":no", strs);
+    }
+
+    if(column == 9)
+    {
+        query.prepare("UPDATE dvigatels SET j=:j WHERE id=:id");
+        query.bindValue(":id", ui->tableView->currentIndex().row());
+        query.bindValue(":j", strs);
+    }
+    if(column == 10)
+    {
+        query.prepare("UPDATE dvigatels SET ki=:ki WHERE id=:id");
+        query.bindValue(":id", ids);
+        query.bindValue(":ki", strs);
+    }
+
+    if(!query.exec())
+    {
+        qDebug() << query.lastError().databaseText();
+        qDebug() << query.lastError().driverText();
+        return;
+    }
 }
 
 void datas::on_deleteDannie_clicked()
