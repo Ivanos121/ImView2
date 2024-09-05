@@ -482,6 +482,16 @@ void Plot::clear()
 
 void Plot::save()
 {
+    if (dataLines.size() == 0)
+    {
+        return;
+    }
+
+    if (dataLines[0].data.size() == 0)
+    {
+        return;
+    }
+
     QFile f("result.csv");
     f.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream fout(&f);

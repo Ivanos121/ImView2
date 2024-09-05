@@ -28,6 +28,7 @@ public slots:
     void on_deleteDannie_clicked();
     void on_saveDannie_clicked();
 
+    void zapis_from_cell_tableview();
 private slots:
 
 

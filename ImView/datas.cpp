@@ -3,6 +3,7 @@
 #include "qsqlquery.h"
 #include "ui_datas.h"
 #include "base.h"
+#include "ui_mainwindow.h"
 
 #include <QMessageBox>
 #include <QDebug>
@@ -97,11 +98,7 @@ void datas::table()
     //ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->horizontalHeader()->setFixedHeight(100);
     ui->tableView->setSortingEnabled(true);
-
-
 }
-
-
 
 void datas::zapis()
 {
@@ -124,7 +121,13 @@ void datas::zapis()
         qDebug() << query.lastError().driverText();
         return;
     }
+}
 
+void datas::zapis_from_cell_tableview()
+{
+    QMessageBox::information(this, tr("ff"), tr("ff"));
+    QModelIndex myIndexs;
+    QString strs =wf->ui->widget->ui->tableView->modd()->data(myIndexs).toString();
 }
 
 void datas::on_deleteDannie_clicked()

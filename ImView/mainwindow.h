@@ -238,6 +238,8 @@ public:
     QStandardItem *item129,*item130,*item131,*item132,*item133,*item134,*item135,*item136;
     QStandardItem *item137,*item138,*item139,*item140,*item141,*item142,*item143,*item144;
     void changeEvent(QEvent *event) override;
+public slots:
+    void saveDataSQL();
 };
 
 #endif // MAINWINDOW_H

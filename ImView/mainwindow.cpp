@@ -178,7 +178,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->print_preview, &QAction::triggered, this, &MainWindow::print_preview_file);
     connect(ui->print_file, &QAction::triggered, this, &MainWindow::pagePrint);
     connect(ui->action_close_progect, &QAction::triggered, this, &MainWindow::close_progect);
-
     connect(ui->pushButton_10, &QPushButton::clicked, this, &MainWindow::read_klass_izol);
     connect(ui->nastroiki, &QAction::triggered, this, &MainWindow::onButtonClicked);
     connect(ui->nastroiki, &QAction::triggered, this, &MainWindow::nastroiki);
@@ -227,6 +226,7 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
     //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
     connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_identf_in_file);
+    connect(ui->widget->ui->tableView, &QAbstractItemView::doubleClicked, this, &MainWindow::saveDataSQL);
 
     //Настройка связи форм
     ui->widget_2->wf=this;
@@ -3129,8 +3129,8 @@ void MainWindow::closeEvent (QCloseEvent *event)
         {
         case QMessageBox::Save:
             ui->widget_3->stop();
-            dir.removeRecursively();
             save_file();
+            dir.removeRecursively();
             event->accept();
         break;
         case QMessageBox::Discard:
@@ -11705,3 +11705,7 @@ void MainWindow::save_identf_in_file()
     fout.close();
 }
 
+void MainWindow::saveDataSQL()
+{
+    ui->widget->zapis_from_cell_tableview();
+}
