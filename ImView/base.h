@@ -41,7 +41,7 @@ struct PlcParams
 
 struct Base
 {
-    double P_nom;
+    int P_nom;
     double n_nom;
     double U_fnom;
     double cosf_nom;

@@ -3,7 +3,6 @@
 #include "qsqlquery.h"
 #include "ui_datas.h"
 #include "base.h"
-#include "MySortFilterProxyModel.h"
 
 #include <QMessageBox>
 #include <QDebug>
@@ -46,7 +45,7 @@ void datas::table()
 
     QSortFilterProxyModel *proxy1=new QSortFilterProxyModel();
     proxy1->setSourceModel(model);
-    proxy1->sort(2, Qt::AscendingOrder);
+    //proxy1->sort(2, Qt::AscendingOrder);
 
     modd = new QStandardItemModel();
 
@@ -56,10 +55,7 @@ void datas::table()
         for (int y =0; y< proxy1->columnCount(); ++y)
         {
             QStandardItem *item= new QStandardItem();
-            //const int sortRole = Qt::UserRole +1;
-            //QStandardItemModel().setSortRole(sortRole);
             item->setText(proxy1->index(z,y).data().toString());
-            //item->setData(proxy1->index(z,y).data().toInt());
             item->setTextAlignment(Qt::AlignCenter);
             modd->setItem(z,y,item);
         }
@@ -105,6 +101,8 @@ void datas::table()
 
 }
 
+
+
 void datas::zapis()
 {
     QSqlQuery query=QSqlQuery(sdb);
@@ -112,7 +110,7 @@ void datas::zapis()
                   "VALUES (:id, :name, :pn, :n, :un, :cosf, :kpd, :mk, :n0, :ki)");
     query.bindValue(":id", QVariant(QVariant::String));
     query.bindValue(":name", QString(base.name));
-    query.bindValue(":pn",QString("%1").arg(base.P_nom, 0, 'f', 3));
+    query.bindValue(":pn",QString::number(base.P_nom, 'f', 3));
     query.bindValue(":n",QString("%1").arg(base.n_nom, 0, 'f', 3));
     query.bindValue(":un",QString("%1").arg(base.U_fnom, 0, 'f', 3));
     query.bindValue(":cosf",QString("%1").arg(base.cosf_nom, 0, 'f', 3));

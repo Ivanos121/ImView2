@@ -115,6 +115,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->hide();
     ui->switch_regim_upr->hide();
     ui->toolBar->hide();
+    ui->statusbar->hide();
     ui->menu_2->menuAction()->setVisible(false);
     ui->menu_3->menuAction()->setVisible(false);
     ui->menu_4->menuAction()->setVisible(false);
@@ -3122,16 +3123,17 @@ void MainWindow::closeEvent (QCloseEvent *event)
 {
     if(isNablLaunched == true)
     {
-        QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Завершение работы программы", "Сохранить данные сеанса перед закрытием?", QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes);
+        QMessageBox::StandardButton resBtn = QMessageBox::warning( this, "Закрыть сеанс - IM View", "\n Данные сеанса были изменены.  \n Сохранить или отклонить изменения? \n", QMessageBox::Cancel | QMessageBox::Discard | QMessageBox::Save);
         QDir dir("/tmp/imview");
         switch (resBtn)
         {
-        case QMessageBox::Yes:
+        case QMessageBox::Save:
             ui->widget_3->stop();
             dir.removeRecursively();
+            save_file();
             event->accept();
         break;
-        case QMessageBox::No:
+        case QMessageBox::Discard:
             ui->widget_3->stop();
             dir.removeRecursively();
             event->accept();
@@ -4053,6 +4055,7 @@ void MainWindow::LoadProject(QString str)
     ui->stackedWidget->show();
     ui->switch_regim_upr->show();
     ui->toolBar->show();
+    ui->statusbar->show();
     ui->widget_15->hide();
     ui->menu_2->menuAction()->setVisible(true);
     ui->menu_3->menuAction()->setVisible(true);
