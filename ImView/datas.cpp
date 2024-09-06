@@ -4,6 +4,7 @@
 #include "ui_datas.h"
 #include "base.h"
 #include "ui_mainwindow.h"
+#include "MySortFilterProxyModel.h"
 
 #include <QMessageBox>
 #include <QDebug>
@@ -44,39 +45,38 @@ void datas::table()
     model->setEditStrategy(QSqlTableModel::OnFieldChange);
     model->select();
 
-    QSortFilterProxyModel *proxy1=new QSortFilterProxyModel();
+    MySortFilterProxyModel *proxy1=new MySortFilterProxyModel(ui->tableView);
     proxy1->setSourceModel(model);
-    //proxy1->sort(2, Qt::AscendingOrder);
 
-    modd = new QStandardItemModel();
+    //modd = new QStandardItemModel();
 
 
-    for (int z =0; z< proxy1->rowCount(); ++z)
-    {
-        for (int y =0; y< proxy1->columnCount(); ++y)
-        {
-            QStandardItem *item= new QStandardItem();
-            item->setText(proxy1->index(z,y).data().toString());
-            item->setTextAlignment(Qt::AlignCenter);
-            modd->setItem(z,y,item);
-        }
-    }
+    // for (int z =0; z< proxy1->rowCount(); ++z)
+    // {
+    //     for (int y =0; y< proxy1->columnCount(); ++y)
+    //     {
+    //         QStandardItem *item= new QStandardItem();
+    //         item->setText(proxy1->index(z,y).data().toString());
+    //         item->setTextAlignment(Qt::AlignCenter);
+    //         modd->setItem(z,y,item);
+    //     }
+    // }
 
-    ui->tableView->setModel(modd);
+    ui->tableView->setModel(proxy1);
     ui->tableView->setColumnHidden(0, true); //скрытие колонки id
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); //выделение строки
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
 
-    modd->setHeaderData(1, Qt::Horizontal, tr("Марка двигателя"), Qt::DisplayRole);
-    modd->setHeaderData(2, Qt::Horizontal, tr("Номинальная мощность двигателя, Вт"), Qt::DisplayRole);
-    modd->setHeaderData(3, Qt::Horizontal, tr("Номинальная частота вращения, об/мин"), Qt::DisplayRole);
-    modd->setHeaderData(4, Qt::Horizontal, tr("Номинальное напряжение фазы, В"), Qt::DisplayRole);
-    modd->setHeaderData(5, Qt::Horizontal, tr("Номинальный коэффициент мощности"), Qt::DisplayRole);
-    modd->setHeaderData(6, Qt::Horizontal, tr("Номинальный коэффициент полезного действия"), Qt::DisplayRole);
-    modd->setHeaderData(7, Qt::Horizontal, tr("Кратность максимального момента"), Qt::DisplayRole);
-    modd->setHeaderData(8, Qt::Horizontal, tr("Синхронная частота вращения, об/мин"), Qt::DisplayRole);
-    modd->setHeaderData(9, Qt::Horizontal, tr("Момент инерции, кг·м²"), Qt::DisplayRole);
-    modd->setHeaderData(10, Qt::Horizontal, tr("Класс изоляции"), Qt::DisplayRole);
+    proxy1->setHeaderData(1, Qt::Horizontal, tr("Марка двигателя"), Qt::DisplayRole);
+    proxy1->setHeaderData(2, Qt::Horizontal, tr("Номинальная мощность двигателя, Вт"), Qt::DisplayRole);
+    proxy1->setHeaderData(3, Qt::Horizontal, tr("Номинальная частота вращения, об/мин"), Qt::DisplayRole);
+    proxy1->setHeaderData(4, Qt::Horizontal, tr("Номинальное напряжение фазы, В"), Qt::DisplayRole);
+    proxy1->setHeaderData(5, Qt::Horizontal, tr("Номинальный коэффициент мощности"), Qt::DisplayRole);
+    proxy1->setHeaderData(6, Qt::Horizontal, tr("Номинальный коэффициент полезного действия"), Qt::DisplayRole);
+    proxy1->setHeaderData(7, Qt::Horizontal, tr("Кратность максимального момента"), Qt::DisplayRole);
+    proxy1->setHeaderData(8, Qt::Horizontal, tr("Синхронная частота вращения, об/мин"), Qt::DisplayRole);
+    proxy1->setHeaderData(9, Qt::Horizontal, tr("Момент инерции, кг·м²"), Qt::DisplayRole);
+    proxy1->setHeaderData(10, Qt::Horizontal, tr("Класс изоляции"), Qt::DisplayRole);
 
     QHeaderView *header=ui->tableView->horizontalHeader();
 
@@ -98,6 +98,8 @@ void datas::table()
     ui->tableView->setEditTriggers(QAbstractItemView::AllEditTriggers);
     ui->tableView->horizontalHeader()->setFixedHeight(100);
     ui->tableView->setSortingEnabled(true);
+    //ui->tableView->sortByColumn(0, Qt::AscendingOrder);
+proxy1->sort(2, Qt::DescendingOrder);
 }
 
 void datas::zapis()
@@ -131,15 +133,7 @@ void datas::zapis_from_cell_tableview()
     myIndexs = ui->tableView->model()->index(id, column, QModelIndex());
     QString strs = ui->tableView->model()->data(myIndexs).toString();
 
-    int ids = 0;
-    if(id == 0) ids = 45;
-    if(id == 1) ids = 44;
-    if(id == 2) ids = 43;
-    if(id == 3) ids = 40;
-    if(id == 4) ids = 39;
-    if(id == 5) ids = 38;
-    if(id == 6) ids = 37;
-    if(id == 7) ids = 36;
+    int ids = ui->tableView->model()->data(ui->tableView->model()->index(id, 0, QModelIndex())).toInt();
 
     QSqlQuery query = QSqlQuery(sdb);
 

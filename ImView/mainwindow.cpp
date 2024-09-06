@@ -39,6 +39,7 @@
 #include "pushbuttondelegate.h"
 #include "start_app.h"
 
+
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QClipboard>
@@ -226,7 +227,11 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
     //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
     connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_identf_in_file);
-    connect(ui->widget->ui->tableView, &QAbstractItemView::clicked, this, &MainWindow::saveDataSQL);
+
+    //connect(ui->widget->ui->tableView, &QAbstractItemView::clicked, this, &MainWindow::saveDataSQL);
+    connect(ui->widget->ui->tableView->itemDelegate(), &QAbstractItemDelegate::closeEditor, this, &MainWindow::saveDataSQL);
+
+    //connect(ui->widget->ui->tableView, &QHeaderView::sectionClicked, this, &MainWindow::sort);
 
     //Настройка связи форм
     ui->widget_2->wf=this;
@@ -11709,3 +11714,5 @@ void MainWindow::saveDataSQL()
 {
     ui->widget->zapis_from_cell_tableview();
 }
+
+

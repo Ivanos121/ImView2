@@ -5,24 +5,16 @@
 #include "qvariant.h"
 
 #include <QSortFilterProxyModel>
-class MySortFilterProxyModel Q_DECL_FINAL : public QSortFilterProxyModel
+
+class MySortFilterProxyModel: public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    MySortFilterProxyModel(QObject *parent)
-        : QSortFilterProxyModel(parent)
-    {
-    }
+    MySortFilterProxyModel(QObject *parent = nullptr);
 
 protected:
-    bool lessThan(const QModelIndex &left, const QModelIndex &right) const Q_DECL_OVERRIDE
-    {
-        QVariant leftData = sourceModel()->data(left);
-        QVariant rightData = sourceModel()->data(right);
-        // Do custom logic in here, e.g.:
-        return QString::localeAwareCompare(leftData.toString(), rightData.toString()) < 0;
-    }
+    virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 };
 
 #endif // MYSORTFILTERPROXYMODEL_H

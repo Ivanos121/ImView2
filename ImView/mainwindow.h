@@ -178,6 +178,7 @@ private slots:
     void color_treview(const QModelIndex &index, const QStandardItemModel *model);
     void treview_changed();
     void save_identf_in_file();
+
 public:
     Ui::MainWindow *ui;
     AboutDialog *rsc;
