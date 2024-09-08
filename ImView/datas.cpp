@@ -1,10 +1,9 @@
 #include "datas.h"
-#include "qsortfilterproxymodel.h"
 #include "qsqlquery.h"
 #include "ui_datas.h"
 #include "base.h"
-#include "ui_mainwindow.h"
 #include "MySortFilterProxyModel.h"
+#include "doubledelegate.h"
 
 #include <QMessageBox>
 #include <QDebug>
@@ -47,20 +46,8 @@ void datas::table()
 
     MySortFilterProxyModel *proxy1=new MySortFilterProxyModel(ui->tableView);
     proxy1->setSourceModel(model);
-
-    //modd = new QStandardItemModel();
-
-
-    // for (int z =0; z< proxy1->rowCount(); ++z)
-    // {
-    //     for (int y =0; y< proxy1->columnCount(); ++y)
-    //     {
-    //         QStandardItem *item= new QStandardItem();
-    //         item->setText(proxy1->index(z,y).data().toString());
-    //         item->setTextAlignment(Qt::AlignCenter);
-    //         modd->setItem(z,y,item);
-    //     }
-    // }
+    proxy1->setAlignment(0, Qt::AlignCenter);
+    proxy1->setAlignment(1, Qt::AlignCenter);
 
     ui->tableView->setModel(proxy1);
     ui->tableView->setColumnHidden(0, true); //скрытие колонки id
@@ -95,11 +82,13 @@ void datas::table()
     ui->tableView->verticalHeader()->hide();
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter | (Qt::Alignment)Qt::TextWordWrap);
-    ui->tableView->setEditTriggers(QAbstractItemView::AllEditTriggers);
+    ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
     ui->tableView->horizontalHeader()->setFixedHeight(100);
+    ui->tableView->setItemDelegate(new DoubleDelegate(ui->tableView));
+
     ui->tableView->setSortingEnabled(true);
-    //ui->tableView->sortByColumn(0, Qt::AscendingOrder);
-proxy1->sort(2, Qt::DescendingOrder);
+
+    proxy1->sort(2, Qt::DescendingOrder);
 }
 
 void datas::zapis()

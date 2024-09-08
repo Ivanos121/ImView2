@@ -42,6 +42,7 @@ SOURCES += \
     device.cpp \
     devicedigitosc.cpp \
     digitoscthread.cpp \
+    doubledelegate.cpp \
     draw_line.cpp \
     draw_poper.cpp \
     electromagn.cpp \
@@ -74,6 +75,7 @@ SOURCES += \
     tepl_nabludatel.cpp \
     teplovent.cpp \
     teplschem.cpp \
+    treeviewsortdelegate.cpp \
     trend.cpp \
     vent_model.cpp \
     vent_tract.cpp \
@@ -109,6 +111,7 @@ HEADERS += \
     device.h \
     devicedigitosc.h \
     digitoscthread.h \
+    doubledelegate.h \
     draw_line.h \
     draw_poper.h \
     electromagn.h \
@@ -144,6 +147,7 @@ HEADERS += \
     tepl_struct.h \
     teplovent.h \
     teplschem.h \
+    treeviewsortdelegate.h \
     trend.h \
     vent_model.h \
     vent_tract.h \

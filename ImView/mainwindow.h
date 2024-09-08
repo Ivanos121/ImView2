@@ -163,7 +163,7 @@ private slots:
     void openRecentFile();
     void tab_open();
     void changeTreeViewRowColor();
-    bool iterate(const QModelIndex & index, const QStandardItemModel * model, QString searchStr);
+    bool iterate(const QModelIndex index, const QStandardItemModel * model, QString str);
     void rename_all();
     void select_all();
     void poisk();

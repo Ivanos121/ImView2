@@ -111,7 +111,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //настройка стартового экрана
+     //настройка стартового экрана
     ui->tabWidget->hide();
     ui->stackedWidget->hide();
     ui->switch_regim_upr->hide();
@@ -11409,6 +11409,8 @@ void MainWindow::select_all()
             }
         }
     }
+
+    iterate(model2->index(0,0), model2, str);
 }
 
 void MainWindow::rename()
@@ -11531,9 +11533,31 @@ void MainWindow::rename_all()
     }
 }
 
-bool MainWindow::iterate(const QModelIndex & index, const QStandardItemModel * model, QString searchStr)
+
+
+
+// for(int i = 0; i < ui->tableWidget_16->columnCount(); i++)
+// {
+//     for(int x = 0; x < ui->tableWidget_16->rowCount(); x++)
+//     {
+//         QString moc_2 = ui->tableWidget_16->item(x,i)->text();
+//         index = moc_2.indexOf(str, index);
+//         int j = 0;
+//         while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+//         {
+//             ui->tableWidget_16->item(x,i)->setBackground(Qt::yellow);
+//             ++j;
+//         }
+//     }
+// }
+
+
+
+
+bool MainWindow::iterate(const QModelIndex index, const QStandardItemModel * model, QString str)
 {
-    searchStr = ui->widget_12->ui->lineEdit->text();
+
+    str = ui->widget_12->ui->lineEdit->text();
     if (index.isValid())
     {
         // Do action here
@@ -11541,9 +11565,17 @@ bool MainWindow::iterate(const QModelIndex & index, const QStandardItemModel * m
 
     QString itemText = model->itemData(index)[0].toString();
 
-    if (itemText == searchStr)
+    // index = itemText.indexOf(str, index);
+    // int j = 0;
+    // while ((j = itemText.indexOf(str, j, Qt::CaseSensitive )) != -1)
+    // {
+    //     model2->itemFromIndex(index)->setBackground(Qt::green);
+    //     ++j;
+    //     return false;
+    // }
+    if (itemText == str)
     {
-        model->itemFromIndex(index)->setBackground(Qt::green);
+        model2->itemFromIndex(index)->setBackground(Qt::green);
         //item2->setBackground(Qt::green);
         return false;
     }
@@ -11561,12 +11593,11 @@ bool MainWindow::iterate(const QModelIndex & index, const QStandardItemModel * m
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; j++)
-            if (iterate(model->index(i, j, index), model, searchStr) == false)
+            if (iterate(model->index(i, j, index), model, str) == false)
                 return false;
     }
 
     return true;
-
 }
 
 void MainWindow::changeTreeViewRowColor()
