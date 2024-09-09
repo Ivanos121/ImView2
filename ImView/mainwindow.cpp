@@ -11410,7 +11410,8 @@ void MainWindow::select_all()
         }
     }
 
-    iterate(model2->index(0,0), model2, str);
+    //iterate(model2->index(0,0), model2, str);
+    iterate(model2->index(15,0), model2, str);
 }
 
 void MainWindow::rename()
@@ -11565,20 +11566,19 @@ bool MainWindow::iterate(const QModelIndex index, const QStandardItemModel * mod
 
     QString itemText = model->itemData(index)[0].toString();
 
-    // index = itemText.indexOf(str, index);
-    // int j = 0;
-    // while ((j = itemText.indexOf(str, j, Qt::CaseSensitive )) != -1)
-    // {
-    //     model2->itemFromIndex(index)->setBackground(Qt::green);
-    //     ++j;
-    //     return false;
-    // }
-    if (itemText == str)
+    int pos = itemText.indexOf(str, 0);
+    if (pos != -1)
+    {
+        model2->itemFromIndex(index)->setBackground(Qt::yellow);
+        //return true;
+    }
+
+    /*if (itemText == str)
     {
         model2->itemFromIndex(index)->setBackground(Qt::green);
         //item2->setBackground(Qt::green);
-        return false;
-    }
+        return true;
+    }*/
 
     if (!model->hasChildren(index) || (index.flags() &
                                        Qt::ItemNeverHasChildren))
@@ -11587,13 +11587,13 @@ bool MainWindow::iterate(const QModelIndex index, const QStandardItemModel * mod
     }
 
 
-    auto rows = model->rowCount(index);
-    auto cols = model->columnCount(index);
+    auto rows = model2->rowCount(index);
+    auto cols = model2->columnCount(index);
 
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; j++)
-            if (iterate(model->index(i, j, index), model, str) == false)
+            if (iterate(model2->index(i, j, index), model2, str) == false)
                 return false;
     }
 
