@@ -10237,27 +10237,13 @@ void MainWindow::poisk()
 
                     if(moc_2==str)
                     {
-                       /* QColor color(Qt::green);
-                        QBrush br(color);
-                        br.setColor(color);
-                        ui->widget->modd->item(x,i)->setBackground(br);
-
-                        QSettings settings( "BRU", "IM View");
-                        settings.setValue( "iz", i+1);
-                        settings.setValue( "xz", x);
-                        if(x==currentRow-1)
-                        {
-                            settings.setValue( "iz", i+1);
-                        }
-                        return;
-                    */
                         j = jz;
                         while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
                         {
                             QColor color(Qt::green);
                             QBrush br(color);
                             br.setColor(color);
-                            ui->widget->modd->item(x,i)->setBackground(br);
+                            //ui->widget->modd->item(x,i)->setBackground(br);
 
                             QSettings settings( "BRU", "IM View");
                             settings.setValue( "iz", i+1);
@@ -11190,7 +11176,7 @@ void MainWindow::select_all()
                     QColor color(Qt::yellow);
                     QBrush br(color);
                     br.setColor(color);
-                    ui->widget->modd->item(x,i)->setBackground(br);
+                    ui->widget->ui->tableView->model()->setData(index,br, Qt::BackgroundRole);
                 }
             }
         }
