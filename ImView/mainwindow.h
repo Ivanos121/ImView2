@@ -23,6 +23,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class Model_el;
+
 class MainWindow;
 
 class SettinsKanals : public QDialog
@@ -181,6 +183,7 @@ private slots:
 
 public:
     Ui::MainWindow *ui;
+    Model_el *wf;
     AboutDialog *rsc;
     Kalibr *kalibr;
     Ksettings *set;
@@ -194,6 +197,7 @@ public:
     QMenu *fileMenu;
     QItemSelectionModel *selectionModel, *selectionModel2, *selectionModel3;
     QSvgWidget *svgwidget;
+    QWidget *widget, *widget2;
 
     QMenu *recentFilesMenu;
     QMenu *helpMenu;
@@ -205,10 +209,12 @@ public:
     QTimer *timer;
     QAction *undoAction;
     QAction *redoAction;
-    QProgressBar *progress;
+    QProgressBar *progress, *statusbar_progres;
     QWebEngineView * view;
     QLabel *statusbar_label, *statusbar_label_2, *statusbar_label_3, *statusbar_label_4,
-           *statusbar_label_5, *statusbar_label_6, *statusbar_label_7, *statusbar_label_8;
+           *statusbar_label_5, *statusbar_label_6, *statusbar_label_7, *statusbar_label_8,
+           *statusbar_label_9;
+
 
     QTreeWidgetItem *treeItem, *child3, *child, *child2;
     QTreeWidgetItem *currentItem;

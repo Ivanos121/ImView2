@@ -30,6 +30,8 @@ datas::datas(QWidget *parent) :
     table();
 
     ui->widget_2->setVisible(false);
+   // QHeaderView *tableHeader = ui->tableView->horizontalHeader();
+    //connect(tableHeader, &QHeaderView::sectionClicked, this, &datas::on_sectionClicked);
 }
 
 datas::~datas()
@@ -50,13 +52,15 @@ void datas::table()
     // proxy1->setAlignment(1, Qt::AlignCenter);
 
     modd=new QStandardItemModel();
+    modd->setSortRole(Qt::UserRole);
 
     for (int z =0; z< proxy1->rowCount(); ++z)
     {
         for (int y =0; y< proxy1->columnCount(); ++y)
         {
             QStandardItem *item = new QStandardItem();
-            item->setText(proxy1->index(z,y).data().toString());
+            item->setData(proxy1->index(z,y).data().toString(), Qt::DisplayRole);
+            item->setData(proxy1->index(z,y).data().toString(), Qt::UserRole);
             item->setTextAlignment(Qt::AlignCenter);
             modd->setItem(z,y,item);
         }
@@ -101,7 +105,7 @@ void datas::table()
 
     ui->tableView->setSortingEnabled(true);
 
-   // modd->sort(2, Qt::DescendingOrder);
+    modd->sort(2, Qt::DescendingOrder);
 }
 
 void datas::zapis()
@@ -257,7 +261,10 @@ void datas::on_enterDannie_clicked()
     screen->geometry()));
 }
 
-
+void datas::on_sectionClicked(int index)
+{
+    modd->sort(index,Qt::AscendingOrder);
+}
 
 
 

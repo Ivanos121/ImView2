@@ -1,12 +1,13 @@
 #include "model_el.h"
 #include "base.h"
-#include <fstream>
 #include <cmath>
 #include "tepl_struct.h"
+#include "mainwindow.h"
+
 
 Model_el::Model_el()
 {
-    connect(&timer, &QTimer::timeout, this, &Model_el::timerTimeout);
+    connect(&timer, &QTimer::timeout, this, &Model_el::timerTimeout);    
 }
 
 void Model_el::init_el(double _R1, double _R2, double _L1, double _L2, double _Lm, QString _S, double _tp, double _Tc)
@@ -47,6 +48,9 @@ void Model_el::rasch()
     double Ts=0.000032;
     t=t+Ts;
     double tt=t;
+
+
+    //progress->setValue(t);
 
     if(S == "Режим S1")
     {

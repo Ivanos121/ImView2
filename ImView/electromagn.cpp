@@ -495,7 +495,7 @@ void electromagn::realtimeDataSlot()
 
         QString S = wf->item20->text();
 
-        double Mc;
+        double Mc = 0;
         double tt = key;
         bool motorOn = false;
 

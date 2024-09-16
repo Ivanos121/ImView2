@@ -29,6 +29,7 @@ public slots:
     void on_saveDannie_clicked();
 
     void zapis_from_cell_tableview();
+    void on_sectionClicked(int index);
 private slots:
 
 

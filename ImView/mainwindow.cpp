@@ -3047,6 +3047,29 @@ MainWindow::MainWindow(QWidget *parent)
     statusbar_label_8->setAlignment(Qt::AlignTop);
     ui->statusbar->addWidget(statusbar_label_8);
 
+    statusbar_label_9 = new QLabel("T=0.000000");
+    statusbar_label_9->setAlignment(Qt::AlignVCenter);
+    ui->statusbar->addPermanentWidget(statusbar_label_9);
+    statusbar_label_9->setVisible(false);
+
+    widget2 = new QWidget(ui->statusbar);
+    widget2->setFixedWidth(50);
+    widget2->setHidden(1);
+    widget2->setVisible(1);
+    ui->statusbar->addPermanentWidget(widget2);
+
+    statusbar_progres = new QProgressBar(ui->statusbar);
+    statusbar_progres->setMaximumSize(300,19);
+    ui->statusbar->addPermanentWidget(statusbar_progres);
+    setStyleSheet("QProgressBar {border: 2px solid grey;height: 5px; text-align: center;} QProgressBar::chunk {background-color: #55FF55;width: 20px}");
+    statusbar_progres->setVisible(false);
+
+    widget = new QWidget(ui->statusbar);
+    widget->setFixedWidth(250);
+    widget->setHidden(1);
+    widget->setVisible(1);
+    ui->statusbar->addPermanentWidget(widget);
+
     QObject::connect(ui->treeView, &QAbstractItemView::activated,this, &MainWindow::itemEdit);
 
     connect(item14->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
@@ -3303,6 +3326,8 @@ void MainWindow::identf_stop()
 
 void MainWindow::electromagn_start()
 {
+
+
     isNablLaunched = true;
     ui->tabWidget->show();
     ui->tabWidget->setCurrentIndex(3);
@@ -3319,6 +3344,11 @@ void MainWindow::electromagn_start()
     base.Lm = ui->lineEdit_8->text().toDouble();
     ui->electromagn_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->electromagn_stop->setEnabled(true);
+
+    statusbar_label_9->setVisible(true);
+    statusbar_progres->setVisible(true);
+    statusbar_progres->setRange(0, 10 - 1);
+    statusbar_progres->reset();
 
     if(item70->checkState() == Qt::Checked)
     {
@@ -3444,6 +3474,11 @@ void MainWindow::electromagn_start()
 
     ui->widget_3->raschet_el();
     ui->widget_5->ui->widget_4->startTeplo();
+
+    int i = 0;
+    i = i + 0.00032;
+    statusbar_label_9->setText("T = " + QString::number(i,'f',5));
+    statusbar_progres->setValue(i);
 }
 
 void MainWindow::electromagn_stop()
@@ -3453,6 +3488,8 @@ void MainWindow::electromagn_stop()
     ui->electromagn_stop->setEnabled(false);
     ui->widget_5->ui->widget_4->stopTeplo();
     ui->widget_3->stop();
+    statusbar_progres->setVisible(false);
+    statusbar_label_9->setVisible(false);
 }
 
 void MainWindow::currentChanged(int index)
