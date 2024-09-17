@@ -3347,7 +3347,7 @@ void MainWindow::electromagn_start()
 
     statusbar_label_9->setVisible(true);
     statusbar_progres->setVisible(true);
-    statusbar_progres->setRange(0, 10 - 1);
+    statusbar_progres->setRange(0, 1000 - 1);
     statusbar_progres->reset();
 
     if(item70->checkState() == Qt::Checked)
@@ -3475,10 +3475,11 @@ void MainWindow::electromagn_start()
     ui->widget_3->raschet_el();
     ui->widget_5->ui->widget_4->startTeplo();
 
-    int i = 0;
-    i = i + 0.00032;
-    statusbar_label_9->setText("T = " + QString::number(i,'f',5));
-    statusbar_progres->setValue(i);
+    for(int i=0; i<1000; i++)
+    {
+        statusbar_label_9->setText("T = " + QString::number(i,'f',5));
+        statusbar_progres->setValue(i);
+    }
 }
 
 void MainWindow::electromagn_stop()
