@@ -1056,6 +1056,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->header()->setSectionResizeMode(1,QHeaderView::Fixed);
     ui->treeView->expandAll();
 
+
+
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
@@ -3347,7 +3349,7 @@ void MainWindow::electromagn_start()
 
     statusbar_label_9->setVisible(true);
     statusbar_progres->setVisible(true);
-    statusbar_progres->setRange(0, 1000 - 1);
+    statusbar_progres->setRange(0, item24->text().toInt());
     statusbar_progres->reset();
 
     if(item70->checkState() == Qt::Checked)
@@ -3474,12 +3476,6 @@ void MainWindow::electromagn_start()
 
     ui->widget_3->raschet_el();
     ui->widget_5->ui->widget_4->startTeplo();
-
-    for(int i=0; i<1000; i++)
-    {
-        statusbar_label_9->setText("T = " + QString::number(i,'f',5));
-        statusbar_progres->setValue(i);
-    }
 }
 
 void MainWindow::electromagn_stop()

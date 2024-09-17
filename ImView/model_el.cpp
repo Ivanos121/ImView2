@@ -1,6 +1,7 @@
 #include "model_el.h"
 #include "base.h"
 #include <cmath>
+#include "qlabel.h"
 #include "tepl_struct.h"
 #include "mainwindow.h"
 
@@ -49,8 +50,8 @@ void Model_el::rasch()
     t=t+Ts;
     double tt=t;
 
-
-    //progress->setValue(t);
+    wf->statusbar_progres->setValue(t);
+    wf->statusbar_label_9->setText("T = " + QString::number(t,'f',5));
 
     if(S == "Режим S1")
     {

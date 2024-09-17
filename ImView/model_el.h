@@ -2,6 +2,7 @@
 #define MODEL_EL_H
 
 #include <QTimer>
+#include "mainwindow.h"
 
 class Model_el : public QObject
 {
@@ -23,6 +24,7 @@ public:
     void stop();
 
     QTimer timer;
+    MainWindow *wf;
 
 public slots:
     void timerTimeout();

@@ -12,6 +12,7 @@
 #include "datasource.h"
 #include "plot.h"
 #include "qcombobox.h"
+#include "model_el.h"
 
 namespace Ui {
 class electromagn;
@@ -27,6 +28,7 @@ public:
     double key;
     MainWindow *wf;
     Ui::electromagn *ui;
+    Model_el model_el;
 
     void stop();
 

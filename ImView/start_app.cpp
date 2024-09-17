@@ -132,21 +132,21 @@ Start_app::Start_app(QWidget *parent)
     {
         if (ui->tableWidget_2->item(1, i) != 0)
         {
-            ui->tableWidget_2->item(1, i)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget_2->item(1, i)->setTextAlignment(Qt::AlignCenter | Qt::AlignTop);
             ui->tableWidget_2->item(1, i)->setTextAlignment(Qt::AlignVCenter);
         }
         if (ui->tableWidget_2->item(3, i) != 0)
         {
-            ui->tableWidget_2->item(3, i)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget_2->item(3, i)->setTextAlignment(Qt::AlignCenter | Qt::AlignTop);
             ui->tableWidget_2->item(3, i)->setTextAlignment(Qt::AlignVCenter);
         }
     }
 
     ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Открытие нового сеанса"));
-    ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Электромагнитная модель"));
-    ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem("Тепловая модель"));
-    ui->tableWidget_2->setItem(3, 0, new QTableWidgetItem("Вентиляционная модель"));
-    ui->tableWidget_2->setItem(3, 2, new QTableWidgetItem("Прогноз температур"));
+    ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Идентификация параметров \n Т-образной схемы замещения"));
+    ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem("Электромагнитная модель"));
+    ui->tableWidget_2->setItem(3, 0, new QTableWidgetItem("Тепловая модель"));
+    ui->tableWidget_2->setItem(3, 2, new QTableWidgetItem("Вентиляционная модель"));
     ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem("Остаточный тепловой ресурс"));
 
     QWidget *widget = new QWidget();
@@ -298,18 +298,72 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->action_close_session->setVisible(true);
         wf->ui->print_file->setVisible(true);
         wf->ui->print_preview->setVisible(true);
+
+        for(int i=0; i<11;i++)
+        {
+            wf->ui->tabWidget->setTabVisible(i,true);
+        }
+
         //QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается идентификация"));
     }
 
     if((x == 0) && (y == 2))
     {
-        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается эл магн модель"));
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+
+        for(int i=2; i<10;i++)
+        {
+            wf->ui->tabWidget->setTabVisible(i,false);
+        }
+
+        wf->ui->tabWidget->setTabVisible(10,true);
+
+        //QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается эл магн модель"));
     }
 
     int e = 0,f = 4;
     if((e == x) && (f == y))
     {
-        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается тепл модель"));
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+
+        wf->ui->tabWidget->setTabVisible(1,false);
+        wf->ui->tabWidget->setTabVisible(2,false);
+
+        for(int i=4; i<11;i++)
+        {
+            wf->ui->tabWidget->setTabVisible(i,false);
+        }
+       // QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается тепл модель"));
     }
 
     int g = 2, h = 0;
@@ -337,7 +391,7 @@ void Start_app::resizeEvent(QResizeEvent *)
     {
         if ((row == 1) || (row == 3))
         {
-            ui->tableWidget_2->setRowHeight(row, 30);
+            ui->tableWidget_2->setRowHeight(row, 80);
         }
         else
         {
