@@ -313,6 +313,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
 
+
+
     //настройка итемов QTreeView
     QList<QStandardItem*> items1;
     item1 = new QStandardItem(tr("Общее настройки сессии"));
@@ -817,6 +819,26 @@ MainWindow::MainWindow(QWidget *parent)
     item29->setBackground(QColor(198, 251, 198));
     item30->setBackground(QColor(198, 251, 198));
 
+    item140 = new QStandardItem(tr("Температурный режим Статика"));
+    item140->setEditable(false);
+    item141 = new QStandardItem(tr("Выберите режим"));
+    items8.append(item140);
+    items8.append(item141);
+    item25->appendRow(items8);
+    items8.clear();
+    item140->setBackground(QColor(152, 251, 152));
+    item141->setBackground(QColor(152, 251, 152));
+
+    item141 = new QStandardItem(tr("Температурный режим Динамика"));
+    item141->setEditable(false);
+    item142 = new QStandardItem(tr("Выберите режим"));
+    items8.append(item141);
+    items8.append(item142);
+    item25->appendRow(items8);
+    items8.clear();
+    item141->setBackground(QColor(198, 251, 198));
+    item142->setBackground(QColor(198, 251, 198));
+
     item23 = new QStandardItem(tr("Шаг выбора точек"));
     item23->setEditable(false);
     item107 = new QStandardItem(tr("0"));
@@ -840,6 +862,8 @@ MainWindow::MainWindow(QWidget *parent)
     item32->setEditable(false);
     QFont newFont5("SansSerif", 10, QFont::Bold,false);
     item31->setFont(newFont5);
+    item31->setBackground(QColor(255, 191, 191));
+    item32->setBackground(QColor(255, 191, 191));
 
     QList<QStandardItem*> items10;
     item33 = new QStandardItem(tr("Вентиляционный режим"));
@@ -849,6 +873,9 @@ MainWindow::MainWindow(QWidget *parent)
     items10.append(item34);
     item31->appendRow(items10);
     items10.clear();
+    item33->setBackground(QColor(255, 222, 222));
+    item34->setBackground(QColor(255, 222, 222));
+
     item35 = new QStandardItem(tr("Конструкция вентиляционной системы электродвигателя"));
     item35->setEditable(false);
     item36 = new QStandardItem(QString ("Выберите конструкцию"));
@@ -856,6 +883,9 @@ MainWindow::MainWindow(QWidget *parent)
     items10.append(item36);
     item31->appendRow(items10);
     items10.clear();
+    item35->setBackground(QColor(255, 191, 191));
+    item36->setBackground(QColor(255, 191, 191));
+
     item37 = new QStandardItem(tr("Барометрическое давление, Па"));
     item37->setEditable(false);
     item38 = new QStandardItem(tr("0"));
@@ -863,6 +893,9 @@ MainWindow::MainWindow(QWidget *parent)
     items10.append(item38);
     item31->appendRow(items10);
     items10.clear();
+    item37->setBackground(QColor(255, 222, 222));
+    item38->setBackground(QColor(255, 222, 222));
+
 
     QList<QStandardItem*> items11;
     item39 = new QStandardItem(tr("Прогнозирование температур"));
@@ -877,6 +910,8 @@ MainWindow::MainWindow(QWidget *parent)
     item40->setEditable(false);
     QFont newFont6("SansSerif", 10, QFont::Bold,false);
     item39->setFont(newFont6);
+    item39->setBackground(QColor(0, 191, 255));
+    item40->setBackground(QColor(0, 191, 255));
 
     QList<QStandardItem*> items12;
     item41 = new QStandardItem(tr("Условие 13"));
@@ -886,6 +921,9 @@ MainWindow::MainWindow(QWidget *parent)
     items12.append(item42);
     item39->appendRow(items12);
     items12.clear();
+    item41->setBackground(QColor(135, 206, 250));
+    item42->setBackground(QColor(135, 206, 250));
+
     item43 = new QStandardItem(tr("Условие 14"));
     item43->setEditable(false);
     item44 = new QStandardItem(tr("Значение 14"));
@@ -893,6 +931,9 @@ MainWindow::MainWindow(QWidget *parent)
     items12.append(item44);
     item39->appendRow(items12);
     items12.clear();
+    item43->setBackground(QColor(0, 191, 255));
+    item44->setBackground(QColor(0, 191, 255));
+
     item45 = new QStandardItem(tr("Условие 15"));
     item45->setEditable(false);
     item46 = new QStandardItem(tr("Значение 15"));
@@ -900,6 +941,8 @@ MainWindow::MainWindow(QWidget *parent)
     items12.append(item46);
     item39->appendRow(items12);
     items12.clear();
+    item45->setBackground(QColor(135, 206, 250));
+    item46->setBackground(QColor(135, 206, 250));
 
     QList<QStandardItem*> items13;
     item47 = new QStandardItem(tr("Оценка остаточного теплового ресурса"));
@@ -914,6 +957,8 @@ MainWindow::MainWindow(QWidget *parent)
     item48->setEditable(false);
     QFont newFont7("SansSerif", 10, QFont::Bold,false);
     item47->setFont(newFont7);
+    item47->setBackground(QColor(255, 250, 205));
+    item48->setBackground(QColor(255, 250, 205));
 
     QList<QStandardItem*> items14;
     item49 = new QStandardItem(tr("Условие 16"));
@@ -923,6 +968,9 @@ MainWindow::MainWindow(QWidget *parent)
     items14.append(item50);
     item47->appendRow(items14);
     items14.clear();
+    item49->setBackground(QColor(255, 255, 224));
+    item50->setBackground(QColor(255, 255, 224));
+
     item51 = new QStandardItem(tr("Условие 17"));
     item51->setEditable(false);
     item52 = new QStandardItem(tr("Значение 17"));
@@ -930,6 +978,9 @@ MainWindow::MainWindow(QWidget *parent)
     items14.append(item52);
     item47->appendRow(items14);
     items14.clear();
+    item51->setBackground(QColor(255, 250, 205));
+    item52->setBackground(QColor(255, 250, 205));
+
     item53 = new QStandardItem(tr ("Условие 18"));
     item53->setEditable(false);
     item54 = new QStandardItem(tr ("Значение 18"));
@@ -937,6 +988,8 @@ MainWindow::MainWindow(QWidget *parent)
     items14.append(item54);
     item47->appendRow(items14);
     items14.clear();
+    item53->setBackground(QColor(255, 255, 224));
+    item54->setBackground(QColor(255, 255, 224));
 
     QList<QStandardItem*> items15;
     item55 = new QStandardItem(tr ("Выходные данные"));
