@@ -71,7 +71,42 @@
            <number>-3</number>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">QTreeView::branch:has-siblings:!adjoins-item {
+    background: white;
+    border-image: none;
+	image: none;
+}
+ 
+QTreeView::branch:has-siblings:adjoins-item {
+    background: white;
+    border-image: none;
+	image: none;
+}
+ 
+QTreeView::branch:!has-children:!has-siblings:adjoins-item {
+    background: white;
+    border-image: none;
+	image: none;
+}
+ 
+ 
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+    background: white;
+    border-image: none;
+}
+ 
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings  {
+    background: white;
+    border-image: none;
+}
+
+QTreeView::branch {
+    border-image: none 0;
+    image: none 0;
+}
+</string>
           </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
@@ -2591,6 +2626,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <header location="global">QtWebEngineWidgets/QWebEngineView</header>
   </customwidget>
   <customwidget>
+   <class>poisk</class>
+   <extends>QWidget</extends>
+   <header>poisk.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>datas</class>
    <extends>QWidget</extends>
    <header>datas.h</header>
@@ -2636,12 +2677,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>Tepl_identf</class>
    <extends>QWidget</extends>
    <header>tepl_identf.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>poisk</class>
-   <extends>QWidget</extends>
-   <header>poisk.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
