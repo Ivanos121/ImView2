@@ -61,7 +61,7 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignmentFlag::AlignVCenter">
+      <item alignment="Qt::Qt::AlignVCenter">
        <widget class="QPushButton" name="deleteDannie">
         <property name="minimumSize">
          <size>

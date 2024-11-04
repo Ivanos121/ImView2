@@ -47,6 +47,7 @@
         <file>../data/img/system_icons/IM_96x96_tm.svg</file>
         <file>../data/img/system_icons/IM_96x96_tr.svg</file>
         <file>../data/img/system_icons/IM_96x96_vm.svg</file>
+        <file>../data/img/system_icons/IM_96x96_elm_select.svg</file>
     </qresource>
     <qresource prefix="/icons">
         <file>../data/img/icons/IM_16x16.png</file>

@@ -26,7 +26,20 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget->horizontalHeader()->hide();
     ui->tableWidget->verticalHeader()->hide();
 
+    connect(ui->tableWidget, &QTableWidget::cellClicked, this, &Start_app::selectImage);
     connect(ui->tableWidget, &QTableWidget::cellClicked, this, &Start_app::openRecentFile);
+    connect(ui->label_4, &QLabel::linkActivated, this, &Start_app::click_open_metod_one);
+    connect(ui->label_5, &QLabel::linkActivated, this, &Start_app::click_open_metod_two);
+    connect(ui->label_6, &QLabel::linkActivated, this, &Start_app::click_open_metod_three);
+    connect(ui->label_7, &QLabel::linkActivated, this, &Start_app::click_open_metod_four);
+    connect(ui->label_8, &QLabel::linkActivated, this, &Start_app::click_open_metod_five);
+    connect(ui->label_9, &QLabel::linkActivated, this, &Start_app::click_open_metod_six);
+    connect(ui->label_10, &QLabel::linkActivated, this, &Start_app::click_open_metod_seven);
+    connect(ui->label_11, &QLabel::linkActivated, this, &Start_app::click_open_metod_eight);
+    connect(ui->label_12, &QLabel::linkActivated, this, &Start_app::click_open_metod_nine);
+    connect(ui->label_13, &QLabel::linkActivated, this, &Start_app::click_open_metod_ten);
+    connect(ui->label_14, &QLabel::linkActivated, this, &Start_app::click_open_metod_eleven);
+    connect(ui->label_15, &QLabel::linkActivated, this, &Start_app::click_open_metod_twelv);
 
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
     svgwidget->setMaximumSize(100,100);
@@ -94,30 +107,97 @@ Start_app::Start_app(QWidget *parent)
             ui->tableWidget->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         }
     }
-    ui->label_2->setText("<a href=\"whatever\">Открыть файл сохранения</a>");
+
+    ui->label_2->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Открыть файл сохранения</a>");
     ui->label_2->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    ui->label_2->setStyleSheet("color : rgb(0, 0, 0));");
+    QFont newFont("DroidSans", 14, QFont::Normal,false);
+    ui->label_2->setFont(newFont);
 
-    ui->label->setText("<a href=\"whatever\">Справка</a>");
+    ui->label->setText("<a href=\"whatever\" style=\"color: black;\">Справка</a>");
     ui->label->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    ui->label->setStyleSheet("color : rgb(0, 0, 0));");
+    QFont newFont2("DroidSans", 14, QFont::Normal,false);
+    ui->label->setFont(newFont2);
 
-    ui->label_16->setText("<a href=\"whatever\">Создать</a>");
+    ui->label_16->setText("<a href=\"whatever\" style=\"color: black;\">Создать</a>");
     ui->label_16->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    ui->label_16->setStyleSheet("color : rgb(0, 0, 0));");
+    QFont newFont3("DroidSans", 14, QFont::Normal,false);
+    ui->label_16->setFont(newFont3);
+
+    ui->label_4->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Основы работы</a>");
+    ui->label_4->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont4("DroidSans", 10, QFont::Normal,false);
+    ui->label_4->setFont(newFont4);
+    ui->label_4->setStyleSheet("background-color: transparent;");
+
+    ui->label_5->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Настройка сессии</a>");
+    ui->label_5->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont5("DroidSans", 10, QFont::Normal,false);
+    ui->label_5->setFont(newFont5);
+
+    ui->label_6->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Ввод исходных данных</a>");
+    ui->label_6->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont6("DroidSans", 10, QFont::Normal,false);
+    ui->label_6->setFont(newFont6);
+
+    ui->label_7->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Идентификация параметров схемы замещения асинхронного электродвигателя</a>");
+    ui->label_7->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont7("DroidSans", 10, QFont::Normal,false);
+    ui->label_7->setFont(newFont7);
+
+    ui->label_8->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Энергетическая модель асинхронного электродвигателя</a>");
+    ui->label_8->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont8("DroidSans", 10, QFont::Normal,false);
+    ui->label_8->setFont(newFont8);
+
+    ui->label_9->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Тепловая модель асинхронного электродвигателя</a>");
+    ui->label_9->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont9("DroidSans", 10, QFont::Normal,false);
+    ui->label_9->setFont(newFont9);
+
+    ui->label_10->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Вентиляционная модель асинхронного электродвигателя</a>");
+    ui->label_10->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont10("DroidSans", 10, QFont::Normal,false);
+    ui->label_10->setFont(newFont10);
+
+    ui->label_11->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Тепловентиляционная модель асинхронного электродвигателя</a>");
+    ui->label_11->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont11("DroidSans", 10, QFont::Normal,false);
+    ui->label_11->setFont(newFont11);
+
+    ui->label_12->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Прогноз температур асинхронного электродвигателя</a>");
+    ui->label_12->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont12("DroidSans", 10, QFont::Normal,false);
+    ui->label_12->setFont(newFont12);
+
+    ui->label_13->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Тепловой наблюдатель</a>");
+    ui->label_13->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont13("DroidSans", 10, QFont::Normal,false);
+    ui->label_13->setFont(newFont13);
+
+    ui->label_14->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Остаточный тепаловой ресурс обмотки статора асинхронного электродвигателя</a>");
+    ui->label_14->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont14("DroidSans", 10, QFont::Normal,false);
+    ui->label_14->setFont(newFont14);
+
+    ui->label_15->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Оформление протокола исследований</a>");
+    ui->label_15->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    QFont newFont15("DroidSans", 10, QFont::Normal,false);
+    ui->label_15->setFont(newFont15);
 
     connect(ui->label_2,&QLabel::linkActivated, this, &Start_app::click_open_file);
+    connect(ui->label,&QLabel::linkActivated, this, &Start_app::click_open_help);
     connect(ui->tableWidget,&QTableWidget::itemActivated,this,&Start_app::click_open_progect);
     connect(ui->tableWidget_2,&QAbstractItemView::clicked,this,&Start_app::click_open_progect_2);
 
     ui->tableWidget_2->setRowCount(4);
     ui->tableWidget_2->setColumnCount(5);
     ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget_2->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_2->setSelectionMode(QAbstractItemView :: NoSelection);
     ui->tableWidget_2->horizontalHeader()->hide();
     ui->tableWidget_2->verticalHeader()->hide();
     ui->tableWidget_2->verticalHeader()->hide();
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 
 
     for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
@@ -170,18 +250,15 @@ Start_app::Start_app(QWidget *parent)
 
     QWidget *widget3 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg");
-    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout3 = new QHBoxLayout(widget3);
     layout3->addWidget(svgwidget);
     layout3->setAlignment(Qt::AlignCenter);
     layout3->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(0, 4, widget3);
-    //ui->tableWidget_2->resizeColumnToContents(2);
     ui->tableWidget_2->item(1, 4)->setTextAlignment(Qt::AlignCenter);
 
     QWidget *widget4 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
-    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout4 = new QHBoxLayout(widget4);
     layout4->addWidget(svgwidget);
     layout4->setAlignment(Qt::AlignCenter);
@@ -193,7 +270,6 @@ Start_app::Start_app(QWidget *parent)
 
     QWidget *widget5 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
-    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout5 = new QHBoxLayout(widget5);
     layout5->addWidget(svgwidget);
     layout5->setAlignment(Qt::AlignCenter);
@@ -203,7 +279,6 @@ Start_app::Start_app(QWidget *parent)
 
     QWidget *widget6 = new QWidget();
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tr.svg");
-    //svgwidget->setMaximumSize(300,300);
     QHBoxLayout *layout6 = new QHBoxLayout(widget6);
     layout6->addWidget(svgwidget);
     layout6->setAlignment(Qt::AlignCenter);
@@ -211,24 +286,10 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget_2->setCellWidget(2, 4, widget6);
     ui->tableWidget_2->item(3, 4)->setTextAlignment(Qt::AlignCenter);
 
-    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
-    {
-        if (ui->tableWidget_2->item(row,1) != 0)
-        {
-            ui->tableWidget_2->item(row,1)->setFlags(Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
-        }
-        if (ui->tableWidget_2->item(row,3) != 0)
-        {
-            ui->tableWidget_2->item(row,3)->setFlags(Qt::NoItemFlags);
-        }
-    }
-
-    ui->tableWidget_2->item(1,0)->setFlags(Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
-    ui->tableWidget_2->item(1,2)->setFlags(Qt::NoItemFlags);
-    ui->tableWidget_2->item(1,4)->setFlags(Qt::NoItemFlags);
-    ui->tableWidget_2->item(3,0)->setFlags(Qt::NoItemFlags);
-    ui->tableWidget_2->item(3,2)->setFlags(Qt::NoItemFlags);
-    ui->tableWidget_2->item(3,4)->setFlags(Qt::NoItemFlags);
+    QPalette palette = ui->tableWidget_2->palette();
+    palette.setBrush(QPalette::Highlight,QBrush(QColor(239, 240, 241)));
+    palette.setBrush(QPalette::HighlightedText,QBrush(Qt::black));
+    ui->tableWidget_2->setPalette(palette);
 
     updateRecentFileActions();
 }
@@ -399,4 +460,127 @@ QString Start_app::strippedName(const QString &fullFileName)
 void Start_app::showEvent(QShowEvent *)
 {
     updateRecentFileActions();
+}
+
+void Start_app::click_open_help()
+{
+    wf->actionhelp();
+}
+
+void Start_app::click_open_metod_one()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/osnovi_raboty.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_two()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/nastroika_sessii.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_three()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/vvod_ischdnich_dannich.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_four()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/identf_param_scheme_zam_ad.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_five()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/energetik_model_ad.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_six()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/tepl_model_ad.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_seven()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/vent_model_ad.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_eight()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/teplovent_model_ad.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_nine()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/temp_prognoz_ad.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_ten()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/tepl_observer.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_eleven()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/ostat_tepl_resurs.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::click_open_metod_twelv()
+{
+    view = new QWebEngineView;
+    connect(view, &QWebEngineView::titleChanged, this, &Start_app::titleChanged);
+    view->setUrl(QUrl::fromLocalFile(QFileInfo("../Study_matireals/otchet.html").absoluteFilePath()));
+    view->setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_16x16.png"));
+    view->showMaximized();
+}
+
+void Start_app::titleChanged(const QString &title)
+{
+    view->setWindowTitle(title);
+}
+
+void Start_app::selectImage()
+{
+
 }

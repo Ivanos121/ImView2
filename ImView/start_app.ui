@@ -17,7 +17,7 @@
    <item row="0" column="1">
     <widget class="QWidget" name="widget_2" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
+      <item alignment="Qt::Qt::AlignVCenter">
        <widget class="QLabel" name="label_16">
         <property name="font">
          <font>
@@ -32,7 +32,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QTableWidget" name="tableWidget_2">
+       <widget class="MyTableWidget_2" name="tableWidget_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -72,24 +72,30 @@
           <disabled/>
          </palette>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="frameShape">
-         <enum>QFrame::Shape::NoFrame</enum>
+         <enum>QFrame::NoFrame</enum>
         </property>
         <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
         </property>
         <property name="showGrid">
          <bool>false</bool>
         </property>
         <property name="gridStyle">
-         <enum>Qt::PenStyle::SolidLine</enum>
+         <enum>Qt::SolidLine</enum>
         </property>
         <property name="sortingEnabled">
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignmentFlag::AlignHCenter">
+      <item>
        <widget class="QLabel" name="label_3">
         <property name="palette">
          <palette>
@@ -215,7 +221,7 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_4">
+        <widget class="MyLabel" name="label_4">
          <property name="text">
           <string>Основы работы</string>
          </property>
@@ -293,6 +299,9 @@
        </item>
        <item row="11" column="0">
         <widget class="QLabel" name="label_15">
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
          <property name="text">
           <string>Оформление протокола исследований</string>
          </property>
@@ -323,7 +332,7 @@
       </size>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
+      <item row="0" column="0" alignment="Qt::Qt::AlignVCenter">
        <widget class="QLabel" name="label_2">
         <property name="font">
          <font>
@@ -336,7 +345,7 @@
          <string>Открыть</string>
         </property>
         <property name="textFormat">
-         <enum>Qt::TextFormat::AutoText</enum>
+         <enum>Qt::AutoText</enum>
         </property>
        </widget>
       </item>
@@ -388,7 +397,7 @@
          </palette>
         </property>
         <property name="frameShape">
-         <enum>QFrame::Shape::NoFrame</enum>
+         <enum>QFrame::NoFrame</enum>
         </property>
         <property name="showGrid">
          <bool>false</bool>
@@ -400,6 +409,18 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyTableWidget_2</class>
+   <extends>QTableWidget</extends>
+   <header>mytablewidget_2.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header>mylabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

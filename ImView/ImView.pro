@@ -58,6 +58,8 @@ SOURCES += \
     model_el.cpp \
     modelidentf.cpp \
     modell.cpp \
+    mylabel.cpp \
+    mytablewidget_2.cpp \
     nabludatel.cpp \
     nabludatel_part.cpp \
     nastroiki.cpp \
@@ -127,6 +129,8 @@ HEADERS += \
     model_el.h \
     modelidentf.h \
     modell.h \
+    mylabel.h \
+    mytablewidget_2.h \
     nabludatel.h \
     nabludatel_base.h \
     nabludatel_part.h \

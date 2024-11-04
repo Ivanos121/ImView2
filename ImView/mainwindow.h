@@ -59,6 +59,7 @@ public:
     void open_file();
     void loadFile(const QString &fileName);
     void updateRecentFileActions();
+    void actionhelp();
 
 private:
     QString sessionFileName;
@@ -71,8 +72,7 @@ private:
 
 private slots:
     void actionabout();
-    void actionExit();
-    void actionhelp();
+    void actionExit();    
     void onButtonClicked();
     void onButtonClicked2();
     void titleChanged(const QString &title);
