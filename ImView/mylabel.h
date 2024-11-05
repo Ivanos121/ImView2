@@ -3,6 +3,7 @@
 
 #include "qevent.h"
 #include <QLabel>
+#include <QCursor>
 
 
 class MyLabel : public QLabel {
@@ -12,6 +13,8 @@ public:
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
+    void enterEvent(QEvent *event) override;
+    void leaveEvent(QEvent *event) override;
 
 signals:
     void clicked();

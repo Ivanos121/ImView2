@@ -4,6 +4,7 @@
 #include "ui_start_app.h"
 #include "ui_mainwindow.h"
 
+
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QSettings>
@@ -29,20 +30,17 @@ Start_app::Start_app(QWidget *parent)
     connect(ui->tableWidget, &QTableWidget::cellClicked, this, &Start_app::selectImage);
     connect(ui->tableWidget, &QTableWidget::cellClicked, this, &Start_app::openRecentFile);
     connect(ui->label_4, &MyLabel::clicked, this, &Start_app::click_open_metod_one);
-    connect(ui->label_5, &QLabel::linkActivated, this, &Start_app::click_open_metod_two);
-    connect(ui->label_6, &QLabel::linkActivated, this, &Start_app::click_open_metod_three);
-    connect(ui->label_7, &QLabel::linkActivated, this, &Start_app::click_open_metod_four);
-    connect(ui->label_8, &QLabel::linkActivated, this, &Start_app::click_open_metod_five);
-    connect(ui->label_9, &QLabel::linkActivated, this, &Start_app::click_open_metod_six);
-    connect(ui->label_10, &QLabel::linkActivated, this, &Start_app::click_open_metod_seven);
-    connect(ui->label_11, &QLabel::linkActivated, this, &Start_app::click_open_metod_eight);
-    connect(ui->label_12, &QLabel::linkActivated, this, &Start_app::click_open_metod_nine);
-    connect(ui->label_13, &QLabel::linkActivated, this, &Start_app::click_open_metod_ten);
-    connect(ui->label_14, &QLabel::linkActivated, this, &Start_app::click_open_metod_eleven);
-    connect(ui->label_15, &QLabel::linkActivated, this, &Start_app::click_open_metod_twelv);
-
-    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
-    svgwidget->setMaximumSize(100,100);
+    connect(ui->label_5, &MyLabel::clicked, this, &Start_app::click_open_metod_two);
+    connect(ui->label_6, &MyLabel::clicked, this, &Start_app::click_open_metod_three);
+    connect(ui->label_7, &MyLabel::clicked, this, &Start_app::click_open_metod_four);
+    connect(ui->label_8, &MyLabel::clicked, this, &Start_app::click_open_metod_five);
+    connect(ui->label_9, &MyLabel::clicked, this, &Start_app::click_open_metod_six);
+    connect(ui->label_10, &MyLabel::clicked, this, &Start_app::click_open_metod_seven);
+    connect(ui->label_11, &MyLabel::clicked, this, &Start_app::click_open_metod_eight);
+    connect(ui->label_12, &MyLabel::clicked, this, &Start_app::click_open_metod_nine);
+    connect(ui->label_13, &MyLabel::clicked, this, &Start_app::click_open_metod_ten);
+    connect(ui->label_14, &MyLabel::clicked, this, &Start_app::click_open_metod_eleven);
+    connect(ui->label_15, &MyLabel::clicked, this, &Start_app::click_open_metod_twelv);
 
     for(int row = 0; row<ui->tableWidget->rowCount()-2; row++)
     {
@@ -123,69 +121,45 @@ Start_app::Start_app(QWidget *parent)
     ui->label_16->setFont(newFont3);
 
     ui->label_4->setText("Основы работы");
-    ui->label_4->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont4("DroidSans", 10, QFont::Normal,false);
-    ui->label_4->setFont(newFont4);
+    ui->label_4->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_5->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Настройка сессии</a>");
-    ui->label_5->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont5("DroidSans", 10, QFont::Normal,false);
-    ui->label_5->setFont(newFont5);
+    ui->label_5->setText("Настройка сессии");
+    ui->label_5->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_6->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Ввод исходных данных</a>");
-    ui->label_6->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont6("DroidSans", 10, QFont::Normal,false);
-    ui->label_6->setFont(newFont6);
+    ui->label_6->setText("Ввод исходных данных");
+    ui->label_6->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_7->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Идентификация параметров схемы замещения асинхронного электродвигателя</a>");
-    ui->label_7->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont7("DroidSans", 10, QFont::Normal,false);
-    ui->label_7->setFont(newFont7);
+    ui->label_7->setText("Идентификация параметров схемы замещения асинхронного электродвигателя");
+    ui->label_7->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_8->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Энергетическая модель асинхронного электродвигателя</a>");
-    ui->label_8->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont8("DroidSans", 10, QFont::Normal,false);
-    ui->label_8->setFont(newFont8);
+    ui->label_8->setText("Энергетическая модель асинхронного электродвигателя");
+    ui->label_8->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_9->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Тепловая модель асинхронного электродвигателя</a>");
-    ui->label_9->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont9("DroidSans", 10, QFont::Normal,false);
-    ui->label_9->setFont(newFont9);
+    ui->label_9->setText("Тепловая модель асинхронного электродвигателя");
+    ui->label_9->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_10->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Вентиляционная модель асинхронного электродвигателя</a>");
-    ui->label_10->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont10("DroidSans", 10, QFont::Normal,false);
-    ui->label_10->setFont(newFont10);
+    ui->label_10->setText("Вентиляционная модель асинхронного электродвигателя");
+    ui->label_10->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_11->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Тепловентиляционная модель асинхронного электродвигателя</a>");
-    ui->label_11->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont11("DroidSans", 10, QFont::Normal,false);
-    ui->label_11->setFont(newFont11);
+    ui->label_11->setText("Тепловентиляционная модель асинхронного электродвигателя");
+    ui->label_11->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_12->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Прогноз температур асинхронного электродвигателя</a>");
-    ui->label_12->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont12("DroidSans", 10, QFont::Normal,false);
-    ui->label_12->setFont(newFont12);
+    ui->label_12->setText("Прогноз температур асинхронного электродвигателя");
+    ui->label_12->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_13->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Тепловой наблюдатель</a>");
-    ui->label_13->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont13("DroidSans", 10, QFont::Normal,false);
-    ui->label_13->setFont(newFont13);
+    ui->label_13->setText("Тепловой наблюдатель");
+    ui->label_13->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_14->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Остаточный тепаловой ресурс обмотки статора асинхронного электродвигателя</a>");
-    ui->label_14->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont14("DroidSans", 10, QFont::Normal,false);
-    ui->label_14->setFont(newFont14);
+    ui->label_14->setText("Остаточный тепаловой ресурс обмотки статора асинхронного электродвигателя");
+    ui->label_14->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
-    ui->label_15->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Оформление протокола исследований</a>");
-    ui->label_15->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    QFont newFont15("DroidSans", 10, QFont::Normal,false);
-    ui->label_15->setFont(newFont15);
+    ui->label_15->setText("Оформление протокола исследований");
+    ui->label_15->setStyleSheet("font-weight: normal; color: black; text-decoration: underline;");
 
     connect(ui->label_2,&QLabel::linkActivated, this, &Start_app::click_open_file);
     connect(ui->label,&QLabel::linkActivated, this, &Start_app::click_open_help);
     connect(ui->tableWidget,&QTableWidget::itemActivated,this,&Start_app::click_open_progect);
-    connect(ui->tableWidget_2,&QAbstractItemView::clicked,this,&Start_app::click_open_progect_2);
+    connect(ui->tableWidget_2,&QAbstractItemView::clicked,this,&Start_app::click_open_progect_2);  
 
     ui->tableWidget_2->setRowCount(4);
     ui->tableWidget_2->setColumnCount(5);
@@ -195,8 +169,6 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget_2->verticalHeader()->hide();
     ui->tableWidget_2->verticalHeader()->hide();
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-
 
     for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
     {
@@ -227,62 +199,62 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget_2->setItem(3, 2, new QTableWidgetItem("Прогноз температур"));
     ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem("Остаточный тепловой ресурс"));
 
+    svgwidget2 = new MySvgWidget();
     QWidget *widget = new QWidget();
-    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg");
     QHBoxLayout *layout = new QHBoxLayout(widget);
-    layout->addWidget(svgwidget);
+    layout->addWidget(svgwidget2);
+    svgwidget2->load(QString("/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg"));
     layout->setAlignment(Qt::AlignCenter);
     layout->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(0, 0, widget);
     ui->tableWidget_2->item(1, 0)->setTextAlignment(Qt::AlignCenter);
 
-    QWidget *widget2 = new QWidget();
-    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg");
-    QHBoxLayout *layout2 = new QHBoxLayout(widget2);
-    layout2->addWidget(svgwidget);
-    layout2->setAlignment(Qt::AlignCenter);
-    layout2->setContentsMargins(0,0,0,0);
-    ui->tableWidget_2->setCellWidget(0, 2, widget2);
-    ui->tableWidget_2->item(1, 2)->setTextAlignment(Qt::AlignCenter);
+    // svgwidget3 = new MySvgWidget();
+    // QWidget *widget2 = new QWidget();
+    // svgwidget3->load(QString("/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg"));
+    // QHBoxLayout *layout2 = new QHBoxLayout(widget2);
+    // layout2->addWidget(svgwidget3);
+    // layout2->setAlignment(Qt::AlignCenter);
+    // layout2->setContentsMargins(0,0,0,0);
+    // ui->tableWidget_2->setCellWidget(0, 2, widget2);
+    // ui->tableWidget_2->item(1, 2)->setTextAlignment(Qt::AlignCenter);
 
+    // QWidget *widget3 = new QWidget();
+    // //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg");
+    // QHBoxLayout *layout3 = new QHBoxLayout(widget3);
+    // layout3->addWidget(svgwidget);
+    // layout3->setAlignment(Qt::AlignCenter);
+    // layout3->setContentsMargins(0,0,0,0);
+    // ui->tableWidget_2->setCellWidget(0, 4, widget3);
+    // ui->tableWidget_2->item(1, 4)->setTextAlignment(Qt::AlignCenter);
 
-    QWidget *widget3 = new QWidget();
-    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg");
-    QHBoxLayout *layout3 = new QHBoxLayout(widget3);
-    layout3->addWidget(svgwidget);
-    layout3->setAlignment(Qt::AlignCenter);
-    layout3->setContentsMargins(0,0,0,0);
-    ui->tableWidget_2->setCellWidget(0, 4, widget3);
-    ui->tableWidget_2->item(1, 4)->setTextAlignment(Qt::AlignCenter);
+    // QWidget *widget4 = new QWidget();
+    // //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
+    // QHBoxLayout *layout4 = new QHBoxLayout(widget4);
+    // layout4->addWidget(svgwidget);
+    // layout4->setAlignment(Qt::AlignCenter);
+    // layout4->setContentsMargins(0,0,0,0);
+    // ui->tableWidget_2->setCellWidget(2, 0, widget4);
+    // //ui->tableWidget_2->resizeRowToContents(2);
+    // ui->tableWidget_2->item(3, 0)->setTextAlignment(Qt::AlignCenter);
 
-    QWidget *widget4 = new QWidget();
-    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
-    QHBoxLayout *layout4 = new QHBoxLayout(widget4);
-    layout4->addWidget(svgwidget);
-    layout4->setAlignment(Qt::AlignCenter);
-    layout4->setContentsMargins(0,0,0,0);
-    ui->tableWidget_2->setCellWidget(2, 0, widget4);
-    //ui->tableWidget_2->resizeRowToContents(2);
-    ui->tableWidget_2->item(3, 0)->setTextAlignment(Qt::AlignCenter);
+    // QWidget *widget5 = new QWidget();
+    // //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
+    // QHBoxLayout *layout5 = new QHBoxLayout(widget5);
+    // layout5->addWidget(svgwidget);
+    // layout5->setAlignment(Qt::AlignCenter);
+    // layout5->setContentsMargins(0,0,0,0);
+    // ui->tableWidget_2->setCellWidget(2, 2, widget5);
+    // ui->tableWidget_2->item(3, 2)->setTextAlignment(Qt::AlignCenter);
 
-
-    QWidget *widget5 = new QWidget();
-    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
-    QHBoxLayout *layout5 = new QHBoxLayout(widget5);
-    layout5->addWidget(svgwidget);
-    layout5->setAlignment(Qt::AlignCenter);
-    layout5->setContentsMargins(0,0,0,0);
-    ui->tableWidget_2->setCellWidget(2, 2, widget5);
-    ui->tableWidget_2->item(3, 2)->setTextAlignment(Qt::AlignCenter);
-
-    QWidget *widget6 = new QWidget();
-    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tr.svg");
-    QHBoxLayout *layout6 = new QHBoxLayout(widget6);
-    layout6->addWidget(svgwidget);
-    layout6->setAlignment(Qt::AlignCenter);
-    layout6->setContentsMargins(0,0,0,0);
-    ui->tableWidget_2->setCellWidget(2, 4, widget6);
-    ui->tableWidget_2->item(3, 4)->setTextAlignment(Qt::AlignCenter);
+    // QWidget *widget6 = new QWidget();
+    // //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tr.svg");
+    // QHBoxLayout *layout6 = new QHBoxLayout(widget6);
+    // layout6->addWidget(svgwidget);
+    // layout6->setAlignment(Qt::AlignCenter);
+    // layout6->setContentsMargins(0,0,0,0);
+    // ui->tableWidget_2->setCellWidget(2, 4, widget6);
+    // ui->tableWidget_2->item(3, 4)->setTextAlignment(Qt::AlignCenter);
 
     QPalette palette = ui->tableWidget_2->palette();
     palette.setBrush(QPalette::Highlight,QBrush(QColor(239, 240, 241)));
@@ -440,7 +412,8 @@ void Start_app::updateRecentFileActions()
         w2 = QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
                       currentDate.toString("dd.MM.yyyy").toUtf8().data());
 
-        svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
+        svgwidget = new MySvgWidget();
+        svgwidget->load(QString("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg"));
         svgwidget->setMaximumSize(100,100);
         ui->tableWidget->setCellWidget(i, 0, svgwidget);
         ui->tableWidget->resizeRowToContents(i);

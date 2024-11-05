@@ -5,6 +5,7 @@
 #include "qsvgwidget.h"
 #include "qtablewidget.h"
 #include "qwebengineview.h"
+#include "mysvgwidget.h"
 #include "mylabel.h"
 #include <QWidget>
 
@@ -25,8 +26,8 @@ public:
     enum { MaxRecentFiles = 8 };
     QTableWidgetItem *recentFileActs[MaxRecentFiles];
     QString curFile;
-    QWebEngineView * view;
-    MyLabel * mylabel;
+    QWebEngineView *view;
+    MyLabel *mylabel;
 
 public slots:
     void click_open_file();
@@ -38,7 +39,7 @@ public slots:
 
 public:
     Ui::Start_app *ui;
-    QSvgWidget *svgwidget;
+    MySvgWidget *svgwidget,*svgwidget2, *svgwidget3;
 
 protected:
     virtual void resizeEvent(QResizeEvent *) override;

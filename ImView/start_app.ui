@@ -17,7 +17,7 @@
    <item row="0" column="1">
     <widget class="QWidget" name="widget_2" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item alignment="Qt::AlignmentFlag::AlignVCenter">
+      <item alignment="Qt::Qt::AlignVCenter">
        <widget class="QLabel" name="label_16">
         <property name="font">
          <font>
@@ -32,7 +32,7 @@
        </widget>
       </item>
       <item>
-       <widget class="MyTableWidget_2" name="tableWidget_2">
+       <widget class="QTableWidget" name="tableWidget_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -76,19 +76,19 @@
          <string notr="true"/>
         </property>
         <property name="frameShape">
-         <enum>QFrame::Shape::NoFrame</enum>
+         <enum>QFrame::NoFrame</enum>
         </property>
         <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+         <enum>Qt::ScrollBarAsNeeded</enum>
         </property>
         <property name="selectionMode">
-         <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+         <enum>QAbstractItemView::SingleSelection</enum>
         </property>
         <property name="showGrid">
          <bool>false</bool>
         </property>
         <property name="gridStyle">
-         <enum>Qt::PenStyle::SolidLine</enum>
+         <enum>Qt::SolidLine</enum>
         </property>
         <property name="sortingEnabled">
          <bool>false</bool>
@@ -238,70 +238,70 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_6">
+        <widget class="MyLabel" name="label_6">
          <property name="text">
           <string>Ввод исходных данных</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="MyLabel" name="label_7">
          <property name="text">
           <string>Идентификация параметров схемы замещения асинхронного электродвигателя</string>
          </property>
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_8">
+        <widget class="MyLabel" name="label_8">
          <property name="text">
           <string>Энергетическая модель асинхронного электродвигателя</string>
          </property>
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QLabel" name="label_9">
+        <widget class="MyLabel" name="label_9">
          <property name="text">
           <string>Тепловая модель асинхронного электродвигателя</string>
          </property>
         </widget>
        </item>
        <item row="6" column="0">
-        <widget class="QLabel" name="label_10">
+        <widget class="MyLabel" name="label_10">
          <property name="text">
           <string>Вентиляционная модель асинхронного электродвигателя</string>
          </property>
         </widget>
        </item>
        <item row="7" column="0">
-        <widget class="QLabel" name="label_11">
+        <widget class="MyLabel" name="label_11">
          <property name="text">
           <string>Тепловентиляционная модель асинхронного электродвигателя</string>
          </property>
         </widget>
        </item>
        <item row="8" column="0">
-        <widget class="QLabel" name="label_12">
+        <widget class="MyLabel" name="label_12">
          <property name="text">
           <string>Прогноз температур асинхронного электродвигателя</string>
          </property>
         </widget>
        </item>
        <item row="9" column="0">
-        <widget class="QLabel" name="label_13">
+        <widget class="MyLabel" name="label_13">
          <property name="text">
           <string>Тепловой наблюдатель</string>
          </property>
         </widget>
        </item>
        <item row="10" column="0">
-        <widget class="QLabel" name="label_14">
+        <widget class="MyLabel" name="label_14">
          <property name="text">
           <string>Остаточный тепаловой ресурс обмотки статора асинхронного электродвигателя</string>
          </property>
         </widget>
        </item>
        <item row="11" column="0">
-        <widget class="QLabel" name="label_15">
+        <widget class="MyLabel" name="label_15">
          <property name="lineWidth">
           <number>1</number>
          </property>
@@ -345,8 +345,8 @@
       </size>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignVCenter">
-       <widget class="QLabel" name="label_2">
+      <item row="0" column="0" alignment="Qt::Qt::AlignVCenter">
+       <widget class="MyLabel" name="label_2">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -358,7 +358,7 @@
          <string>Открыть</string>
         </property>
         <property name="textFormat">
-         <enum>Qt::TextFormat::AutoText</enum>
+         <enum>Qt::AutoText</enum>
         </property>
        </widget>
       </item>
@@ -410,7 +410,7 @@
          </palette>
         </property>
         <property name="frameShape">
-         <enum>QFrame::Shape::NoFrame</enum>
+         <enum>QFrame::NoFrame</enum>
         </property>
         <property name="showGrid">
          <bool>false</bool>
@@ -423,11 +423,6 @@
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>MyTableWidget_2</class>
-   <extends>QTableWidget</extends>
-   <header>mytablewidget_2.h</header>
-  </customwidget>
   <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>

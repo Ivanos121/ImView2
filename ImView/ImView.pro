@@ -59,6 +59,7 @@ SOURCES += \
     modelidentf.cpp \
     modell.cpp \
     mylabel.cpp \
+    mysvgwidget.cpp \
     mytablewidget_2.cpp \
     nabludatel.cpp \
     nabludatel_part.cpp \
@@ -130,6 +131,7 @@ HEADERS += \
     modelidentf.h \
     modell.h \
     mylabel.h \
+    mysvgwidget.h \
     mytablewidget_2.h \
     nabludatel.h \
     nabludatel_base.h \
