@@ -61,25 +61,6 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::Qt::AlignVCenter">
-       <widget class="QPushButton" name="deleteDannie">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>33</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Удалить данные</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -131,7 +112,6 @@
  </widget>
  <tabstops>
   <tabstop>saveDannie</tabstop>
-  <tabstop>deleteDannie</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>

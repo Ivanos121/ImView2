@@ -28,7 +28,7 @@ Start_app::Start_app(QWidget *parent)
 
     connect(ui->tableWidget, &QTableWidget::cellClicked, this, &Start_app::selectImage);
     connect(ui->tableWidget, &QTableWidget::cellClicked, this, &Start_app::openRecentFile);
-    connect(ui->label_4, &QLabel::linkActivated, this, &Start_app::click_open_metod_one);
+    connect(ui->label_4, &MyLabel::clicked, this, &Start_app::click_open_metod_one);
     connect(ui->label_5, &QLabel::linkActivated, this, &Start_app::click_open_metod_two);
     connect(ui->label_6, &QLabel::linkActivated, this, &Start_app::click_open_metod_three);
     connect(ui->label_7, &QLabel::linkActivated, this, &Start_app::click_open_metod_four);
@@ -43,7 +43,6 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
     svgwidget->setMaximumSize(100,100);
-
 
     for(int row = 0; row<ui->tableWidget->rowCount()-2; row++)
     {
@@ -89,7 +88,7 @@ Start_app::Start_app(QWidget *parent)
 
     for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
     {
-         if (ui->tableWidget->item(i, 1) != 0)
+        if (ui->tableWidget->item(i, 1) != 0)
         {
             ui->tableWidget->item(i, 1)->setTextAlignment(Qt::AlignLeft);
             ui->tableWidget->item(i, 1)->setTextAlignment(Qt::AlignVCenter);
@@ -123,11 +122,10 @@ Start_app::Start_app(QWidget *parent)
     QFont newFont3("DroidSans", 14, QFont::Normal,false);
     ui->label_16->setFont(newFont3);
 
-    ui->label_4->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Основы работы</a>");
+    ui->label_4->setText("Основы работы");
     ui->label_4->setTextInteractionFlags(Qt::TextBrowserInteraction);
     QFont newFont4("DroidSans", 10, QFont::Normal,false);
     ui->label_4->setFont(newFont4);
-    ui->label_4->setStyleSheet("background-color: transparent;");
 
     ui->label_5->setText("<a href=\"whatever\" style=\"color: black;QFont::Normal\">Настройка сессии</a>");
     ui->label_5->setTextInteractionFlags(Qt::TextBrowserInteraction);
@@ -318,7 +316,7 @@ void Start_app::click_open_progect()
     for (int i = 0; i < name.size(); ++i)
     {
         if (name.at(i) == "name_1")
-        save_progect.progect_1.name_1 = settings.value( "name_1", "").toString();
+            save_progect.progect_1.name_1 = settings.value( "name_1", "").toString();
     }
 
     for (int i = 0; i < path.size(); ++i)
