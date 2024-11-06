@@ -4147,23 +4147,23 @@ void MainWindow::SaveProgectToFile()
 
 void MainWindow::LoadProject(QString str)
 {
-    ui->tabWidget->show();
-    ui->stackedWidget->show();
-    ui->switch_regim_upr->show();
-    ui->toolBar->show();
-    ui->statusbar->show();
-    ui->widget_15->hide();
-    ui->menu_2->menuAction()->setVisible(true);
-    ui->menu_3->menuAction()->setVisible(true);
-    ui->menu_4->menuAction()->setVisible(true);
-    ui->menu_5->menuAction()->setVisible(true);
-    ui->save_file->setVisible(true);
-    ui->save_as_file->setVisible(true);
-    ui->action_save_graph_file->setVisible(true);
-    ui->action_close_progect->setVisible(true);
-    ui->action_close_session->setVisible(true);
-    ui->print_file->setVisible(true);
-    ui->print_preview->setVisible(true);
+    // ui->tabWidget->show();
+    // ui->stackedWidget->show();
+    // ui->switch_regim_upr->show();
+    // ui->toolBar->show();
+    // ui->statusbar->show();
+    // ui->widget_15->hide();
+    // ui->menu_2->menuAction()->setVisible(true);
+    // ui->menu_3->menuAction()->setVisible(true);
+    // ui->menu_4->menuAction()->setVisible(true);
+    // ui->menu_5->menuAction()->setVisible(true);
+    // ui->save_file->setVisible(true);
+    // ui->save_as_file->setVisible(true);
+    // ui->action_save_graph_file->setVisible(true);
+    // ui->action_close_progect->setVisible(true);
+    // ui->action_close_session->setVisible(true);
+    // ui->print_file->setVisible(true);
+    // ui->print_preview->setVisible(true);
 
     QDir().mkdir("/tmp/imview");
     JlCompress::extractDir(str,"/tmp/imview");
@@ -4174,6 +4174,24 @@ void MainWindow::LoadProject(QString str)
     }
     else
     {
+        ui->tabWidget->show();
+        ui->stackedWidget->show();
+        ui->switch_regim_upr->show();
+        ui->toolBar->show();
+        ui->statusbar->show();
+        ui->widget_15->hide();
+        ui->menu_2->menuAction()->setVisible(true);
+        ui->menu_3->menuAction()->setVisible(true);
+        ui->menu_4->menuAction()->setVisible(true);
+        ui->menu_5->menuAction()->setVisible(true);
+        ui->save_file->setVisible(true);
+        ui->save_as_file->setVisible(true);
+        ui->action_save_graph_file->setVisible(true);
+        ui->action_close_progect->setVisible(true);
+        ui->action_close_session->setVisible(true);
+        ui->print_file->setVisible(true);
+        ui->print_preview->setVisible(true);
+
         QXmlStreamReader xmlReader;
         xmlReader.setDevice(&file);
         xmlReader.readNext();

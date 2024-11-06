@@ -39,13 +39,15 @@ public slots:
 
 public:
     Ui::Start_app *ui;
-    MySvgWidget *svgwidget,*svgwidget2, *svgwidget3;
+    MySvgWidget *svgwidget,  *svgwidget2, *svgwidget3, *svgwidget4,
+                *svgwidget5, *svgwidget6, *svgwidget7, *svgwidget8,
+                *svgwidget9, *svgwidget10, *svgwidget11, *svgwidget12;
 
 protected:
     virtual void resizeEvent(QResizeEvent *) override;
     virtual void showEvent(QShowEvent *) override;
-private slots:
 
+private slots:
     void openRecentFile(int row, int column);
     //void setCurrentFile(const QString &fileName);
     void updateRecentFileActions();

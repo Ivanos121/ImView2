@@ -8,10 +8,16 @@ class MySvgWidget:public QSvgWidget
     Q_OBJECT
 public:
     MySvgWidget(QWidget *parent = nullptr);
+    void loadFile();
+    void loadSelectedFile();
+
+    QString svgFileName;
+    QString svgSelectedFileName;
 
 protected:
     void enterEvent(QEvent *event) override;
     void leaveEvent(QEvent *event) override;
+
 };
 
 #endif // MYSVGWIDGET_H

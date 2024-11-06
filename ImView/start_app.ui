@@ -17,7 +17,7 @@
    <item row="0" column="1">
     <widget class="QWidget" name="widget_2" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item alignment="Qt::Qt::AlignVCenter">
+      <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
        <widget class="QLabel" name="label_16">
         <property name="font">
          <font>
@@ -76,26 +76,26 @@
          <string notr="true"/>
         </property>
         <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
+         <enum>QFrame::Shape::NoFrame</enum>
         </property>
         <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarAsNeeded</enum>
+         <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
         </property>
         <property name="selectionMode">
-         <enum>QAbstractItemView::SingleSelection</enum>
+         <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
         </property>
         <property name="showGrid">
          <bool>false</bool>
         </property>
         <property name="gridStyle">
-         <enum>Qt::SolidLine</enum>
+         <enum>Qt::PenStyle::SolidLine</enum>
         </property>
         <property name="sortingEnabled">
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item>
+      <item alignment="Qt::AlignmentFlag::AlignHCenter">
        <widget class="QLabel" name="label_3">
         <property name="palette">
          <palette>
@@ -193,10 +193,10 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>6</x>
+        <x>456</x>
         <y>6</y>
-        <width>141</width>
-        <height>21</height>
+        <width>91</width>
+        <height>30</height>
        </rect>
       </property>
       <property name="font">
@@ -207,7 +207,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Справка</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Справка&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
@@ -312,16 +312,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QTableWidget" name="tableWidget_3">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>470</y>
-        <width>256</width>
-        <height>192</height>
-       </rect>
-      </property>
-     </widget>
     </widget>
    </item>
    <item row="0" column="0">
@@ -345,7 +335,7 @@
       </size>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0" alignment="Qt::Qt::AlignVCenter">
+      <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignVCenter">
        <widget class="MyLabel" name="label_2">
         <property name="font">
          <font>
@@ -358,7 +348,7 @@
          <string>Открыть</string>
         </property>
         <property name="textFormat">
-         <enum>Qt::AutoText</enum>
+         <enum>Qt::TextFormat::AutoText</enum>
         </property>
        </widget>
       </item>
@@ -410,7 +400,7 @@
          </palette>
         </property>
         <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
+         <enum>QFrame::Shape::NoFrame</enum>
         </property>
         <property name="showGrid">
          <bool>false</bool>

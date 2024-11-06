@@ -203,58 +203,73 @@ Start_app::Start_app(QWidget *parent)
     QWidget *widget = new QWidget();
     QHBoxLayout *layout = new QHBoxLayout(widget);
     layout->addWidget(svgwidget2);
-    svgwidget2->load(QString("/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg"));
+    svgwidget2->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg";
+    svgwidget2->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_id_select.svg";
+    svgwidget2->loadFile();
     layout->setAlignment(Qt::AlignCenter);
     layout->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(0, 0, widget);
     ui->tableWidget_2->item(1, 0)->setTextAlignment(Qt::AlignCenter);
 
-    // svgwidget3 = new MySvgWidget();
-    // QWidget *widget2 = new QWidget();
-    // svgwidget3->load(QString("/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg"));
-    // QHBoxLayout *layout2 = new QHBoxLayout(widget2);
-    // layout2->addWidget(svgwidget3);
-    // layout2->setAlignment(Qt::AlignCenter);
-    // layout2->setContentsMargins(0,0,0,0);
-    // ui->tableWidget_2->setCellWidget(0, 2, widget2);
-    // ui->tableWidget_2->item(1, 2)->setTextAlignment(Qt::AlignCenter);
+    svgwidget3 = new MySvgWidget();
+    QWidget *widget2 = new QWidget();
+    svgwidget3->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg";
+    svgwidget3->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm_select.svg";
+    svgwidget3->loadFile();
+    QHBoxLayout *layout2 = new QHBoxLayout(widget2);
+    layout2->addWidget(svgwidget3);
+    layout2->setAlignment(Qt::AlignCenter);
+    layout2->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(0, 2, widget2);
+    ui->tableWidget_2->item(1, 2)->setTextAlignment(Qt::AlignCenter);
 
-    // QWidget *widget3 = new QWidget();
-    // //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg");
-    // QHBoxLayout *layout3 = new QHBoxLayout(widget3);
-    // layout3->addWidget(svgwidget);
-    // layout3->setAlignment(Qt::AlignCenter);
-    // layout3->setContentsMargins(0,0,0,0);
-    // ui->tableWidget_2->setCellWidget(0, 4, widget3);
-    // ui->tableWidget_2->item(1, 4)->setTextAlignment(Qt::AlignCenter);
+    svgwidget4 = new MySvgWidget();
+    QWidget *widget3 = new QWidget();
+    svgwidget4->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg";
+    svgwidget4->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tm_select.svg";
+    svgwidget4->loadFile();
+    QHBoxLayout *layout3 = new QHBoxLayout(widget3);
+    layout3->addWidget(svgwidget4);
+    layout3->setAlignment(Qt::AlignCenter);
+    layout3->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(0, 4, widget3);
+    ui->tableWidget_2->item(1, 4)->setTextAlignment(Qt::AlignCenter);
 
-    // QWidget *widget4 = new QWidget();
-    // //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
-    // QHBoxLayout *layout4 = new QHBoxLayout(widget4);
-    // layout4->addWidget(svgwidget);
-    // layout4->setAlignment(Qt::AlignCenter);
-    // layout4->setContentsMargins(0,0,0,0);
-    // ui->tableWidget_2->setCellWidget(2, 0, widget4);
-    // //ui->tableWidget_2->resizeRowToContents(2);
-    // ui->tableWidget_2->item(3, 0)->setTextAlignment(Qt::AlignCenter);
+    svgwidget5 = new MySvgWidget();
+    QWidget *widget4 = new QWidget();
+    svgwidget5->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg";
+    svgwidget5->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_vm_select.svg";
+    svgwidget5->loadFile();
+    QHBoxLayout *layout4 = new QHBoxLayout(widget4);
+    layout4->addWidget(svgwidget5);
+    layout4->setAlignment(Qt::AlignCenter);
+    layout4->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(2, 0, widget4);
+    ui->tableWidget_2->item(3, 0)->setTextAlignment(Qt::AlignCenter);
 
-    // QWidget *widget5 = new QWidget();
-    // //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg");
-    // QHBoxLayout *layout5 = new QHBoxLayout(widget5);
-    // layout5->addWidget(svgwidget);
-    // layout5->setAlignment(Qt::AlignCenter);
-    // layout5->setContentsMargins(0,0,0,0);
-    // ui->tableWidget_2->setCellWidget(2, 2, widget5);
-    // ui->tableWidget_2->item(3, 2)->setTextAlignment(Qt::AlignCenter);
+    svgwidget6 = new MySvgWidget();
+    QWidget *widget5 = new QWidget();
+    svgwidget6->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_pt.svg";
+    svgwidget6->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_pt_select.svg";
+    svgwidget6->loadFile();
+    QHBoxLayout *layout5 = new QHBoxLayout(widget5);
+    layout5->addWidget(svgwidget6);
+    layout5->setAlignment(Qt::AlignCenter);
+    layout5->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(2, 2, widget5);
+    ui->tableWidget_2->item(3, 2)->setTextAlignment(Qt::AlignCenter);
 
-    // QWidget *widget6 = new QWidget();
-    // //svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96_tr.svg");
-    // QHBoxLayout *layout6 = new QHBoxLayout(widget6);
-    // layout6->addWidget(svgwidget);
-    // layout6->setAlignment(Qt::AlignCenter);
-    // layout6->setContentsMargins(0,0,0,0);
-    // ui->tableWidget_2->setCellWidget(2, 4, widget6);
-    // ui->tableWidget_2->item(3, 4)->setTextAlignment(Qt::AlignCenter);
+    svgwidget7 = new MySvgWidget();
+    QWidget *widget6 = new QWidget();
+    svgwidget7->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tr.svg";
+    svgwidget7->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tr_select.svg";
+    svgwidget7->loadFile();
+    QHBoxLayout *layout6 = new QHBoxLayout(widget6);
+    layout6->addWidget(svgwidget7);
+    layout6->setAlignment(Qt::AlignCenter);
+    layout6->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(2, 4, widget6);
+    ui->tableWidget_2->item(3, 4)->setTextAlignment(Qt::AlignCenter);
 
     QPalette palette = ui->tableWidget_2->palette();
     palette.setBrush(QPalette::Highlight,QBrush(QColor(239, 240, 241)));
@@ -277,10 +292,7 @@ void Start_app::click_open_file()
 void Start_app::click_open_progect()
 {
     QSettings settings( "BRU", "IM View");
-    //settings.setValue( "name_1", "zxc8.imview");
-    //settings.setValue( "path_1", "../Output");
-    //settings.setValue( "id", 0);
-    //QMessageBox::critical(this, tr("ghbdtn"),tr("ddddd"));
+
     QList<QString> name = { "name_1", "name_2", "name_3", "name_4", "name_5", "name_6", "name_7", "name_8", "name_9", "name_10" };
     QList<QString> path = { "path_1", "path_2", "path_3", "path_4", "path_5", "path_6", "path_7", "path_8", "path_9", "path_10" };
     QList<QString> id = { "id_1", "id_2", "id_3", "id_4", "id_5", "id_6", "id_7", "id_8", "id_9", "id_10" };
@@ -395,6 +407,8 @@ void Start_app::updateRecentFileActions()
     QStringList files = settings.value("recentFileList").toStringList();
 
     int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
+
+    ui->tableWidget->setRowCount(numRecentFiles);
 
     for (int i = 0; i < numRecentFiles; ++i) {
         QString text = files[i];
