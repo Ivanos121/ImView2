@@ -2,47 +2,36 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="fd"/>
-            <combobox_1 value="Внутренний источник данных"/>
+            <project_name value="ffd"/>
+            <combobox_1 value="Выбрать тип эксперимента"/>
             <project_path value="Указать каталог"/>
-            <combobox_2 value="Внутренний источник данных"/>
+            <combobox_2 value="Выбрать тип эксперимента"/>
             <project_path_2 value="Указать каталог"/>
-            <combobox_3 value="Сохранить"/>
-            <combobox_4 value="Сохранить"/>
-            <combobox_5 value="Сохранить"/>
-            <combobox_6 value="Не сохранять"/>
-            <combobox_7 value="Не сохранять"/>
-            <combobox_8 value="Не сохранять"/>
-            <combobox_9 value="Автоматический"/>
+            <combobox_3 value="Выбрать режим"/>
+            <combobox_4 value="Выбрать режим"/>
+            <combobox_5 value="Выбрать режим"/>
+            <combobox_6 value="Выбрать режим"/>
+            <combobox_7 value="Выбрать режим"/>
+            <combobox_8 value="Выбрать режим"/>
+            <combobox_9 value="Выберите режим"/>
             <coeff_1 value="0"/>
             <coeff_2 value="0"/>
             <coeff_3 value="0"/>
             <coeff_4 value="0"/>
             <coeff_5 value="0"/>
             <coeff_6 value="0"/>
-            <combobox_10 value="Режим S1"/>
-            <time_cikle value="5"/>
+            <combobox_10 value="Режим S3"/>
+            <time_cikle value="0"/>
             <time_raboty value="0"/>
             <combobox_11 value="Прямой пуск"/>
-            <moment2 value="311"/>
-            <napragenie value="20"/>
-            <start_temp value="20"/>
-            <combobox_12 value="Статика (статор)"/>
-            <time_step value="30"/>
-            <combobox_13 value="Статика"/>
-            <combobox_14 value="Один вентилятор"/>
-            <pressure value="102"/>
-            <sopr_R1 value="2.419"/>
-            <sopr_R2 value="2.072"/>
-            <ind_L1 value="0.221"/>
-            <ind_L2 value="0.221"/>
-            <ind_Lm value="0.208"/>
-            <koeff_gd value="0.01"/>
-            <koeff_ki value="0.1"/>
-            <koeff_gb value="0.05"/>
-            <koeff_kpsi value="0.02"/>
-            <koeff_gp value="0.01"/>
-            <koeff_gpsi value="0.0001"/>
+            <moment2 value="0"/>
+            <napragenie value="0"/>
+            <start_temp value="0"/>
+            <combobox_12 value="Выберите режим"/>
+            <time_step value="0"/>
+            <combobox_13 value="Выберите режим"/>
+            <combobox_14 value="Выберите конструкцию"/>
+            <pressure value="0"/>
         </general_settings>
     </project>
 </resources>

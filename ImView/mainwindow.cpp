@@ -3895,7 +3895,7 @@ void MainWindow::SaveProgectToFile()
     saveDialog.setViewMode(QFileDialog::Detail);
     saveDialog.setDirectory("../Output");
     saveDialog.exec();
-    QString str = saveDialog.selectedFiles().constFirst();
+    QString str = "../" + saveDialog.selectedFiles().constFirst();
 
     QFile file(QString("../save/project.xml"));
     file.open(QIODevice::WriteOnly);
@@ -10190,8 +10190,11 @@ void MainWindow::setCurrentFile(const QString &fileName)
     QStringList files = settings.value("recentFileList").toStringList();
     files.removeAll(fileName);
     files.prepend(fileName);
+
     while (files.size() > MaxRecentFiles)
-    files.removeLast();
+    {
+        files.removeLast();
+    }
 
     settings.setValue("recentFileList", files);
 
