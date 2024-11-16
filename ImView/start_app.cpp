@@ -406,6 +406,18 @@ void Start_app::updateRecentFileActions()
     QSettings settings("BRU", "IM View");
     QStringList files = settings.value("recentFileList").toStringList();
 
+    for (int i = 0; i < files.size(); i++)
+    {
+        QFileInfo fi(files[i]);
+        if (!fi.exists())
+        {
+            files.removeAt(i);
+            i--;
+        }
+    }
+
+    settings.setValue("recentFileList", files);
+
     int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
 
     ui->tableWidget->setRowCount(numRecentFiles);

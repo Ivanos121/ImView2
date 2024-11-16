@@ -3,6 +3,7 @@ QT       += core gui sql webenginewidgets serialport printsupport svg xml networ
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 CONFIG += c++20 debug
+CONFIG -= qml_debug
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

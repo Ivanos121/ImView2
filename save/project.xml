@@ -2,36 +2,38 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="ffd"/>
-            <combobox_1 value="Выбрать тип эксперимента"/>
-            <project_path value="Указать каталог"/>
-            <combobox_2 value="Выбрать тип эксперимента"/>
-            <project_path_2 value="Указать каталог"/>
-            <combobox_3 value="Выбрать режим"/>
-            <combobox_4 value="Выбрать режим"/>
-            <combobox_5 value="Выбрать режим"/>
-            <combobox_6 value="Выбрать режим"/>
-            <combobox_7 value="Выбрать режим"/>
-            <combobox_8 value="Выбрать режим"/>
-            <combobox_9 value="Выберите режим"/>
-            <coeff_1 value="0"/>
-            <coeff_2 value="0"/>
-            <coeff_3 value="0"/>
-            <coeff_4 value="0"/>
-            <coeff_5 value="0"/>
-            <coeff_6 value="0"/>
-            <combobox_10 value="Режим S3"/>
-            <time_cikle value="0"/>
-            <time_raboty value="0"/>
-            <combobox_11 value="Прямой пуск"/>
-            <moment2 value="0"/>
-            <napragenie value="0"/>
-            <start_temp value="0"/>
-            <combobox_12 value="Выберите режим"/>
-            <time_step value="0"/>
-            <combobox_13 value="Выберите режим"/>
-            <combobox_14 value="Выберите конструкцию"/>
-            <pressure value="0"/>
+            <general_settings>
+                <project_name value="zz3"/>
+                <combobox_1 value="Выбрать тип эксперимента"/>
+                <project_path value="Указать каталог"/>
+                <combobox_2 value="Выбрать тип эксперимента"/>
+                <project_path_2 value="Указать каталог"/>
+                <combobox_3 value="Выбрать режим"/>
+                <combobox_4 value="Выбрать режим"/>
+                <combobox_5 value="Выбрать режим"/>
+                <combobox_6 value="Выбрать режим"/>
+                <combobox_7 value="Выбрать режим"/>
+                <combobox_8 value="Выбрать режим"/>
+                <combobox_9 value="Выберите режим"/>
+                <coeff_1 value="0"/>
+                <coeff_2 value="0"/>
+                <coeff_3 value="0"/>
+                <coeff_4 value="0"/>
+                <coeff_5 value="0"/>
+                <coeff_6 value="0"/>
+                <combobox_10 value="Выбрать режим"/>
+                <time_cikle value="0"/>
+                <time_raboty value="4"/>
+                <combobox_11 value="Выбрать режим"/>
+                <moment2 value="0"/>
+                <napragenie value="0"/>
+                <start_temp value="0"/>
+                <combobox_12 value="Выберите режим"/>
+                <time_step value="0"/>
+                <combobox_13 value="Выберите режим"/>
+                <combobox_14 value="Выберите конструкцию"/>
+                <pressure value="0"/>
+            </general_settings>
         </general_settings>
     </project>
 </resources>
