@@ -193,9 +193,9 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>456</x>
+        <x>6</x>
         <y>6</y>
-        <width>91</width>
+        <width>541</width>
         <height>30</height>
        </rect>
       </property>
@@ -208,6 +208,9 @@
       </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Справка&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
@@ -401,6 +404,9 @@
         </property>
         <property name="frameShape">
          <enum>QFrame::Shape::NoFrame</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
         </property>
         <property name="showGrid">
          <bool>false</bool>

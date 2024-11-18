@@ -169,6 +169,7 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget_2->verticalHeader()->hide();
     ui->tableWidget_2->verticalHeader()->hide();
     ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_2->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
     {
@@ -193,11 +194,11 @@ Start_app::Start_app(QWidget *parent)
     }
 
     ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Открытие нового сеанса"));
-    ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Электромагнитная модель"));
+    ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Электромагнитная \n модель"));
     ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem("Тепловая модель"));
     ui->tableWidget_2->setItem(3, 0, new QTableWidgetItem("Вентиляционная модель"));
     ui->tableWidget_2->setItem(3, 2, new QTableWidgetItem("Прогноз температур"));
-    ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem("Остаточный тепловой ресурс"));
+    ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem("Остаточный \n тепловой \n ресурс"));
 
     svgwidget2 = new MySvgWidget();
     QWidget *widget = new QWidget();
@@ -399,6 +400,7 @@ void Start_app::openRecentFile(int row, int column)
 {
     QString fileName = ui->tableWidget->item(row, column)->data(Qt::UserRole).toString();
     wf->loadFile(fileName);
+    ui->tableWidget->clearSelection();
 }
 
 void Start_app::updateRecentFileActions()
