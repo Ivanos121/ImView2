@@ -115,7 +115,7 @@ Start_app::Start_app(QWidget *parent)
     QFont newFont2("DroidSans", 14, QFont::Normal,false);
     ui->label->setFont(newFont2);
 
-    ui->label_16->setText("<a href=\"whatever\" style=\"color: black;\">Создать</a>");
+    ui->label_16->setText("Создать");
     ui->label_16->setTextInteractionFlags(Qt::TextBrowserInteraction);
     QFont newFont3("DroidSans", 14, QFont::Normal,false);
     ui->label_16->setFont(newFont3);

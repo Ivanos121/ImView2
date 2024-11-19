@@ -3123,6 +3123,15 @@ MainWindow::MainWindow(QWidget *parent)
     widget->setVisible(1);
     ui->statusbar->addPermanentWidget(widget);
 
+    QWidget *spacerWidget = new QWidget(this);
+    spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    spacerWidget->setVisible(true);
+    QAction *myAction = new QAction(tr("Exit"), this);
+    myAction->setIcon(QPixmap(":/data/img/system_icons/file_close.svg"));
+    ui->toolBar->addWidget(spacerWidget);
+    ui->toolBar->addAction(myAction);
+    connect(myAction, &QAction::triggered, this, &MainWindow::close_progect);
+
     QObject::connect(ui->treeView, &QAbstractItemView::activated,this, &MainWindow::itemEdit);
 
     connect(item14->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
