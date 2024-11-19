@@ -74,6 +74,7 @@
 #include <cmath>
 #include <QSqlRecord>
 #include <QFileDialog>
+#include <QSvgRenderer>
 
 Base base;
 Base_tepl base_tepl;
@@ -3127,7 +3128,9 @@ MainWindow::MainWindow(QWidget *parent)
     spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     spacerWidget->setVisible(true);
     QAction *myAction = new QAction(tr("Exit"), this);
-    myAction->setIcon(QPixmap(":/data/img/system_icons/file_close.svg"));
+    QIcon icon11;
+    icon11.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/file_close.svg"), QSize(), QIcon::Normal, QIcon::Off);
+    myAction->setIcon(icon11);
     ui->toolBar->addWidget(spacerWidget);
     ui->toolBar->addAction(myAction);
     connect(myAction, &QAction::triggered, this, &MainWindow::close_progect);

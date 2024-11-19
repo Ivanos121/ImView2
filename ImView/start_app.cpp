@@ -357,9 +357,28 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
     }
 
     int g = 2, h = 0;
-    if((g == x) && (h == y))
+    if((x == 2) && (y == 0))
     {
-        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается вент модель"));
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+
+        // QModelIndex indexToHide = model2.index(0, 0); // Получение индекса первого элемента
+        // model2.removeRow(indexToHide.row(), indexToHide.parent());
+        //QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается вент модель"));
     }
 
     int m = 2, n = 2;

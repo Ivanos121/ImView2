@@ -197,7 +197,7 @@ public:
     QMenu *fileMenu;
     QItemSelectionModel *selectionModel, *selectionModel2, *selectionModel3;
     QSvgWidget *svgwidget;
-    QWidget *widget, *widget2;
+    QWidget *widget, *widget2;    
 
     QMenu *recentFilesMenu;
     QMenu *helpMenu;
