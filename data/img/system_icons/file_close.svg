@@ -33,7 +33,7 @@
      type="text/css"
      id="current-color-scheme">
         .ColorScheme-NegativeText {
-            color:#da4453;
+            color:#000000;
         }
     </style>
   <path

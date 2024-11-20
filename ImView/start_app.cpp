@@ -376,8 +376,8 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->print_file->setVisible(true);
         wf->ui->print_preview->setVisible(true);
 
-        // QModelIndex indexToHide = model2.index(0, 0); // Получение индекса первого элемента
-        // model2.removeRow(indexToHide.row(), indexToHide.parent());
+        QModelIndex indexToHide = wf->model2->index(0, 0); // Получение индекса первого элемента
+        wf->model2->removeRow(indexToHide.row(), indexToHide.parent());
         //QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается вент модель"));
     }
 
