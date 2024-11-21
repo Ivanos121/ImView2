@@ -331,6 +331,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->stackedWidget->show();
         wf->ui->switch_regim_upr->show();
         wf->ui->toolBar->show();
+        wf->ui->statusbar->show();
         wf->ui->menu_2->menuAction()->setVisible(true);
         wf->ui->menu_3->menuAction()->setVisible(true);
         wf->ui->menu_4->menuAction()->setVisible(true);
@@ -363,7 +364,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->tabWidget->show();
         wf->ui->stackedWidget->show();
         wf->ui->switch_regim_upr->show();
-        wf->ui->toolBar->show();
+        wf->ui->statusbar->show();
         wf->ui->menu_2->menuAction()->setVisible(true);
         wf->ui->menu_3->menuAction()->setVisible(true);
         wf->ui->menu_4->menuAction()->setVisible(true);
