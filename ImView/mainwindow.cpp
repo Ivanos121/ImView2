@@ -3166,6 +3166,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(model2,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
 
     updateRecentFileActions();
+
+    if (model2) {
+        // Получаем количество корневых узлов
+        int rootCount = model2->rowCount();
+        for (int i = 0; i < rootCount; ++i) {
+            QModelIndex rootIndex = model2->index(i, 0); // Индекс корневого узла
+            // Здесь можно выполнить действия с rootIndex (например, вывод в консоль)
+            qDebug() << "Корневой узел индекс:" << rootIndex.row();
+        }}
 }
 
 void MainWindow::treview_changed()

@@ -376,9 +376,67 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->print_file->setVisible(true);
         wf->ui->print_preview->setVisible(true);
 
-        QModelIndex indexToHide = wf->model2->index(0, 0); // Получение индекса первого элемента
-        wf->model2->removeRow(indexToHide.row(), indexToHide.parent());
-        //QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается вент модель"));
+        // if (wf->model2)
+        // {
+        //     for (int i = wf->model2->rowCount() - 7; i > 0; --i)
+        //     {
+        //         wf->model2->removeRow(i); // Удаляем последовательно, чтобы избежать смещения индексов
+        //     }
+        // }
+
+        // if (wf->model2)
+        // {
+        //     for (int i = wf->model2->rowCount() ; i > 4; --i)
+        //     {
+        //         wf->model2->removeRow(i); // Удаляем последовательно, чтобы избежать смещения индексов
+        //     }
+        // }
+
+        // if (wf->model2)
+        // {
+        //     for (int i = wf->model2->rowCount() - 4; i > 4; --i)
+        //     {
+        //         wf->model2->removeRow(i); // Удаляем последовательно, чтобы избежать смещения индексов
+        //     }
+        // }
+
+        if (wf->model2) {
+            // Получаем количество корневых узлов
+            int rootCount = wf->model2->rowCount();
+            for (int i = rootCount - 1; i >= 0; --i)
+            {
+                QModelIndex rootIndex = wf->model2->index(i, 0);
+                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
+                if ((rootItem->text() == "Идентификация параметров схемы замещения")||(rootItem->text() == "Электромагнитная модель")
+                    ||(rootItem->text() == "Тепловая модель")||(rootItem->text() == "Прогнозирование температур")
+                    ||(rootItem->text() == "Оценка остаточного теплового ресурса")||(rootItem->text() == "Идентификация параметров тепловой модели")
+                    ||(rootItem->text() == "Тепловентиляционная модель"))
+                {
+                    wf->model2->removeRow(i); // Удаляем узел
+                }
+            }
+        }
+
+        // QModelIndex indexToHide = wf->model2->index(1, 0); // Получение индекса первого элемента
+        // wf->model2->removeRow(indexToHide.row(), indexToHide.parent());
+        // QModelIndex indexToHide2 = wf->model2->index(2, 0); // Получение индекса первого элемента
+        // wf->model2->removeRow(indexToHide2.row(), indexToHide2.parent());
+        // QModelIndex indexToHide3 = wf->model2->index(3, 0); // Получение индекса первого элемента
+        // wf->model2->removeRow(indexToHide3.row(), indexToHide3.parent());
+        // QModelIndex indexToHide4 = wf->model2->index(5, 0); // Получение индекса первого элемента
+        // wf->model2->removeRow(indexToHide4.row(), indexToHide4.parent());
+        // QModelIndex indexToHide5 = wf->model2->index(9, 0); // Получение индекса первого элемента
+        // wf->model2->removeRow(indexToHide5.row(), indexToHide5.parent());
+
+        if (wf->model2) {
+            // Получаем количество корневых узлов
+            int rootCount = wf->model2->rowCount();
+            for (int i = 0; i < rootCount; ++i) {
+                QModelIndex rootIndex = wf->model2->index(i, 0); // Индекс корневого узла
+                // Здесь можно выполнить действия с rootIndex (например, вывод в консоль)
+                qDebug() << "Корневой узел индекс:" << rootIndex.row();
+            }}
     }
 
     int m = 2, n = 2;
