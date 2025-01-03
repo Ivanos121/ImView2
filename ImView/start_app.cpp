@@ -364,6 +364,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->stackedWidget->show();
         wf->ui->switch_regim_upr->show();
         wf->ui->toolBar->show();
+        wf->ui->toolBar_2->show();
         wf->ui->menu_2->menuAction()->setVisible(true);
         wf->ui->menu_3->menuAction()->setVisible(true);
         wf->ui->menu_4->menuAction()->setVisible(true);
@@ -429,14 +430,14 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         // QModelIndex indexToHide5 = wf->model2->index(9, 0); // Получение индекса первого элемента
         // wf->model2->removeRow(indexToHide5.row(), indexToHide5.parent());
 
-        if (wf->model2) {
-            // Получаем количество корневых узлов
-            int rootCount = wf->model2->rowCount();
-            for (int i = 0; i < rootCount; ++i) {
-                QModelIndex rootIndex = wf->model2->index(i, 0); // Индекс корневого узла
-                // Здесь можно выполнить действия с rootIndex (например, вывод в консоль)
-                qDebug() << "Корневой узел индекс:" << rootIndex.row();
-            }}
+        // if (wf->model2) {
+        //     // Получаем количество корневых узлов
+        //     int rootCount = wf->model2->rowCount();
+        //     for (int i = 0; i < rootCount; ++i) {
+        //         QModelIndex rootIndex = wf->model2->index(i, 0); // Индекс корневого узла
+        //         // Здесь можно выполнить действия с rootIndex (например, вывод в консоль)
+        //         qDebug() << "Корневой узел индекс:" << rootIndex.row();
+        //     }}
     }
 
     int m = 2, n = 2;

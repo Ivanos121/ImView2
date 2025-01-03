@@ -43,7 +43,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_6">
@@ -109,7 +109,7 @@ QTreeView::branch {
 </string>
           </property>
           <property name="alternatingRowColors">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="animated">
            <bool>true</bool>
@@ -183,14 +183,14 @@ QTreeView::branch {
            <string/>
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
-           <item row="4" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="4" column="0">
             <widget class="QLabel" name="label_19">
              <property name="text">
               <string>Настроечный коэффициент kpsi =</string>
              </property>
             </widget>
            </item>
-           <item row="5" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="5" column="0">
             <widget class="QLabel" name="label_17">
              <property name="text">
               <string>Настроечный коэффициент gp =</string>
@@ -257,7 +257,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="2" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="2" column="0">
             <widget class="QLabel" name="label_18">
              <property name="text">
               <string>Настроечный коэффициент ki =</string>
@@ -286,7 +286,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="6" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="6" column="0">
             <widget class="QLabel" name="label_21">
              <property name="text">
               <string>Настроечный коэффициент gpsi =</string>
@@ -315,7 +315,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="3" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="3" column="0">
             <widget class="QLabel" name="label_20">
              <property name="text">
               <string>Настроечный коэффициент gb =</string>
@@ -366,7 +366,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="1" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="1" column="0">
             <widget class="QLabel" name="label_16">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -434,14 +434,14 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="4" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="4" column="0">
             <widget class="QLabel" name="label_13">
              <property name="text">
               <string>Индуктивность фазы ротора, Гн =</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="2" column="0">
             <widget class="QLabel" name="label_11">
              <property name="text">
               <string>Активное сопротивление фазы ротора, Ом =</string>
@@ -473,10 +473,10 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="1" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="1" column="0">
             <widget class="QLabel" name="label_10">
              <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+              <enum>Qt::LeftToRight</enum>
              </property>
              <property name="text">
               <string>Активное сопротивление фазы статора, Ом =</string>
@@ -505,7 +505,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="3" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="3" column="0">
             <widget class="QLabel" name="label_12">
              <property name="text">
               <string>Индуктивность фазы статора, Гн =</string>
@@ -578,7 +578,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="6" column="0" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="6" column="0">
             <widget class="QLabel" name="label_14">
              <property name="text">
               <string>Индуктивность взаимоиндукции, Гн =</string>
@@ -609,7 +609,7 @@ QTreeView::branch {
            </size>
           </property>
           <layout class="QGridLayout" name="gridLayout_32">
-           <item row="1" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="1" column="1">
             <widget class="QLabel" name="label_42">
              <property name="text">
               <string>TextLabel</string>
@@ -632,7 +632,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="2" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="2" column="1">
             <widget class="QLabel" name="label_43">
              <property name="text">
               <string>TextLabel</string>
@@ -655,7 +655,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="3" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="3" column="1">
             <widget class="QLabel" name="label_44">
              <property name="text">
               <string>TextLabel</string>
@@ -678,7 +678,7 @@ QTreeView::branch {
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+           <item row="4" column="1">
             <widget class="QLabel" name="label_45">
              <property name="text">
               <string>TextLabel</string>
@@ -720,7 +720,7 @@ QTreeView::branch {
         <item>
          <spacer name="verticalSpacer">
           <property name="orientation">
-           <enum>Qt::Orientation::Vertical</enum>
+           <enum>Qt::Vertical</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -890,7 +890,7 @@ QTreeView::branch {
           </layout>
          </widget>
         </item>
-        <item row="1" column="0" alignment="Qt::AlignmentFlag::AlignHCenter">
+        <item row="1" column="0">
          <widget class="QPushButton" name="pushButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1034,7 +1034,7 @@ QTreeView::branch {
               <number>1</number>
              </property>
              <property name="orientation">
-              <enum>Qt::Orientation::Horizontal</enum>
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -1107,7 +1107,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <number>0</number>
              </property>
              <property name="orientation">
-              <enum>Qt::Orientation::Horizontal</enum>
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -1783,7 +1783,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2038,7 +2038,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1499</width>
-     <height>30</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -2055,12 +2055,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <addaction name="actionmy4"/>
      <addaction name="actionmy5"/>
     </widget>
+    <addaction name="action_create"/>
     <addaction name="open_file"/>
+    <addaction name="menu_6"/>
+    <addaction name="separator"/>
     <addaction name="save_file"/>
     <addaction name="save_as_file"/>
     <addaction name="action_save_graph_file"/>
     <addaction name="action_close_progect"/>
-    <addaction name="menu_6"/>
     <addaction name="separator"/>
     <addaction name="print_preview"/>
     <addaction name="print_file"/>
@@ -2138,6 +2140,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_create"/>
    <addaction name="open_file"/>
    <addaction name="save_file"/>
    <addaction name="save_as_file"/>
@@ -2152,6 +2155,20 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="actioncopy"/>
    <addaction name="actionpaste"/>
    <addaction name="separator"/>
+   <addaction name="enter_dannie"/>
+   <addaction name="save_dannie"/>
+   <addaction name="delete_dannie"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
    <addaction name="identf_pusk"/>
    <addaction name="identf_stop"/>
    <addaction name="separator"/>
@@ -2161,17 +2178,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="electromagn_start"/>
    <addaction name="electromagn_stop"/>
    <addaction name="kalibr_osc"/>
-   <addaction name="separator"/>
-   <addaction name="nastroiki"/>
-   <addaction name="actionresultidentf"/>
-   <addaction name="nastr_graph"/>
-   <addaction name="actionresult"/>
-   <addaction name="separator"/>
-   <addaction name="action_27"/>
-   <addaction name="action_28"/>
-   <addaction name="action_29"/>
-   <addaction name="action_30"/>
-   <addaction name="separator"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -2536,7 +2542,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Запуск идентификации параметров тепловой модели</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
   <action name="actionteplident_stop">
@@ -2548,7 +2554,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Стоп2</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
   <action name="print_preview">
@@ -2616,6 +2622,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="text">
     <string>Сохранить график в файл</string>
+   </property>
+  </action>
+  <action name="action_create">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-new.svg</normaloff>:/system_icons/data/img/system_icons/document-new.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Создать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

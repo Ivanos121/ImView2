@@ -117,6 +117,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->hide();
     ui->switch_regim_upr->hide();
     ui->toolBar->hide();
+    ui->toolBar_2->hide();
     ui->statusbar->hide();
     ui->menu_2->menuAction()->setVisible(false);
     ui->menu_3->menuAction()->setVisible(false);
@@ -830,14 +831,14 @@ MainWindow::MainWindow(QWidget *parent)
     item140->setBackground(QColor(152, 251, 152));
     item141->setBackground(QColor(152, 251, 152));
 
-    item141 = new QStandardItem(tr("Температурный режим Динамика"));
-    item141->setEditable(false);
+    item144 = new QStandardItem(tr("Температурный режим Динамика"));
+    item144->setEditable(false);
     item142 = new QStandardItem(tr("Выберите режим"));
-    items8.append(item141);
+    items8.append(item144);
     items8.append(item142);
     item25->appendRow(items8);
     items8.clear();
-    item141->setBackground(QColor(198, 251, 198));
+    item144->setBackground(QColor(198, 251, 198));
     item142->setBackground(QColor(198, 251, 198));
 
     item23 = new QStandardItem(tr("Шаг выбора точек"));
@@ -2777,50 +2778,50 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    ui->tableWidget_16->setItem(0, 0, new QTableWidgetItem("Установившаяся температура статора"));
-    ui->tableWidget_16->setItem(1, 0, new QTableWidgetItem("Установившаяся температура ротора"));
-    ui->tableWidget_16->setItem(2, 0, new QTableWidgetItem("Постоянная времени статора"));
-    ui->tableWidget_16->setItem(3, 0, new QTableWidgetItem("Постоянная времени ротора"));
-    ui->tableWidget_16->setItem(4, 0, new QTableWidgetItem("Теплоемкость статора"));
-    ui->tableWidget_16->setItem(5, 0, new QTableWidgetItem("Теплоемкость ротора"));
-    ui->tableWidget_16->setItem(6, 0, new QTableWidgetItem("Тепловая проводимость статора"));
-    ui->tableWidget_16->setItem(7, 0, new QTableWidgetItem("Тепловая проводимость между статором и ротором"));
-    ui->tableWidget_16->setItem(8, 0, new QTableWidgetItem("Тепловая проводимость ротора"));
-    ui->tableWidget_16->setItem(9, 0, new QTableWidgetItem("Суммарные потери в статоре"));
-    ui->tableWidget_16->setItem(10, 0, new QTableWidgetItem("Суммарные потери в роторе"));
-    ui->tableWidget_16->setItem(11, 0, new QTableWidgetItem("Потери в стали"));
-    ui->tableWidget_16->setItem(12, 0, new QTableWidgetItem("Скорость вращения"));
-    ui->tableWidget_16->setItem(13, 0, new QTableWidgetItem("Момент"));
+    // ui->tableWidget_16->setItem(0, 0, new QTableWidgetItem("Установившаяся температура статора"));
+    // ui->tableWidget_16->setItem(1, 0, new QTableWidgetItem("Установившаяся температура ротора"));
+    // ui->tableWidget_16->setItem(2, 0, new QTableWidgetItem("Постоянная времени статора"));
+    // ui->tableWidget_16->setItem(3, 0, new QTableWidgetItem("Постоянная времени ротора"));
+    // ui->tableWidget_16->setItem(4, 0, new QTableWidgetItem("Теплоемкость статора"));
+    // ui->tableWidget_16->setItem(5, 0, new QTableWidgetItem("Теплоемкость ротора"));
+    // ui->tableWidget_16->setItem(6, 0, new QTableWidgetItem("Тепловая проводимость статора"));
+    // ui->tableWidget_16->setItem(7, 0, new QTableWidgetItem("Тепловая проводимость между статором и ротором"));
+    // ui->tableWidget_16->setItem(8, 0, new QTableWidgetItem("Тепловая проводимость ротора"));
+    // ui->tableWidget_16->setItem(9, 0, new QTableWidgetItem("Суммарные потери в статоре"));
+    // ui->tableWidget_16->setItem(10, 0, new QTableWidgetItem("Суммарные потери в роторе"));
+    // ui->tableWidget_16->setItem(11, 0, new QTableWidgetItem("Потери в стали"));
+    // ui->tableWidget_16->setItem(12, 0, new QTableWidgetItem("Скорость вращения"));
+    // ui->tableWidget_16->setItem(13, 0, new QTableWidgetItem("Момент"));
 
-    ui->tableWidget_16->setItem(0, 1, new QTableWidgetItem("τ_1"));
-    ui->tableWidget_16->setItem(1, 1, new QTableWidgetItem("τ_2"));
-    ui->tableWidget_16->setItem(2, 1, new QTableWidgetItem("T_1"));
-    ui->tableWidget_16->setItem(3, 1, new QTableWidgetItem("T_2"));
-    ui->tableWidget_16->setItem(4, 1, new QTableWidgetItem("C_1"));
-    ui->tableWidget_16->setItem(5, 1, new QTableWidgetItem("C_2"));
-    ui->tableWidget_16->setItem(6, 1, new QTableWidgetItem("λ10"));
-    ui->tableWidget_16->setItem(7, 1, new QTableWidgetItem("λ12"));
-    ui->tableWidget_16->setItem(8, 1, new QTableWidgetItem("λ20"));
-    ui->tableWidget_16->setItem(9, 1, new QTableWidgetItem("dPel1"));
-    ui->tableWidget_16->setItem(10, 1, new QTableWidgetItem("dPel2"));
-    ui->tableWidget_16->setItem(11, 1, new QTableWidgetItem("dPct"));
-    ui->tableWidget_16->setItem(12, 1, new QTableWidgetItem("omega"));
-    ui->tableWidget_16->setItem(13, 1, new QTableWidgetItem("M"));
+    // ui->tableWidget_16->setItem(0, 1, new QTableWidgetItem("τ_1"));
+    // ui->tableWidget_16->setItem(1, 1, new QTableWidgetItem("τ_2"));
+    // ui->tableWidget_16->setItem(2, 1, new QTableWidgetItem("T_1"));
+    // ui->tableWidget_16->setItem(3, 1, new QTableWidgetItem("T_2"));
+    // ui->tableWidget_16->setItem(4, 1, new QTableWidgetItem("C_1"));
+    // ui->tableWidget_16->setItem(5, 1, new QTableWidgetItem("C_2"));
+    // ui->tableWidget_16->setItem(6, 1, new QTableWidgetItem("λ10"));
+    // ui->tableWidget_16->setItem(7, 1, new QTableWidgetItem("λ12"));
+    // ui->tableWidget_16->setItem(8, 1, new QTableWidgetItem("λ20"));
+    // ui->tableWidget_16->setItem(9, 1, new QTableWidgetItem("dPel1"));
+    // ui->tableWidget_16->setItem(10, 1, new QTableWidgetItem("dPel2"));
+    // ui->tableWidget_16->setItem(11, 1, new QTableWidgetItem("dPct"));
+    // ui->tableWidget_16->setItem(12, 1, new QTableWidgetItem("omega"));
+    // ui->tableWidget_16->setItem(13, 1, new QTableWidgetItem("M"));
 
-    ui->tableWidget_16->setItem(0, 3, new QTableWidgetItem("˚C"));
-    ui->tableWidget_16->setItem(1, 3, new QTableWidgetItem("˚C"));
-    ui->tableWidget_16->setItem(2, 3, new QTableWidgetItem("c"));
-    ui->tableWidget_16->setItem(3, 3, new QTableWidgetItem("c"));
-    ui->tableWidget_16->setItem(4, 3, new QTableWidgetItem("Дж/˚C"));
-    ui->tableWidget_16->setItem(5, 3, new QTableWidgetItem("Дж/˚C"));
-    ui->tableWidget_16->setItem(6, 3, new QTableWidgetItem("Вт/(˚C*м)"));
-    ui->tableWidget_16->setItem(7, 3, new QTableWidgetItem("Вт/(˚C*м)"));
-    ui->tableWidget_16->setItem(8, 3, new QTableWidgetItem("Вт/(˚C*м)"));
-    ui->tableWidget_16->setItem(9, 3, new QTableWidgetItem("Вт"));
-    ui->tableWidget_16->setItem(10, 3, new QTableWidgetItem("Вт"));
-    ui->tableWidget_16->setItem(11, 3, new QTableWidgetItem("Вт"));
-    ui->tableWidget_16->setItem(12, 3, new QTableWidgetItem("рад/с"));
-    ui->tableWidget_16->setItem(13, 3, new QTableWidgetItem("Н*м"));
+    // ui->tableWidget_16->setItem(0, 3, new QTableWidgetItem("˚C"));
+    // ui->tableWidget_16->setItem(1, 3, new QTableWidgetItem("˚C"));
+    // ui->tableWidget_16->setItem(2, 3, new QTableWidgetItem("c"));
+    // ui->tableWidget_16->setItem(3, 3, new QTableWidgetItem("c"));
+    // ui->tableWidget_16->setItem(4, 3, new QTableWidgetItem("Дж/˚C"));
+    // ui->tableWidget_16->setItem(5, 3, new QTableWidgetItem("Дж/˚C"));
+    // ui->tableWidget_16->setItem(6, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    // ui->tableWidget_16->setItem(7, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    // ui->tableWidget_16->setItem(8, 3, new QTableWidgetItem("Вт/(˚C*м)"));
+    // ui->tableWidget_16->setItem(9, 3, new QTableWidgetItem("Вт"));
+    // ui->tableWidget_16->setItem(10, 3, new QTableWidgetItem("Вт"));
+    // ui->tableWidget_16->setItem(11, 3, new QTableWidgetItem("Вт"));
+    // ui->tableWidget_16->setItem(12, 3, new QTableWidgetItem("рад/с"));
+    // ui->tableWidget_16->setItem(13, 3, new QTableWidgetItem("Н*м"));
 
     for (int i=0; i<ui->tableWidget_16->rowCount(); i++)
     {
@@ -3167,14 +3168,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     updateRecentFileActions();
 
-    if (model2) {
-        // Получаем количество корневых узлов
-        int rootCount = model2->rowCount();
-        for (int i = 0; i < rootCount; ++i) {
-            QModelIndex rootIndex = model2->index(i, 0); // Индекс корневого узла
-            // Здесь можно выполнить действия с rootIndex (например, вывод в консоль)
-            qDebug() << "Корневой узел индекс:" << rootIndex.row();
-        }}
+    // if (model2) {
+    //     // Получаем количество корневых узлов
+    //     int rootCount = model2->rowCount();
+    //     for (int i = 0; i < rootCount; ++i) {
+    //         QModelIndex rootIndex = model2->index(i, 0); // Индекс корневого узла
+    //         // Здесь можно выполнить действия с rootIndex (например, вывод в консоль)
+    //         qDebug() << "Корневой узел индекс:" << rootIndex.row();
+    //     }}
 }
 
 void MainWindow::treview_changed()
@@ -4199,6 +4200,7 @@ void MainWindow::LoadProject(QString str)
         ui->stackedWidget->show();
         ui->switch_regim_upr->show();
         ui->toolBar->show();
+        ui->toolBar_2->show();
         ui->statusbar->show();
         ui->widget_15->hide();
         ui->menu_2->menuAction()->setVisible(true);
@@ -9246,57 +9248,90 @@ SettinsKanals::SettinsKanals(QWidget *parent) :
 void MainWindow::actionteplident_start()
 {
     isNablLaunched = true;
-    ui->tabWidget->show();
-    ui->tabWidget->setCurrentIndex(2);
-    ui->stackedWidget->hide();
+
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
     QIcon ButtonIcon_1(pixmap);
     ui->switch_regim_upr->setIcon(ButtonIcon_1);
-    ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
-    ui->actionteplident_stop->setEnabled(true);
 
-    base.R1 = ui->lineEdit_12->text().toDouble();
-    base.R2 = ui->lineEdit_11->text().toDouble();
-    base.L1 = ui->lineEdit_10->text().toDouble();
-    base.L2 = ui->lineEdit_9->text().toDouble();
-    base.Lm = ui->lineEdit_8->text().toDouble();
-    teta0_0=item28->text().toDouble();
+    ui->tableWidget_16->setItem(0, 0, new QTableWidgetItem("Суммарные потери"));
+    ui->tableWidget_16->setItem(1, 0, new QTableWidgetItem("Теплоемкость"));
+    ui->tableWidget_16->setItem(2, 0, new QTableWidgetItem("Коэффициент теплоотдачи"));
 
-    ui->widget_10->ui->plot->clear();
-    ui->widget_10->ui->plot->addDataLine(QColor(Qt::red), 0);
-    ui->widget_10->ui->plot->addDataLine(QColor(Qt::green), 0);
+    ui->tableWidget_16->setItem(0, 1, new QTableWidgetItem("dPsumm"));
+    ui->tableWidget_16->setItem(1, 1, new QTableWidgetItem("C_1"));
+    ui->tableWidget_16->setItem(2, 1, new QTableWidgetItem("А"));
 
-    /*double t=0;
-    double y_0;
-    while(t<2)
+    ui->tableWidget_16->setItem(0, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_16->setItem(1, 3, new QTableWidgetItem("Вт"));
+    ui->tableWidget_16->setItem(2, 3, new QTableWidgetItem("Вт"));
+
+
+    if (item141->text() == "Выберите режим")
     {
-        t+=0.1;
-        y_0=20*(1-exp(-t/20)) + item28->text().toDouble();
-        ui->widget_10->ui->plot->addPoint(0, t, y_0);
-    }*/
-    ui->widget_3->raschet_el();
-    //ui->widget_5->ui->widget_4->startTeplo();
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+        ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
+        ui->actionteplident_stop->setEnabled(false);
+
+    }
+    else
+    {
+        if (item141->text() == "Одномассовая модель")
+        {
+            ui->tabWidget->show();
+            ui->tabWidget->setCurrentIndex(2);
+            ui->stackedWidget->hide();
+            ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+            ui->actionteplident_stop->setEnabled(true);
+            base.R1 = ui->lineEdit_12->text().toDouble();
+            base.R2 = ui->lineEdit_11->text().toDouble();
+            base.L1 = ui->lineEdit_10->text().toDouble();
+            base.L2 = ui->lineEdit_9->text().toDouble();
+            base.Lm = ui->lineEdit_8->text().toDouble();
+            teta0_0=item28->text().toDouble();
+
+            ui->widget_10->ui->plot->clear();
+            ui->widget_10->ui->plot->addDataLine(QColor(Qt::red), 0);
+            ui->widget_10->ui->plot->addDataLine(QColor(Qt::green), 0);
+
+            ui->widget_3->raschet_el();
+            timer->start(1000);
+
+            double C_1=0, A=100, dPsumm=1100;
 
 
-    timer->start(1000);
 
-    double teta_1=0, teta_2=0, T_1=0, T_2=0, C_1=0, C_2=0, lambda10=0, lambda12=0,
-            lambda20=0, dPel1=0, dPel2=0, omega=0, M=0, dPct=0;
+            ui->tableWidget_16->item(0,2)->setText(QString::number(tepl_struct.P1-tepl_struct.P2,'f',3));
+            ui->tableWidget_16->item(1,2)->setText(QString::number(C_1,'f',3));
+            ui->tableWidget_16->item(2,2)->setText(QString::number(A,'f',3));
 
-    ui->tableWidget_16->item(0,2)->setText(QString::number(teta_1,'f',3));
-    ui->tableWidget_16->item(1,2)->setText(QString::number(teta_2,'f',3));
-    ui->tableWidget_16->item(2,2)->setText(QString::number(T_1,'f',3));
-    ui->tableWidget_16->item(3,2)->setText(QString::number(T_2,'f',3));
-    ui->tableWidget_16->item(4,2)->setText(QString::number(C_1,'f',3));
-    ui->tableWidget_16->item(5,2)->setText(QString::number(C_2,'f',3));
-    ui->tableWidget_16->item(6,2)->setText(QString::number(lambda10,'f',3));
-    ui->tableWidget_16->item(7,2)->setText(QString::number(lambda12,'f',3));
-    ui->tableWidget_16->item(8,2)->setText(QString::number(lambda20,'f',3));
-    ui->tableWidget_16->item(9,2)->setText(QString::number(dPel1,'f',3));
-    ui->tableWidget_16->item(10,2)->setText(QString::number(dPel2,'f',3));
-    ui->tableWidget_16->item(11,2)->setText(QString::number(dPct,'f',3));
-    ui->tableWidget_16->item(12,2)->setText(QString::number(omega,'f',3));
-    ui->tableWidget_16->item(13,2)->setText(QString::number(M,'f',3));
+
+        }
+    }
+
+    // double teta_1=0, teta_2=0, T_1=0, T_2=0, C_1=0, C_2=0, lambda10=0, lambda12=0,
+    //         lambda20=0, dPel1=0, dPel2=0, omega=0, M=0, dPct=0, dPsumm=1100;
+    // ui->tableWidget_16->item(0,2)->setText(QString::number(teta_1,'f',3));
+    // ui->tableWidget_16->item(1,2)->setText(QString::number(teta_2,'f',3));
+    // ui->tableWidget_16->item(2,2)->setText(QString::number(T_1,'f',3));
+    // ui->tableWidget_16->item(3,2)->setText(QString::number(T_2,'f',3));
+    // ui->tableWidget_16->item(4,2)->setText(QString::number(C_1,'f',3));
+    // ui->tableWidget_16->item(5,2)->setText(QString::number(C_2,'f',3));
+    // ui->tableWidget_16->item(6,2)->setText(QString::number(lambda10,'f',3));
+    // ui->tableWidget_16->item(7,2)->setText(QString::number(lambda12,'f',3));
+    // ui->tableWidget_16->item(8,2)->setText(QString::number(lambda20,'f',3));
+    // ui->tableWidget_16->item(9,2)->setText(QString::number(dPel1,'f',3));
+    // ui->tableWidget_16->item(10,2)->setText(QString::number(dPel2,'f',3));
+    // ui->tableWidget_16->item(11,2)->setText(QString::number(dPct,'f',3));
+    // ui->tableWidget_16->item(12,2)->setText(QString::number(omega,'f',3));
+    // ui->tableWidget_16->item(13,2)->setText(QString::number(M,'f',3));
+
+
+
+
+
+
+
+
 }
 
 void MainWindow::actionteplident_stop()
