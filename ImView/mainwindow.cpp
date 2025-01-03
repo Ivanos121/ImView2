@@ -102,6 +102,8 @@ double G,B;
 QVector<double> tepl_ident_t;
 QVector<double> tepl_ident_StatorTemp;
 
+QVector<double> tepl_ident_P1, tepl_ident_P2;
+
 QTranslator * qtLanguageTranslator;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -273,9 +275,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
 
     showMaximized();
-
-    timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &MainWindow::TimeOut);
 
     ui->identf_stop->setEnabled(false);
     ui->electromagn_stop->setEnabled(false);
@@ -3166,6 +3165,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->lineEdit_18,&QLineEdit::textEdited, this, &MainWindow::edit_6);
     connect(model2,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
 
+    connect(ui->widget_3, &electromagn::tick, this, &MainWindow::on_electromagn_tick);
+
     updateRecentFileActions();
 
     // if (model2) {
@@ -3422,7 +3423,7 @@ void MainWindow::electromagn_start()
 
     statusbar_label_9->setVisible(true);
     statusbar_progres->setVisible(true);
-    statusbar_progres->setRange(0, 1000 - 1);
+    statusbar_progres->setRange(0, 1000);
     statusbar_progres->reset();
 
     if(item70->checkState() == Qt::Checked)
@@ -3549,12 +3550,6 @@ void MainWindow::electromagn_start()
 
     ui->widget_3->raschet_el();
     ui->widget_5->ui->widget_4->startTeplo();
-
-    for(int i=0; i<1000; i++)
-    {
-        statusbar_label_9->setText("T = " + QString::number(i,'f',5));
-        statusbar_progres->setValue(i);
-    }
 }
 
 void MainWindow::electromagn_stop()
@@ -9293,18 +9288,17 @@ void MainWindow::actionteplident_start()
             ui->widget_10->ui->plot->addDataLine(QColor(Qt::red), 0);
             ui->widget_10->ui->plot->addDataLine(QColor(Qt::green), 0);
 
+            tepl_ident_P1.clear();
+            tepl_ident_P2.clear();
+            tepl_ident_t.clear();
+            tepl_ident_StatorTemp.clear();
+
+            statusbar_label_9->setVisible(true);
+            statusbar_progres->setVisible(true);
+            statusbar_progres->setRange(0, 1000);
+            statusbar_progres->reset();
+
             ui->widget_3->raschet_el();
-            timer->start(1000);
-
-            double C_1=0, A=100, dPsumm=1100;
-
-
-
-            ui->tableWidget_16->item(0,2)->setText(QString::number(tepl_struct.P1-tepl_struct.P2,'f',3));
-            ui->tableWidget_16->item(1,2)->setText(QString::number(C_1,'f',3));
-            ui->tableWidget_16->item(2,2)->setText(QString::number(A,'f',3));
-
-
         }
     }
 
@@ -9339,48 +9333,8 @@ void MainWindow::actionteplident_stop()
     isNablLaunched = false;
     ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
     ui->actionteplident_stop->setEnabled(false);
-    timer->stop();
+
     ui->widget_3->stop();
-}
-
-void MainWindow::TimeOut()
-{
-    double t;
-    if (tepl_ident_t.size() == 0)
-    {
-        t = 0.0;
-    }
-    else
-    {
-        t = tepl_ident_t[tepl_ident_t.size() - 1] + 60.0;
-    }
-
-    double Temp = 80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
-    tepl_ident_t.append(t);
-    tepl_ident_StatorTemp.append(Temp);
-
-    ui->widget_10->ui->plot->addPoint(0, t, Temp);
-
-    if (tepl_ident_StatorTemp.size() >= 4)
-    {
-        isNablLaunched = false;
-        timer->stop();
-        ui->widget_3->stop();
-        ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
-        ui->actionteplident_stop->setEnabled(false);
-        QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
-        ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(8);
-
-        double u1 = tepl_ident_StatorTemp[0];
-        double u2 = tepl_ident_StatorTemp[1];
-        double u3 = tepl_ident_StatorTemp[2];
-        double u4 = tepl_ident_StatorTemp[3];
-        ui->tableWidget_16->item(14,2)->setText(QString::number(u1,'f',3));
-        ui->tableWidget_16->item(15,2)->setText(QString::number(u2,'f',3));
-        ui->tableWidget_16->item(16,2)->setText(QString::number(u3,'f',3));
-        ui->tableWidget_16->item(17,2)->setText(QString::number(u4,'f',3));
-    }
 }
 
 void MainWindow::open_file()
@@ -11920,4 +11874,41 @@ void MainWindow::saveDataSQL()
     ui->widget->zapis_from_cell_tableview();
 }
 
+void MainWindow::on_electromagn_tick()
+{
+    double t = ui->widget_3->key;
+    int maxTime = item24->text().toInt();
 
+    statusbar_label_9->setText("T = " + QString::number(t,'f',5));
+    statusbar_progres->setValue(t / maxTime * 1000);
+
+    tepl_ident_P1.append(tepl_struct.P1);
+    tepl_ident_P2.append(tepl_struct.P2);
+
+    double Temp = 80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
+    tepl_ident_t.append(t);
+    tepl_ident_StatorTemp.append(Temp);
+
+    if (ui->widget_3->key > maxTime)
+    {
+        actionteplident_stop();
+
+        statusbar_label_9->setVisible(false);
+        statusbar_progres->setVisible(false);
+
+        double P1sum = 0.0;
+        double P2sum = 0.0;
+        for (int i = 0; i < tepl_ident_P1.size(); i++)
+        {
+            P1sum += tepl_ident_P1[i];
+            P2sum += tepl_ident_P2[i];
+        }
+        P1sum /= tepl_ident_P1.size();
+        P2sum /= tepl_ident_P2.size();
+
+        ui->tableWidget_16->item(0,2)->setText(QString::number(P1sum - P2sum,'f',3));
+
+        double A = tepl_ident_StatorTemp[tepl_ident_StatorTemp.size() - 1] / (P1sum - P2sum);
+        //double t1 = tepl_ident_StatorTemp
+    }
+}

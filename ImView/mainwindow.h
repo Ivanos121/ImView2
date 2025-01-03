@@ -106,7 +106,6 @@ private slots:
     void tabClicked_5();
     void tabClicked_6();
     void itemEdit();
-    void TimeOut();
     void createUndoView();
     void edit();
     void edit_2();
@@ -180,6 +179,7 @@ private slots:
     void color_treview(const QModelIndex &index, const QStandardItemModel *model);
     void treview_changed();
     void save_identf_in_file();
+    void on_electromagn_tick();
 
 public:
     Ui::MainWindow *ui;
@@ -206,7 +206,6 @@ public:
     QString curFile;
     QStandardItemModel* model2;
 
-    QTimer *timer;
     QAction *undoAction;
     QAction *redoAction;
     QProgressBar *progress, *statusbar_progres;

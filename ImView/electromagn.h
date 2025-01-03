@@ -53,6 +53,9 @@ private:
     int connectMomentPort();
     void connectTcpPort();
 
+signals:
+    void tick();
+
 };
 
 #endif // ELECTROMAGN_H

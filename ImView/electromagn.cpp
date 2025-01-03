@@ -907,6 +907,7 @@ void electromagn::realtimeDataSlot()
             wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
         }
     }
+    emit tick();
 }
 
 int electromagn::connectMomentPort()
