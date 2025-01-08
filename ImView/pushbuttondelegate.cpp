@@ -13,6 +13,7 @@
 #include "qabstractitemview.h"
 #include "qcombobox.h"
 #include "settingscanals.h"
+#include "vent_settings.h"
 
 ButtonColumnDelegate::ButtonColumnDelegate(QObject *parent) :QStyledItemDelegate(parent)
 {
@@ -184,6 +185,68 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
     else if ((index.parent().row() == 2) && (index.row() == 0))
     {
         QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Одномассовая модель");
+        editor->insertItem(1, "Двухмассовая модель");
+        editor->insertItem(2, "Трехмассовая модель");
+        editor->insertItem(3, "Четырехмассовая модель");
+        editor->insertItem(4, "Многомассовая модель");
+        return editor;
+    }
+    else if ((index.parent().row() == 2) && (index.row() == 1))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Одномассовая модель");
+        editor->insertItem(1, "Двухмассовая модель");
+        editor->insertItem(2, "Трехмассовая модель");
+        editor->insertItem(3, "Четырехмассовая модель");
+        editor->insertItem(4, "Многомассовая модель");
+        return editor;
+    }
+    else if ((index.parent().row() == 2) && (index.row() == 2))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Одномассовая модель");
+        editor->insertItem(1, "Двухмассовая модель");
+        editor->insertItem(2, "Трехмассовая модель");
+        editor->insertItem(3, "Четырехмассовая модель");
+        editor->insertItem(4, "Многомассовая модель");
+        return editor;
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 0))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Принудительная вентиляция");
+        editor->insertItem(1, "Независимая вентиляция");
+        return editor;
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 1))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Автоматический");
+        editor->insertItem(1, "Ручной");
+        return editor;
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 2))
+    {
+        QPushButton * btn = new QPushButton(parent);
+        const QSize BUTTON_SIZE = QSize(22, 22);
+        btn->setMinimumSize(BUTTON_SIZE);
+        btn->setFixedSize(BUTTON_SIZE);
+        btn->setText("...");
+        connect(btn,SIGNAL(clicked()), this, SLOT(btn_clicked_8()));
+        return btn;
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 3))
+    {
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Учитывать");
+        editor->insertItem(1, "Не учитывать");
+        return editor;
+    }
+
+    else if ((index.parent().row() == 4) && (index.row() == 0))
+    {
+        QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Режим S1");
         editor->insertItem(1, "Режим S2");
         editor->insertItem(2, "Режим S3");
@@ -191,7 +254,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->insertItem(4, "Режим S6");
         return editor;
     }
-    else if ((index.parent().row() == 2) && (index.row() == 1))
+    else if ((index.parent().row() == 4) && (index.row() == 1))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
@@ -199,7 +262,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(100);
         return editor;
     }
-    else if ((index.parent().row() == 2) && (index.row() == 2))
+    else if ((index.parent().row() == 4) && (index.row() == 2))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
@@ -208,7 +271,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         return editor;
     }
 
-    else if ((index.parent().row() == 2) && (index.row() == 3))
+    else if ((index.parent().row() == 4) && (index.row() == 3))
     {
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Прямой пуск");
@@ -217,7 +280,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->insertItem(3, "Система ПЧ-АД");
         return editor;
     }
-    else if ((index.parent().row() == 2) && (index.row() == 4))
+    else if ((index.parent().row() == 4) && (index.row() == 4))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
@@ -225,7 +288,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(600);
         return editor;
     }
-    else if ((index.parent().row() == 2) && (index.row() == 5))
+    else if ((index.parent().row() == 4) && (index.row() == 5))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
@@ -233,7 +296,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(100);
         return editor;
     }
-    else if ((index.parent().row() == 3) && (index.row() == 0))
+    else if ((index.parent().row() == 5) && (index.row() == 0))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
@@ -241,7 +304,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(100);
         return editor;
     }
-    else if ((index.parent().row() == 3) && (index.row() == 1))
+    else if ((index.parent().row() == 5) && (index.row() == 1))
     {
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Статика (статор)");
@@ -255,7 +318,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
 
         return editor;
     }
-    else if ((index.parent().row() == 3) && (index.row() == 2))
+    else if ((index.parent().row() == 5) && (index.row() == 2))
     {
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Одномассовая модель");
@@ -267,7 +330,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
 
         return editor;
     }
-    else if ((index.parent().row() == 3) && (index.row() == 3))
+    else if ((index.parent().row() == 5) && (index.row() == 3))
     {
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Одномассовая модель");
@@ -279,7 +342,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
 
         return editor;
     }
-    else if ((index.parent().row() == 3) && (index.row() == 4))
+    else if ((index.parent().row() == 5) && (index.row() == 4))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
@@ -287,7 +350,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setMaximum(100);
         return editor;
     }
-    else if ((index.parent().row() == 4) && (index.row() == 0))
+    else if ((index.parent().row() == 6) && (index.row() == 0))
     {
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Статика");
@@ -295,7 +358,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->insertItem(2, "Динамика (эксперимент)");
         return editor;
     }
-    else if ((index.parent().row() == 4) && (index.row() == 1))
+    else if ((index.parent().row() == 6) && (index.row() == 1))
     {
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Один вентилятор");
@@ -483,8 +546,100 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
-    }
+    }    
     else if ((index.parent().row() == 2) && (index.row() == 0))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Одномассовая модель")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Двухмассовая модель")
+            comboBox->setCurrentIndex(1);
+        else if(value == "Трехмассовая модель")
+            comboBox->setCurrentIndex(2);
+        else if(value == "Четырехмассовая модель")
+            comboBox->setCurrentIndex(3);
+        else if(value == "Многомассовая модель")
+            comboBox->setCurrentIndex(4);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
+    else if ((index.parent().row() == 2) && (index.row() == 1))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Одномассовая модель")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Двухмассовая модель")
+            comboBox->setCurrentIndex(1);
+        else if(value == "Трехмассовая модель")
+            comboBox->setCurrentIndex(2);
+        else if(value == "Четырехмассовая модель")
+            comboBox->setCurrentIndex(3);
+        else if(value == "Многомассовая модель")
+            comboBox->setCurrentIndex(4);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
+    else if ((index.parent().row() == 2) && (index.row() == 2))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Одномассовая модель")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Двухмассовая модель")
+            comboBox->setCurrentIndex(1);
+        else if(value == "Трехмассовая модель")
+            comboBox->setCurrentIndex(2);
+        else if(value == "Четырехмассовая модель")
+            comboBox->setCurrentIndex(3);
+        else if(value == "Многомассовая модель")
+            comboBox->setCurrentIndex(4);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 0))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Принудительная вентиляция")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Независимая вентиляция")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 1))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Автоматический")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Ручной")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 2))
+    {
+        QPushButton * btn = qobject_cast<QPushButton *>(editor);
+        btn->setProperty("data_value", index.data());
+    }
+    else if ((index.parent().row() == 3) && (index.row() == 2))
+    {
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        if(value == "Учитывать")
+            comboBox->setCurrentIndex(0);
+        else if(value == "Не учитывать")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
+    }
+
+
+
+    else if ((index.parent().row() == 4) && (index.row() == 0))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -501,20 +656,20 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 1))
+    else if ((index.parent().row() == 4) && (index.row() == 1))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 2))
+    else if ((index.parent().row() == 4) && (index.row() == 2))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
 
-    else if ((index.parent().row() == 2) && (index.row() == 3))
+    else if ((index.parent().row() == 4) && (index.row() == 3))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -530,25 +685,25 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 4))
+    else if ((index.parent().row() == 4) && (index.row() == 4))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 5))
+    else if ((index.parent().row() == 4) && (index.row() == 5))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
-    else if ((index.parent().row() == 3) && (index.row() == 0))
+    else if ((index.parent().row() == 5) && (index.row() == 0))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
-    else if ((index.parent().row() == 3) && (index.row() == 1))
+    else if ((index.parent().row() == 5) && (index.row() == 1))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -571,7 +726,7 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-    else if ((index.parent().row() == 3) && (index.row() == 2))
+    else if ((index.parent().row() == 5) && (index.row() == 2))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -590,7 +745,7 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-    else if ((index.parent().row() == 3) && (index.row() == 3))
+    else if ((index.parent().row() == 5) && (index.row() == 3))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -609,13 +764,13 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-    else if ((index.parent().row() == 3) && (index.row() == 4))
+    else if ((index.parent().row() == 5) && (index.row() == 4))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
-    else if ((index.parent().row() == 4) && (index.row() == 0))
+    else if ((index.parent().row() == 6) && (index.row() == 0))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -628,7 +783,7 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-    else if ((index.parent().row() == 4) && (index.row() == 1))
+    else if ((index.parent().row() == 6) && (index.row() == 1))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -744,41 +899,6 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         QString value = comboBox->currentText();
         model->setData(index, value);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 1))
-    {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 2))
-    {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 3))
-    {
-        QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        QString value = comboBox->currentText();
-        model->setData(index, value);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 4))
-    {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 5))
-    {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
-
     else if ((index.parent().row() == 2) && (index.row() == 0))
     {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -787,51 +907,21 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
     }
     else if ((index.parent().row() == 2) && (index.row() == 1))
     {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
     }
     else if ((index.parent().row() == 2) && (index.row() == 2))
-    {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 3))
-    {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 4))
     {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();
         model->setData(index, value);
     }
-    else if ((index.parent().row() == 2) && (index.row() == 5))
-    {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
-    else if ((index.parent().row() == 2) && (index.row() == 6))
-    {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
-    }
     else if ((index.parent().row() == 3) && (index.row() == 0))
     {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
     }
     else if ((index.parent().row() == 3) && (index.row() == 1))
     {
@@ -841,9 +931,8 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
     }
     else if ((index.parent().row() == 3) && (index.row() == 2))
     {
-        QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        QString value = comboBox->currentText();
-        model->setData(index, value);
+        QPushButton *btn = qobject_cast<QPushButton *>(editor);
+        model->setData(index, btn->property("data_value"));
     }
     else if ((index.parent().row() == 3) && (index.row() == 3))
     {
@@ -851,13 +940,41 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         QString value = comboBox->currentText();
         model->setData(index, value);
     }
-    else if ((index.parent().row() == 3) && (index.row() == 4))
+    else if ((index.parent().row() == 4) && (index.row() == 1))
     {
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->interpretText();
         double value = spinBox->value();
         model->setData(index, value, Qt::EditRole);
     }
+    else if ((index.parent().row() == 4) && (index.row() == 2))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 3))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 4))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 5))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+
     else if ((index.parent().row() == 4) && (index.row() == 0))
     {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -865,6 +982,85 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         model->setData(index, value);
     }
     else if ((index.parent().row() == 4) && (index.row() == 1))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 2))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 3))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 4))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 5))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 6))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 5) && (index.row() == 0))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 5) && (index.row() == 1))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().row() == 5) && (index.row() == 2))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().row() == 5) && (index.row() == 3))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().row() == 5) && (index.row() == 4))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 6) && (index.row() == 0))
+    {
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
+    }
+    else if ((index.parent().row() == 6) && (index.row() == 1))
     {
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();
@@ -921,10 +1117,14 @@ void ButtonColumnDelegate::btn_clicked_6()
 
 void ButtonColumnDelegate::btn_clicked_7()
 {
-//    SettinsKanals *settinsKanals = new SettinsKanals();
-//    settinsKanals->show();
     SettingsCanals *settinпsСanals = new SettingsCanals();
     settinпsСanals->show();
+}
+
+void ButtonColumnDelegate::btn_clicked_8()
+{
+    Vent_settings *vent_settings = new Vent_settings();
+    vent_settings->show();
 }
 
 bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,

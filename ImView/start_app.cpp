@@ -331,6 +331,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->stackedWidget->show();
         wf->ui->switch_regim_upr->show();
         wf->ui->toolBar->show();
+        wf->ui->toolBar_2->show();
         wf->ui->menu_2->menuAction()->setVisible(true);
         wf->ui->menu_3->menuAction()->setVisible(true);
         wf->ui->menu_4->menuAction()->setVisible(true);
@@ -342,6 +343,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->action_close_session->setVisible(true);
         wf->ui->print_file->setVisible(true);
         wf->ui->print_preview->setVisible(true);
+        wf->ui->statusbar->show();
         //QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается идентификация"));
     }
 
@@ -356,7 +358,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается тепл модель"));
     }
 
-    int g = 2, h = 0;
+    //int g = 2, h = 0;
     if((x == 2) && (y == 0))
     {
         wf->ui->widget_15->hide();

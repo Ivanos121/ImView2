@@ -50,6 +50,8 @@
         <file>../data/img/system_icons/IM_96x96_elm_select.svg</file>
         <file>../data/img/system_icons/IM_96x96_id_select.svg</file>
         <file>../data/img/system_icons/file_close.svg</file>
+        <file>../data/img/system_icons/media-playback-start_4.svg</file>
+        <file>../data/img/system_icons/media-playback-stop_4.svg</file>
     </qresource>
     <qresource prefix="/icons">
         <file>../data/img/icons/IM_16x16.png</file>
@@ -84,6 +86,9 @@
         <file>../data/img/icons/moment_white_24.svg</file>
         <file>../data/img/icons/NP_24.svg</file>
         <file>../data/img/icons/txt.ico</file>
+        <file>../data/img/icons/branch-end.png</file>
+        <file>../data/img/icons/branch-more.png</file>
+        <file>../data/img/icons/vline.png</file>
     </qresource>
     <qresource prefix="/image">
         <file>../data/img/images/IM_LOGO.png</file>

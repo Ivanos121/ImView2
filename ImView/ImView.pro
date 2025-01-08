@@ -81,7 +81,9 @@ SOURCES += \
     teplschem.cpp \
     treeviewsortdelegate.cpp \
     trend.cpp \
+    vent_identf.cpp \
     vent_model.cpp \
+    vent_settings.cpp \
     vent_tract.cpp \
     zerocorrector.cpp
 
@@ -156,7 +158,9 @@ HEADERS += \
     teplschem.h \
     treeviewsortdelegate.h \
     trend.h \
+    vent_identf.h \
     vent_model.h \
+    vent_settings.h \
     vent_tract.h \
     zerocorrector.h
 
@@ -187,7 +191,9 @@ FORMS += \
     teplovent.ui \
     teplschem.ui \
     trend.ui \
+    vent_identf.ui \
     vent_model.ui \
+    vent_settings.ui \
     vent_tract.ui
 
 TRANSLATIONS += QtLanguage_ru.ts QtLanguage_en.ts

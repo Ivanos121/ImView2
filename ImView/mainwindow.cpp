@@ -28,8 +28,6 @@
 #include "customhelpdelegate.h"
 #include "math.h"
 #include "plot.h"
-#include "tepl_nabludatel.h"
-#include "ui_tepl_nabludatel.h"
 #include "model_el.h"
 #include "tepl_struct.h"
 #include "tepl_identf.h"
@@ -292,7 +290,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setAlternatingRowColors(true); // Цвет каждой строки интервала разный, при наличии qss этот атрибут недействителен
     ui->treeView->setFocusPolicy(Qt :: NoFocus);
     ui->treeView->setExpandsOnDoubleClick(true);
-    ui->treeView->setRootIsDecorated(true);
+    //ui->treeView->setRootIsDecorated(true);
     QFont newFontt("DroidSans", 10, QFont::Normal, false);
     ui->treeView->setFont(newFontt);
     ui->treeView->setBackgroundRole(QPalette :: Dark);
@@ -331,8 +329,6 @@ MainWindow::MainWindow(QWidget *parent)
     item2->setEditable(false);
     QFont newFont("DroidSans", 10, QFont::Bold,false);
     item1->setFont(newFont);
-    item1->setBackground(QColor(255, 255, 222));
-    item2->setBackground(QColor(255, 255, 222));
 
     QList<QStandardItem*> items2;
     item3 = new QStandardItem(tr("Название сессии"));
@@ -346,8 +342,6 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item4);
     item1->appendRow(items2);
     items2.clear();
-    item3->setBackground(QColor(255, 255, 191));
-    item4->setBackground(QColor(255, 255, 191));
 
     item7 = new QStandardItem(tr("Тип эксперимента"));
     item7->setEditable(false);
@@ -361,8 +355,6 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item8);
     item1->appendRow(items2);
     items2.clear();
-    item7->setBackground(QColor(255, 255, 222));
-    item8->setBackground(QColor(255, 255, 222));
 
     item87 = new QStandardItem(tr("Идентификация данных схемы замещения"));
     item87->setEditable(false);
@@ -375,8 +367,6 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item88);
     item7->appendRow(items2);
     items2.clear();
-    item87->setBackground(QColor(255, 255, 191));
-    item88->setBackground(QColor(255, 255, 191));
 
     item105 = new QStandardItem(tr("Загрузка данных ручной идентификации"));
     item105->setEditable(false);
@@ -391,8 +381,6 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item106);
     item7->appendRow(items2);
     items2.clear();
-    item105->setBackground(QColor(255, 255, 222));
-    item106->setBackground(QColor(255, 255, 222));
 
     item79 = new QStandardItem(tr("Наблюдатель состояния"));
     item79->setEditable(false);
@@ -405,8 +393,6 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item80);
     item7->appendRow(items2);
     items2.clear();
-    item79->setBackground(QColor(255, 255, 191));
-    item80->setBackground(QColor(255, 255, 191));
 
     item81 = new QStandardItem(tr("Чтение данных для наблюдателя скорости"));
     item81->setEditable(false);
@@ -421,13 +407,9 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item82);
     item7->appendRow(items2);
     items2.clear();
-    item81->setBackground(QColor(255, 255, 222));
-    item82->setBackground(QColor(255, 255, 222));
 
     item116 = new QStandardItem(tr("Настройка каналов"));
     item116->setEditable(false);
-    //QString w336=item116->text();
-    //item116->setToolTip(w336);
     item117 = new QStandardItem(tr("Выбрать каналы"));
     QString w447=item117->text();
     item117->setToolTip(w447);
@@ -435,8 +417,6 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item117);
     item7->appendRow(items2);
     items2.clear();
-    item116->setBackground(QColor(255, 255, 191));
-    item117->setBackground(QColor(255, 255, 191));
 
     item65 = new QStandardItem(tr("Сохранение данных"));
     item65->setEditable(false);
@@ -450,98 +430,66 @@ MainWindow::MainWindow(QWidget *parent)
     items2.append(item66);
     item1->appendRow(items2);
     items2.clear();
-    item65->setBackground(QColor(255, 255, 222));
-    item66->setBackground(QColor(255, 255, 222));
 
     item67 = new QStandardItem(tr("Данные идентификации"));
     item67->setEditable(false);
     QString w19=item67->text();
     item67->setToolTip(w19);
     item68 = new QStandardItem(tr("Выбрать режим"));
-    //item68->setEditable(false);
-    //item68->setCheckable(false);
-    //item68->setToolTip(tr("Выкл"));
     items2.append(item67);
     items2.append(item68);
     item65->appendRow(items2);
     items2.clear();
-    item67->setBackground(QColor(255, 255, 191));
-    item68->setBackground(QColor(255, 255, 191));
 
     item69 = new QStandardItem(tr("Данные электромагнитных процессов"));
     item69->setEditable(false);
     QString w21=item69->text();
     item69->setToolTip(w21);
     item70 = new QStandardItem(tr("Выбрать режим"));
-    //item70->setEditable(false);
-    //item70->setCheckable(true);
-    //item70->setToolTip(tr("Выкл"));
     items2.append(item69);
     items2.append(item70);
     item65->appendRow(items2);
     items2.clear();
-    item69->setBackground(QColor(255, 255, 222));
-    item70->setBackground(QColor(255, 255, 222));
 
     item71 = new QStandardItem(tr("Данные тепловых процессов"));
     item71->setEditable(false);
     QString w23=item71->text();
     item71->setToolTip(w23);
     item72 = new QStandardItem(tr("Выбрать режим"));
-    //item72->setEditable(false);
-    //item72->setCheckable(true);
-    //item72->setToolTip(tr("Выкл"));
     items2.append(item71);
     items2.append(item72);
     item65->appendRow(items2);
     items2.clear();
-    item71->setBackground(QColor(255, 255, 191));
-    item72->setBackground(QColor(255, 255, 191));
 
     item73 = new QStandardItem(tr("Данные вентиляционных процессов"));
     item73->setEditable(false);
     QString w25=item73->text();
     item73->setToolTip(w25);
     item74 = new QStandardItem(tr("Выбрать режим"));
-    //item74->setEditable(false);
-    //item74->setCheckable(true);
-    //item74->setToolTip(tr("Выкл"));
     items2.append(item73);
     items2.append(item74);
     item65->appendRow(items2);
     items2.clear();
-    item73->setBackground(QColor(255, 255, 222));
-    item74->setBackground(QColor(255, 255, 222));
 
     item75 = new QStandardItem(tr("Данные прогноза температур"));
     item75->setEditable(false);
     QString w27=item75->text();
     item75->setToolTip(w27);
     item76 = new QStandardItem(tr("Выбрать режим"));
-    //item76->setEditable(false);
-    //item76->setCheckable(true);
-    // item76->setToolTip(tr("Выкл"));
     items2.append(item75);
     items2.append(item76);
     item65->appendRow(items2);
     items2.clear();
-    item75->setBackground(QColor(255, 255, 191));
-    item76->setBackground(QColor(255, 255, 191));;
 
     item77 = new QStandardItem(tr("Данные остаточного теплового ресурса"));
     item77->setEditable(false);
     QString w29=item77->text();
     item77->setToolTip(w29);
     item78 = new QStandardItem(tr("Выбрать режим"));
-    //item78->setEditable(false);
-    //item78->setCheckable(true);
-    //item78->setToolTip(tr("Выкл"));
     items2.append(item77);
     items2.append(item78);
     item65->appendRow(items2);
     items2.clear();
-    item77->setBackground(QColor(255, 255, 222));
-    item78->setBackground(QColor(255, 255, 222));
 
     QList<QStandardItem*> items3;
     item9 = new QStandardItem(tr("Идентификация параметров схемы замещения"));
@@ -560,8 +508,6 @@ MainWindow::MainWindow(QWidget *parent)
     item10->setToolTip(w32);
     QFont newFont2("SansSerif", 10, QFont::Bold,false);
     item9->setFont(newFont2);
-    item9->setBackground(QColor(200, 255, 255));
-    item10->setBackground(QColor(200, 255, 255));
 
     QList<QStandardItem*> items4;
     item13 = new QStandardItem(tr("Режим расчета"));
@@ -575,8 +521,6 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item14);
     item9->appendRow(items4);
     items4.clear();
-    item13->setBackground(QColor(225, 255, 255));
-    item14->setBackground(QColor(225, 255, 255));
 
     item93 = new QStandardItem(tr("Настроечный коэффициент gd="));
     item93->setEditable(false);
@@ -592,8 +536,6 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item94);
     item9->appendRow(items4);
     items4.clear();
-    item93->setBackground(QColor(200, 255, 255));
-    item94->setBackground(QColor(200, 255, 255));
 
     item95 = new QStandardItem(tr("Настроечный коэффициент ki="));
     item95->setEditable(false);
@@ -609,8 +551,6 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item96);
     item9->appendRow(items4);
     items4.clear();
-    item95->setBackground(QColor(225, 255, 255));
-    item96->setBackground(QColor(225, 255, 255));
 
     item97 = new QStandardItem(tr("Настроечный коэффициент gb="));
     item97->setEditable(false);
@@ -626,8 +566,6 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item98);
     item9->appendRow(items4);
     items4.clear();
-    item97->setBackground(QColor(200, 255, 255));
-    item98->setBackground(QColor(200, 255, 255));
 
     item99 = new QStandardItem(tr("Настроечный коэффициент kpsi="));
     item99->setEditable(false);
@@ -643,8 +581,6 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item100);
     item9->appendRow(items4);
     items4.clear();
-    item99->setBackground(QColor(225, 255, 255));
-    item100->setBackground(QColor(225, 255, 255));
 
     item101 = new QStandardItem(tr("Настроечный коэффициент gp="));
     item101->setEditable(false);
@@ -660,8 +596,6 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item102);
     item9->appendRow(items4);
     items4.clear();
-    item101->setBackground(QColor(200, 255, 255));
-    item102->setBackground(QColor(200, 255, 255));
 
     item103 = new QStandardItem(tr("Настроечный коэффициент gpsi="));
     item103->setEditable(false);
@@ -677,8 +611,126 @@ MainWindow::MainWindow(QWidget *parent)
     items4.append(item104);
     item9->appendRow(items4);
     items4.clear();
-    item103->setBackground(QColor(225, 255, 255));
-    item104->setBackground(QColor(225, 255, 255));
+
+    QList<QStandardItem*> items17;
+    item145 = new QStandardItem(tr("Тепловая идентификация"));
+    item146 = new QStandardItem();
+    items17.append(item145);
+    items17.append(item146);
+    model2->appendRow(items17);
+    items17.clear();
+    item145->setSelectable(false);
+    item145->setEditable(false);
+    QString w64=item145->text();
+    item145->setToolTip(w64);
+    item146->setSelectable(false);
+    item146->setEditable(false);
+    QFont newFont17("SansSerif", 10, QFont::Bold,false);
+    item145->setFont(newFont17);
+
+    item147 = new QStandardItem(tr("Вид тепловой модели"));
+    item147->setEditable(false);
+    QString w65=item147->text();
+    item147->setToolTip(w65);
+    item148 = new QStandardItem(tr("Выберите вид"));
+    QString w66=item148->text();
+    item148->setToolTip(w66);
+    items17.append(item147);
+    items17.append(item148);
+    item145->appendRow(items17);
+    items17.clear();
+
+    item149 = new QStandardItem(tr("Вид тепловой модели"));
+    item149->setEditable(false);
+    QString w67=item149->text();
+    item149->setToolTip(w67);
+    item150 = new QStandardItem(tr("Выберите вид"));
+    QString w68=item150->text();
+    item150->setToolTip(w68);
+    items17.append(item149);
+    items17.append(item150);
+    item145->appendRow(items17);
+    items17.clear();
+
+    item151 = new QStandardItem(tr("Вид тепловой модели"));
+    item151->setEditable(false);
+    QString w69=item151->text();
+    item151->setToolTip(w69);
+    item152 = new QStandardItem(tr("Выберите вид"));
+    QString w70=item152->text();
+    item152->setToolTip(w70);
+    items17.append(item151);
+    items17.append(item152);
+    item145->appendRow(items17);
+    items17.clear();
+
+    QList<QStandardItem*> items18;
+    item153 = new QStandardItem(tr("Вентиляционная идентификация"));
+    item154 = new QStandardItem();
+    items18.append(item153);
+    items18.append(item154);
+    model2->appendRow(items18);
+    items18.clear();
+    item153->setSelectable(false);
+    item153->setEditable(false);
+    QString w71=item153->text();
+    item153->setToolTip(w71);
+    item154->setSelectable(false);
+    item154->setEditable(false);
+    QFont newFont18("SansSerif", 10, QFont::Bold,false);
+    item153->setFont(newFont18);
+
+    item155 = new QStandardItem(tr("Вид вентиляции"));
+    item155->setEditable(false);
+    QString w72=item155->text();
+    item155->setToolTip(w72);
+    item156 = new QStandardItem(tr("Выберите вид"));
+    QString w74=item156->text();
+    item156->setToolTip(w74);
+    items18.append(item155);
+    items18.append(item156);
+    item153->appendRow(items18);
+    items18.clear();
+
+    item157 = new QStandardItem(tr("Режим расчета"));
+    item157->setEditable(false);
+    QString w75=item155->text();
+    item157->setToolTip(w75);
+    item158 = new QStandardItem(tr("Выберите вид"));
+    QString w76=item156->text();
+    item158->setToolTip(w76);
+    items18.append(item157);
+    items18.append(item158);
+    item153->appendRow(items18);
+    items18.clear();
+
+    item159 = new QStandardItem(tr("Геометрические параметры"));
+    item159->setEditable(false);
+    item159->setEnabled(false);
+    QString w77=item159->text();
+    item159->setToolTip(w77);
+    item160 = new QStandardItem(tr("Введите данные"));
+    item160->setEnabled(false);
+    QString w78=item160->text();
+    item160->setToolTip(w78);
+    items18.append(item159);
+    items18.append(item160);
+    item153->appendRow(items18);
+    items18.clear();
+
+    item161 = new QStandardItem(tr("Учет тепловых процессов"));
+    item161->setEditable(false);
+    QString w79=item161->text();
+    item161->setToolTip(w79);
+    item162 = new QStandardItem(tr("Введите данные"));
+    QString w80=item162->text();
+    item162->setToolTip(w80);
+    items18.append(item161);
+    items18.append(item162);
+    item153->appendRow(items18);
+    items18.clear();
+
+
 
     QList<QStandardItem*> items5;
     item17 = new QStandardItem(tr("Электромагнитная модель"));
@@ -695,10 +747,8 @@ MainWindow::MainWindow(QWidget *parent)
     item18->setEditable(false);
     QFont newFont3("SansSerif", 10, QFont::Bold,false);
     item17->setFont(newFont3);
-    item17->setBackground(QColor(250, 235, 215));
-    item18->setBackground(QColor(250, 235, 215));
 
-    QList<QStandardItem*> items6;
+        QList<QStandardItem*> items6;
     item19 = new QStandardItem(tr("Pежим работы двигателя"));
     item19->setEditable(false);
     QString w50=item19->text();
@@ -710,8 +760,6 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item20);
     item17->appendRow(items6);
     items6.clear();
-    item19->setBackground(QColor(252, 216, 191));
-    item20->setBackground(QColor(252, 216, 191));
 
     item21 = new QStandardItem(tr("Время цикла, с:"));
     item21->setEditable(false);
@@ -724,8 +772,6 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item22);
     item17->appendRow(items6);
     items6.clear();
-    item21->setBackground(QColor(250, 235, 215));
-    item22->setBackground(QColor(250, 235, 215));
 
     item23 = new QStandardItem(tr("Время работы, с:"));
     item23->setEditable(false);
@@ -738,8 +784,6 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item24);
     item17->appendRow(items6);
     items6.clear();
-    item23->setBackground(QColor(252, 216, 191));
-    item24->setBackground(QColor(252, 216, 191));
 
     item91 = new QStandardItem(tr("Выбор системы электропривода"));
     item91->setEditable(false);
@@ -752,8 +796,6 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item92);
     item17->appendRow(items6);
     items6.clear();
-    item91->setBackground(QColor(250, 235, 215));
-    item92->setBackground(QColor(250, 235, 215));
 
     item129 = new QStandardItem(tr("Ввод напряжения питания двигателя"));
     item129->setEditable(false);
@@ -766,8 +808,6 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item130);
     item17->appendRow(items6);
     items6.clear();
-    item129->setBackground(QColor(252, 216, 191));
-    item130->setBackground(QColor(252, 216, 191));
 
     item131 = new QStandardItem(tr("Ввод значение момента нагрузки"));
     item131->setEditable(false);
@@ -780,8 +820,6 @@ MainWindow::MainWindow(QWidget *parent)
     items6.append(item132);
     item17->appendRow(items6);
     items6.clear();
-    item131->setBackground(QColor(250, 235, 215));
-    item132->setBackground(QColor(250, 235, 215));
 
     QList<QStandardItem*> items7;
     item25 = new QStandardItem(tr("Тепловая модель"));
@@ -796,8 +834,6 @@ MainWindow::MainWindow(QWidget *parent)
     item26->setEditable(false);
     QFont newFont4("SansSerif", 10, QFont::Bold,false);
     item25->setFont(newFont4);
-    item25->setBackground(QColor(198, 251, 198));
-    item26->setBackground(QColor(198, 251, 198));
 
     QList<QStandardItem*> items8;
     item27 = new QStandardItem(tr("Начальное значение температуры, °C"));
@@ -807,8 +843,6 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item28);
     item25->appendRow(items8);
     items8.clear();
-    item27->setBackground(QColor(152, 251, 152));
-    item28->setBackground(QColor(152, 251, 152));
 
     item29 = new QStandardItem(tr("Температурный режим"));
     item29->setEditable(false);
@@ -817,8 +851,6 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item30);
     item25->appendRow(items8);
     items8.clear();
-    item29->setBackground(QColor(198, 251, 198));
-    item30->setBackground(QColor(198, 251, 198));
 
     item140 = new QStandardItem(tr("Температурный режим Статика"));
     item140->setEditable(false);
@@ -827,8 +859,6 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item141);
     item25->appendRow(items8);
     items8.clear();
-    item140->setBackground(QColor(152, 251, 152));
-    item141->setBackground(QColor(152, 251, 152));
 
     item144 = new QStandardItem(tr("Температурный режим Динамика"));
     item144->setEditable(false);
@@ -837,8 +867,6 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item142);
     item25->appendRow(items8);
     items8.clear();
-    item144->setBackground(QColor(198, 251, 198));
-    item142->setBackground(QColor(198, 251, 198));
 
     item23 = new QStandardItem(tr("Шаг выбора точек"));
     item23->setEditable(false);
@@ -847,8 +875,6 @@ MainWindow::MainWindow(QWidget *parent)
     items8.append(item107);
     item25->appendRow(items8);
     items8.clear();
-    item23->setBackground(QColor(152, 251, 152));
-    item107->setBackground(QColor(152, 251, 152));
 
     QList<QStandardItem*> items9;
     item31 = new QStandardItem(tr("Вентиляционная модель"));
@@ -863,8 +889,6 @@ MainWindow::MainWindow(QWidget *parent)
     item32->setEditable(false);
     QFont newFont5("SansSerif", 10, QFont::Bold,false);
     item31->setFont(newFont5);
-    item31->setBackground(QColor(255, 191, 191));
-    item32->setBackground(QColor(255, 191, 191));
 
     QList<QStandardItem*> items10;
     item33 = new QStandardItem(tr("Вентиляционный режим"));
@@ -874,8 +898,6 @@ MainWindow::MainWindow(QWidget *parent)
     items10.append(item34);
     item31->appendRow(items10);
     items10.clear();
-    item33->setBackground(QColor(255, 222, 222));
-    item34->setBackground(QColor(255, 222, 222));
 
     item35 = new QStandardItem(tr("Конструкция вентиляционной системы электродвигателя"));
     item35->setEditable(false);
@@ -884,8 +906,6 @@ MainWindow::MainWindow(QWidget *parent)
     items10.append(item36);
     item31->appendRow(items10);
     items10.clear();
-    item35->setBackground(QColor(255, 191, 191));
-    item36->setBackground(QColor(255, 191, 191));
 
     item37 = new QStandardItem(tr("Барометрическое давление, Па"));
     item37->setEditable(false);
@@ -894,9 +914,6 @@ MainWindow::MainWindow(QWidget *parent)
     items10.append(item38);
     item31->appendRow(items10);
     items10.clear();
-    item37->setBackground(QColor(255, 222, 222));
-    item38->setBackground(QColor(255, 222, 222));
-
 
     QList<QStandardItem*> items11;
     item39 = new QStandardItem(tr("Прогнозирование температур"));
@@ -911,8 +928,6 @@ MainWindow::MainWindow(QWidget *parent)
     item40->setEditable(false);
     QFont newFont6("SansSerif", 10, QFont::Bold,false);
     item39->setFont(newFont6);
-    item39->setBackground(QColor(0, 191, 255));
-    item40->setBackground(QColor(0, 191, 255));
 
     QList<QStandardItem*> items12;
     item41 = new QStandardItem(tr("Условие 13"));
@@ -922,8 +937,6 @@ MainWindow::MainWindow(QWidget *parent)
     items12.append(item42);
     item39->appendRow(items12);
     items12.clear();
-    item41->setBackground(QColor(135, 206, 250));
-    item42->setBackground(QColor(135, 206, 250));
 
     item43 = new QStandardItem(tr("Условие 14"));
     item43->setEditable(false);
@@ -932,8 +945,6 @@ MainWindow::MainWindow(QWidget *parent)
     items12.append(item44);
     item39->appendRow(items12);
     items12.clear();
-    item43->setBackground(QColor(0, 191, 255));
-    item44->setBackground(QColor(0, 191, 255));
 
     item45 = new QStandardItem(tr("Условие 15"));
     item45->setEditable(false);
@@ -942,8 +953,6 @@ MainWindow::MainWindow(QWidget *parent)
     items12.append(item46);
     item39->appendRow(items12);
     items12.clear();
-    item45->setBackground(QColor(135, 206, 250));
-    item46->setBackground(QColor(135, 206, 250));
 
     QList<QStandardItem*> items13;
     item47 = new QStandardItem(tr("Оценка остаточного теплового ресурса"));
@@ -958,8 +967,6 @@ MainWindow::MainWindow(QWidget *parent)
     item48->setEditable(false);
     QFont newFont7("SansSerif", 10, QFont::Bold,false);
     item47->setFont(newFont7);
-    item47->setBackground(QColor(255, 250, 205));
-    item48->setBackground(QColor(255, 250, 205));
 
     QList<QStandardItem*> items14;
     item49 = new QStandardItem(tr("Условие 16"));
@@ -969,8 +976,6 @@ MainWindow::MainWindow(QWidget *parent)
     items14.append(item50);
     item47->appendRow(items14);
     items14.clear();
-    item49->setBackground(QColor(255, 255, 224));
-    item50->setBackground(QColor(255, 255, 224));
 
     item51 = new QStandardItem(tr("Условие 17"));
     item51->setEditable(false);
@@ -979,8 +984,6 @@ MainWindow::MainWindow(QWidget *parent)
     items14.append(item52);
     item47->appendRow(items14);
     items14.clear();
-    item51->setBackground(QColor(255, 250, 205));
-    item52->setBackground(QColor(255, 250, 205));
 
     item53 = new QStandardItem(tr ("Условие 18"));
     item53->setEditable(false);
@@ -989,8 +992,6 @@ MainWindow::MainWindow(QWidget *parent)
     items14.append(item54);
     item47->appendRow(items14);
     items14.clear();
-    item53->setBackground(QColor(255, 255, 224));
-    item54->setBackground(QColor(255, 255, 224));
 
     QList<QStandardItem*> items15;
     item55 = new QStandardItem(tr ("Выходные данные"));
@@ -1029,80 +1030,6 @@ MainWindow::MainWindow(QWidget *parent)
     item55->appendRow(items16);
     items16.clear();
 
-    QList<QStandardItem*> items17;
-    item121 = new QStandardItem(tr ("Идентификация параметров тепловой модели"));
-    item122 = new QStandardItem();
-    items17.append(item121);
-    items17.append(item122);
-    model2->appendRow(items17);
-    items17.clear();
-    item121->setSelectable(false);
-    item121->setEditable(false);
-    item122->setSelectable(false);
-    item122->setEditable(false);
-    QFont newFont9("SansSerif", 10, QFont::Bold,false);
-    item121->setFont(newFont9);
-
-    QList<QStandardItem*> items18;
-    item123 = new QStandardItem(tr ("Выбор типа тепловой модели"));
-    item123->setEditable(false);
-    item124 = new QStandardItem(tr ("Выберите тип"));
-    items18.append(item123);
-    items18.append(item124);
-    item121->appendRow(items18);
-    items18.clear();
-    item125 = new QStandardItem(tr ("Условие 23"));
-    item125->setEditable(false);
-    item126 = new QStandardItem(QString ("Значение 24"));
-    items18.append(item125);
-    items18.append(item126);
-    item121->appendRow(items18);
-    items18.clear();
-    item127 = new QStandardItem(tr ("Условие 24"));
-    item127->setEditable(false);
-    item128 = new QStandardItem(tr ("Значение 25"));
-    items18.append(item127);
-    items18.append(item128);
-    item121->appendRow(items18);
-    items18.clear();
-
-    QList<QStandardItem*> items19;
-    item133 = new QStandardItem(tr ("Тепловентиляционная модель"));
-    item134 = new QStandardItem();
-    items19.append(item133);
-    items19.append(item134);
-    model2->appendRow(items19);
-    items19.clear();
-    item133->setSelectable(false);
-    item133->setEditable(false);
-    item134->setSelectable(false);
-    item134->setEditable(false);
-    QFont newFont19("SansSerif", 10, QFont::Bold,false);
-    item133->setFont(newFont19);
-
-    QList<QStandardItem*> items20;
-    item135 = new QStandardItem(tr ("Выбор типа модели"));
-    item135->setEditable(false);
-    item136 = new QStandardItem(tr ("Выберите тип"));
-    items20.append(item135);
-    items20.append(item136);
-    item133->appendRow(items20);
-    items20.clear();
-    item137 = new QStandardItem(tr ("Условие 23"));
-    item137->setEditable(false);
-    item138 = new QStandardItem(QString ("Значение 24"));
-    items20.append(item137);
-    items20.append(item138);
-    item133->appendRow(items20);
-    items20.clear();
-    item139 = new QStandardItem(tr ("Условие 24"));
-    item139->setEditable(false);
-    item140 = new QStandardItem(tr ("Значение 25"));
-    items20.append(item139);
-    items20.append(item140);
-    item133->appendRow(items20);
-    items20.clear();
-
     //Настройка представления модели QTreeView
     ui->treeView->setModel(model2);
     ui->treeView->header()->resizeSection(0,270);
@@ -1113,13 +1040,13 @@ MainWindow::MainWindow(QWidget *parent)
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
-    /*ui->treeView->setStyleSheet(
-                           // "*{"
-                           // "background: rgb(255, 255, 222);"
-                          //  "}"
-                           // "*{"
-                          //  "alternate-background-color: rgb(255, 255, 191);"
-                          // "}"
+    ui->treeView->setStyleSheet(
+                            "*{"
+                            "background: rgb(255, 255, 222);"
+                            "}"
+                           "*{"
+                            "alternate-background-color: rgb(255, 255, 191);"
+                           "}"
                             "*::item{"
                             "    border-top-width: 0px;"
                             "    border-right-width: 1px;"
@@ -1137,6 +1064,8 @@ MainWindow::MainWindow(QWidget *parent)
                             "::branch"
                             "{"
                             "border-bottom: 1px solid silver;"
+                            "border-image: none 0;"
+                            "image: none 0;"
                             "}"
                                     "::branch:has-children:!has-siblings:closed,"
                                     "::branch:closed:has-children:has-siblings {"
@@ -1148,13 +1077,38 @@ MainWindow::MainWindow(QWidget *parent)
                                    "        border-image: none;"
                                     "        image: url(:/image/data/img/icons/branch-open.png);"
                                     "}"
+                "::branch:has-siblings:!adjoins-item {"
+                "    border-image: url(:/data/img/icons/vline.png) 0;"
+                "}"
+
+                "::branch:has-siblings:adjoins-item {"
+                "    border-image: url(:/data/img/icons/branch-more.png) 0;"
+                "}"
+
+                "::branch:!has-children:!has-siblings:adjoins-item {"
+                "    border-image: url(:/data/img/icons/branch-end.png) 0;"
+                "}"
+
+                "::branch:has-children:!has-siblings:closed,"
+                "::branch:closed:has-children:has-siblings {"
+                "        border-image: none;"
+                "        image: url(:/image/data/img/icons/branch-closed.png);"
+                "}"
+
+                "::branch:open:has-children:!has-siblings,"
+                "::branch:open:has-children:has-siblings  {"
+                "        border-image: none;"
+                "        image: url(:/image/data/img/icons/branch-open.png);"
+                "}"
+
                                     );
-*/
+
     ui->treeView->setRootIsDecorated(true);
 
     //color_treview(model2->index(0,0), model2);
 
     //Проверка сохранения данных при закрытии программы
+    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
     selectionModel = ui->treeView->selectionModel();
     //connect(selectionModel, &QItemSelectionModel::selectionChanged, this, &MainWindow::treview_changed);
@@ -1170,6 +1124,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(selectionModel2, &QItemSelectionModel::currentChanged,
                      this, []() {  isNablLaunched = true;
     });
+
 
     connect(ui->lineEdit_13, &QLineEdit::textChanged, this, []() {
       isNablLaunched = true;
@@ -3057,11 +3012,74 @@ MainWindow::MainWindow(QWidget *parent)
     p19.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_19->setPalette(p19);
 
+    ui->tableWidget_20->setRowCount(30);
+    ui->tableWidget_20->setColumnCount(4);
+    QStringList name_20;
+    name_20 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+
+    ui->tableWidget_20->setHorizontalHeaderLabels(name_20);
+    ui->tableWidget_20->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_20->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_20->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_20->verticalHeader()->setVisible(true);
+    ui->tableWidget_20->resizeColumnsToContents();
+
+    for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_20->columnCount(); column++)
+        {
+            ui->tableWidget_20->setItem(row, column, new QTableWidgetItem());
+
+        }
+    }
+
+    for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_20->item(i, 1) != 0)
+        {
+            ui->tableWidget_20->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_20->item(i, 3) != 0)
+        {
+            ui->tableWidget_20->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    {
+        if (ui->tableWidget_20->item(row,0) != 0)
+        {
+            ui->tableWidget_20->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_20->item(row,1) != 0)
+        {
+            ui->tableWidget_20->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_20->item(row,2) != 0)
+        {
+            ui->tableWidget_20->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_20->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_20->item(row,3) != 0)
+        {
+            ui->tableWidget_20->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p_20=ui->tableWidget_20->palette();
+    p_20.setColor(QPalette::Base, QColor(255, 255, 191));
+    p_20.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->tableWidget_20->setPalette(p_20);
+
+
+
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget_2->setCurrentIndex(0);
     ui->widget_6->ui->tabWidget->setCurrentIndex(0);
-    ui->widget_7->ui->tabWidget->setCurrentIndex(0);
     ui->tabWidget_3->setCurrentIndex(0);
 
     //Настройка статусбара
@@ -3131,8 +3149,8 @@ MainWindow::MainWindow(QWidget *parent)
     QIcon icon11;
     icon11.addFile(QString::fromUtf8(":/system_icons/data/img/system_icons/file_close.svg"), QSize(), QIcon::Normal, QIcon::Off);
     myAction->setIcon(icon11);
-    ui->toolBar->addWidget(spacerWidget);
-    ui->toolBar->addAction(myAction);
+    ui->toolBar_2->addWidget(spacerWidget);
+    ui->toolBar_2->addAction(myAction);
     connect(myAction, &QAction::triggered, this, &MainWindow::close_progect);
 
     QObject::connect(ui->treeView, &QAbstractItemView::activated,this, &MainWindow::itemEdit);
@@ -3141,6 +3159,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(item88->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
     connect(item80->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
     connect(item68->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
+    connect(item158->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_5);
 
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected, this, &MainWindow::projectFileSelectedSlot);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_2, this, &MainWindow::projectFileSelectedSlot_2);
@@ -3153,7 +3172,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_5->ui->tabWidget_2, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_3);
     connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
     connect(ui->tabWidget_3, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_5);
-    connect(ui->widget_7->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_6);
+    //connect(ui->widget_7->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_6);
     connect(model2, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible);
     connect(model2, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible_2);
 
@@ -3423,7 +3442,9 @@ void MainWindow::electromagn_start()
 
     statusbar_label_9->setVisible(true);
     statusbar_progres->setVisible(true);
-    statusbar_progres->setRange(0, 1000);
+    statusbar_progres->setMinimum(0);
+    statusbar_progres->setMaximum(100);
+    //statusbar_progres->setRange(0, 1000);
     statusbar_progres->reset();
 
     if(item70->checkState() == Qt::Checked)
@@ -3903,6 +3924,23 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
     }
 }
 
+void MainWindow::modelItemChangedSlot_5(QStandardItem *item)
+{
+    if (item == item158)
+    {
+        if (item->text() == "Ручной")
+        {
+            item159->setEnabled(true);
+            item160->setEnabled(true);
+        }
+        else
+        {
+            item159->setEnabled(false);
+            item160->setEnabled(false);
+        }
+    }
+}
+
 void MainWindow::SaveProgectToFile()
 {
     QFileDialog saveDialog;
@@ -4014,11 +4052,11 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (item92->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("moment2");
+    xmlWriter.writeStartElement("napragenie");
     xmlWriter.writeAttribute("value", (item130->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("napragenie");
+    xmlWriter.writeStartElement("moment");
     xmlWriter.writeAttribute("value", (item132->text()));
     xmlWriter.writeEndElement();
 
@@ -4030,15 +4068,23 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (item30->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeAttribute("value", (item141->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeAttribute("value", (item142->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("time_step");
     xmlWriter.writeAttribute("value", (item107->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeStartElement("combobox_15");
     xmlWriter.writeAttribute("value", (item34->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeStartElement("combobox_16");
     xmlWriter.writeAttribute("value", (item36->text()));
     xmlWriter.writeEndElement();
 
@@ -4459,7 +4505,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "moment2")
+                else if(xmlReader.name() == "napragenie")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4470,7 +4516,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "napragenie")
+                else if(xmlReader.name() == "moment")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4503,6 +4549,28 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
+                else if(xmlReader.name() == "combobox_13")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item141->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_14")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item142->setText(attribute_value);
+                        }
+                    }
+                }
                 if(xmlReader.name() == "time_step")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -4514,7 +4582,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_13")
+                if(xmlReader.name() == "combobox_15")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4525,7 +4593,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_14")
+                if(xmlReader.name() == "combobox_16")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4746,31 +4814,31 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(7);
+        ui->stackedWidget->setCurrentIndex(22);
     }
 
     if(ui->tabWidget->currentIndex()==4)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(16);
+        ui->stackedWidget->setCurrentIndex(7);
     }
 
     if(ui->tabWidget->currentIndex()==5)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(10);
+        ui->stackedWidget->setCurrentIndex(16);
     }
 
     if(ui->tabWidget->currentIndex()==6)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentIndex(10);
     }
 
     if(ui->tabWidget->currentIndex()==7)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(3);
+        ui->stackedWidget->setCurrentIndex(2);
     }
 
     if(ui->tabWidget->currentIndex()==8)
@@ -4797,7 +4865,7 @@ void MainWindow::tabClicked_2()
     if(ui->widget_5->ui->tabWidget->currentIndex() == 0)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(16);
+        ui->stackedWidget->setCurrentIndex(10);
     }
     if(ui->widget_5->ui->tabWidget->currentIndex() == 1)
     {
@@ -4888,19 +4956,19 @@ void MainWindow::tabClicked_5()
     }
 }
 
-void MainWindow::tabClicked_6()
-{
-    if(ui->widget_7->ui->tabWidget->currentIndex() == 0)
-    {
-        ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(12);
-    }
-    if(ui->widget_7->ui->tabWidget->currentIndex() == 1)
-    {
-        ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(4);
-    }
-}
+// void MainWindow::tabClicked_6()
+// {
+//     if(ui->widget_7->ui->tabWidget->currentIndex() == 0)
+//     {
+//         ui->stackedWidget->show();
+//         ui->stackedWidget->setCurrentIndex(12);
+//     }
+//     if(ui->widget_7->ui->tabWidget->currentIndex() == 1)
+//     {
+//         ui->stackedWidget->show();
+//         ui->stackedWidget->setCurrentIndex(4);
+//     }
+// }
 
 void MainWindow::setcolorincell(int row, int column)
 {
@@ -9295,10 +9363,12 @@ void MainWindow::actionteplident_start()
 
             statusbar_label_9->setVisible(true);
             statusbar_progres->setVisible(true);
-            statusbar_progres->setRange(0, 1000);
+            statusbar_progres->setMinimum(0);
+            statusbar_progres->setMaximum(100);
+            //statusbar_progres->setRange(0, 1000);
             statusbar_progres->reset();
-
             ui->widget_3->raschet_el();
+
         }
     }
 
@@ -9318,14 +9388,6 @@ void MainWindow::actionteplident_start()
     // ui->tableWidget_16->item(11,2)->setText(QString::number(dPct,'f',3));
     // ui->tableWidget_16->item(12,2)->setText(QString::number(omega,'f',3));
     // ui->tableWidget_16->item(13,2)->setText(QString::number(M,'f',3));
-
-
-
-
-
-
-
-
 }
 
 void MainWindow::actionteplident_stop()
@@ -9335,6 +9397,8 @@ void MainWindow::actionteplident_stop()
     ui->actionteplident_stop->setEnabled(false);
 
     ui->widget_3->stop();
+    ui->stackedWidget->show();
+
 }
 
 void MainWindow::open_file()
@@ -9455,11 +9519,11 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item92->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("moment2");
+    xmlWriter.writeStartElement("napragenie");
     xmlWriter.writeAttribute("value", (item130->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("napragenie");
+    xmlWriter.writeStartElement("moment2");
     xmlWriter.writeAttribute("value", (item132->text()));
     xmlWriter.writeEndElement();
 
@@ -9471,15 +9535,23 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item30->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeAttribute("value", (item141->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeAttribute("value", (item142->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("time_step");
     xmlWriter.writeAttribute("value", (item107->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeStartElement("combobox_15");
     xmlWriter.writeAttribute("value", (item34->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeStartElement("combobox_16");
     xmlWriter.writeAttribute("value", (item36->text()));
     xmlWriter.writeEndElement();
 
@@ -11879,11 +11951,18 @@ void MainWindow::on_electromagn_tick()
     double t = ui->widget_3->key;
     int maxTime = item24->text().toInt();
 
-    statusbar_label_9->setText("T = " + QString::number(t,'f',5));
-    statusbar_progres->setValue(t / maxTime * 1000);
+    statusbar_label_9->setText("T = " + QString::number(t,'f',5) + " " + "c");
+    statusbar_label_9->setAlignment(Qt::AlignTop);
+    statusbar_progres->setAlignment(Qt::AlignTop);
+    statusbar_progres->setValue(t / maxTime * 100);
+    qDebug() << t / maxTime * 100;
 
     tepl_ident_P1.append(tepl_struct.P1);
     tepl_ident_P2.append(tepl_struct.P2);
+
+    double y =  80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
+
+    ui->widget_10->ui->plot->addPoint(0, t, y);
 
     double Temp = 80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
     tepl_ident_t.append(t);
@@ -11893,8 +11972,8 @@ void MainWindow::on_electromagn_tick()
     {
         actionteplident_stop();
 
-        statusbar_label_9->setVisible(false);
-        statusbar_progres->setVisible(false);
+        //statusbar_label_9->setVisible(false);
+        //statusbar_progres->setVisible(false);
 
         double P1sum = 0.0;
         double P2sum = 0.0;
@@ -11910,5 +11989,6 @@ void MainWindow::on_electromagn_tick()
 
         double A = tepl_ident_StatorTemp[tepl_ident_StatorTemp.size() - 1] / (P1sum - P2sum);
         //double t1 = tepl_ident_StatorTemp
+        //t[i] = t[i-1]*((2*C-A*k*Ts)/(2*C+A*k*Ts))+(k*Ts*dP[i]+k*Ts*dP[i-1])/(2*C+A*k*Ts);
     }
 }

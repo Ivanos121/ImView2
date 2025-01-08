@@ -32,6 +32,7 @@ private slots:
     void btn_clicked_5();
     void btn_clicked_6();
     void btn_clicked_7();
+    void btn_clicked_8();
 
 
 private:
