@@ -1041,6 +1041,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
     ui->treeView->setStyleSheet(
+                    "QScrollBar:vertical {border-width: 0px;border-style: solid;"
+                    "background-color: #FFFFFF; width: 18px;}"
+                    "QScrollBar::handle:vertical {background-color:#d0d2d2;min-height: 25px;"
+                    "margin-left:5px;margin-right:5px;border-radius:4px;margin-top:5px;margin-bottom:5px;}"
+                    "QScrollBar::handle:vertical:hover {background-color:#97d5f0;}"
+                    "QScrollBar::add-line:vertical {border: 0px solid black;"
+                    "height: 0px;subcontrol-position: bottom;subcontrol-origin: margin;}"
+                    "QScrollBar::sub-line:vertical {border: 0px solid black;"
+                    "height: 0px;subcontrol-position: top;subcontrol-origin: margin;}"
                             "*{"
                             "background: rgb(255, 255, 222);"
                             "}"
@@ -1106,9 +1115,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setRootIsDecorated(true);
 
     //color_treview(model2->index(0,0), model2);
-
-    //Проверка сохранения данных при закрытии программы
-    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
     selectionModel = ui->treeView->selectionModel();
     //connect(selectionModel, &QItemSelectionModel::selectionChanged, this, &MainWindow::treview_changed);
@@ -11946,6 +11952,9 @@ void MainWindow::saveDataSQL()
     ui->widget->zapis_from_cell_tableview();
 }
 
+double dPprev = 0.0;
+double temp_prev = 0.0;
+
 void MainWindow::on_electromagn_tick()
 {
     double t = ui->widget_3->key;
@@ -11960,13 +11969,26 @@ void MainWindow::on_electromagn_tick()
     tepl_ident_P1.append(tepl_struct.P1);
     tepl_ident_P2.append(tepl_struct.P2);
 
-    double y =  80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
+    //double y =  80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
 
-    ui->widget_10->ui->plot->addPoint(0, t, y);
+    //ui->widget_10->ui->plot->addPoint(0, t, y);
 
     double Temp = 80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
     tepl_ident_t.append(t);
     tepl_ident_StatorTemp.append(Temp);
+
+    double k = 1;
+    double Ts = 0.01;
+    double A = 200;
+    double C = 6000;
+
+    double dP = tepl_struct.P1 - tepl_struct.P2;
+
+    double temp = temp_prev*((2*C-A*k*Ts)/(2*C+A*k*Ts))+(k*Ts*dP+k*Ts*dPprev)/(2*C+A*k*Ts);
+    ui->widget_10->ui->plot->addPoint(0, t, temp);
+
+    temp_prev = temp;
+    dPprev = dP;
 
     if (ui->widget_3->key > maxTime)
     {
@@ -11987,8 +12009,7 @@ void MainWindow::on_electromagn_tick()
 
         ui->tableWidget_16->item(0,2)->setText(QString::number(P1sum - P2sum,'f',3));
 
-        double A = tepl_ident_StatorTemp[tepl_ident_StatorTemp.size() - 1] / (P1sum - P2sum);
+        //double A = tepl_ident_StatorTemp[tepl_ident_StatorTemp.size() - 1] / (P1sum - P2sum);
         //double t1 = tepl_ident_StatorTemp
-        //t[i] = t[i-1]*((2*C-A*k*Ts)/(2*C+A*k*Ts))+(k*Ts*dP[i]+k*Ts*dP[i-1])/(2*C+A*k*Ts);
     }
 }

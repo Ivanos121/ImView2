@@ -3,7 +3,7 @@
     <project>
         <general_settings>
             <general_settings>
-                <project_name value="fd"/>
+                <project_name value="zxc8"/>
                 <combobox_1 value="Внутренний источник данных"/>
                 <project_path value="Указать каталог"/>
                 <combobox_2 value="Внутренний источник данных"/>
@@ -22,24 +22,24 @@
                 <coeff_5 value="0"/>
                 <coeff_6 value="0"/>
                 <combobox_10 value="Режим S1"/>
-                <time_cikle value="5"/>
-                <time_raboty value="6"/>
-                <combobox_11 value="Прямой пуск"/>
-                <napragenie value="311"/>
-                <moment2 value="20"/>
+                <time_cikle value="6"/>
+                <time_raboty value="5"/>
+                <combobox_11 value="Система ТРН-АД"/>
+                <napragenie value="20"/>
+                <moment2 value="0"/>
                 <start_temp value="20"/>
                 <combobox_12 value="Статика (статор)"/>
                 <combobox_13 value="Одномассовая модель"/>
-                <combobox_14 value="Одномассовая модель"/>
+                <combobox_14 value="Один вентилятор"/>
                 <time_step value="30"/>
-                <combobox_15 value="Статика"/>
-                <combobox_16 value="Один вентилятор"/>
+                <combobox_15 value="Выберите режим"/>
+                <combobox_16 value="Выберите конструкцию"/>
                 <pressure value="102"/>
-                <sopr_R1 value="2.419"/>
-                <sopr_R2 value="2.072"/>
-                <ind_L1 value="0.221"/>
-                <ind_L2 value="0.221"/>
-                <ind_Lm value="0.208"/>
+                <sopr_R1 value="2.132"/>
+                <sopr_R2 value="2.343"/>
+                <ind_L1 value="0.225"/>
+                <ind_L2 value="0.225"/>
+                <ind_Lm value="0.213"/>
                 <koeff_gd value="0.01"/>
                 <koeff_ki value="0.1"/>
                 <koeff_gb value="0.05"/>
