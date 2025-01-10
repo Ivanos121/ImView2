@@ -101,6 +101,7 @@ QVector<double> tepl_ident_t;
 QVector<double> tepl_ident_StatorTemp;
 
 QVector<double> tepl_ident_P1, tepl_ident_P2;
+bool tepl_start = false;
 
 QTranslator * qtLanguageTranslator;
 
@@ -9366,6 +9367,7 @@ void MainWindow::actionteplident_start()
             tepl_ident_P2.clear();
             tepl_ident_t.clear();
             tepl_ident_StatorTemp.clear();
+            tepl_start = false;
 
             statusbar_label_9->setVisible(true);
             statusbar_progres->setVisible(true);
@@ -11966,8 +11968,11 @@ void MainWindow::on_electromagn_tick()
     statusbar_progres->setValue(t / maxTime * 100);
     qDebug() << t / maxTime * 100;
 
-    tepl_ident_P1.append(tepl_struct.P1);
-    tepl_ident_P2.append(tepl_struct.P2);
+    if (tepl_start)
+    {
+        tepl_ident_P1.append(tepl_struct.P1);
+        tepl_ident_P2.append(tepl_struct.P2);
+    }
 
     //double y =  80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
 
@@ -11983,6 +11988,9 @@ void MainWindow::on_electromagn_tick()
     double C = 6000;
 
     double dP = tepl_struct.P1 - tepl_struct.P2;
+
+    if (fabs(dP - dPprev) < 20.0)
+        tepl_start = true;
 
     double temp = temp_prev*((2*C-A*k*Ts)/(2*C+A*k*Ts))+(k*Ts*dP+k*Ts*dPprev)/(2*C+A*k*Ts);
     ui->widget_10->ui->plot->addPoint(0, t, temp);

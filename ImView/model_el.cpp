@@ -87,8 +87,8 @@ void Model_el::rasch()
     }
 
     double Um = base.Um;
-    //double w0 = base.Um / 311.0 * 314.0;
-    double w0 = 314.0;
+    double w0 = base.Um / 311.0 * 314.0;
+    //double w0 = 314.0;
     Ualpha=Um * sin(w0*t);
     Ubeta=Um * sin(w0*t-M_PI/2.0);
     omega=omega_prev;
@@ -133,6 +133,7 @@ void Model_el::rasch()
     tepl_struct.dPdob=0.005*tepl_struct.P1;
     double Mel = 1.5*Lm*pn*(-psi2b*Ialpha+Ibeta*psi2a)/L2;
     M = Mel - 0.216 * omega*omega / 21780.0;
+    //M = Mel - tepl_struct.dPdob / (omega + 0.01) - 0.216 * omega*omega / 21780.0;
 
     omega=omega_prev+0.5*kk*Ts*(M-Mc)/J+0.5*kk*Ts*(M-Mc)/J;
 
@@ -142,9 +143,9 @@ void Model_el::rasch()
     tepl_struct.kpd=tepl_struct.P2/tepl_struct.P1;
     tepl_struct.w_0=2*3.14*base.n_0/60;
     tepl_struct.Pelm=tepl_struct.w_0*Mel;
-    tepl_struct.dPct=tepl_struct.P1-tepl_struct.Pelm-tepl_struct.dPel1-tepl_struct.dPdob;
+    tepl_struct.dPct=tepl_struct.P1-tepl_struct.Pelm-tepl_struct.dPel1;
     tepl_struct.dPel2=((tepl_struct.w_0-omega)/tepl_struct.w_0)*tepl_struct.Pelm;
-    tepl_struct.dPmech=tepl_struct.Pelm-tepl_struct.dPel2-tepl_struct.P2;
+    tepl_struct.dPmech=tepl_struct.Pelm-tepl_struct.dPel2-tepl_struct.P2 - tepl_struct.dPdob;
 
     Ua_prev = Ualpha;
     Ub_prev = Ubeta;
