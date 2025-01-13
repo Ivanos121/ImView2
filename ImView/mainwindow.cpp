@@ -774,15 +774,29 @@ MainWindow::MainWindow(QWidget *parent)
     item17->appendRow(items6);
     items6.clear();
 
-    item23 = new QStandardItem(tr("Время работы, с:"));
+    item23 = new QStandardItem(tr("Выбор системы отсчета времени"));
     item23->setEditable(false);
     QString w54=item23->text();
     item23->setToolTip(w54);
-    item24 = new QStandardItem(tr("0"));
+    item24 = new QStandardItem(tr("Выберите тип отсчета"));
     QString w55=item24->text();
     item24->setToolTip(w55);
     items6.append(item23);
     items6.append(item24);
+    item17->appendRow(items6);
+    items6.clear();
+
+    item173 = new QStandardItem(tr("Время работы, с:"));
+    item173->setEditable(false);
+    item173->setEnabled(false);
+    QString w81=item173->text();
+    item173->setToolTip(w81);
+    item174 = new QStandardItem(tr("0"));
+    item174->setEnabled(false);
+    QString w82=item174->text();
+    item174->setToolTip(w82);
+    items6.append(item173);
+    items6.append(item174);
     item17->appendRow(items6);
     items6.clear();
 
@@ -3167,6 +3181,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(item80->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
     connect(item68->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
     connect(item158->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_5);
+    connect(item174->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
 
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected, this, &MainWindow::projectFileSelectedSlot);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_2, this, &MainWindow::projectFileSelectedSlot_2);
@@ -3948,6 +3963,48 @@ void MainWindow::modelItemChangedSlot_5(QStandardItem *item)
     }
 }
 
+void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
+{
+    if (item == item24)
+    {
+        if (item->text() == "Фиксированное время")
+        {
+            item173->setEnabled(true);
+            item174->setEnabled(true);
+        }
+        else
+        {
+            item173->setEnabled(false);
+            item174->setEnabled(false);
+        }
+    }
+
+    // item23 = new QStandardItem(tr("Выбор системы отсчета времени"));
+    // item23->setEditable(false);
+    // QString w54=item23->text();
+    // item23->setToolTip(w54);
+    // item24 = new QStandardItem(tr("Выберите тип отсчета"));
+    // QString w55=item24->text();
+    // item24->setToolTip(w55);
+    // items6.append(item23);
+    // items6.append(item24);
+    // item17->appendRow(items6);
+    // items6.clear();
+
+    // item173 = new QStandardItem(tr("Время работы, с:"));
+    // item173->setEditable(false);
+    // QString w81=item173->text();
+    // item173->setToolTip(w81);
+    // item174 = new QStandardItem(tr("0"));
+    // QString w82=item174->text();
+    // item174->setToolTip(w82);
+    // items6.append(item173);
+    // items6.append(item174);
+    // item17->appendRow(items6);
+    // items6.clear();
+
+}
+
 void MainWindow::SaveProgectToFile()
 {
     QFileDialog saveDialog;
@@ -4051,11 +4108,11 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (item22->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("time_raboty");
+    xmlWriter.writeStartElement("combobox_11");
     xmlWriter.writeAttribute("value", (item24->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_11");
+    xmlWriter.writeStartElement("combobox_12");
     xmlWriter.writeAttribute("value", (item92->text()));
     xmlWriter.writeEndElement();
 
@@ -4071,15 +4128,15 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (item28->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_12");
+    xmlWriter.writeStartElement("combobox_13");
     xmlWriter.writeAttribute("value", (item30->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeStartElement("combobox_14");
     xmlWriter.writeAttribute("value", (item141->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeStartElement("combobox_15");
     xmlWriter.writeAttribute("value", (item142->text()));
     xmlWriter.writeEndElement();
 
@@ -4087,11 +4144,11 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (item107->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_15");
+    xmlWriter.writeStartElement("combobox_16");
     xmlWriter.writeAttribute("value", (item34->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_16");
+    xmlWriter.writeStartElement("combobox_17");
     xmlWriter.writeAttribute("value", (item36->text()));
     xmlWriter.writeEndElement();
 
@@ -4147,6 +4204,12 @@ void MainWindow::SaveProgectToFile()
         xmlWriter.writeAttribute("value", (ui->lineEdit_18->text()));
         xmlWriter.writeEndElement();
     }
+    if(item24->text() == "Фиксированное время")
+    {
+        xmlWriter.writeStartElement("time_work");
+        xmlWriter.writeAttribute("value", (item174->text()));
+        xmlWriter.writeEndElement();
+    }
 
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
@@ -4159,60 +4222,6 @@ void MainWindow::SaveProgectToFile()
     sessionFileName = QFileInfo(str).baseName();
 
     item4->setText(sessionFileName);
-    //setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
-    setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
-
-    // QList<QString> name = { "name_1", "name_2", "name_3", "name_4", "name_5", "name_6", "name_7", "name_8", "name_9", "name_10" };
-    // QList<QString> path = { "path_1", "path_2", "path_3", "path_4", "path_5", "path_6", "path_7", "path_8", "path_9", "path_10" };
-    // QList<QString> id = { "id_1", "id_2", "id_3", "id_4", "id_5", "id_6", "id_7", "id_8", "id_9", "id_10" };
-
-    /*QSettings settings( "BRU", "IM View");
-    QString names = settings.value( "name", "").toString();
-    QString paths = settings.value( "path", "").toString();
-    int ids = settings.value( "id", "").toInt();
-
-    if(names == "none")
-    {
-        QFile f(str);
-        QFileInfo fileInfo(f.fileName());
-        QString filename(fileInfo.fileName());
-
-        names = filename;
-        settings.setValue( "name", names);
-    }
-    if(paths == "none")
-    {
-        QFile f(str);
-        paths = QFileInfo(names).absoluteFilePath();
-        settings.setValue( "path", paths);
-    }
-
-    if(ids == 0)
-    {
-        int id = ids;
-        settings.setValue( "id", id);
-    }
-
-    QString w1, w2,w3;
-
-    w1 = names;
-
-    QDateTime currentDateTime = QDateTime::currentDateTime();
-    QTime currentTime = currentDateTime.time();
-    QDate currentDate = currentDateTime.date();
-
-    w2 = QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
-                                   currentDate.toString("dd.MM.yyyy").toUtf8().data());
-
-    w3 = paths;
-
-    svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
-    svgwidget->setMaximumSize(100,100);
-    ui->widget_15->ui->tableWidget->setCellWidget(ids, 0, svgwidget);
-    ui->widget_15->ui->tableWidget->resizeRowToContents(ids);
-    ui->widget_15->ui->tableWidget->resizeColumnToContents(ids);
-    ui->widget_15->ui->tableWidget->setItem(ids, 1, new QTableWidgetItem(QString("%1 \n %2 \n %3").arg(w1, w2, w3)));
-*/
 }
 
 void MainWindow::LoadProject(QString str)
@@ -4490,7 +4499,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "time_raboty")
+                else if(xmlReader.name() == "combobox_11")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4501,7 +4510,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_11")
+                else if(xmlReader.name() == "combobox_12")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4545,7 +4554,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_12")
+                else if(xmlReader.name() == "combobox_13")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4556,7 +4565,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_13")
+                else if(xmlReader.name() == "combobox_14")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4567,7 +4576,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_14")
+                else if(xmlReader.name() == "combobox_15")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4589,7 +4598,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_15")
+                if(xmlReader.name() == "combobox_16")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4600,7 +4609,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_16")
+                if(xmlReader.name() == "combobox_17")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4740,6 +4749,17 @@ void MainWindow::LoadProject(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             ui->lineEdit_18->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "time_work")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item174->setText(attribute_value);
                         }
                     }
                 }
@@ -9519,11 +9539,11 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item22->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("time_raboty");
+    xmlWriter.writeStartElement("combobox_11");
     xmlWriter.writeAttribute("value", (item24->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_11");
+    xmlWriter.writeStartElement("combobox_12");
     xmlWriter.writeAttribute("value", (item92->text()));
     xmlWriter.writeEndElement();
 
@@ -9531,7 +9551,7 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item130->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("moment2");
+    xmlWriter.writeStartElement("moment");
     xmlWriter.writeAttribute("value", (item132->text()));
     xmlWriter.writeEndElement();
 
@@ -9539,15 +9559,15 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item28->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_12");
+    xmlWriter.writeStartElement("combobox_13");
     xmlWriter.writeAttribute("value", (item30->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeStartElement("combobox_14");
     xmlWriter.writeAttribute("value", (item141->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeStartElement("combobox_15");
     xmlWriter.writeAttribute("value", (item142->text()));
     xmlWriter.writeEndElement();
 
@@ -9555,11 +9575,11 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item107->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_15");
+    xmlWriter.writeStartElement("combobox_16");
     xmlWriter.writeAttribute("value", (item34->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_16");
+    xmlWriter.writeStartElement("combobox_17");
     xmlWriter.writeAttribute("value", (item36->text()));
     xmlWriter.writeEndElement();
 
@@ -9613,6 +9633,12 @@ void MainWindow::save_file()
 
         xmlWriter.writeStartElement("koeff_gpsi");
         xmlWriter.writeAttribute("value", (ui->lineEdit_18->text()));
+        xmlWriter.writeEndElement();
+    }
+    if(item24->text() == "Фиксированное время")
+    {
+        xmlWriter.writeStartElement("time_work");
+        xmlWriter.writeAttribute("value", (item174->text()));
         xmlWriter.writeEndElement();
     }
     xmlWriter.writeEndElement();

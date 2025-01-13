@@ -50,40 +50,6 @@ Start_app::Start_app(QWidget *parent)
         }
     }
 
-    // for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
-    // {
-    //     if (ui->tableWidget->item(i, 0) != 0)
-    //     {
-    //         svgwidget = new QSvgWidget("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg");
-    //         svgwidget->setMaximumSize(100,100);
-    //         ui->tableWidget->setCellWidget(i, 0, svgwidget);
-    //         ui->tableWidget->resizeRowToContents(i);
-    //         ui->tableWidget->resizeColumnToContents(i);
-    //     }
-    // }
-
-    // for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
-    // {
-    //     QString w1, w2,w3;
-
-    //     w1= "zxc8.imview";
-
-    //     QDateTime currentDateTime = QDateTime::currentDateTime();
-    //     QTime currentTime = currentDateTime.time();
-    //     QDate currentDate = currentDateTime.date();
-
-    //     w2= QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
-    //         currentDate.toString("dd.MM.yyyy").toUtf8().data());
-
-    //     w3="/home/elf/ImView2/Output";
-
-    //     if (ui->tableWidget->item(i, 1) != 0)
-    //     {
-    //         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(QString("%1 \n %2 \n %3").arg(w1).arg(w2).arg(w3)));
-    //     }
-    // }
-
-
     for (int i=0; i<ui->tableWidget->rowCount()-2; i++)
     {
         if (ui->tableWidget->item(i, 1) != 0)
@@ -159,9 +125,9 @@ Start_app::Start_app(QWidget *parent)
     connect(ui->label_2,&QLabel::linkActivated, this, &Start_app::click_open_file);
     connect(ui->label,&QLabel::linkActivated, this, &Start_app::click_open_help);
     connect(ui->tableWidget,&QTableWidget::itemActivated,this,&Start_app::click_open_progect);
-    connect(ui->tableWidget_2,&QAbstractItemView::clicked,this,&Start_app::click_open_progect_2);  
+    connect(ui->tableWidget_2,&QAbstractItemView::clicked,this,&Start_app::click_open_progect_2);
 
-    ui->tableWidget_2->setRowCount(4);
+    ui->tableWidget_2->setRowCount(6);
     ui->tableWidget_2->setColumnCount(5);
     ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget_2->setSelectionMode(QAbstractItemView :: NoSelection);
@@ -193,19 +159,20 @@ Start_app::Start_app(QWidget *parent)
         }
     }
 
-    ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Открытие нового сеанса"));
-    ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Электромагнитная \n модель"));
-    ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem("Тепловая модель"));
-    ui->tableWidget_2->setItem(3, 0, new QTableWidgetItem("Вентиляционная модель"));
-    ui->tableWidget_2->setItem(3, 2, new QTableWidgetItem("Прогноз температур"));
-    ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem("Остаточный \n тепловой \n ресурс"));
+    ui->tableWidget_2->setItem(1, 0, new QTableWidgetItem("Создание нового сеанса"));
+    ui->tableWidget_2->setItem(1, 2, new QTableWidgetItem("Идентификация \n данных"));
+    ui->tableWidget_2->setItem(1, 4, new QTableWidgetItem("Электромагнитная \n модель"));
+    ui->tableWidget_2->setItem(3, 0, new QTableWidgetItem("Тепловая модель"));
+    ui->tableWidget_2->setItem(3, 2, new QTableWidgetItem("Вентиляционная модель"));
+    ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem("Прогноз температур"));
+    ui->tableWidget_2->setItem(5, 0, new QTableWidgetItem("Остаточный \n тепловой \n ресурс"));
 
     svgwidget2 = new MySvgWidget();
     QWidget *widget = new QWidget();
     QHBoxLayout *layout = new QHBoxLayout(widget);
     layout->addWidget(svgwidget2);
-    svgwidget2->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg";
-    svgwidget2->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_id_select.svg";
+    svgwidget2->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_ns.svg";
+    svgwidget2->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_ns_select.svg";
     svgwidget2->loadFile();
     layout->setAlignment(Qt::AlignCenter);
     layout->setContentsMargins(0,0,0,0);
@@ -214,8 +181,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget3 = new MySvgWidget();
     QWidget *widget2 = new QWidget();
-    svgwidget3->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg";
-    svgwidget3->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm_select.svg";
+    svgwidget3->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg";
+    svgwidget3->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_id_select.svg";
     svgwidget3->loadFile();
     QHBoxLayout *layout2 = new QHBoxLayout(widget2);
     layout2->addWidget(svgwidget3);
@@ -226,8 +193,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget4 = new MySvgWidget();
     QWidget *widget3 = new QWidget();
-    svgwidget4->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg";
-    svgwidget4->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tm_select.svg";
+    svgwidget4->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg";
+    svgwidget4->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm_select.svg";
     svgwidget4->loadFile();
     QHBoxLayout *layout3 = new QHBoxLayout(widget3);
     layout3->addWidget(svgwidget4);
@@ -238,8 +205,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget5 = new MySvgWidget();
     QWidget *widget4 = new QWidget();
-    svgwidget5->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg";
-    svgwidget5->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_vm_select.svg";
+    svgwidget5->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg";
+    svgwidget5->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tm_select.svg";
     svgwidget5->loadFile();
     QHBoxLayout *layout4 = new QHBoxLayout(widget4);
     layout4->addWidget(svgwidget5);
@@ -250,8 +217,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget6 = new MySvgWidget();
     QWidget *widget5 = new QWidget();
-    svgwidget6->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_pt.svg";
-    svgwidget6->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_pt_select.svg";
+    svgwidget6->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg";
+    svgwidget6->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_vm_select.svg";
     svgwidget6->loadFile();
     QHBoxLayout *layout5 = new QHBoxLayout(widget5);
     layout5->addWidget(svgwidget6);
@@ -262,8 +229,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget7 = new MySvgWidget();
     QWidget *widget6 = new QWidget();
-    svgwidget7->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tr.svg";
-    svgwidget7->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tr_select.svg";
+    svgwidget7->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_pt.svg";
+    svgwidget7->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_pt_select.svg";
     svgwidget7->loadFile();
     QHBoxLayout *layout6 = new QHBoxLayout(widget6);
     layout6->addWidget(svgwidget7);
@@ -271,6 +238,18 @@ Start_app::Start_app(QWidget *parent)
     layout6->setContentsMargins(0,0,0,0);
     ui->tableWidget_2->setCellWidget(2, 4, widget6);
     ui->tableWidget_2->item(3, 4)->setTextAlignment(Qt::AlignCenter);
+
+    svgwidget8 = new MySvgWidget();
+    QWidget *widget7 = new QWidget();
+    svgwidget8->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_otr.svg";
+    svgwidget8->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_otr_select.svg";
+    svgwidget8->loadFile();
+    QHBoxLayout *layout7 = new QHBoxLayout(widget7);
+    layout7->addWidget(svgwidget8);
+    layout7->setAlignment(Qt::AlignCenter);
+    layout7->setContentsMargins(0,0,0,0);
+    ui->tableWidget_2->setCellWidget(4, 0, widget7);
+    ui->tableWidget_2->item(5, 0)->setTextAlignment(Qt::AlignCenter);
 
     QPalette palette = ui->tableWidget_2->palette();
     palette.setBrush(QPalette::Highlight,QBrush(QColor(239, 240, 241)));
@@ -343,22 +322,105 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->action_close_session->setVisible(true);
         wf->ui->print_file->setVisible(true);
         wf->ui->print_preview->setVisible(true);
-        wf->ui->statusbar->show();
-        //QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается идентификация"));
+        wf->ui->statusbar->show();        
     }
 
     if((x == 0) && (y == 2))
     {
-        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается эл магн модель"));
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->toolBar_2->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+        wf->ui->statusbar->show();
+        wf->ui->tabWidget->setTabVisible(4, false);
+        wf->ui->tabWidget->setTabVisible(5, false);
+        wf->ui->tabWidget->setTabVisible(6, false);
+        wf->ui->tabWidget->setTabVisible(7, false);
+        wf->ui->tabWidget->setTabVisible(8, false);
+
+        if (wf->model2) {
+            // Получаем количество корневых узлов
+            int rootCount = wf->model2->rowCount();
+            for (int i = rootCount - 1; i >= 0; --i)
+            {
+                QModelIndex rootIndex = wf->model2->index(i, 0);
+                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
+                if ((rootItem->text() == "Электромагнитная модель")
+                    ||(rootItem->text() == "Тепловая модель")
+                    ||(rootItem->text() == "Вентиляционная модель")
+                    ||(rootItem->text() == "Прогнозирование температур")
+                    ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
+                {
+                    wf->model2->removeRow(i); // Удаляем узел
+                }
+            }
+        }
     }
 
-    int e = 0,f = 4;
-    if((e == x) && (f == y))
+    if((x == 0) && (y == 4))
     {
-        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается тепл модель"));
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->toolBar_2->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+        wf->ui->statusbar->show();
+        wf->ui->tabWidget->setTabVisible(1, false);
+        wf->ui->tabWidget->setTabVisible(2, false);
+        wf->ui->tabWidget->setTabVisible(3, false);
+        wf->ui->tabWidget->setTabVisible(5, false);
+        wf->ui->tabWidget->setTabVisible(6, false);
+        wf->ui->tabWidget->setTabVisible(7, false);
+        wf->ui->tabWidget->setTabVisible(8, false);
+
+        if (wf->model2) {
+            // Получаем количество корневых узлов
+            int rootCount = wf->model2->rowCount();
+            for (int i = rootCount - 1; i >= 0; --i)
+            {
+                QModelIndex rootIndex = wf->model2->index(i, 0);
+                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
+                if ((rootItem->text() == "Идентификация параметров схемы замещения")
+                    ||(rootItem->text() == "Тепловая идентификация")
+                    ||(rootItem->text() == "Вентиляционная идентификация")
+                    ||(rootItem->text() == "Тепловая модель")
+                    ||(rootItem->text() == "Вентиляционная модель")
+                    ||(rootItem->text() == "Прогнозирование температур")
+                    ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
+                {
+                    wf->model2->removeRow(i); // Удаляем узел
+                }
+            }
+        }
     }
 
-    //int g = 2, h = 0;
     if((x == 2) && (y == 0))
     {
         wf->ui->widget_15->hide();
@@ -378,30 +440,13 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->action_close_session->setVisible(true);
         wf->ui->print_file->setVisible(true);
         wf->ui->print_preview->setVisible(true);
-
-        // if (wf->model2)
-        // {
-        //     for (int i = wf->model2->rowCount() - 7; i > 0; --i)
-        //     {
-        //         wf->model2->removeRow(i); // Удаляем последовательно, чтобы избежать смещения индексов
-        //     }
-        // }
-
-        // if (wf->model2)
-        // {
-        //     for (int i = wf->model2->rowCount() ; i > 4; --i)
-        //     {
-        //         wf->model2->removeRow(i); // Удаляем последовательно, чтобы избежать смещения индексов
-        //     }
-        // }
-
-        // if (wf->model2)
-        // {
-        //     for (int i = wf->model2->rowCount() - 4; i > 4; --i)
-        //     {
-        //         wf->model2->removeRow(i); // Удаляем последовательно, чтобы избежать смещения индексов
-        //     }
-        // }
+        wf->ui->tabWidget->setTabVisible(1, false);
+        wf->ui->tabWidget->setTabVisible(2, false);
+        wf->ui->tabWidget->setTabVisible(3, false);
+        wf->ui->tabWidget->setTabVisible(4, false);
+        wf->ui->tabWidget->setTabVisible(6, false);
+        wf->ui->tabWidget->setTabVisible(7, false);
+        wf->ui->tabWidget->setTabVisible(8, false);
 
         if (wf->model2) {
             // Получаем количество корневых узлов
@@ -411,47 +456,168 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
                 QModelIndex rootIndex = wf->model2->index(i, 0);
                 QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
                 // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
-                if ((rootItem->text() == "Идентификация параметров схемы замещения")||(rootItem->text() == "Электромагнитная модель")
-                    ||(rootItem->text() == "Тепловая модель")||(rootItem->text() == "Прогнозирование температур")
-                    ||(rootItem->text() == "Оценка остаточного теплового ресурса")||(rootItem->text() == "Идентификация параметров тепловой модели")
-                    ||(rootItem->text() == "Тепловентиляционная модель"))
+                if ((rootItem->text() == "Идентификация параметров схемы замещения")
+                    ||(rootItem->text() == "Тепловая идентификация")
+                    ||(rootItem->text() == "Вентиляционная идентификация")
+                    ||(rootItem->text() == "Электромагнитная модель")
+                    ||(rootItem->text() == "Вентиляционная модель")
+                    ||(rootItem->text() == "Прогнозирование температур")
+                    ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
                 {
                     wf->model2->removeRow(i); // Удаляем узел
                 }
             }
         }
-
-        // QModelIndex indexToHide = wf->model2->index(1, 0); // Получение индекса первого элемента
-        // wf->model2->removeRow(indexToHide.row(), indexToHide.parent());
-        // QModelIndex indexToHide2 = wf->model2->index(2, 0); // Получение индекса первого элемента
-        // wf->model2->removeRow(indexToHide2.row(), indexToHide2.parent());
-        // QModelIndex indexToHide3 = wf->model2->index(3, 0); // Получение индекса первого элемента
-        // wf->model2->removeRow(indexToHide3.row(), indexToHide3.parent());
-        // QModelIndex indexToHide4 = wf->model2->index(5, 0); // Получение индекса первого элемента
-        // wf->model2->removeRow(indexToHide4.row(), indexToHide4.parent());
-        // QModelIndex indexToHide5 = wf->model2->index(9, 0); // Получение индекса первого элемента
-        // wf->model2->removeRow(indexToHide5.row(), indexToHide5.parent());
-
-        // if (wf->model2) {
-        //     // Получаем количество корневых узлов
-        //     int rootCount = wf->model2->rowCount();
-        //     for (int i = 0; i < rootCount; ++i) {
-        //         QModelIndex rootIndex = wf->model2->index(i, 0); // Индекс корневого узла
-        //         // Здесь можно выполнить действия с rootIndex (например, вывод в консоль)
-        //         qDebug() << "Корневой узел индекс:" << rootIndex.row();
-        //     }}
     }
 
-    int m = 2, n = 2;
-    if((m == x) && (n == y))
+    if((x == 2) && (y == 2))
     {
-        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается темп прогноз"));
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->toolBar_2->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+        wf->ui->statusbar->show();
+        wf->ui->tabWidget->setTabVisible(1, false);
+        wf->ui->tabWidget->setTabVisible(2, false);
+        wf->ui->tabWidget->setTabVisible(3, false);
+        wf->ui->tabWidget->setTabVisible(4, false);
+        wf->ui->tabWidget->setTabVisible(5, false);
+        wf->ui->tabWidget->setTabVisible(7, false);
+        wf->ui->tabWidget->setTabVisible(8, false);
+
+        if (wf->model2) {
+            // Получаем количество корневых узлов
+            int rootCount = wf->model2->rowCount();
+            for (int i = rootCount - 1; i >= 0; --i)
+            {
+                QModelIndex rootIndex = wf->model2->index(i, 0);
+                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
+                if ((rootItem->text() == "Идентификация параметров схемы замещения")
+                    ||(rootItem->text() == "Тепловая идентификация")
+                    ||(rootItem->text() == "Вентиляционная идентификация")
+                    ||(rootItem->text() == "Электромагнитная модель")
+                    ||(rootItem->text() == "Тепловая модель")
+                    ||(rootItem->text() == "Прогнозирование температур")
+                    ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
+                {
+                    wf->model2->removeRow(i); // Удаляем узел
+                }
+            }
+        }
     }
 
-    int o = 2, p = 4;
-    if((o == x) && (p == y))
+    if((x == 2) && (y == 4))
     {
-        QMessageBox::critical(this,tr("Ахтунг"),tr("Открывается темп ресурс"));
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->toolBar_2->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+        wf->ui->statusbar->show();
+        wf->ui->tabWidget->setTabVisible(1, false);
+        wf->ui->tabWidget->setTabVisible(2, false);
+        wf->ui->tabWidget->setTabVisible(3, false);
+        wf->ui->tabWidget->setTabVisible(4, false);
+        wf->ui->tabWidget->setTabVisible(5, false);
+        wf->ui->tabWidget->setTabVisible(6, false);
+        wf->ui->tabWidget->setTabVisible(8, false);
+
+        if (wf->model2) {
+            // Получаем количество корневых узлов
+            int rootCount = wf->model2->rowCount();
+            for (int i = rootCount - 1; i >= 0; --i)
+            {
+                QModelIndex rootIndex = wf->model2->index(i, 0);
+                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
+                if ((rootItem->text() == "Идентификация параметров схемы замещения")
+                    ||(rootItem->text() == "Тепловая идентификация")
+                    ||(rootItem->text() == "Вентиляционная идентификация")
+                    ||(rootItem->text() == "Электромагнитная модель")
+                    ||(rootItem->text() == "Тепловая модель")
+                    ||(rootItem->text() == "Вентиляционная модель")
+                    ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
+                {
+                    wf->model2->removeRow(i); // Удаляем узел
+                }
+            }
+        }
+    }
+
+    if((x == 4) && (y == 0))
+    {
+        wf->ui->widget_15->hide();
+        wf->ui->tabWidget->show();
+        wf->ui->stackedWidget->show();
+        wf->ui->switch_regim_upr->show();
+        wf->ui->toolBar->show();
+        wf->ui->toolBar_2->show();
+        wf->ui->menu_2->menuAction()->setVisible(true);
+        wf->ui->menu_3->menuAction()->setVisible(true);
+        wf->ui->menu_4->menuAction()->setVisible(true);
+        wf->ui->menu_5->menuAction()->setVisible(true);
+        wf->ui->save_file->setVisible(true);
+        wf->ui->save_as_file->setVisible(true);
+        wf->ui->action_save_graph_file->setVisible(true);
+        wf->ui->action_close_progect->setVisible(true);
+        wf->ui->action_close_session->setVisible(true);
+        wf->ui->print_file->setVisible(true);
+        wf->ui->print_preview->setVisible(true);
+        wf->ui->statusbar->show();
+        wf->ui->tabWidget->setTabVisible(1, false);
+        wf->ui->tabWidget->setTabVisible(2, false);
+        wf->ui->tabWidget->setTabVisible(3, false);
+        wf->ui->tabWidget->setTabVisible(4, false);
+        wf->ui->tabWidget->setTabVisible(5, false);
+        wf->ui->tabWidget->setTabVisible(6, false);
+        wf->ui->tabWidget->setTabVisible(7, false);
+
+        if (wf->model2) {
+            // Получаем количество корневых узлов
+            int rootCount = wf->model2->rowCount();
+            for (int i = rootCount - 1; i >= 0; --i)
+            {
+                QModelIndex rootIndex = wf->model2->index(i, 0);
+                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
+                if ((rootItem->text() == "Идентификация параметров схемы замещения")
+                    ||(rootItem->text() == "Тепловая идентификация")
+                    ||(rootItem->text() == "Вентиляционная идентификация")
+                    ||(rootItem->text() == "Электромагнитная модель")
+                    ||(rootItem->text() == "Тепловая модель")
+                    ||(rootItem->text() == "Вентиляционная модель")
+                    ||(rootItem->text() == "Прогнозирование температур"))
+                {
+                    wf->model2->removeRow(i); // Удаляем узел
+                }
+            }
+        }
     }
 }
 

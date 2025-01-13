@@ -124,6 +124,7 @@ private slots:
     void modelItemChangedSlot_3(QStandardItem *item);
     void modelItemChangedSlot_4(QStandardItem *item);
     void modelItemChangedSlot_5(QStandardItem *item);
+    void modelItemChangedSlot_6(QStandardItem *item);
     void projectFileSelectedSlot(QString projectFile);
     void projectFileSelectedSlot_2(QString projectFile_2);
     void projectFileSelectedSlot_3(QString projectFile_3);
@@ -181,7 +182,6 @@ private slots:
     void treview_changed();
     void save_identf_in_file();
     void on_electromagn_tick();
-
 
 public:
     Ui::MainWindow *ui;
