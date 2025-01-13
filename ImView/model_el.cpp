@@ -85,9 +85,11 @@ void Model_el::rasch()
             }
 
     }
-
+    //Прямой пуск
     double Um = base.Um;
+    // ПЧ-АД
     double w0 = base.Um / 311.0 * 314.0;
+    // ТРН-АД
     //double w0 = 314.0;
     Ualpha=Um * sin(w0*t);
     Ubeta=Um * sin(w0*t-M_PI/2.0);
