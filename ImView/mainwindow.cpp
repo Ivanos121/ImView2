@@ -78,7 +78,7 @@ Base base;
 Base_tepl base_tepl;
 Klass_izol klass_izol;
 Model modelss;
-extern Model_el Model_el;
+extern Model_el model_el;
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp,teta0_0,teta0_1,teta0_2, teta0_1n,teta0_2n;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
 lambda_k0,lambda_45,lambda_50,lambda_b5,lambda_pz, lambda_zc, lambda_pc, lambda_ppz, lambda_lc, lambda_l4, lambda_pl, lambda_lp,
@@ -11986,7 +11986,7 @@ double temp_prev = 0.0;
 void MainWindow::on_electromagn_tick()
 {
     double t = ui->widget_3->key;
-    int maxTime = item24->text().toInt();
+    int maxTime = item174->text().toInt();
 
     statusbar_label_9->setText("T = " + QString::number(t,'f',5) + " " + "c");
     statusbar_label_9->setAlignment(Qt::AlignTop);

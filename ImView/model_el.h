@@ -7,6 +7,14 @@ class Model_el : public QObject
 {
     Q_OBJECT
 public:
+
+    enum ElDriveSystems
+    {
+        DIRECT_START,
+        VOLTAGE_REGULATION,
+        FREQUENCY_REGULATION
+    };
+
     Model_el();
     double Ualpha, Ubeta, Ialpha, Ibeta, psi2a,psi2b,omega,sigma,alpha, beta, kk, Ts, t, M, Mc,w;
     double Ua_prev, Ub_prev, omega_prev, psi2a_prev, psi2b_prev, Ia_prev, Ib_prev;
@@ -17,12 +25,23 @@ public:
     cos_f_b, cos_f_c, cos_f;
     double tp, Tc, Mc_n;
     QString S;
-    void init_el(double _R1,double _R2, double _L1, double _L2, double _Lm, QString _S, double _tp, double _Tc);
+    void init_el(double _R1,
+                 double _R2,
+                 double _L1,
+                 double _L2,
+                 double _Lm,
+                 QString _S,
+                 double _tp,
+                 double _Tc,
+                 ElDriveSystems _elds);
     void rasch();
 
     void stop();
 
     QTimer timer;
+
+private:
+    ElDriveSystems elDriveSystem;
 
 public slots:
     void timerTimeout();
