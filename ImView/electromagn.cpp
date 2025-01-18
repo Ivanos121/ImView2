@@ -458,13 +458,14 @@ void electromagn::realtimeDataSlot()
             wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(model_el.cos_f,'f',3));
         }
 
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text(tr('Р1 = %1 Вт'));").arg(tepl_struct.P1, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91-3\").text(tr('ΔPel1 = %1 Вт'));").arg(tepl_struct.dPel1, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text(tr('ΔPct = %1 Вт'));").arg(tepl_struct.dPct, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text(tr('ΔPel2 = %1 Вт'));").arg(tepl_struct.dPel2, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text(tr('ΔPdob = %1 Вт'));").arg(tepl_struct.dPdob, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text(tr('ΔPmech = %1 Вт'));").arg(tepl_struct.dPmech, 0, 'f', 3));
-        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text(tr('P2 = %1 Вт'));").arg(tepl_struct.P2, 0, 'f', 3));
+
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text139\").text('Р1 = %1 Вт');").arg(tepl_struct.P1, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91-3\").text('ΔPel1 = %1 Вт');").arg(tepl_struct.dPel1, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text91\").text('ΔPct = %1 Вт');").arg(tepl_struct.dPct, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text33\").text('ΔPel2 = %1 Вт');").arg(tepl_struct.dPel2, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text53\").text('ΔPdob = %1 Вт');").arg(tepl_struct.dPdob, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text259\").text('ΔPmech = %1 Вт');").arg(tepl_struct.dPmech, 0, 'f', 3));
+        wf->ui->webEngineView->page()->runJavaScript(QString("$(\"#text75\").text('P2 = %1 Вт');").arg(tepl_struct.P2, 0, 'f', 3));
 
         std::ofstream fout;
         fout.open(QString(base.electromagnFilename).toStdString(),std::ios::out | std::ios::app);
@@ -1164,6 +1165,9 @@ void electromagn::raschet_el()
                              model_el.Tc=wf->item22->text().toDouble(),
                              model_el.tp=wf->item24->text().toDouble(),
                              Model_el::DIRECT_START);
+            wf->ui->horizontalSlider_2->setVisible(false);
+            wf->ui->lineEdit_2->setVisible(false);
+            wf->ui->label_25->setVisible(false);
         }
 
         if (wf->item92->text() == "Система ТРН-АД")
@@ -1172,6 +1176,9 @@ void electromagn::raschet_el()
                              model_el.Tc=wf->item22->text().toDouble(),
                              model_el.tp=wf->item24->text().toDouble(),
                              Model_el::VOLTAGE_REGULATION);
+            wf->ui->horizontalSlider_2->setVisible(true);
+            wf->ui->lineEdit_2->setVisible(true);
+            wf->ui->label_25->setText(tr("Регулирование напряжения"));
         }
 
         if (wf->item92->text() == "Система ПЧ-АД")
@@ -1180,6 +1187,9 @@ void electromagn::raschet_el()
                              model_el.Tc=wf->item22->text().toDouble(),
                              model_el.tp=wf->item24->text().toDouble(),
                              Model_el::FREQUENCY_REGULATION);
+            wf->ui->horizontalSlider_2->setVisible(true);
+            wf->ui->lineEdit_2->setVisible(true);
+            wf->ui->label_25->setText(tr("Регулирование частоты"));
         }
 
 

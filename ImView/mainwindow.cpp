@@ -236,6 +236,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     //connect(ui->widget->ui->tableView, &QHeaderView::sectionClicked, this, &MainWindow::sort);
 
+    //connect(ui->widget->ui->tableView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onTableClicked(const QModelIndex &)));
+
+
     //Настройка связи форм
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -264,6 +267,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->ui->widget_3->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract.html").absoluteFilePath()));
     ui->widget_5->ui->webEngineView_3->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/two_wase_tepl_model.html").absoluteFilePath()));
     ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract_stator.html").absoluteFilePath()));
+    ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/tepl_schen_zam/tepl_tract_stator.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_flow/vent_flow.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ventilator/ventilator.html").absoluteFilePath()));
     ui->widget_6->ui->webEngineView_3->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html").absoluteFilePath()));
@@ -3222,7 +3226,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::treview_changed()
 {
-     qDebug() << "Item selection changed";
+     //qDebug() << "Item selection changed";
     isNablLaunched = true;
 }
 
@@ -3345,6 +3349,17 @@ void MainWindow::delete_dannie()
 
 void MainWindow::identf_pusk()
 {
+    auto rowList = ui->widget->ui->tableView->selectionModel()->selectedRows();
+    if(rowList.count() > 0)
+    {
+        int rowNumber = rowList.constFirst().row();
+    }
+    else
+    {
+        QMessageBox::warning(this, "Внимание!", "Выберите в таблице строку \n с данными нужного двигателя");
+        return;
+    }
+
     ui->widget_15->setEnabled(false);
     ui->widget_15->setVisible(false);
     if (item88->text() == "Выбрать тип эксперимента")
@@ -3443,11 +3458,9 @@ void MainWindow::identf_stop()
 
 void MainWindow::electromagn_start()
 {
-
-
     isNablLaunched = true;
     ui->tabWidget->show();
-    ui->tabWidget->setCurrentIndex(3);
+    ui->tabWidget->setCurrentIndex(4);
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(7);
     QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
@@ -6918,7 +6931,7 @@ void MainWindow::LoadTeplDannie(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->setText(attribute_value);
-                            qDebug() << attribute_value;
+                            //qDebug() << attribute_value;
                         }
                     }
                 }
@@ -6930,7 +6943,7 @@ void MainWindow::LoadTeplDannie(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->setText(attribute_value);
-                            qDebug() << attribute_value;
+                            //qDebug() << attribute_value;
                         }
                     }
                 }
@@ -11992,7 +12005,7 @@ void MainWindow::on_electromagn_tick()
     statusbar_label_9->setAlignment(Qt::AlignTop);
     statusbar_progres->setAlignment(Qt::AlignTop);
     statusbar_progres->setValue(t / maxTime * 100);
-    qDebug() << t / maxTime * 100;
+   // qDebug() << t / maxTime * 100;
 
     if (tepl_start)
     {
@@ -12047,3 +12060,20 @@ void MainWindow::on_electromagn_tick()
         //double t1 = tepl_ident_StatorTemp
     }
 }
+
+// void MainWindow::onTableClicked()
+// {
+//     // for(int i =0;i< ui->widget->modd->rowCount(); i++)
+//     // {
+
+//     // }
+//     auto rowList = ui->widget->ui->tableView->selectionModel()->selectedRows();
+//     if(rowList.count() > 0)
+//     {
+//         int rowNumber = rowList.constFirst().row();
+//     }
+//     else
+//     {
+//         QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
+//     }
+// }
