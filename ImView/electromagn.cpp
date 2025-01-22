@@ -89,12 +89,6 @@ void electromagn::realtimeDataSlot()
             model_el.rasch();
         }
 
-        //Считывание значения времени цикла Тц
-        model_el.Tc=wf->item22->text().toDouble();
-
-        //Считывание значения времени работы tp
-        model_el.tp=wf->item174->text().toDouble();
-
         //Считывание коэффициента изменения амплитуды напряжения фазы А
 
         if(wf->ui->tableWidget->item(4,4)!=0)
@@ -489,10 +483,7 @@ void electromagn::realtimeDataSlot()
         double Tc = wf->item22->text().toDouble();
 
         //Считывание значения времени работы tp
-        double tp = wf->item24->text().toDouble();
-
-        //Считывание значения времени работы Mc
-        //double Mc_n = wf->item90->text().toDouble();
+        double tp = wf->item176->text().toDouble();
 
         QString S = wf->item20->text();
 
@@ -1163,7 +1154,7 @@ void electromagn::raschet_el()
         {
             model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
                              model_el.Tc=wf->item22->text().toDouble(),
-                             model_el.tp=wf->item24->text().toDouble(),
+                             model_el.tp=wf->item176->text().toDouble(),
                              Model_el::DIRECT_START);
             wf->ui->horizontalSlider_2->setVisible(false);
             wf->ui->lineEdit_2->setVisible(false);
@@ -1174,10 +1165,13 @@ void electromagn::raschet_el()
         {
             model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
                              model_el.Tc=wf->item22->text().toDouble(),
-                             model_el.tp=wf->item24->text().toDouble(),
+                             model_el.tp=wf->item176->text().toDouble(),
                              Model_el::VOLTAGE_REGULATION);
             wf->ui->horizontalSlider_2->setVisible(true);
             wf->ui->lineEdit_2->setVisible(true);
+            wf->ui->label_25->setVisible(true);
+            QFont newFont("DroidSans", 14, QFont::Bold,false);
+            wf->ui->label_25->setFont(newFont);
             wf->ui->label_25->setText(tr("Регулирование напряжения"));
         }
 
@@ -1185,10 +1179,13 @@ void electromagn::raschet_el()
         {
             model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
                              model_el.Tc=wf->item22->text().toDouble(),
-                             model_el.tp=wf->item24->text().toDouble(),
+                             model_el.tp=wf->item176->text().toDouble(),
                              Model_el::FREQUENCY_REGULATION);
             wf->ui->horizontalSlider_2->setVisible(true);
             wf->ui->lineEdit_2->setVisible(true);
+            wf->ui->label_25->setVisible(true);
+            QFont newFont("DroidSans", 14, QFont::Bold,false);
+            wf->ui->label_25->setFont(newFont);
             wf->ui->label_25->setText(tr("Регулирование частоты"));
         }
 

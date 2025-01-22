@@ -68,7 +68,8 @@ private:
     QStandardItemModel *modd;
 
     void setCurrentFile(const QString &fileName);
-    QString strippedName(const QString &fullFileName);    
+    QString strippedName(const QString &fullFileName);
+    void loadMotorParameters();
 
 private slots:
     void actionabout();
@@ -125,6 +126,8 @@ private slots:
     void modelItemChangedSlot_4(QStandardItem *item);
     void modelItemChangedSlot_5(QStandardItem *item);
     void modelItemChangedSlot_6(QStandardItem *item);
+    void modelItemChangedSlot_7(QStandardItem *item);
+    void modelItemChangedSlot_8(QStandardItem *item);
     void projectFileSelectedSlot(QString projectFile);
     void projectFileSelectedSlot_2(QString projectFile_2);
     void projectFileSelectedSlot_3(QString projectFile_3);
@@ -247,7 +250,7 @@ public:
     QStandardItem *item171, *item172, *item173, *item174, *item175,*item176, *item177, *item178, *item179, *item180;
     void changeEvent(QEvent *event) override;
 public slots:
-    void saveDataSQL();
+    void saveDataSQL();    
 };
 
 #endif // MAINWINDOW_H

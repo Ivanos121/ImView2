@@ -96,6 +96,7 @@ bool isNablLaunched = false;
 QString currentTabText;
 QString klass;
 double G,B;
+int rowNumber;
 //v
 QVector<double> tepl_ident_t;
 QVector<double> tepl_ident_StatorTemp;
@@ -735,8 +736,6 @@ MainWindow::MainWindow(QWidget *parent)
     item153->appendRow(items18);
     items18.clear();
 
-
-
     QList<QStandardItem*> items5;
     item17 = new QStandardItem(tr("Электромагнитная модель"));
     item18 = new QStandardItem();
@@ -753,7 +752,7 @@ MainWindow::MainWindow(QWidget *parent)
     QFont newFont3("SansSerif", 10, QFont::Bold,false);
     item17->setFont(newFont3);
 
-        QList<QStandardItem*> items6;
+    QList<QStandardItem*> items6;
     item19 = new QStandardItem(tr("Pежим работы двигателя"));
     item19->setEditable(false);
     QString w50=item19->text();
@@ -768,9 +767,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     item21 = new QStandardItem(tr("Время цикла, с:"));
     item21->setEditable(false);
+    item21->setEnabled(false);
     QString w52=item21->text();
     item21->setToolTip(w52);
     item22 = new QStandardItem(tr("0"));
+    item22->setEnabled(false);
     QString w53=item22->text();
     item22->setToolTip(w53);
     items6.append(item21);
@@ -778,9 +779,37 @@ MainWindow::MainWindow(QWidget *parent)
     item17->appendRow(items6);
     items6.clear();
 
+    item175 = new QStandardItem(tr("Время работы в цикле, с:"));
+    item175->setEditable(false);
+    item175->setEnabled(false);
+    QString w83=item175->text();
+    item175->setToolTip(w83);
+    item176 = new QStandardItem(tr("0"));
+    item176->setEnabled(false);
+    QString w84=item176->text();
+    item176->setToolTip(w84);
+    items6.append(item175);
+    items6.append(item176);
+    item17->appendRow(items6);
+    items6.clear();
+
+    item177 = new QStandardItem(tr("Время пуска в цикле, с:"));
+    item177->setEditable(false);
+    item177->setEnabled(false);
+    QString w87=item177->text();
+    item177->setToolTip(w87);
+    item178 = new QStandardItem(tr("0"));
+    item178->setEnabled(false);
+    QString w88=item178->text();
+    item178->setToolTip(w88);
+    items6.append(item177);
+    items6.append(item178);
+    item17->appendRow(items6);
+    items6.clear();
+
     item23 = new QStandardItem(tr("Выбор системы отсчета времени"));
     item23->setEditable(false);
-    QString w54=item23->text();
+     QString w54=item23->text();
     item23->setToolTip(w54);
     item24 = new QStandardItem(tr("Выберите тип отсчета"));
     QString w55=item24->text();
@@ -3186,6 +3215,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(item68->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
     connect(item158->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_5);
     connect(item174->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
+    connect(item22->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_7);
+    connect(item178->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_8);
 
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected, this, &MainWindow::projectFileSelectedSlot);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_2, this, &MainWindow::projectFileSelectedSlot_2);
@@ -3352,7 +3383,7 @@ void MainWindow::identf_pusk()
     auto rowList = ui->widget->ui->tableView->selectionModel()->selectedRows();
     if(rowList.count() > 0)
     {
-        int rowNumber = rowList.constFirst().row();
+        rowNumber = rowList.constFirst().row();
     }
     else
     {
@@ -3374,27 +3405,8 @@ void MainWindow::identf_pusk()
         QIcon ButtonIcon_1(pixmap);
         ui->switch_regim_upr->setIcon(ButtonIcon_1);
         ui->stackedWidget->setVisible(false);
-        QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7,myIndex8,myIndex9,myIndex10;
-        myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
-        base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
-        myIndex2 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 3, QModelIndex());
-        base.n_nom=ui->widget->ui->tableView->model()->data(myIndex2).toDouble();
-        myIndex3 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 4, QModelIndex());
-        base.U_fnom=ui->widget->ui->tableView->model()->data(myIndex3).toDouble();
-        myIndex4 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 5, QModelIndex());
-        base.cosf_nom=ui->widget->ui->tableView->model()->data(myIndex4).toDouble();
-        myIndex5 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 6, QModelIndex());
-        base.kpd_nom=ui->widget->ui->tableView->model()->data(myIndex5).toDouble();
-        myIndex6 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 7, QModelIndex());
-        base.muk=ui->widget->ui->tableView->model()->data(myIndex6).toDouble();
-        myIndex7 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 8, QModelIndex());
-        base.n_0=ui->widget->ui->tableView->model()->data(myIndex7).toDouble();
-        myIndex8 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
-        klass=ui->widget->ui->tableView->model()->data(myIndex8).toString();
-        myIndex9 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
-        base.J_dv=ui->widget->ui->tableView->model()->data(myIndex9).toDouble();
-        myIndex10 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
-        klass=ui->widget->ui->tableView->model()->data(myIndex10).toString();
+
+        loadMotorParameters();
 
         ui->identf_pusk->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
         ui->identf_stop->setEnabled(true);
@@ -3472,6 +3484,9 @@ void MainWindow::electromagn_start()
     base.L1 = ui->lineEdit_10->text().toDouble();
     base.L2 = ui->lineEdit_9->text().toDouble();
     base.Lm = ui->lineEdit_8->text().toDouble();
+
+    loadMotorParameters();
+
     ui->electromagn_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
     ui->electromagn_stop->setEnabled(true);
 
@@ -3991,45 +4006,66 @@ void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
             item174->setEnabled(false);
         }
     }
+}
 
-    // item23 = new QStandardItem(tr("Выбор системы отсчета времени"));
-    // item23->setEditable(false);
-    // QString w54=item23->text();
-    // item23->setToolTip(w54);
-    // item24 = new QStandardItem(tr("Выберите тип отсчета"));
-    // QString w55=item24->text();
-    // item24->setToolTip(w55);
-    // items6.append(item23);
-    // items6.append(item24);
-    // item17->appendRow(items6);
-    // items6.clear();
+void MainWindow::modelItemChangedSlot_7(QStandardItem *item)
+{
+    if (item == item20)
+    {
+        if (item->text() == "Режим S1")
+        {
+            item21->setEnabled(false);
+            item22->setEnabled(false);
+            item175->setEnabled(false);
+            item176->setEnabled(false);
+        }
+        else
+        {
+            item21->setEnabled(true);
+            item22->setEnabled(true);
+            item175->setEnabled(true);
+            item176->setEnabled(true);
+        }
+    }
+}
 
-    // item173 = new QStandardItem(tr("Время работы, с:"));
-    // item173->setEditable(false);
-    // QString w81=item173->text();
-    // item173->setToolTip(w81);
-    // item174 = new QStandardItem(tr("0"));
-    // QString w82=item174->text();
-    // item174->setToolTip(w82);
-    // items6.append(item173);
-    // items6.append(item174);
-    // item17->appendRow(items6);
-    // items6.clear();
-
+void MainWindow::modelItemChangedSlot_8(QStandardItem *item)
+{
+    if (item == item20)
+    {
+        if (item->text() == "Режим S4")
+        {
+            item177->setEnabled(true);
+            item178->setEnabled(true);
+        }
+        else
+        {
+            item177->setEnabled(false);
+            item178->setEnabled(false);
+        }
+    }
 }
 
 void MainWindow::SaveProgectToFile()
 {
-    QFileDialog saveDialog;
-    saveDialog.setAcceptMode(QFileDialog::AcceptSave);
-    saveDialog.setDefaultSuffix("imview");
-    saveDialog.setNameFilter(tr("Файл конфигурации проекта (*.imview);;Все файлы (*.*)"));
-    saveDialog.setViewMode(QFileDialog::Detail);
-    saveDialog.setDirectory("../Output");
-    saveDialog.exec();
-    QString str = "../" + saveDialog.selectedFiles().constFirst();
+    // QFileDialog saveDialog;
+    // saveDialog.setAcceptMode(QFileDialog::AcceptSave);
+    // saveDialog.setDefaultSuffix("imview");
+    // saveDialog.setNameFilter(tr("Файл конфигурации проекта (*.imview);;Все файлы (*.*)"));
+    // saveDialog.setViewMode(QFileDialog::Detail);
+    // saveDialog.setDirectory("../Output");
+    // saveDialog.exec();
+    // QString str = "../" + saveDialog.selectedFiles().constFirst();
 
-    QFile file(QString("../save/project.xml"));
+    // QFile file(QString("../save/project.xml"));
+    // file.open(QIODevice::WriteOnly);
+
+
+    QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
+    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
+
+   // QFile file(QString("/home/elf/ImView/data/tepl.xml"));
+    QFile file(str);
     file.open(QIODevice::WriteOnly);
 
     //Создаем объект, с помощью которого осуществляется запись в файл
@@ -4121,6 +4157,10 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (item22->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("time_work");
+    xmlWriter.writeAttribute("value", (item176->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("combobox_11");
     xmlWriter.writeAttribute("value", (item24->text()));
     xmlWriter.writeEndElement();
@@ -4167,6 +4207,10 @@ void MainWindow::SaveProgectToFile()
 
     xmlWriter.writeStartElement("pressure");
     xmlWriter.writeAttribute("value", (item38->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("selected_row");
+    xmlWriter.writeAttribute("value", QString("%1").arg(QString::number(rowNumber,'f',1)));
     xmlWriter.writeEndElement();
 
     if(item68->text() == "Сохранить")
@@ -4230,6 +4274,45 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
+    if(item68->text() == "Сохранить")
+    {
+        QFile file2(QString("/home/elf/Видео/ImView2/save/identification.xml"));
+        file2.open(QIODevice::WriteOnly);
+
+        //Создаем объект, с помощью которого осуществляется запись в файл
+        QXmlStreamWriter xmlWriter2(&file2);
+        xmlWriter2.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
+        xmlWriter2.writeStartDocument();     // Запускаем запись в документ
+        xmlWriter2.writeStartElement("resources");   // Записываем первый элемент с его именем
+        xmlWriter2.writeStartElement("identification");  // Записываем тег с именем для первого итема
+
+        xmlWriter2.writeStartElement("stator_resistance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_12->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeStartElement("rotor_resistance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_11->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeStartElement("stator_inductance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_10->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeStartElement("rotor_inductance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_9->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeStartElement("mutual_inductance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_8->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeEndElement();
+        xmlWriter2.writeEndElement();
+        xmlWriter2.writeEndElement();
+        xmlWriter2.writeEndDocument();
+        file2.close();   // Закрываем файл
+    }
+
     JlCompress::compressDir(str, "../save/");
 
     sessionFileName = QFileInfo(str).baseName();
@@ -4239,24 +4322,6 @@ void MainWindow::SaveProgectToFile()
 
 void MainWindow::LoadProject(QString str)
 {
-    // ui->tabWidget->show();
-    // ui->stackedWidget->show();
-    // ui->switch_regim_upr->show();
-    // ui->toolBar->show();
-    // ui->statusbar->show();
-    // ui->widget_15->hide();
-    // ui->menu_2->menuAction()->setVisible(true);
-    // ui->menu_3->menuAction()->setVisible(true);
-    // ui->menu_4->menuAction()->setVisible(true);
-    // ui->menu_5->menuAction()->setVisible(true);
-    // ui->save_file->setVisible(true);
-    // ui->save_as_file->setVisible(true);
-    // ui->action_save_graph_file->setVisible(true);
-    // ui->action_close_progect->setVisible(true);
-    // ui->action_close_session->setVisible(true);
-    // ui->print_file->setVisible(true);
-    // ui->print_preview->setVisible(true);
-
     QDir().mkdir("/tmp/imview");
     JlCompress::extractDir(str,"/tmp/imview");
     QFile file(QString("/tmp/imview/project.xml"));
@@ -4509,6 +4574,17 @@ void MainWindow::LoadProject(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             item22->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "time_work")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            item176->setText(attribute_value);
                         }
                     }
                 }
@@ -4776,10 +4852,91 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
+
+
+                if(xmlReader.name() == "selected_row")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            int attribute_value = attr.value().toInt();
+                            ui->widget->ui->tableView->selectRow(attribute_value);
+                        }
+                    }
+                }
             }
             xmlReader.readNext(); // Переходим к следующему элементу файла
         }
         file.close(); // Закрываем файл
+
+        if(item68->text() == "Сохранить")
+        {
+            QXmlStreamReader xmlReader2;
+            xmlReader2.setDevice(&file);
+            xmlReader2.readNext();
+            while(!xmlReader2.atEnd())
+            {
+                if(xmlReader2.isStartElement())
+                {
+                    if(xmlReader.name() == "stator_resistance")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->lineEdit_12->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader2.name() == "rotor_resistance")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->lineEdit_11->setText(attribute_value);                        }
+                        }
+                    }
+                    if(xmlReader2.name() == "stator_inductance")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->lineEdit_10->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader2.name() == "rotor_inductance")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->lineEdit_9->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader2.name() == "mutual_inductance")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->lineEdit_8->setText(attribute_value);
+                            }
+                        }
+                    }
+                }xmlReader.readNext(); // Переходим к следующему элементу файла
+
+            }file.close();
+        }
     }
 
     sessionFileName = QFileInfo(str).baseName();
@@ -9552,6 +9709,10 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (item22->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("time_work");
+    xmlWriter.writeAttribute("value", (item176->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("combobox_11");
     xmlWriter.writeAttribute("value", (item24->text()));
     xmlWriter.writeEndElement();
@@ -9598,6 +9759,10 @@ void MainWindow::save_file()
 
     xmlWriter.writeStartElement("pressure");
     xmlWriter.writeAttribute("value", (item38->text()));
+    xmlWriter.writeEndElement();    
+
+    xmlWriter.writeStartElement("selected_row");
+    xmlWriter.writeAttribute("value", QString::number(rowNumber));
     xmlWriter.writeEndElement();
 
     if(item68->text() == "Сохранить")
@@ -9654,12 +9819,51 @@ void MainWindow::save_file()
         xmlWriter.writeAttribute("value", (item174->text()));
         xmlWriter.writeEndElement();
     }
+
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
+    if(item68->text() == "Сохранить")
+    {
+        QFile file2(QString("/home/elf/Видео/ImView2/save/identification.xml"));
+        file2.open(QIODevice::WriteOnly);
+
+        //Создаем объект, с помощью которого осуществляется запись в файл
+        QXmlStreamWriter xmlWriter2(&file2);
+        xmlWriter2.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
+        xmlWriter2.writeStartDocument();     // Запускаем запись в документ
+        xmlWriter2.writeStartElement("resources");   // Записываем первый элемент с его именем
+        xmlWriter2.writeStartElement("identification");  // Записываем тег с именем для первого итема
+
+        xmlWriter2.writeStartElement("stator_resistance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_12->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeStartElement("rotor_resistance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_11->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeStartElement("stator_inductance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_10->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeStartElement("rotor_inductance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_9->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeStartElement("mutual_inductance");
+        xmlWriter2.writeAttribute("value", (ui->lineEdit_8->text()));
+        xmlWriter2.writeEndElement();
+
+        xmlWriter2.writeEndElement();
+        xmlWriter2.writeEndElement();
+        xmlWriter2.writeEndElement();
+        xmlWriter2.writeEndDocument();
+        file2.close();   // Закрываем файл
+    }
 
     ui->widget_2->ui->plot->save();
 
@@ -10416,7 +10620,6 @@ void::MainWindow::close_progect()
     item76->setText(tr("Выбрать режим"));
     item78->setText(tr("Выбрать режим"));
 
-
     ui->lineEdit_12->clear();
     ui->lineEdit_11->clear();
     ui->lineEdit_10->clear();
@@ -10437,11 +10640,13 @@ void::MainWindow::close_progect()
     ui->stackedWidget->hide();
     ui->switch_regim_upr->hide();
     ui->toolBar->hide();
+    ui->toolBar_2->hide();
     ui->menu_2->menuAction()->setVisible(false);
     ui->menu_3->menuAction()->setVisible(false);
     ui->menu_4->menuAction()->setVisible(false);
     ui->menu_5->menuAction()->setVisible(false);
     ui->widget_15->show();
+    ui->widget->ui->tableView->clearSelection();
 
 }
 
@@ -12039,10 +12244,7 @@ void MainWindow::on_electromagn_tick()
 
     if (ui->widget_3->key > maxTime)
     {
-        actionteplident_stop();
-
-        //statusbar_label_9->setVisible(false);
-        //statusbar_progres->setVisible(false);
+        electromagn_stop();
 
         double P1sum = 0.0;
         double P2sum = 0.0;
@@ -12058,22 +12260,34 @@ void MainWindow::on_electromagn_tick()
 
         //double A = tepl_ident_StatorTemp[tepl_ident_StatorTemp.size() - 1] / (P1sum - P2sum);
         //double t1 = tepl_ident_StatorTemp
+
+        statusbar_label_9->setVisible(false);
+        statusbar_progres->setVisible(false);
+        QMessageBox::information(this, "Ахтунг", "Электромагнитный расчет закончен");
     }
 }
 
-// void MainWindow::onTableClicked()
-// {
-//     // for(int i =0;i< ui->widget->modd->rowCount(); i++)
-//     // {
-
-//     // }
-//     auto rowList = ui->widget->ui->tableView->selectionModel()->selectedRows();
-//     if(rowList.count() > 0)
-//     {
-//         int rowNumber = rowList.constFirst().row();
-//     }
-//     else
-//     {
-//         QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
-//     }
-// }
+void MainWindow::loadMotorParameters()
+{
+    QModelIndex myIndex, myIndex2, myIndex3,myIndex4,myIndex5,myIndex6,myIndex7,myIndex8,myIndex9,myIndex10;
+    myIndex = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 2, QModelIndex());
+    base.P_nom=ui->widget->ui->tableView->model()->data(myIndex).toDouble();
+    myIndex2 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 3, QModelIndex());
+    base.n_nom=ui->widget->ui->tableView->model()->data(myIndex2).toDouble();
+    myIndex3 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 4, QModelIndex());
+    base.U_fnom=ui->widget->ui->tableView->model()->data(myIndex3).toDouble();
+    myIndex4 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 5, QModelIndex());
+    base.cosf_nom=ui->widget->ui->tableView->model()->data(myIndex4).toDouble();
+    myIndex5 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 6, QModelIndex());
+    base.kpd_nom=ui->widget->ui->tableView->model()->data(myIndex5).toDouble();
+    myIndex6 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 7, QModelIndex());
+    base.muk=ui->widget->ui->tableView->model()->data(myIndex6).toDouble();
+    myIndex7 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 8, QModelIndex());
+    base.n_0=ui->widget->ui->tableView->model()->data(myIndex7).toDouble();
+    myIndex8 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
+    klass=ui->widget->ui->tableView->model()->data(myIndex8).toString();
+    myIndex9 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
+    base.J_dv=ui->widget->ui->tableView->model()->data(myIndex9).toDouble();
+    myIndex10 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
+    klass=ui->widget->ui->tableView->model()->data(myIndex10).toString();
+}

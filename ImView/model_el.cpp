@@ -16,8 +16,8 @@ void Model_el::init_el(double _R1,
                        double _L2,
                        double _Lm,
                        QString _S,
-                       double _tp,
                        double _Tc,
+                       double _tp,
                        ElDriveSystems _elds)
 {
     elDriveSystem = _elds;
@@ -58,6 +58,9 @@ void Model_el::rasch()
     t=t+Ts;
     double tt=t;
 
+    double Um = 220.0;
+    double w0 = 314.0;
+    double tpp= 2.0;
 
     //progress->setValue(t);
 
@@ -84,19 +87,59 @@ void Model_el::rasch()
         {
             tt-=Tc;
         }
-            if(tt<tp)
-            {
-                Mc=base.Mc_n;
-            }
-            if(tt>tp)
-            {
-                Mc=0;
-            }
-
+        if(tt<tp)
+        {
+            Mc=base.Mc_n;
+            Um=base.U_fnom;
+        }
+        if(tt>tp)
+        {
+            Mc=0;
+            Um=0;
+        }
     }
 
-    double Um = 220.0;
-    double w0 = 314.0;
+    if(S == "Режим S4")
+    {
+        while(tt>Tc)
+        {
+            tt-=Tc;
+        }
+        if(tt < tpp)
+        {
+            Mc = base.Mc_n * 2.2;
+        }
+        if((tt>tpp)||(tt<tp))
+        {
+            Mc=base.Mc_n;
+            Um=base.U_fnom;
+        }
+        if(tt>tp)
+        {
+            Mc=0;
+            Um=0;
+        }
+    }
+
+    if(S == "Режим S6")
+    {
+        while(tt>Tc)
+        {
+            tt-=Tc;
+        }
+        if(tt<tp)
+        {
+            Mc=base.Mc_n;
+            Um=base.U_fnom;
+        }
+        if(tt>tp)
+        {
+            Mc=0.1*base.Mc_n;
+            Um=0;
+        }
+    }
+
+
 
     if ((elDriveSystem == DIRECT_START) || (elDriveSystem == VOLTAGE_REGULATION))
     {
