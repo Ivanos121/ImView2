@@ -3391,7 +3391,6 @@ void MainWindow::identf_pusk()
         return;
     }
 
-    ui->widget_15->setEnabled(false);
     ui->widget_15->setVisible(false);
     if (item88->text() == "Выбрать тип эксперимента")
     {
@@ -3497,7 +3496,7 @@ void MainWindow::electromagn_start()
     //statusbar_progres->setRange(0, 1000);
     statusbar_progres->reset();
 
-    if(item70->checkState() == Qt::Checked)
+    if(item70->text() == "Сохранить")
     {
         //создание файла сохранений идентификации параметров схемы замещения
         std::ofstream fout;

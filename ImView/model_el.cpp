@@ -1,4 +1,4 @@
-#include "model_el.h"
+    #include "model_el.h"
 #include "base.h"
 #include <cmath>
 #include "tepl_struct.h"
@@ -54,70 +54,64 @@ void Model_el::init_el(double _R1,
 
 void Model_el::rasch()
 {
+    bool circuitOn = true;
+
     double Ts=0.000032;
     t=t+Ts;
     double tt=t;
 
-    double Um = 220.0;
-    double w0 = 314.0;
-    double tpp= 2.0;
+    double Um = base.U_fnom;
+    double w0 = Um / 220.0 * 314.0;
+
+    double McReakt = base.Mc_n;
 
     //progress->setValue(t);
 
+    if (omega >= 1.0)
+    {
+        McReakt = base.Mc_n;
+    }
+    else if ((omega > -1.0) && (omega < 1.0))
+    {
+        McReakt = 0.0;
+    }
+    else
+    {
+        McReakt = -base.Mc_n;
+    }
+
     if(S == "Режим S1")
     {
-        Mc = base.Mc_n;
+        Mc = McReakt;
     }
 
     if(S == "Режим S2")
     {
+        Mc=McReakt;
         if(tt<=tp)
         {
-            Mc=base.Mc_n;
+            circuitOn = true;
         }
         if(tt>tp)
         {
-            Mc=0;
+            circuitOn = false;
         }
     }
 
     if(S == "Режим S3")
     {
+        Mc=McReakt;
         while(tt>Tc)
         {
             tt-=Tc;
         }
         if(tt<tp)
         {
-            Mc=base.Mc_n;
-            Um=base.U_fnom;
+            circuitOn = true;
         }
         if(tt>tp)
         {
-            Mc=0;
-            Um=0;
-        }
-    }
-
-    if(S == "Режим S4")
-    {
-        while(tt>Tc)
-        {
-            tt-=Tc;
-        }
-        if(tt < tpp)
-        {
-            Mc = base.Mc_n * 2.2;
-        }
-        if((tt>tpp)||(tt<tp))
-        {
-            Mc=base.Mc_n;
-            Um=base.U_fnom;
-        }
-        if(tt>tp)
-        {
-            Mc=0;
-            Um=0;
+            circuitOn = false;
         }
     }
 
@@ -129,35 +123,39 @@ void Model_el::rasch()
         }
         if(tt<tp)
         {
-            Mc=base.Mc_n;
-            Um=base.U_fnom;
+            Mc = McReakt;
         }
         if(tt>tp)
         {
-            Mc=0.1*base.Mc_n;
-            Um=0;
+            Mc = 0;
         }
     }
 
-
-
-    if ((elDriveSystem == DIRECT_START) || (elDriveSystem == VOLTAGE_REGULATION))
-    {
-        Um = base.Um;
-    }
     if (elDriveSystem == FREQUENCY_REGULATION)
     {
-        Um = base.Um;
-        w0 = base.Um / 220.0 * 314.0;
+        w0 = Um / 220.0 * 314.0;
     }
 
-    Ualpha=Um * sqrt(2) * sin(w0*t);
-    Ubeta=Um * sqrt(2) * sin(w0*t-M_PI/2.0);
-    omega=omega_prev;
-    Ialpha=((((4*pow(Ts,2)*beta*psi2a_prev+4*pow(Ts,2)*Ia_prev)*pow(omega,2)+4*pow(Ts,2)*beta*omega_prev*psi2a_prev*omega)*pow(kk,2)*pow(pn,2)+((((4*Lm*pow(Ts,2)*alpha*pow(beta,2)-4*pow(Ts,2)*alpha*beta)*psi2b_prev+8*Lm*pow(Ts,2)*alpha*beta*Ib_prev)*omega+(4*Lm*pow(Ts,2)*alpha*pow(beta,2)+4*pow(Ts,2)*alpha*beta)*omega_prev*psi2b_prev)*pow(kk,2)+(8*Ts*beta*psi2b_prev*omega+8*Ts*beta*omega_prev*psi2b_prev)*kk)*pn+((8*Lm*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*pow(Ts,2)*pow(alpha,2)*beta)*psi2a_prev+(4*pow(Ts,2)*pow(alpha,2)-4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2))*Ia_prev)*pow(kk,2)+(16*Ts*alpha*beta*psi2a_prev+16*Ts*alpha*Ia_prev)*kk+16*Ia_prev)*pow(sigma,2)+((2*pow(Ts,3)*pow(omega,2)*Ualpha+(2*pow(Ts,3)*Ua_prev+2*R1*pow(Ts,3)*beta*psi2a_prev)*pow(omega,2)+2*R1*pow(Ts,3)*beta*omega_prev*psi2a_prev*omega)*pow(kk,3)*pow(pn,2)+((omega*(Lm*pow(Ts,3)*alpha*beta*(2*Ubeta+2*Ub_prev)-2*R1*pow(Ts,3)*alpha*beta*psi2b_prev)+2*R1*pow(Ts,3)*alpha*beta*omega_prev*psi2b_prev)*pow(kk,3)+(4*R1*pow(Ts,2)*beta*psi2b_prev*omega+4*R1*pow(Ts,2)*beta*omega_prev*psi2b_prev)*pow(kk,2))*pn+((2*Lm*pow(Ts,3)*pow(alpha,2)*beta+2*pow(Ts,3)*pow(alpha,2))*Ualpha+(2*Lm*pow(Ts,3)*pow(alpha,2)*beta+2*pow(Ts,3)*pow(alpha,2))*Ua_prev+4*R1*pow(Ts,3)*pow(alpha,2)*beta*psi2a_prev-4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta*Ia_prev)*pow(kk,3)+((4*Lm*pow(Ts,2)*alpha*beta+8*pow(Ts,2)*alpha)*Ualpha+(4*Lm*pow(Ts,2)*alpha*beta+8*pow(Ts,2)*alpha)*Ua_prev+8*R1*pow(Ts,2)*alpha*beta*psi2a_prev-8*Lm*R1*pow(Ts,2)*alpha*beta*Ia_prev)*pow(kk,2)+(8*Ts*Ualpha+8*Ts*Ua_prev)*kk)*sigma+(R1*pow(Ts,4)*pow(omega,2)*Ualpha+(R1*pow(Ts,4)*Ua_prev-pow(R1,2)*pow(Ts,4)*Ia_prev)*pow(omega,2))*pow(kk,4)*pow(pn,2)+(R1*pow(Ts,4)*pow(alpha,2)*Ualpha+R1*pow(Ts,4)*pow(alpha,2)*Ua_prev-pow(R1,2)*pow(Ts,4)*pow(alpha,2)*Ia_prev)*pow(kk,4)+(4*R1*pow(Ts,3)*alpha*Ualpha+4*R1*pow(Ts,3)*alpha*Ua_prev-4*pow(R1,2)*pow(Ts,3)*alpha*Ia_prev)*pow(kk,3)+(4*R1*pow(Ts,2)*Ualpha+4*R1*pow(Ts,2)*Ua_prev-4*pow(R1,2)*pow(Ts,2)*Ia_prev)*pow(kk,2))/((4*pow(Ts,2)*pow(omega,2)*pow(kk,2)*pow(pn,2)+(4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*Lm*pow(Ts,2)*pow(alpha,2)*beta+4*pow(Ts,2)*pow(alpha,2))*pow(kk,2)+(16*Lm*Ts*alpha*beta+16*Ts*alpha)*kk+16)*pow(sigma,2)+(4*R1*pow(Ts,3)*pow(omega,2)*pow(kk,3)*pow(pn,2)+(4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta+4*R1*pow(Ts,3)*pow(alpha,2))*pow(kk,3)+(8*Lm*R1*pow(Ts,2)*alpha*beta+16*R1*pow(Ts,2)*alpha)*pow(kk,2)+16*R1*Ts*kk)*sigma+pow(R1,2)*pow(Ts,4)*pow(omega,2)*pow(kk,4)*pow(pn,2)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*pow(kk,4)+4*pow(R1,2)*pow(Ts,3)*alpha*pow(kk,3)+4*pow(R1,2)*pow(Ts,2)*pow(kk,2));
-    Ibeta=((((4*pow(Ts,2)*beta*psi2b_prev+4*pow(Ts,2)*Ib_prev)*pow(omega,2)+4*pow(Ts,2)*beta*omega_prev*psi2b_prev*omega)*pow(kk,2)*pow(pn,2)+((((4*pow(Ts,2)*alpha*beta-4*Lm*pow(Ts,2)*alpha*pow(beta,2))*psi2a_prev-8*Lm*pow(Ts,2)*alpha*beta*Ia_prev)*omega+(-4*Lm*pow(Ts,2)*alpha*pow(beta,2)-4*pow(Ts,2)*alpha*beta)*omega_prev*psi2a_prev)*pow(kk,2)+(-8*Ts*beta*psi2a_prev*omega-8*Ts*beta*omega_prev*psi2a_prev)*kk)*pn+((8*Lm*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*pow(Ts,2)*pow(alpha,2)*beta)*psi2b_prev-4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)*Ib_prev+4*pow(Ts,2)*pow(alpha,2)*Ib_prev)*pow(kk,2)+(16*Ts*alpha*beta*psi2b_prev+16*Ts*alpha*Ib_prev)*kk+16*Ib_prev)*pow(sigma,2)+((pow(omega,2)*(pow(Ts,3)*(2*Ubeta+2*Ub_prev)+2*R1*pow(Ts,3)*beta*psi2b_prev)+2*R1*pow(Ts,3)*beta*omega_prev*psi2b_prev*omega)*pow(kk,3)*pow(pn,2)+((-2*Lm*pow(Ts,3)*alpha*beta*omega*Ualpha+(2*R1*pow(Ts,3)*alpha*beta*psi2a_prev-2*Lm*pow(Ts,3)*alpha*beta*Ua_prev)*omega-2*R1*pow(Ts,3)*alpha*beta*omega_prev*psi2a_prev)*pow(kk,3)+(-4*R1*pow(Ts,2)*beta*psi2a_prev*omega-4*R1*pow(Ts,2)*beta*omega_prev*psi2a_prev)*pow(kk,2))*pn+(pow(Ts,3)*pow(alpha,2)*beta*(Lm*(2*Ubeta+2*Ub_prev)-4*Lm*R1*Ib_prev)+pow(Ts,3)*pow(alpha,2)*(2*Ubeta+2*Ub_prev)+4*R1*pow(Ts,3)*pow(alpha,2)*beta*psi2b_prev)*pow(kk,3)+(pow(Ts,2)*alpha*beta*(Lm*(4*Ubeta+4*Ub_prev)-8*Lm*R1*Ib_prev)+pow(Ts,2)*alpha*(8*Ubeta+8*Ub_prev)+8*R1*pow(Ts,2)*alpha*beta*psi2b_prev)*pow(kk,2)+Ts*(8*Ubeta+8*Ub_prev)*kk)*sigma+pow(Ts,4)*pow(omega,2)*(R1*(Ubeta+Ub_prev)-pow(R1,2)*Ib_prev)*pow(kk,4)*pow(pn,2)+pow(Ts,4)*pow(alpha,2)*(R1*(Ubeta+Ub_prev)-pow(R1,2)*Ib_prev)*pow(kk,4)+pow(Ts,3)*alpha*(R1*(4*Ubeta+4*Ub_prev)-4*pow(R1,2)*Ib_prev)*pow(kk,3)+pow(Ts,2)*(R1*(4*Ubeta+4*Ub_prev)-4*pow(R1,2)*Ib_prev)*pow(kk,2))/((4*pow(Ts,2)*pow(omega,2)*pow(kk,2)*pow(pn,2)+(4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*Lm*pow(Ts,2)*pow(alpha,2)*beta+4*pow(Ts,2)*pow(alpha,2))*pow(kk,2)+(16*Lm*Ts*alpha*beta+16*Ts*alpha)*kk+16)*pow(sigma,2)+(4*R1*pow(Ts,3)*pow(omega,2)*pow(kk,3)*pow(pn,2)+(4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta+4*R1*pow(Ts,3)*pow(alpha,2))*pow(kk,3)+(8*Lm*R1*pow(Ts,2)*alpha*beta+16*R1*pow(Ts,2)*alpha)*pow(kk,2)+16*R1*Ts*kk)*sigma+pow(R1,2)*pow(Ts,4)*pow(omega,2)*pow(kk,4)*pow(pn,2)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*pow(kk,4)+4*pow(R1,2)*pow(Ts,3)*alpha*pow(kk,3)+4*pow(R1,2)*pow(Ts,2)*pow(kk,2));
-    psi2a=-((4*pow(Ts,2)*omega_prev*psi2a_prev*omega*pow(kk,2)*pow(pn,2)+((((4*Lm*pow(Ts,2)*alpha*beta-4*pow(Ts,2)*alpha)*psi2b_prev+8*Lm*pow(Ts,2)*alpha*Ib_prev)*omega+(4*Lm*pow(Ts,2)*alpha*beta+4*pow(Ts,2)*alpha)*omega_prev*psi2b_prev)*pow(kk,2)+(8*Ts*psi2b_prev*omega+8*Ts*omega_prev*psi2b_prev)*kk)*pn+((4*pow(Ts,2)*pow(alpha,2)-4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2))*psi2a_prev+(-8*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*beta-8*Lm*pow(Ts,2)*pow(alpha,2))*Ia_prev)*pow(kk,2)+(-16*Lm*Ts*alpha*beta*psi2a_prev-16*Lm*Ts*alpha*Ia_prev)*kk-16*psi2a_prev)*pow(sigma,2)+(4*R1*pow(Ts,3)*omega_prev*psi2a_prev*omega*pow(kk,3)*pow(pn,2)+((omega*(pow(Ts,3)*alpha*(Lm*(2*Ubeta+2*Ub_prev)+4*Lm*R1*Ib_prev)+(2*Lm*R1*pow(Ts,3)*alpha*beta-4*R1*pow(Ts,3)*alpha)*psi2b_prev)+(2*Lm*R1*pow(Ts,3)*alpha*beta+4*R1*pow(Ts,3)*alpha)*omega_prev*psi2b_prev)*pow(kk,3)+(8*R1*pow(Ts,2)*psi2b_prev*omega+8*R1*pow(Ts,2)*omega_prev*psi2b_prev)*pow(kk,2))*pn+((-2*pow(Lm,2)*pow(Ts,3)*pow(alpha,2)*beta-2*Lm*pow(Ts,3)*pow(alpha,2))*Ualpha+(-2*pow(Lm,2)*pow(Ts,3)*pow(alpha,2)*beta-2*Lm*pow(Ts,3)*pow(alpha,2))*Ua_prev+4*R1*pow(Ts,3)*pow(alpha,2)*psi2a_prev-4*Lm*R1*pow(Ts,3)*pow(alpha,2)*Ia_prev)*pow(kk,3)+(-4*Lm*pow(Ts,2)*alpha*Ualpha-4*Lm*pow(Ts,2)*alpha*Ua_prev-8*Lm*R1*pow(Ts,2)*alpha*beta*psi2a_prev-8*Lm*R1*pow(Ts,2)*alpha*Ia_prev)*pow(kk,2)-16*R1*Ts*psi2a_prev*kk)*sigma+pow(R1,2)*pow(Ts,4)*omega_prev*psi2a_prev*omega*pow(kk,4)*pow(pn,2)+((omega*(Lm*R1*pow(Ts,4)*alpha*(Ubeta+Ub_prev)-pow(R1,2)*pow(Ts,4)*alpha*psi2b_prev)+pow(R1,2)*pow(Ts,4)*alpha*omega_prev*psi2b_prev)*pow(kk,4)+(2*pow(R1,2)*pow(Ts,3)*psi2b_prev*omega+2*pow(R1,2)*pow(Ts,3)*omega_prev*psi2b_prev)*pow(kk,3))*pn+(-Lm*R1*pow(Ts,4)*pow(alpha,2)*Ualpha-Lm*R1*pow(Ts,4)*pow(alpha,2)*Ua_prev+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*psi2a_prev)*pow(kk,4)+(-2*Lm*R1*pow(Ts,3)*alpha*Ualpha-2*Lm*R1*pow(Ts,3)*alpha*Ua_prev)*pow(kk,3)-4*pow(R1,2)*pow(Ts,2)*psi2a_prev*pow(kk,2))/((4*pow(Ts,2)*pow(omega,2)*pow(kk,2)*pow(pn,2)+(4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*Lm*pow(Ts,2)*pow(alpha,2)*beta+4*pow(Ts,2)*pow(alpha,2))*pow(kk,2)+(16*Lm*Ts*alpha*beta+16*Ts*alpha)*kk+16)*pow(sigma,2)+(4*R1*pow(Ts,3)*pow(omega,2)*pow(kk,3)*pow(pn,2)+(4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta+4*R1*pow(Ts,3)*pow(alpha,2))*pow(kk,3)+(8*Lm*R1*pow(Ts,2)*alpha*beta+16*R1*pow(Ts,2)*alpha)*pow(kk,2)+16*R1*Ts*kk)*sigma+pow(R1,2)*pow(Ts,4)*pow(omega,2)*pow(kk,4)*pow(pn,2)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*pow(kk,4)+4*pow(R1,2)*pow(Ts,3)*alpha*pow(kk,3)+4*pow(R1,2)*pow(Ts,2)*pow(kk,2));
-    psi2b=-((4*pow(Ts,2)*omega_prev*psi2b_prev*omega*pow(kk,2)*pow(pn,2)+((((4*pow(Ts,2)*alpha-4*Lm*pow(Ts,2)*alpha*beta)*psi2a_prev-8*Lm*pow(Ts,2)*alpha*Ia_prev)*omega+(-4*Lm*pow(Ts,2)*alpha*beta-4*pow(Ts,2)*alpha)*omega_prev*psi2a_prev)*pow(kk,2)+(-8*Ts*psi2a_prev*omega-8*Ts*omega_prev*psi2a_prev)*kk)*pn+((4*pow(Ts,2)*pow(alpha,2)-4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2))*psi2b_prev-8*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*beta*Ib_prev-8*Lm*pow(Ts,2)*pow(alpha,2)*Ib_prev)*pow(kk,2)+(-16*Lm*Ts*alpha*beta*psi2b_prev-16*Lm*Ts*alpha*Ib_prev)*kk-16*psi2b_prev)*pow(sigma,2)+(4*R1*pow(Ts,3)*omega_prev*psi2b_prev*omega*pow(kk,3)*pow(pn,2)+((-2*Lm*pow(Ts,3)*alpha*omega*Ualpha+(-2*Lm*pow(Ts,3)*alpha*Ua_prev+(4*R1*pow(Ts,3)*alpha-2*Lm*R1*pow(Ts,3)*alpha*beta)*psi2a_prev-4*Lm*R1*pow(Ts,3)*alpha*Ia_prev)*omega+(-2*Lm*R1*pow(Ts,3)*alpha*beta-4*R1*pow(Ts,3)*alpha)*omega_prev*psi2a_prev)*pow(kk,3)+(-8*R1*pow(Ts,2)*psi2a_prev*omega-8*R1*pow(Ts,2)*omega_prev*psi2a_prev)*pow(kk,2))*pn+(pow(Lm,2)*pow(Ts,3)*pow(alpha,2)*beta*(-2*Ubeta-2*Ub_prev)+pow(Ts,3)*pow(alpha,2)*(Lm*(-2*Ubeta-2*Ub_prev)-4*Lm*R1*Ib_prev)+4*R1*pow(Ts,3)*pow(alpha,2)*psi2b_prev)*pow(kk,3)+(pow(Ts,2)*alpha*(Lm*(-4*Ubeta-4*Ub_prev)-8*Lm*R1*Ib_prev)-8*Lm*R1*pow(Ts,2)*alpha*beta*psi2b_prev)*pow(kk,2)-16*R1*Ts*psi2b_prev*kk)*sigma+pow(R1,2)*pow(Ts,4)*omega_prev*psi2b_prev*omega*pow(kk,4)*pow(pn,2)+((-Lm*R1*pow(Ts,4)*alpha*omega*Ualpha+(pow(R1,2)*pow(Ts,4)*alpha*psi2a_prev-Lm*R1*pow(Ts,4)*alpha*Ua_prev)*omega-pow(R1,2)*pow(Ts,4)*alpha*omega_prev*psi2a_prev)*pow(kk,4)+(-2*pow(R1,2)*pow(Ts,3)*psi2a_prev*omega-2*pow(R1,2)*pow(Ts,3)*omega_prev*psi2a_prev)*pow(kk,3))*pn+(Lm*R1*pow(Ts,4)*pow(alpha,2)*(-Ubeta-Ub_prev)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*psi2b_prev)*pow(kk,4)+Lm*R1*pow(Ts,3)*alpha*(-2*Ubeta-2*Ub_prev)*pow(kk,3)-4*pow(R1,2)*pow(Ts,2)*psi2b_prev*pow(kk,2))/((4*pow(Ts,2)*pow(omega,2)*pow(kk,2)*pow(pn,2)+(4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*Lm*pow(Ts,2)*pow(alpha,2)*beta+4*pow(Ts,2)*pow(alpha,2))*pow(kk,2)+(16*Lm*Ts*alpha*beta+16*Ts*alpha)*kk+16)*pow(sigma,2)+(4*R1*pow(Ts,3)*pow(omega,2)*pow(kk,3)*pow(pn,2)+(4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta+4*R1*pow(Ts,3)*pow(alpha,2))*pow(kk,3)+(8*Lm*R1*pow(Ts,2)*alpha*beta+16*R1*pow(Ts,2)*alpha)*pow(kk,2)+16*R1*Ts*kk)*sigma+pow(R1,2)*pow(Ts,4)*pow(omega,2)*pow(kk,4)*pow(pn,2)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*pow(kk,4)+4*pow(R1,2)*pow(Ts,3)*alpha*pow(kk,3)+4*pow(R1,2)*pow(Ts,2)*pow(kk,2));
+    if (circuitOn)
+    {
+        Ualpha=Um * sqrt(2) * sin(w0*t);
+        Ubeta=Um * sqrt(2) * sin(w0*t-M_PI/2.0);
+        omega=omega_prev;
+        Ialpha=((((4*pow(Ts,2)*beta*psi2a_prev+4*pow(Ts,2)*Ia_prev)*pow(omega,2)+4*pow(Ts,2)*beta*omega_prev*psi2a_prev*omega)*pow(kk,2)*pow(pn,2)+((((4*Lm*pow(Ts,2)*alpha*pow(beta,2)-4*pow(Ts,2)*alpha*beta)*psi2b_prev+8*Lm*pow(Ts,2)*alpha*beta*Ib_prev)*omega+(4*Lm*pow(Ts,2)*alpha*pow(beta,2)+4*pow(Ts,2)*alpha*beta)*omega_prev*psi2b_prev)*pow(kk,2)+(8*Ts*beta*psi2b_prev*omega+8*Ts*beta*omega_prev*psi2b_prev)*kk)*pn+((8*Lm*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*pow(Ts,2)*pow(alpha,2)*beta)*psi2a_prev+(4*pow(Ts,2)*pow(alpha,2)-4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2))*Ia_prev)*pow(kk,2)+(16*Ts*alpha*beta*psi2a_prev+16*Ts*alpha*Ia_prev)*kk+16*Ia_prev)*pow(sigma,2)+((2*pow(Ts,3)*pow(omega,2)*Ualpha+(2*pow(Ts,3)*Ua_prev+2*R1*pow(Ts,3)*beta*psi2a_prev)*pow(omega,2)+2*R1*pow(Ts,3)*beta*omega_prev*psi2a_prev*omega)*pow(kk,3)*pow(pn,2)+((omega*(Lm*pow(Ts,3)*alpha*beta*(2*Ubeta+2*Ub_prev)-2*R1*pow(Ts,3)*alpha*beta*psi2b_prev)+2*R1*pow(Ts,3)*alpha*beta*omega_prev*psi2b_prev)*pow(kk,3)+(4*R1*pow(Ts,2)*beta*psi2b_prev*omega+4*R1*pow(Ts,2)*beta*omega_prev*psi2b_prev)*pow(kk,2))*pn+((2*Lm*pow(Ts,3)*pow(alpha,2)*beta+2*pow(Ts,3)*pow(alpha,2))*Ualpha+(2*Lm*pow(Ts,3)*pow(alpha,2)*beta+2*pow(Ts,3)*pow(alpha,2))*Ua_prev+4*R1*pow(Ts,3)*pow(alpha,2)*beta*psi2a_prev-4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta*Ia_prev)*pow(kk,3)+((4*Lm*pow(Ts,2)*alpha*beta+8*pow(Ts,2)*alpha)*Ualpha+(4*Lm*pow(Ts,2)*alpha*beta+8*pow(Ts,2)*alpha)*Ua_prev+8*R1*pow(Ts,2)*alpha*beta*psi2a_prev-8*Lm*R1*pow(Ts,2)*alpha*beta*Ia_prev)*pow(kk,2)+(8*Ts*Ualpha+8*Ts*Ua_prev)*kk)*sigma+(R1*pow(Ts,4)*pow(omega,2)*Ualpha+(R1*pow(Ts,4)*Ua_prev-pow(R1,2)*pow(Ts,4)*Ia_prev)*pow(omega,2))*pow(kk,4)*pow(pn,2)+(R1*pow(Ts,4)*pow(alpha,2)*Ualpha+R1*pow(Ts,4)*pow(alpha,2)*Ua_prev-pow(R1,2)*pow(Ts,4)*pow(alpha,2)*Ia_prev)*pow(kk,4)+(4*R1*pow(Ts,3)*alpha*Ualpha+4*R1*pow(Ts,3)*alpha*Ua_prev-4*pow(R1,2)*pow(Ts,3)*alpha*Ia_prev)*pow(kk,3)+(4*R1*pow(Ts,2)*Ualpha+4*R1*pow(Ts,2)*Ua_prev-4*pow(R1,2)*pow(Ts,2)*Ia_prev)*pow(kk,2))/((4*pow(Ts,2)*pow(omega,2)*pow(kk,2)*pow(pn,2)+(4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*Lm*pow(Ts,2)*pow(alpha,2)*beta+4*pow(Ts,2)*pow(alpha,2))*pow(kk,2)+(16*Lm*Ts*alpha*beta+16*Ts*alpha)*kk+16)*pow(sigma,2)+(4*R1*pow(Ts,3)*pow(omega,2)*pow(kk,3)*pow(pn,2)+(4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta+4*R1*pow(Ts,3)*pow(alpha,2))*pow(kk,3)+(8*Lm*R1*pow(Ts,2)*alpha*beta+16*R1*pow(Ts,2)*alpha)*pow(kk,2)+16*R1*Ts*kk)*sigma+pow(R1,2)*pow(Ts,4)*pow(omega,2)*pow(kk,4)*pow(pn,2)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*pow(kk,4)+4*pow(R1,2)*pow(Ts,3)*alpha*pow(kk,3)+4*pow(R1,2)*pow(Ts,2)*pow(kk,2));
+        Ibeta=((((4*pow(Ts,2)*beta*psi2b_prev+4*pow(Ts,2)*Ib_prev)*pow(omega,2)+4*pow(Ts,2)*beta*omega_prev*psi2b_prev*omega)*pow(kk,2)*pow(pn,2)+((((4*pow(Ts,2)*alpha*beta-4*Lm*pow(Ts,2)*alpha*pow(beta,2))*psi2a_prev-8*Lm*pow(Ts,2)*alpha*beta*Ia_prev)*omega+(-4*Lm*pow(Ts,2)*alpha*pow(beta,2)-4*pow(Ts,2)*alpha*beta)*omega_prev*psi2a_prev)*pow(kk,2)+(-8*Ts*beta*psi2a_prev*omega-8*Ts*beta*omega_prev*psi2a_prev)*kk)*pn+((8*Lm*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*pow(Ts,2)*pow(alpha,2)*beta)*psi2b_prev-4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)*Ib_prev+4*pow(Ts,2)*pow(alpha,2)*Ib_prev)*pow(kk,2)+(16*Ts*alpha*beta*psi2b_prev+16*Ts*alpha*Ib_prev)*kk+16*Ib_prev)*pow(sigma,2)+((pow(omega,2)*(pow(Ts,3)*(2*Ubeta+2*Ub_prev)+2*R1*pow(Ts,3)*beta*psi2b_prev)+2*R1*pow(Ts,3)*beta*omega_prev*psi2b_prev*omega)*pow(kk,3)*pow(pn,2)+((-2*Lm*pow(Ts,3)*alpha*beta*omega*Ualpha+(2*R1*pow(Ts,3)*alpha*beta*psi2a_prev-2*Lm*pow(Ts,3)*alpha*beta*Ua_prev)*omega-2*R1*pow(Ts,3)*alpha*beta*omega_prev*psi2a_prev)*pow(kk,3)+(-4*R1*pow(Ts,2)*beta*psi2a_prev*omega-4*R1*pow(Ts,2)*beta*omega_prev*psi2a_prev)*pow(kk,2))*pn+(pow(Ts,3)*pow(alpha,2)*beta*(Lm*(2*Ubeta+2*Ub_prev)-4*Lm*R1*Ib_prev)+pow(Ts,3)*pow(alpha,2)*(2*Ubeta+2*Ub_prev)+4*R1*pow(Ts,3)*pow(alpha,2)*beta*psi2b_prev)*pow(kk,3)+(pow(Ts,2)*alpha*beta*(Lm*(4*Ubeta+4*Ub_prev)-8*Lm*R1*Ib_prev)+pow(Ts,2)*alpha*(8*Ubeta+8*Ub_prev)+8*R1*pow(Ts,2)*alpha*beta*psi2b_prev)*pow(kk,2)+Ts*(8*Ubeta+8*Ub_prev)*kk)*sigma+pow(Ts,4)*pow(omega,2)*(R1*(Ubeta+Ub_prev)-pow(R1,2)*Ib_prev)*pow(kk,4)*pow(pn,2)+pow(Ts,4)*pow(alpha,2)*(R1*(Ubeta+Ub_prev)-pow(R1,2)*Ib_prev)*pow(kk,4)+pow(Ts,3)*alpha*(R1*(4*Ubeta+4*Ub_prev)-4*pow(R1,2)*Ib_prev)*pow(kk,3)+pow(Ts,2)*(R1*(4*Ubeta+4*Ub_prev)-4*pow(R1,2)*Ib_prev)*pow(kk,2))/((4*pow(Ts,2)*pow(omega,2)*pow(kk,2)*pow(pn,2)+(4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*Lm*pow(Ts,2)*pow(alpha,2)*beta+4*pow(Ts,2)*pow(alpha,2))*pow(kk,2)+(16*Lm*Ts*alpha*beta+16*Ts*alpha)*kk+16)*pow(sigma,2)+(4*R1*pow(Ts,3)*pow(omega,2)*pow(kk,3)*pow(pn,2)+(4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta+4*R1*pow(Ts,3)*pow(alpha,2))*pow(kk,3)+(8*Lm*R1*pow(Ts,2)*alpha*beta+16*R1*pow(Ts,2)*alpha)*pow(kk,2)+16*R1*Ts*kk)*sigma+pow(R1,2)*pow(Ts,4)*pow(omega,2)*pow(kk,4)*pow(pn,2)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*pow(kk,4)+4*pow(R1,2)*pow(Ts,3)*alpha*pow(kk,3)+4*pow(R1,2)*pow(Ts,2)*pow(kk,2));
+        psi2a=-((4*pow(Ts,2)*omega_prev*psi2a_prev*omega*pow(kk,2)*pow(pn,2)+((((4*Lm*pow(Ts,2)*alpha*beta-4*pow(Ts,2)*alpha)*psi2b_prev+8*Lm*pow(Ts,2)*alpha*Ib_prev)*omega+(4*Lm*pow(Ts,2)*alpha*beta+4*pow(Ts,2)*alpha)*omega_prev*psi2b_prev)*pow(kk,2)+(8*Ts*psi2b_prev*omega+8*Ts*omega_prev*psi2b_prev)*kk)*pn+((4*pow(Ts,2)*pow(alpha,2)-4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2))*psi2a_prev+(-8*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*beta-8*Lm*pow(Ts,2)*pow(alpha,2))*Ia_prev)*pow(kk,2)+(-16*Lm*Ts*alpha*beta*psi2a_prev-16*Lm*Ts*alpha*Ia_prev)*kk-16*psi2a_prev)*pow(sigma,2)+(4*R1*pow(Ts,3)*omega_prev*psi2a_prev*omega*pow(kk,3)*pow(pn,2)+((omega*(pow(Ts,3)*alpha*(Lm*(2*Ubeta+2*Ub_prev)+4*Lm*R1*Ib_prev)+(2*Lm*R1*pow(Ts,3)*alpha*beta-4*R1*pow(Ts,3)*alpha)*psi2b_prev)+(2*Lm*R1*pow(Ts,3)*alpha*beta+4*R1*pow(Ts,3)*alpha)*omega_prev*psi2b_prev)*pow(kk,3)+(8*R1*pow(Ts,2)*psi2b_prev*omega+8*R1*pow(Ts,2)*omega_prev*psi2b_prev)*pow(kk,2))*pn+((-2*pow(Lm,2)*pow(Ts,3)*pow(alpha,2)*beta-2*Lm*pow(Ts,3)*pow(alpha,2))*Ualpha+(-2*pow(Lm,2)*pow(Ts,3)*pow(alpha,2)*beta-2*Lm*pow(Ts,3)*pow(alpha,2))*Ua_prev+4*R1*pow(Ts,3)*pow(alpha,2)*psi2a_prev-4*Lm*R1*pow(Ts,3)*pow(alpha,2)*Ia_prev)*pow(kk,3)+(-4*Lm*pow(Ts,2)*alpha*Ualpha-4*Lm*pow(Ts,2)*alpha*Ua_prev-8*Lm*R1*pow(Ts,2)*alpha*beta*psi2a_prev-8*Lm*R1*pow(Ts,2)*alpha*Ia_prev)*pow(kk,2)-16*R1*Ts*psi2a_prev*kk)*sigma+pow(R1,2)*pow(Ts,4)*omega_prev*psi2a_prev*omega*pow(kk,4)*pow(pn,2)+((omega*(Lm*R1*pow(Ts,4)*alpha*(Ubeta+Ub_prev)-pow(R1,2)*pow(Ts,4)*alpha*psi2b_prev)+pow(R1,2)*pow(Ts,4)*alpha*omega_prev*psi2b_prev)*pow(kk,4)+(2*pow(R1,2)*pow(Ts,3)*psi2b_prev*omega+2*pow(R1,2)*pow(Ts,3)*omega_prev*psi2b_prev)*pow(kk,3))*pn+(-Lm*R1*pow(Ts,4)*pow(alpha,2)*Ualpha-Lm*R1*pow(Ts,4)*pow(alpha,2)*Ua_prev+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*psi2a_prev)*pow(kk,4)+(-2*Lm*R1*pow(Ts,3)*alpha*Ualpha-2*Lm*R1*pow(Ts,3)*alpha*Ua_prev)*pow(kk,3)-4*pow(R1,2)*pow(Ts,2)*psi2a_prev*pow(kk,2))/((4*pow(Ts,2)*pow(omega,2)*pow(kk,2)*pow(pn,2)+(4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*Lm*pow(Ts,2)*pow(alpha,2)*beta+4*pow(Ts,2)*pow(alpha,2))*pow(kk,2)+(16*Lm*Ts*alpha*beta+16*Ts*alpha)*kk+16)*pow(sigma,2)+(4*R1*pow(Ts,3)*pow(omega,2)*pow(kk,3)*pow(pn,2)+(4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta+4*R1*pow(Ts,3)*pow(alpha,2))*pow(kk,3)+(8*Lm*R1*pow(Ts,2)*alpha*beta+16*R1*pow(Ts,2)*alpha)*pow(kk,2)+16*R1*Ts*kk)*sigma+pow(R1,2)*pow(Ts,4)*pow(omega,2)*pow(kk,4)*pow(pn,2)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*pow(kk,4)+4*pow(R1,2)*pow(Ts,3)*alpha*pow(kk,3)+4*pow(R1,2)*pow(Ts,2)*pow(kk,2));
+        psi2b=-((4*pow(Ts,2)*omega_prev*psi2b_prev*omega*pow(kk,2)*pow(pn,2)+((((4*pow(Ts,2)*alpha-4*Lm*pow(Ts,2)*alpha*beta)*psi2a_prev-8*Lm*pow(Ts,2)*alpha*Ia_prev)*omega+(-4*Lm*pow(Ts,2)*alpha*beta-4*pow(Ts,2)*alpha)*omega_prev*psi2a_prev)*pow(kk,2)+(-8*Ts*psi2a_prev*omega-8*Ts*omega_prev*psi2a_prev)*kk)*pn+((4*pow(Ts,2)*pow(alpha,2)-4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2))*psi2b_prev-8*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*beta*Ib_prev-8*Lm*pow(Ts,2)*pow(alpha,2)*Ib_prev)*pow(kk,2)+(-16*Lm*Ts*alpha*beta*psi2b_prev-16*Lm*Ts*alpha*Ib_prev)*kk-16*psi2b_prev)*pow(sigma,2)+(4*R1*pow(Ts,3)*omega_prev*psi2b_prev*omega*pow(kk,3)*pow(pn,2)+((-2*Lm*pow(Ts,3)*alpha*omega*Ualpha+(-2*Lm*pow(Ts,3)*alpha*Ua_prev+(4*R1*pow(Ts,3)*alpha-2*Lm*R1*pow(Ts,3)*alpha*beta)*psi2a_prev-4*Lm*R1*pow(Ts,3)*alpha*Ia_prev)*omega+(-2*Lm*R1*pow(Ts,3)*alpha*beta-4*R1*pow(Ts,3)*alpha)*omega_prev*psi2a_prev)*pow(kk,3)+(-8*R1*pow(Ts,2)*psi2a_prev*omega-8*R1*pow(Ts,2)*omega_prev*psi2a_prev)*pow(kk,2))*pn+(pow(Lm,2)*pow(Ts,3)*pow(alpha,2)*beta*(-2*Ubeta-2*Ub_prev)+pow(Ts,3)*pow(alpha,2)*(Lm*(-2*Ubeta-2*Ub_prev)-4*Lm*R1*Ib_prev)+4*R1*pow(Ts,3)*pow(alpha,2)*psi2b_prev)*pow(kk,3)+(pow(Ts,2)*alpha*(Lm*(-4*Ubeta-4*Ub_prev)-8*Lm*R1*Ib_prev)-8*Lm*R1*pow(Ts,2)*alpha*beta*psi2b_prev)*pow(kk,2)-16*R1*Ts*psi2b_prev*kk)*sigma+pow(R1,2)*pow(Ts,4)*omega_prev*psi2b_prev*omega*pow(kk,4)*pow(pn,2)+((-Lm*R1*pow(Ts,4)*alpha*omega*Ualpha+(pow(R1,2)*pow(Ts,4)*alpha*psi2a_prev-Lm*R1*pow(Ts,4)*alpha*Ua_prev)*omega-pow(R1,2)*pow(Ts,4)*alpha*omega_prev*psi2a_prev)*pow(kk,4)+(-2*pow(R1,2)*pow(Ts,3)*psi2a_prev*omega-2*pow(R1,2)*pow(Ts,3)*omega_prev*psi2a_prev)*pow(kk,3))*pn+(Lm*R1*pow(Ts,4)*pow(alpha,2)*(-Ubeta-Ub_prev)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*psi2b_prev)*pow(kk,4)+Lm*R1*pow(Ts,3)*alpha*(-2*Ubeta-2*Ub_prev)*pow(kk,3)-4*pow(R1,2)*pow(Ts,2)*psi2b_prev*pow(kk,2))/((4*pow(Ts,2)*pow(omega,2)*pow(kk,2)*pow(pn,2)+(4*pow(Lm,2)*pow(Ts,2)*pow(alpha,2)*pow(beta,2)+8*Lm*pow(Ts,2)*pow(alpha,2)*beta+4*pow(Ts,2)*pow(alpha,2))*pow(kk,2)+(16*Lm*Ts*alpha*beta+16*Ts*alpha)*kk+16)*pow(sigma,2)+(4*R1*pow(Ts,3)*pow(omega,2)*pow(kk,3)*pow(pn,2)+(4*Lm*R1*pow(Ts,3)*pow(alpha,2)*beta+4*R1*pow(Ts,3)*pow(alpha,2))*pow(kk,3)+(8*Lm*R1*pow(Ts,2)*alpha*beta+16*R1*pow(Ts,2)*alpha)*pow(kk,2)+16*R1*Ts*kk)*sigma+pow(R1,2)*pow(Ts,4)*pow(omega,2)*pow(kk,4)*pow(pn,2)+pow(R1,2)*pow(Ts,4)*pow(alpha,2)*pow(kk,4)+4*pow(R1,2)*pow(Ts,3)*alpha*pow(kk,3)+4*pow(R1,2)*pow(Ts,2)*pow(kk,2));
+    }
+    else
+    {
+        Ualpha=0.0;
+        Ubeta=0.0;
+        omega=omega_prev;
+        Ialpha=0.0;
+        Ibeta=0.0;
+        psi2a=0.0;
+        psi2b=0.0;
+    }
 
     p_akt_a = 3.0 / 2.0 * (Ualpha*Ialpha + Ubeta*Ibeta) / 3.0;
     p_akt_b = 3.0 / 2.0 * (Ualpha*Ialpha + Ubeta*Ibeta) / 3.0;
