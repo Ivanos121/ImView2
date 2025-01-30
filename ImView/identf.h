@@ -12,7 +12,6 @@
 #include "modell.h"
 #include "plot.h"
 #include "mainwindow.h"
-
 #include <QButtonGroup>
 
 namespace Ui {
@@ -41,6 +40,8 @@ public:
     QString dataSourceFilename;
     Model model;
     QVector<QColor> dataLineColors;
+private slots:
+    void setcolorincell(int row, int column);
 };
 
 #endif // IDENTF_H

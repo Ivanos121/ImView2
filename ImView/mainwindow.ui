@@ -43,7 +43,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>16</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_33">
@@ -395,19 +395,6 @@
            <string/>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_15">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги предварительной идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
            <item row="4" column="0">
             <widget class="QLabel" name="label_13">
              <property name="text">
@@ -556,6 +543,19 @@
             <widget class="QLabel" name="label_14">
              <property name="text">
               <string>Индуктивность взаимоиндукции, Гн =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_15">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги предварительной идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -1863,7 +1863,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2024,7 +2024,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1499</width>
-     <height>26</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
@@ -2168,6 +2168,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="electromagn_stop"/>
    <addaction name="kalibr_osc"/>
    <addaction name="separator"/>
+   <addaction name="actionaction_graph"/>
+   <addaction name="action_gruph"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -2651,6 +2653,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="toolTip">
     <string>Останов</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionaction_graph">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/labplot-xy-interpolation-curve.svg</normaloff>:/system_icons/data/img/system_icons/labplot-xy-interpolation-curve.svg</iconset>
+   </property>
+   <property name="text">
+    <string>action_graph</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="action_gruph">
+   <property name="text">
+    <string>action_gruph</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>

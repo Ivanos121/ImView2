@@ -114,6 +114,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->actionaction_graph->setCheckable(true);
+    ui->action_gruph->setCheckable(true);
+    ui->widget_2->ui->widget->hide();
+
      //настройка стартового экрана
     ui->tabWidget->hide();
     ui->stackedWidget->hide();
@@ -204,6 +208,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionabout, &QAction::triggered, this, &MainWindow::actionabout);
     connect(ui->actionhelp, &QAction::triggered, this, &MainWindow::actionhelp);
     connect(ui->switch_regim_upr,&QPushButton::clicked, this, &MainWindow::switch_regim_upr);
+    connect(ui->actionaction_graph, &QAction::triggered, this, &MainWindow::actionaction_graph);
+    connect(ui->action_gruph, &QAction::triggered, this, &MainWindow::action_gruph);
 
     //операции правки
     connect(ui->actioncopy, &QAction::triggered, this, &MainWindow::actioncopy);
@@ -12289,4 +12295,29 @@ void MainWindow::loadMotorParameters()
     base.J_dv=ui->widget->ui->tableView->model()->data(myIndex9).toDouble();
     myIndex10 = ui->widget->ui->tableView->model()->index(ui->widget->ui->tableView->currentIndex().row(), 9, QModelIndex());
     klass=ui->widget->ui->tableView->model()->data(myIndex10).toString();
+}
+
+void MainWindow::actionaction_graph()
+{
+    if(ui->actionaction_graph->isChecked())
+    {
+        ui->widget_2->ui->widget->show();
+    }
+    else
+    {
+        ui->widget_2->ui->widget->hide();
+    }
+}
+
+void MainWindow::action_gruph()
+{
+    if(ui->action_gruph->isChecked())
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(6);
+    }
+    else
+    {
+        ui->stackedWidget->setCurrentIndex(0);
+    }
 }

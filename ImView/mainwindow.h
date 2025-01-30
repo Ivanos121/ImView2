@@ -186,6 +186,8 @@ private slots:
     void save_identf_in_file();
     void on_electromagn_tick();
 
+    void actionaction_graph();
+    void action_gruph();
 public:
     Ui::MainWindow *ui;
     Model_el *wf;

@@ -4,6 +4,7 @@
 #include "model.h"
 #include "plot.h"
 #include "base.h"
+#include "spinboxdelegate.h"
 
 #include <iostream>
 #include <fstream>
@@ -11,6 +12,7 @@
 #include <QLinearGradient>
 #include <QColorDialog>
 #include <cmath>
+#include <QSpinBox>
 
 double key;
 Model model;
@@ -33,6 +35,116 @@ identf::identf(QWidget *parent) :
 
     time=new QElapsedTimer();
     this->showMaximized();
+
+
+    ui->tableWidget->setRowCount(5); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(5); //задание количества столбцов
+    QStringList name2; //объявление указателя на тип QStringList
+    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
+    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    //ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->resizeColumnsToContents();
+    //ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setColumnWidth(0, 100);
+
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
+        {
+            ui->tableWidget->setItem(row, column, new QTableWidgetItem());
+        }
+    }
+
+    QTableWidgetItem *item251 = new QTableWidgetItem("Item251");
+    item251->setCheckState(Qt::Checked);
+    item251->setText("Сопротивление статора R1, Ом");
+    ui->tableWidget->setItem(0, 2, item251);
+
+    QTableWidgetItem *item252 = new QTableWidgetItem("Item252");
+    item252->setCheckState(Qt::Checked);
+    item252->setText("Сопротивление ротора R2, Ом");
+    ui->tableWidget->setItem(1, 2, item252);
+
+    QTableWidgetItem *item253 = new QTableWidgetItem("Item253");
+    item253->setCheckState(Qt::Checked);
+    item253->setText("Индуктивность обмотки статора L1, Гн");
+    ui->tableWidget->setItem(2, 2, item253);
+
+    QTableWidgetItem *item254 = new QTableWidgetItem("Item254");
+    item254->setCheckState(Qt::Checked);
+    item254->setText("Индуктивность обмотки ротора L2, Гн");
+    ui->tableWidget->setItem(3, 2, item254);
+
+    QTableWidgetItem *item255 = new QTableWidgetItem("Item254");
+    item255->setCheckState(Qt::Checked);
+    item255->setText("Индуктивность взаимоиндукции Lm, Гн");
+    ui->tableWidget->setItem(4, 2, item255);
+
+    ui->tableWidget->setItem(0, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(1, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(2, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(5, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
+
+
+    for (int i=0; i<34; i++)
+    {
+        if (ui->tableWidget->item(i, 0) != 0)
+        {
+            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    for (int i=0; i<34; i++)
+    {
+        if (ui->tableWidget->item(i, 3) != 0)
+        {
+            ui->tableWidget->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+
+        if (ui->tableWidget->item(i, 4) != 0)
+        {
+            ui->tableWidget->item(i, 4)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    SpinBoxDelegate *spin = new SpinBoxDelegate(ui->tableWidget); //создание делегата для создания комбобоксов
+    ui->tableWidget->setItemDelegateForColumn(3, spin);
+    SpinBoxDelegate *spin2 = new SpinBoxDelegate(ui->tableWidget); //создание делегата для создания комбобоксов
+    ui->tableWidget->setItemDelegateForColumn(4, spin2);
+
+    QPalette p4=ui->tableWidget->palette();
+    p4.setColor(QPalette::Base, QColor(225, 255, 255));
+    p4.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget->setPalette(p4);
+
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+
+    for (int i = 0; i < dataLineColors.size(); i++)
+    {
+        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+    }
+
+    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &identf::setcolorincell);
+
+
 }
 
 identf::~identf()
@@ -201,6 +313,19 @@ void identf::raschet_f()
     fout.close();
 
     time->start();
+}
+
+void identf::setcolorincell(int row, int column)
+{
+    if ((column == 1) && (row >= 0) && (row <= 5))
+    {
+        //identf
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+        ui->plot->setDataLineColor(row, chosenColor);
+        dataLineColors[row] = chosenColor;
+        repaint();
+    }
 }
 
 

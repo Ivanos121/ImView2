@@ -469,6 +469,10 @@ void Plot::addDataLine(QColor color, double lineOffset)
 
 void Plot::setDataLineColor(size_t lineNumber, QColor _color)
 {
+    if (lineNumber >= dataLines.size())
+    {
+        return;
+    }
     dataLines[lineNumber].color = _color;
     repaint();
 }
