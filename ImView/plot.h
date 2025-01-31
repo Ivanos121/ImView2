@@ -17,10 +17,12 @@ struct DataPoint
 
 struct DataLine
 {
-    DataLine(QColor _color, double _lineOffset) : color(_color), lineOffset(_lineOffset) {}
+    DataLine(QColor _color, double _lineOffset, double _lineScale) : color(_color), lineOffset(_lineOffset),
+        lineScale(_lineScale) {}
 
     QColor color;
     double lineOffset;
+    double lineScale;
     std::vector<DataPoint> data;
 };
 
@@ -54,8 +56,11 @@ public:
 
     void addPoint(size_t lineNumber, double t, double U);
     void addDataLine(QColor color, double lineOffset);
+    void addDataLine(QColor color, double lineOffset, double lineScale);
 
     void setDataLineColor(size_t lineNumber, QColor _color);
+    void setDataLineOffset(size_t lineNumber, double offset);
+    void setDataLineScale(size_t lineNumber, double scale);
 
 private:
     QPoint p1,p2;

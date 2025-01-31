@@ -143,6 +143,7 @@ identf::identf(QWidget *parent) :
     }
 
     connect(ui->tableWidget, &QTableWidget::cellClicked,this, &identf::setcolorincell);
+    connect(ui->tableWidget, &QTableWidget::cellChanged,this, &identf::edit_graf);
 
 
 }
@@ -326,6 +327,40 @@ void identf::setcolorincell(int row, int column)
         dataLineColors[row] = chosenColor;
         repaint();
     }
+}
+
+void identf::edit_graf()
+{
+    double R1_scale, R1_offset, R2_scale, R2_offset, L1_scale, L1_offset, L2_scale, L2_offset, Lm_scale, Lm_offset;
+    R1_scale = ui->tableWidget->item(0,4)->text().toDouble();
+    R1_offset = ui->tableWidget->item(0,3)->text().toDouble();
+    R2_scale = ui->tableWidget->item(1,4)->text().toDouble();
+    R2_offset = ui->tableWidget->item(1,3)->text().toDouble();
+    L1_scale = ui->tableWidget->item(2,4)->text().toDouble();
+    L1_offset = ui->tableWidget->item(2,3)->text().toDouble();
+    L2_scale = ui->tableWidget->item(3,4)->text().toDouble();
+    L2_offset = ui->tableWidget->item(3,3)->text().toDouble();
+    Lm_scale = ui->tableWidget->item(4,4)->text().toDouble();
+    Lm_offset = ui->tableWidget->item(4,3)->text().toDouble();
+
+    ui->plot->setDataLineOffset(0, R1_offset);
+    ui->plot->setDataLineScale(0, R1_scale);
+
+    ui->plot->repaint();
+
+
+
+    // if(ui->tableWidget->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
+    // {
+    //     ui->plot->addPoint(0, t, b0+a0*y_0);
+    // }
+
+    // if(wf->ui->tableWidget->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
+    // {
+    //     ui->plot->addPoint(1, t, b1+a1*y_1);
+    // }
+
+
 }
 
 

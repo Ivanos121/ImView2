@@ -42,6 +42,7 @@ public:
     QVector<QColor> dataLineColors;
 private slots:
     void setcolorincell(int row, int column);
+    void edit_graf();
 };
 
 #endif // IDENTF_H

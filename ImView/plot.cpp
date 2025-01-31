@@ -239,8 +239,8 @@ void Plot::paintEvent(QPaintEvent *)
             if ((x1 < margin_left) && (x2 < margin_left)) continue;
             if ((x1 > (width() - 20)) && (x2 > (width() - 20))) continue;
 
-            double U1 = line.data[i].U + U_offset + line.lineOffset;
-            double U2 = line.data[i + 1].U + U_offset + line.lineOffset;
+            double U1 = line.data[i].U * line.lineScale + U_offset + line.lineOffset;
+            double U2 = line.data[i + 1].U * line.lineScale + U_offset + line.lineOffset;
 
             int y1 = (double)(-U1 / U_max_v * (double)(height() - margin_bottom - 20) + height() - margin_bottom );
             int y2 = (double)(-U2 / U_max_v * (double)(height() - margin_bottom - 20) + height() - margin_bottom );
@@ -463,9 +463,16 @@ void Plot::addPoint(size_t lineNumber, double t, double U)
 
 void Plot::addDataLine(QColor color, double lineOffset)
 {
-    DataLine newLine(color, lineOffset);
+    DataLine newLine(color, lineOffset, 1.0);
     dataLines.push_back(newLine);
 }
+
+void Plot::addDataLine(QColor color, double lineOffset, double lineScale)
+{
+    DataLine newLine(color, lineOffset, lineScale);
+    dataLines.push_back(newLine);
+}
+
 
 void Plot::setDataLineColor(size_t lineNumber, QColor _color)
 {
@@ -561,4 +568,14 @@ void Plot::load()
 
     f.close();
     repaint();
+}
+
+void Plot::setDataLineOffset(size_t lineNumber, double offset)
+{
+    dataLines[lineNumber].lineOffset = offset;
+}
+
+void Plot::setDataLineScale(size_t lineNumber, double scale)
+{
+    dataLines[lineNumber].lineScale = scale;
 }

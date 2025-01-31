@@ -9,10 +9,13 @@ SpinBoxDelegate::SpinBoxDelegate(QObject *parent) : QStyledItemDelegate(parent)
 
 QWidget* SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &) const
 {
-    QSpinBox* editor = new QSpinBox(parent);
-    editor->setFrame(false);
-    editor->setMinimum(0);
-    editor->setMaximum(100);
+    QDoubleSpinBox* editor = new QDoubleSpinBox(parent);
+    // editor->setFrame(false);
+    // editor->setMinimum(0);
+    // editor->setMaximum(100);
+    editor->setRange(-100.0, 100.0);
+    editor->setSingleStep(0.1);
+    editor->setDecimals(3);
 
     return editor;
 }
@@ -21,13 +24,13 @@ void SpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) c
 {
     int value = index.model()->data(index, Qt::EditRole).toInt();
 
-    QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
+    QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
     spinBox->setValue(value);
 }
 
 void SpinBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
+    QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
     spinBox->interpretText();
     int value = spinBox->value();
 
