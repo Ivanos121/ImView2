@@ -331,7 +331,16 @@ void identf::setcolorincell(int row, int column)
 
 void identf::edit_graf()
 {
+    // double _R1_scale=0;
     double R1_scale, R1_offset, R2_scale, R2_offset, L1_scale, L1_offset, L2_scale, L2_offset, Lm_scale, Lm_offset;
+    // double s;
+    // //double currentValue = ui->tableWidget->item(0,4)->ui->doubleSpinbox->value();
+    // QDoubleSpinBox *spinBoxInTable = qobject_cast<QDoubleSpinBox*>(ui->tableWidget->cellWidget(0, 4));
+    // if (spinBoxInTable) {
+    //     _R1_scale = spinBoxInTable->value(); // Получаем текущее значение
+    //     // Используем значение по мере необходимости
+    // }
+    // R1_scale = _R1_scale;
     R1_scale = ui->tableWidget->item(0,4)->text().toDouble();
     R1_offset = ui->tableWidget->item(0,3)->text().toDouble();
     R2_scale = ui->tableWidget->item(1,4)->text().toDouble();
@@ -347,20 +356,6 @@ void identf::edit_graf()
     ui->plot->setDataLineScale(0, R1_scale);
 
     ui->plot->repaint();
-
-
-
-    // if(ui->tableWidget->model()->index(0,2).data(Qt::CheckStateRole)==Qt::Checked)
-    // {
-    //     ui->plot->addPoint(0, t, b0+a0*y_0);
-    // }
-
-    // if(wf->ui->tableWidget->model()->index(1,2).data(Qt::CheckStateRole)==Qt::Checked)
-    // {
-    //     ui->plot->addPoint(1, t, b1+a1*y_1);
-    // }
-
-
 }
 
 

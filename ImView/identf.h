@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <QButtonGroup>
 
 #include "datasource.h"
 #include "datasource_file.h"
@@ -12,7 +13,8 @@
 #include "modell.h"
 #include "plot.h"
 #include "mainwindow.h"
-#include <QButtonGroup>
+#include "spinboxdelegate.h"
+
 
 namespace Ui {
 class identf;
@@ -40,6 +42,8 @@ public:
     QString dataSourceFilename;
     Model model;
     QVector<QColor> dataLineColors;
+    SpinBoxDelegate *spin;
+
 private slots:
     void setcolorincell(int row, int column);
     void edit_graf();

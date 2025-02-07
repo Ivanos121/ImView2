@@ -22,19 +22,20 @@ QWidget* SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
 
 void SpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-    int value = index.model()->data(index, Qt::EditRole).toInt();
-
-    QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-    spinBox->setValue(value);
+    double value = index.model()->data(index, Qt::EditRole).toDouble();
+    QDoubleSpinBox *spinBox = qobject_cast<QDoubleSpinBox*>(editor);
+    if (spinBox) {
+        spinBox->setValue(value);
+    }
 }
 
 void SpinBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-    spinBox->interpretText();
-    int value = spinBox->value();
-
-    model->setData(index, value, Qt::EditRole);
+    QDoubleSpinBox *spinBox = qobject_cast<QDoubleSpinBox*>(editor);
+    if (spinBox) {
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
 }
 
 void SpinBoxDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
