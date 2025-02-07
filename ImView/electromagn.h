@@ -36,7 +36,7 @@ public slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void bvasFailureSlot();
-
+    void setcolorincell(int row, int column);
 private:
     QElapsedTimer *time;
     NabludatelBase *nabludatel;
@@ -48,6 +48,7 @@ private:
 
     QSerialPort *momentPort;
     QTcpSocket plcSocket;
+    QVector<QColor> dataLineColors;
 
     void addDataLines();
     int connectMomentPort();
@@ -56,6 +57,9 @@ private:
 signals:
     void tick();
 
+private slots:
+
+    void edit_graf();
 };
 
 #endif // ELECTROMAGN_H

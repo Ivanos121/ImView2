@@ -7,6 +7,7 @@
 #include "datasourcedigitosc.h"
 #include "ui_mainwindow.h"
 #include "tepl_struct.h"
+#include "plot.h"
 
 #include <iostream>
 #include <fstream>
@@ -62,6 +63,145 @@ electromagn::electromagn(QWidget *parent) :
     ui->plot->reset();
     time=new QElapsedTimer();
     this->showMaximized();
+
+    ui->tableWidget->setRowCount(9); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(5); //задание количества столбцов
+    QStringList name2; //объявление указателя на тип QStringList
+    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
+    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    //ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->resizeColumnsToContents();
+    //ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setColumnWidth(0, 100);
+
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
+        {
+            ui->tableWidget->setItem(row, column, new QTableWidgetItem());
+        }
+    }
+
+    QTableWidgetItem *item251 = new QTableWidgetItem("Item251");
+    item251->setCheckState(Qt::Checked);
+    item251->setText("Напряжение фазы А, В");
+    ui->tableWidget->setItem(0, 2, item251);
+
+    QTableWidgetItem *item252 = new QTableWidgetItem("Item252");
+    item252->setCheckState(Qt::Checked);
+    item252->setText("Напряжение фазы B, В");
+    ui->tableWidget->setItem(1, 2, item252);
+
+    QTableWidgetItem *item253 = new QTableWidgetItem("Item253");
+    item253->setCheckState(Qt::Checked);
+    item253->setText("Напряжение фазы C, В");
+    ui->tableWidget->setItem(2, 2, item253);
+
+    QTableWidgetItem *item254 = new QTableWidgetItem("Item254");
+    item254->setCheckState(Qt::Checked);
+    item254->setText("Ток фазы А, А");
+    ui->tableWidget->setItem(3, 2, item254);
+
+    QTableWidgetItem *item255 = new QTableWidgetItem("Item254");
+    item255->setCheckState(Qt::Checked);
+    item255->setText("Ток фазы B, А");
+    ui->tableWidget->setItem(4, 2, item255);
+
+    QTableWidgetItem *item256 = new QTableWidgetItem("Item256");
+    item256->setCheckState(Qt::Checked);
+    item256->setText("Ток фазы C, А");
+    ui->tableWidget->setItem(5, 2, item256);
+
+    QTableWidgetItem *item257 = new QTableWidgetItem("Item257");
+    item257->setCheckState(Qt::Checked);
+    item257->setText("Частота вращения, рад/с");
+    ui->tableWidget->setItem(6, 2, item257);
+
+    QTableWidgetItem *item258 = new QTableWidgetItem("Item257");
+    item258->setCheckState(Qt::Checked);
+    item258->setText("Момент на валу, Н*м");
+    ui->tableWidget->setItem(7, 2, item258);
+
+    QTableWidgetItem *item259 = new QTableWidgetItem("Item259");
+    item259->setCheckState(Qt::Checked);
+    item259->setText("Момент на валу, Н*м");
+    ui->tableWidget->setItem(8, 2, item259);
+
+    ui->tableWidget->setItem(0, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(1, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(2, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(5, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(6, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(7, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(8, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(1)));
+
+
+    for (int i=0; i<34; i++)
+    {
+        if (ui->tableWidget->item(i, 0) != 0)
+        {
+            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    for (int i=0; i<34; i++)
+    {
+        if (ui->tableWidget->item(i, 3) != 0)
+        {
+            ui->tableWidget->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+
+        if (ui->tableWidget->item(i, 4) != 0)
+        {
+            ui->tableWidget->item(i, 4)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    SpinBoxDelegate *spin = new SpinBoxDelegate(ui->tableWidget); //создание делегата для создания комбобоксов
+    ui->tableWidget->setItemDelegateForColumn(3, spin);
+    SpinBoxDelegate *spin2 = new SpinBoxDelegate(ui->tableWidget); //создание делегата для создания комбобоксов
+    ui->tableWidget->setItemDelegateForColumn(4, spin2);
+
+    QPalette p4=ui->tableWidget->palette();
+    p4.setColor(QPalette::Base, QColor(225, 255, 255));
+    p4.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget->setPalette(p4);
+
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::cyan);
+
+    for (int i = 0; i < dataLineColors.size(); i++)
+    {
+         ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+    }
+
+    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &electromagn::setcolorincell);
+    connect(ui->tableWidget, &QTableWidget::cellChanged,this, &electromagn::edit_graf);
+
 }
 
 
@@ -1319,3 +1459,63 @@ void electromagn::bvasFailureSlot()
     QMessageBox::critical(this, tr("Ошибка!"), tr("Ошибка подключения BVAS!"));
 }
 
+void electromagn::setcolorincell(int row, int column)
+{
+    if ((column == 1) && (row >= 0) && (row <= 8))
+    {
+        //identf
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+        ui->plot->setDataLineColor(row, chosenColor);
+        dataLineColors[row] = chosenColor;
+        repaint();
+    }
+}
+
+void electromagn::edit_graf()
+{
+    double Ua_scale, Ua_offset, Ub_scale, Ub_offset, Uc_scale, Uc_offset,
+           Ia_scale, Ia_offset, Ib_scale, Ib_offset, Ic_scale, Ic_offset,
+           w_scale,  w_offset,  M_scale,  M_offset,  Mc_scale, Mc_offset;
+
+    Ua_scale = ui->tableWidget->item(0,4)->text().toDouble();
+    Ua_offset = ui->tableWidget->item(0,3)->text().toDouble();
+    Ub_scale = ui->tableWidget->item(1,4)->text().toDouble();
+    Ub_offset = ui->tableWidget->item(1,3)->text().toDouble();
+    Uc_scale = ui->tableWidget->item(2,4)->text().toDouble();
+    Uc_offset = ui->tableWidget->item(2,3)->text().toDouble();
+    Ia_scale = ui->tableWidget->item(3,4)->text().toDouble();
+    Ia_offset = ui->tableWidget->item(3,3)->text().toDouble();
+    Ib_scale = ui->tableWidget->item(4,4)->text().toDouble();
+    Ib_offset = ui->tableWidget->item(4,3)->text().toDouble();
+    Ic_scale = ui->tableWidget->item(5,4)->text().toDouble();
+    Ic_offset = ui->tableWidget->item(5,3)->text().toDouble();
+    w_scale = ui->tableWidget->item(6,4)->text().toDouble();
+    w_offset = ui->tableWidget->item(6,3)->text().toDouble();
+    M_scale = ui->tableWidget->item(7,4)->text().toDouble();
+    M_offset = ui->tableWidget->item(7,3)->text().toDouble();
+    Mc_scale = ui->tableWidget->item(8,4)->text().toDouble();
+    Mc_offset = ui->tableWidget->item(8,3)->text().toDouble();
+
+    ui->plot->setDataLineOffset(0, Ua_offset);
+    ui->plot->setDataLineScale(0, Ua_scale);
+    ui->plot->setDataLineOffset(1, Ua_offset);
+    ui->plot->setDataLineScale(1, Ua_scale);
+    ui->plot->setDataLineOffset(2, Ua_offset);
+    ui->plot->setDataLineScale(2, Ua_scale);
+    ui->plot->setDataLineOffset(3, Ua_offset);
+    ui->plot->setDataLineScale(3, Ua_scale);
+    ui->plot->setDataLineOffset(4, Ua_offset);
+    ui->plot->setDataLineScale(4, Ua_scale);
+    ui->plot->setDataLineOffset(5, Ua_offset);
+    ui->plot->setDataLineScale(5, Ua_scale);
+    ui->plot->setDataLineOffset(6, Ua_offset);
+    ui->plot->setDataLineScale(6, Ua_scale);
+    ui->plot->setDataLineOffset(7, Ua_offset);
+    ui->plot->setDataLineScale(7, Ua_scale);
+    ui->plot->setDataLineOffset(8, Ua_offset);
+    ui->plot->setDataLineScale(8, Ua_scale);
+
+
+    ui->plot->repaint();
+}
