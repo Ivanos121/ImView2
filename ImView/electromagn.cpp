@@ -1499,22 +1499,22 @@ void electromagn::edit_graf()
 
     ui->plot->setDataLineOffset(0, Ua_offset);
     ui->plot->setDataLineScale(0, Ua_scale);
-    ui->plot->setDataLineOffset(1, Ua_offset);
-    ui->plot->setDataLineScale(1, Ua_scale);
-    ui->plot->setDataLineOffset(2, Ua_offset);
-    ui->plot->setDataLineScale(2, Ua_scale);
-    ui->plot->setDataLineOffset(3, Ua_offset);
-    ui->plot->setDataLineScale(3, Ua_scale);
-    ui->plot->setDataLineOffset(4, Ua_offset);
-    ui->plot->setDataLineScale(4, Ua_scale);
-    ui->plot->setDataLineOffset(5, Ua_offset);
-    ui->plot->setDataLineScale(5, Ua_scale);
-    ui->plot->setDataLineOffset(6, Ua_offset);
-    ui->plot->setDataLineScale(6, Ua_scale);
-    ui->plot->setDataLineOffset(7, Ua_offset);
-    ui->plot->setDataLineScale(7, Ua_scale);
-    ui->plot->setDataLineOffset(8, Ua_offset);
-    ui->plot->setDataLineScale(8, Ua_scale);
+    ui->plot->setDataLineOffset(1, Ub_offset);
+    ui->plot->setDataLineScale(1, Ub_scale);
+    ui->plot->setDataLineOffset(2, Uc_offset);
+    ui->plot->setDataLineScale(2, Uc_scale);
+    ui->plot->setDataLineOffset(3, Ia_offset);
+    ui->plot->setDataLineScale(3, Ia_scale);
+    ui->plot->setDataLineOffset(4, Ib_offset);
+    ui->plot->setDataLineScale(4, Ib_scale);
+    ui->plot->setDataLineOffset(5, Ic_offset);
+    ui->plot->setDataLineScale(5, Ic_scale);
+    ui->plot->setDataLineOffset(6, w_offset);
+    ui->plot->setDataLineScale(6, w_scale);
+    ui->plot->setDataLineOffset(7, M_offset);
+    ui->plot->setDataLineScale(7, M_scale);
+    ui->plot->setDataLineOffset(8, Mc_offset);
+    ui->plot->setDataLineScale(8, Mc_scale);
 
 
     ui->plot->repaint();

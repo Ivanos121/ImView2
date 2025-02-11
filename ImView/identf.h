@@ -41,7 +41,7 @@ public:
     MainWindow *wf;
     QString dataSourceFilename;
     Model model;
-    QVector<QColor> dataLineColors;
+    QVector<QColor> dataLineColors_identf;
     SpinBoxDelegate *spin;
 
 private slots:

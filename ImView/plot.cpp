@@ -223,6 +223,10 @@ void Plot::paintEvent(QPaintEvent *)
 
     for (DataLine& line : dataLines)
     {
+        if (!line.enabled)
+        {
+            continue;
+        }
         //painter.setPen(QPen(QColor(line.color), 2));
         QPen pen(QBrush(), 2, Qt::SolidLine, Qt::SquareCap, Qt::BevelJoin);
         pen.setColor(QColor(line.color));
@@ -572,10 +576,24 @@ void Plot::load()
 
 void Plot::setDataLineOffset(size_t lineNumber, double offset)
 {
-    dataLines[lineNumber].lineOffset = offset;
+    if ((size_t)lineNumber < dataLines.size())
+    {
+        dataLines[lineNumber].lineOffset = offset;
+    }
 }
 
 void Plot::setDataLineScale(size_t lineNumber, double scale)
 {
-    dataLines[lineNumber].lineScale = scale;
+    if ((size_t)lineNumber < dataLines.size())
+    {
+        dataLines[lineNumber].lineScale = scale;
+    }
+}
+
+void Plot::enableDataLine(int lineNum, bool en)
+{
+    if ((size_t)lineNum < dataLines.size())
+    {
+        dataLines[lineNum].enabled = en;
+    }
 }

@@ -12314,12 +12314,12 @@ void MainWindow::actionaction_graph()
         }
         else if(ui->tabWidget->currentIndex() == 4)
         {
-            ui->stackedWidget->hide();
+            //ui->stackedWidget->hide();
             ui->widget_3->ui->widget->show();
         }
         else if(ui->tabWidget->currentIndex() == 5)
         {
-            ui->stackedWidget->hide();
+            //ui->stackedWidget->hide();
             ui->widget_5->ui->widget_4->ui->widget->show();
         }
     }

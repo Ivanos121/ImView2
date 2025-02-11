@@ -37,10 +37,10 @@ identf::identf(QWidget *parent) :
     this->showMaximized();
 
 
-    ui->tableWidget->setRowCount(5); //задание количества строк таблицы
-    ui->tableWidget->setColumnCount(5); //задание количества столбцов
+    ui->tableWidget->setRowCount(4); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(6); //задание количества столбцов
     QStringList name2; //объявление указателя на тип QStringList
-    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
+    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб" << "Значение"; //перечисление заголовков
     ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
@@ -58,46 +58,43 @@ identf::identf(QWidget *parent) :
         }
     }
 
-    QTableWidgetItem *item251 = new QTableWidgetItem("Item251");
-    item251->setCheckState(Qt::Checked);
-    item251->setText("Сопротивление статора R1, Ом");
-    ui->tableWidget->setItem(0, 2, item251);
-
     QTableWidgetItem *item252 = new QTableWidgetItem("Item252");
     item252->setCheckState(Qt::Checked);
     item252->setText("Сопротивление ротора R2, Ом");
-    ui->tableWidget->setItem(1, 2, item252);
+    ui->tableWidget->setItem(0, 2, item252);
 
     QTableWidgetItem *item253 = new QTableWidgetItem("Item253");
     item253->setCheckState(Qt::Checked);
     item253->setText("Индуктивность обмотки статора L1, Гн");
-    ui->tableWidget->setItem(2, 2, item253);
+    ui->tableWidget->setItem(1, 2, item253);
 
     QTableWidgetItem *item254 = new QTableWidgetItem("Item254");
     item254->setCheckState(Qt::Checked);
     item254->setText("Индуктивность обмотки ротора L2, Гн");
-    ui->tableWidget->setItem(3, 2, item254);
+    ui->tableWidget->setItem(2, 2, item254);
 
     QTableWidgetItem *item255 = new QTableWidgetItem("Item254");
     item255->setCheckState(Qt::Checked);
     item255->setText("Индуктивность взаимоиндукции Lm, Гн");
-    ui->tableWidget->setItem(4, 2, item255);
+    ui->tableWidget->setItem(3, 2, item255);
 
     ui->tableWidget->setItem(0, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(0, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(1, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(1, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(2, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(2, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(3, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(5, 3, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(4, 5, new QTableWidgetItem(QString("%1").arg(0)));
 
-
-    for (int i=0; i<34; i++)
+    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
         if (ui->tableWidget->item(i, 0) != 0)
         {
@@ -107,7 +104,7 @@ identf::identf(QWidget *parent) :
     }
 
 
-    for (int i=0; i<34; i++)
+    for (int i=0; i < ui->tableWidget->rowCount(); i++)
     {
         if (ui->tableWidget->item(i, 3) != 0)
         {
@@ -117,6 +114,11 @@ identf::identf(QWidget *parent) :
         if (ui->tableWidget->item(i, 4) != 0)
         {
             ui->tableWidget->item(i, 4)->setTextAlignment(Qt::AlignCenter);
+        }
+
+        if (ui->tableWidget->item(i, 5) != 0)
+        {
+            ui->tableWidget->item(i, 5)->setTextAlignment(Qt::AlignCenter);
         }
     }
 
@@ -131,15 +133,14 @@ identf::identf(QWidget *parent) :
     p4.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget->setPalette(p4);
 
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::red);
+    dataLineColors_identf.append(Qt::red);
+    dataLineColors_identf.append(Qt::green);
+    dataLineColors_identf.append(Qt::cyan);
+    dataLineColors_identf.append(Qt::yellow);
 
-    for (int i = 0; i < dataLineColors.size(); i++)
+    for (int i = 0; i < dataLineColors_identf.size(); i++)
     {
-        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+        ui->tableWidget->item(i, 1)->setBackground(dataLineColors_identf[i]);
     }
 
     connect(ui->tableWidget, &QTableWidget::cellClicked,this, &identf::setcolorincell);
@@ -261,7 +262,7 @@ void identf::raschet_f()
 
     for (int i = 0; i < 4; i++)
     {
-        ui->plot->addDataLine(wf->dataLineColors[i], 0);
+        ui->plot->addDataLine(dataLineColors_identf[i], 0);
     }
 
     ui->plot->addPoint(0, 0, model.R2);
@@ -324,35 +325,72 @@ void identf::setcolorincell(int row, int column)
         QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
         ui->tableWidget->item(row, column)->setBackground(chosenColor);
         ui->plot->setDataLineColor(row, chosenColor);
-        dataLineColors[row] = chosenColor;
+        dataLineColors_identf[row] = chosenColor;
         repaint();
     }
 }
 
 void identf::edit_graf()
 {
-    double R1_scale, R1_offset, R2_scale, R2_offset, L1_scale, L1_offset, L2_scale, L2_offset, Lm_scale, Lm_offset;
-    R1_scale = ui->tableWidget->item(0,4)->text().toDouble();
-    R1_offset = ui->tableWidget->item(0,3)->text().toDouble();
-    R2_scale = ui->tableWidget->item(1,4)->text().toDouble();
-    R2_offset = ui->tableWidget->item(1,3)->text().toDouble();
-    L1_scale = ui->tableWidget->item(2,4)->text().toDouble();
-    L1_offset = ui->tableWidget->item(2,3)->text().toDouble();
-    L2_scale = ui->tableWidget->item(3,4)->text().toDouble();
-    L2_offset = ui->tableWidget->item(3,3)->text().toDouble();
-    Lm_scale = ui->tableWidget->item(4,4)->text().toDouble();
-    Lm_offset = ui->tableWidget->item(4,3)->text().toDouble();
+    double R2_scale, R2_offset, L1_scale, L1_offset, L2_scale, L2_offset, Lm_scale, Lm_offset;
+    R2_scale = ui->tableWidget->item(0,4)->text().toDouble();
+    R2_offset = ui->tableWidget->item(0,3)->text().toDouble();
+    L1_scale = ui->tableWidget->item(1,4)->text().toDouble();
+    L1_offset = ui->tableWidget->item(1,3)->text().toDouble();
+    L2_scale = ui->tableWidget->item(2,4)->text().toDouble();
+    L2_offset = ui->tableWidget->item(2,3)->text().toDouble();
+    Lm_scale = ui->tableWidget->item(3,4)->text().toDouble();
+    Lm_offset = ui->tableWidget->item(3,3)->text().toDouble();
 
-    ui->plot->setDataLineOffset(0, R1_scale);
-    ui->plot->setDataLineScale(0, R1_offset);
-    ui->plot->setDataLineOffset(1, R2_scale);
-    ui->plot->setDataLineScale(1, R2_offset);
-    ui->plot->setDataLineOffset(2, L1_scale);
-    ui->plot->setDataLineScale(2, L1_offset);
-    ui->plot->setDataLineOffset(3, L2_scale);
-    ui->plot->setDataLineScale(3, L2_offset);
-    ui->plot->setDataLineOffset(4, Lm_scale);
-    ui->plot->setDataLineScale(4, Lm_offset);
+    ui->plot->setDataLineOffset(0, R2_offset);
+    ui->plot->setDataLineScale(0, R2_scale);
+    ui->plot->setDataLineOffset(1, L1_offset);
+    ui->plot->setDataLineScale(1, L1_scale);
+    ui->plot->setDataLineOffset(2, L2_offset);
+    ui->plot->setDataLineScale(2, L2_scale);
+    ui->plot->setDataLineOffset(3, Lm_offset);
+    ui->plot->setDataLineScale(3, Lm_scale);
+
+    if (ui->tableWidget->item(0,2)->checkState())
+    {
+        ui->plot->enableDataLine(0, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(0, false);
+    }
+
+    if (ui->tableWidget->item(1,2)->checkState())
+    {
+        ui->plot->enableDataLine(1, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(1, false);
+    }
+
+    if (ui->tableWidget->item(2,2)->checkState())
+    {
+        ui->plot->enableDataLine(2, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(2, false);
+    }
+
+    if (ui->tableWidget->item(3,2)->checkState())
+    {
+        ui->plot->enableDataLine(3, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(3, false);
+    }
+
+    ui->tableWidget->item(0,5)->setText(QString::number(model.R2,'f',3));
+    ui->tableWidget->item(1,5)->setText(QString::number(model.L,'f',3));
+    ui->tableWidget->item(2,5)->setText(QString::number(model.L,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number(model.Lm,'f',3));
 
     ui->plot->repaint();
 }
