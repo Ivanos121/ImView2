@@ -44,28 +44,225 @@ Trend::Trend(QWidget *parent) :
 
     connect(&timer, &QTimer::timeout, this, &Trend::on_timerTimeout);
 
+    // dataLineColors.append(Qt::red);
+    // dataLineColors.append(Qt::green);
+    // dataLineColors.append(Qt::cyan);
+    // dataLineColors.append(Qt::yellow);
+    // dataLineColors.append(Qt::magenta);
+    // dataLineColors.append(Qt::blue);
+    // dataLineColors.append(Qt::darkGreen);
+    // dataLineColors.append(Qt::darkBlue);
+    // dataLineColors.append(Qt::darkYellow);
+    // dataLineColors.append(Qt::darkMagenta);
+    // dataLineColors.append(Qt::darkCyan);
+    // dataLineColors.append(Qt::darkMagenta);
+    // dataLineColors.append(Qt::darkCyan);
+    // dataLineColors.append(Qt::darkMagenta);
+    // dataLineColors.append(Qt::darkCyan);
+    // dataLineColors.append(Qt::darkMagenta);
+    // dataLineColors.append(Qt::darkCyan);
+
+    // for (int i = 0; i < dataLineColors.size(); i++)
+    // {
+    //     ui->plot->addDataLine(dataLineColors[i], 0);
+    // }
+
+    ui->tableWidget->setRowCount(16); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(5); //задание количества столбцов
+    QStringList name2; //объявление указателя на тип QStringList
+    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
+    ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+    //ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget->verticalHeader()->setVisible(false);
+    ui->tableWidget->resizeColumnsToContents();
+    //ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setColumnWidth(0, 100);
+
+    for(int row = 0; row<ui->tableWidget->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget->columnCount(); column++)
+        {
+            ui->tableWidget->setItem(row, column, new QTableWidgetItem());
+        }
+    }
+
+    QTableWidgetItem *item265 = new QTableWidgetItem("Item265");
+    item265->setCheckState(Qt::Checked);
+    item265->setText("Подшипниковый узел справа сзади, °C");
+    ui->tableWidget->setItem(0, 2, item265);
+
+    QTableWidgetItem *item266 = new QTableWidgetItem("Item266");
+    item266->setCheckState(Qt::Checked);
+    item266->setText("Лобовая часть слева спереди, °C");
+    ui->tableWidget->setItem(1, 2, item266);
+
+    QTableWidgetItem *item267 = new QTableWidgetItem("Item267");
+    item267->setCheckState(Qt::Checked);
+    item267->setText("Подшипниковый узел слева спереди, °C");
+    ui->tableWidget->setItem(2, 2, item267);
+
+    QTableWidgetItem *item268 = new QTableWidgetItem("Item268");
+    item268->setCheckState(Qt::Checked);
+    item268->setText("Лобовая часть слева сзади, °C");
+    ui->tableWidget->setItem(3, 2, item268);
+
+    QTableWidgetItem *item269 = new QTableWidgetItem("Item269");
+    item269->setCheckState(Qt::Checked);
+    item269->setText("Станина, °C");
+    ui->tableWidget->setItem(4, 2, item269);
+
+    QTableWidgetItem *item270 = new QTableWidgetItem("Item270");
+    item270->setCheckState(Qt::Checked);
+    item270->setText("Лобовая часть справа спереди, °C");
+    ui->tableWidget->setItem(5, 2, item270);
+
+    QTableWidgetItem *item271 = new QTableWidgetItem("Item271");
+    item271->setCheckState(Qt::Checked);
+    item271->setText("Лобовая часть справа сзади, °C");
+    ui->tableWidget->setItem(6, 2, item271);
+
+    QTableWidgetItem *item272 = new QTableWidgetItem("Item272");
+    item272->setCheckState(Qt::Checked);
+    item272->setText("Магнитопровод статора, °C");
+    ui->tableWidget->setItem(7, 2, item272);
+
+    QTableWidgetItem *item273 = new QTableWidgetItem("Item273");
+    item273->setCheckState(Qt::Checked);
+    item273->setText("Подшипниковый узел справа спереди, °C");
+    ui->tableWidget->setItem(8, 2, item273);
+
+    QTableWidgetItem *item274 = new QTableWidgetItem("Item274");
+    item274->setCheckState(Qt::Checked);
+    item274->setText("одшипниковый узел слева сзади, °C");
+    ui->tableWidget->setItem(9, 2, item274);
+
+    QTableWidgetItem *item275 = new QTableWidgetItem("Item275");
+    item275->setCheckState(Qt::Checked);
+    item275->setText("Ротор сверху, °C");
+    ui->tableWidget->setItem(10, 2, item275);
+
+    QTableWidgetItem *item276 = new QTableWidgetItem("Item276");
+    item276->setCheckState(Qt::Checked);
+    item276->setText("Ротор снизу, °C");
+    ui->tableWidget->setItem(11, 2, item276);
+
+    QTableWidgetItem *item277 = new QTableWidgetItem("Item277");
+    item277->setCheckState(Qt::Checked);
+    item277->setText("Станина слева, °C");
+    ui->tableWidget->setItem(12, 2, item277);
+
+    QTableWidgetItem *item278 = new QTableWidgetItem("Item278");
+    item278->setCheckState(Qt::Checked);
+    item278->setText("Станина справа, °C");
+    ui->tableWidget->setItem(13, 2, item278);
+
+
+    QTableWidgetItem *item279 = new QTableWidgetItem("Item279");
+    item279->setCheckState(Qt::Checked);
+    item279->setText("Вал, °C");
+    ui->tableWidget->setItem(14, 2, item279);
+
+    QTableWidgetItem *item280 = new QTableWidgetItem("Item280");
+    item280->setCheckState(Qt::Checked);
+    item280->setText("Клеммная коробка, °C");
+    ui->tableWidget->setItem(15, 2, item280);
+
+    ui->tableWidget->setItem(0, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(1, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(2, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(5, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(6, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(7, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(8, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(9, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(9, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(10, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(10, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(11, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(11, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(12, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(12, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(13, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(13, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(14, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(14, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(15, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    ui->tableWidget->setItem(15, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(15, 3, new QTableWidgetItem(QString("%1").arg(0)));
+
+    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
+    {
+        if (ui->tableWidget->item(i, 0) != 0)
+        {
+            ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
+    {
+        if (ui->tableWidget->item(i, 3) != 0)
+        {
+            ui->tableWidget->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+
+        if (ui->tableWidget->item(i, 4) != 0)
+        {
+            ui->tableWidget->item(i, 4)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    SpinBoxDelegate *spin = new SpinBoxDelegate(ui->tableWidget); //создание делегата для создания комбобоксов
+    ui->tableWidget->setItemDelegateForColumn(3, spin);
+    SpinBoxDelegate *spin2 = new SpinBoxDelegate(ui->tableWidget); //создание делегата для создания комбобоксов
+    ui->tableWidget->setItemDelegateForColumn(4, spin2);
+
+    QPalette p4=ui->tableWidget->palette();
+    p4.setColor(QPalette::Base, QColor(225, 255, 255));
+    p4.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget->setPalette(p4);
+
     dataLineColors.append(Qt::red);
     dataLineColors.append(Qt::green);
     dataLineColors.append(Qt::cyan);
     dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::magenta);
-    dataLineColors.append(Qt::blue);
-    dataLineColors.append(Qt::darkGreen);
-    dataLineColors.append(Qt::darkBlue);
-    dataLineColors.append(Qt::darkYellow);
-    dataLineColors.append(Qt::darkMagenta);
-    dataLineColors.append(Qt::darkCyan);
-    dataLineColors.append(Qt::darkMagenta);
-    dataLineColors.append(Qt::darkCyan);
-    dataLineColors.append(Qt::darkMagenta);
-    dataLineColors.append(Qt::darkCyan);
-    dataLineColors.append(Qt::darkMagenta);
-    dataLineColors.append(Qt::darkCyan);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::green);
+    dataLineColors.append(Qt::cyan);
+    dataLineColors.append(Qt::yellow);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::red);
+    dataLineColors.append(Qt::yellow);
+
 
     for (int i = 0; i < dataLineColors.size(); i++)
     {
-        ui->plot->addDataLine(dataLineColors[i], 0);
+        ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
     }
+
+    connect(ui->tableWidget, &QTableWidget::cellClicked,this, &Trend::setcolorincell);
+    connect(ui->tableWidget, &QTableWidget::cellChanged,this, &Trend::edit_graf);
+
 }
 
 
@@ -1032,4 +1229,37 @@ void Trend::on_timerTimeout()
 
        count = 0;
    }
+}
+
+void Trend::setcolorincell(int row, int column)
+{
+    if ((column == 1) && (row >= 0) && (row <= 5))
+    {
+        //identf
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget->item(row, column)->setBackground(chosenColor);
+        ui->plot->setDataLineColor(row, chosenColor);
+        dataLineColors[row] = chosenColor;
+        repaint();
+    }
+}
+
+void Trend::edit_graf()
+{
+    double R1_scale, R1_offset, R2_scale, R2_offset, L1_scale, L1_offset, L2_scale, L2_offset, Lm_scale, Lm_offset;
+    R1_scale = ui->tableWidget->item(0,4)->text().toDouble();
+    R1_offset = ui->tableWidget->item(0,3)->text().toDouble();
+    R2_scale = ui->tableWidget->item(1,4)->text().toDouble();
+    R2_offset = ui->tableWidget->item(1,3)->text().toDouble();
+    L1_scale = ui->tableWidget->item(2,4)->text().toDouble();
+    L1_offset = ui->tableWidget->item(2,3)->text().toDouble();
+    L2_scale = ui->tableWidget->item(3,4)->text().toDouble();
+    L2_offset = ui->tableWidget->item(3,3)->text().toDouble();
+    Lm_scale = ui->tableWidget->item(4,4)->text().toDouble();
+    Lm_offset = ui->tableWidget->item(4,3)->text().toDouble();
+
+    ui->plot->setDataLineOffset(0, R1_offset);
+    ui->plot->setDataLineScale(0, R1_scale);
+
+    ui->plot->repaint();
 }

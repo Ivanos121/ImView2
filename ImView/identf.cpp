@@ -343,8 +343,16 @@ void identf::edit_graf()
     Lm_scale = ui->tableWidget->item(4,4)->text().toDouble();
     Lm_offset = ui->tableWidget->item(4,3)->text().toDouble();
 
-    ui->plot->setDataLineOffset(0, R1_offset);
-    ui->plot->setDataLineScale(0, R1_scale);
+    ui->plot->setDataLineOffset(0, R1_scale);
+    ui->plot->setDataLineScale(0, R1_offset);
+    ui->plot->setDataLineOffset(1, R2_scale);
+    ui->plot->setDataLineScale(1, R2_offset);
+    ui->plot->setDataLineOffset(2, L1_scale);
+    ui->plot->setDataLineScale(2, L1_offset);
+    ui->plot->setDataLineOffset(3, L2_scale);
+    ui->plot->setDataLineScale(3, L2_offset);
+    ui->plot->setDataLineOffset(4, Lm_scale);
+    ui->plot->setDataLineScale(4, Lm_offset);
 
     ui->plot->repaint();
 }

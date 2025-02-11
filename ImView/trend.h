@@ -37,6 +37,8 @@ private slots:
 //    void setcolorincell(int row, int column);
 
 
+    void edit_graf();
+    void setcolorincell(int row, int column);
 private:
 
     QDomDocument doc,doc3,doc4;

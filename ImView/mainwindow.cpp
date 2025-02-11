@@ -137,6 +137,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->print_file->setVisible(false);
     ui->print_preview->setVisible(false);
 
+    //настройка экрана конфигурации графиков
+    ui->widget_2->ui->widget->hide();
+    ui->widget_3->ui->widget->hide();
+    ui->widget_5->ui->widget_4->ui->widget->hide();
+
+
     //Настройка буфера обмена
     undoStack = new QUndoStack(this);
     undoStack->setUndoLimit(100);
@@ -4988,7 +4994,7 @@ void MainWindow::actionresult()
 }
 
 void MainWindow::actionresultidentf()
-{
+{    
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex( 2 );
 }
@@ -12301,11 +12307,28 @@ void MainWindow::actionaction_graph()
 {
     if(ui->actionaction_graph->isChecked())
     {
-        ui->widget_2->ui->widget->show();
+        if(ui->tabWidget->currentIndex() == 1)
+        {
+            ui->stackedWidget->hide();
+            ui->widget_2->ui->widget->show();
+        }
+        else if(ui->tabWidget->currentIndex() == 4)
+        {
+            ui->stackedWidget->hide();
+            ui->widget_3->ui->widget->show();
+        }
+        else if(ui->tabWidget->currentIndex() == 5)
+        {
+            ui->stackedWidget->hide();
+            ui->widget_5->ui->widget_4->ui->widget->show();
+        }
     }
     else
     {
         ui->widget_2->ui->widget->hide();
+        ui->widget_3->ui->widget->hide();
+        ui->widget_5->ui->widget_4->ui->widget->hide();
+        ui->stackedWidget->show();
     }
 }
 
