@@ -48,7 +48,7 @@ private:
 
     QSerialPort *momentPort;
     QTcpSocket plcSocket;
-    QVector<QColor> dataLineColors;
+    QVector<QColor> dataLineColors_electromagn;
 
     void addDataLines();
     int connectMomentPort();

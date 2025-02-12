@@ -65,9 +65,9 @@ electromagn::electromagn(QWidget *parent) :
     this->showMaximized();
 
     ui->tableWidget->setRowCount(9); //задание количества строк таблицы
-    ui->tableWidget->setColumnCount(5); //задание количества столбцов
+    ui->tableWidget->setColumnCount(6); //задание количества столбцов
     QStringList name2; //объявление указателя на тип QStringList
-    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб"; //перечисление заголовков
+    name2 << "№" << "Цвет" << "Свойство" << "Смещение" << "Масштаб" << "Значение"; //перечисление заголовков
     ui->tableWidget->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
     ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
@@ -132,25 +132,33 @@ electromagn::electromagn(QWidget *parent) :
 
     ui->tableWidget->setItem(0, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(0, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(0, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(1, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(1, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(1, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(2, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(2, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(2, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(3, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(4, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(5, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(5, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(5, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(6, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(6, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(6, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(7, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(7, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(7, 5, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(8, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(8, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    ui->tableWidget->setItem(8, 5, new QTableWidgetItem(QString("%1").arg(0)));
 
-
-    for (int i=0; i<34; i++)
+    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
         if (ui->tableWidget->item(i, 0) != 0)
         {
@@ -160,7 +168,7 @@ electromagn::electromagn(QWidget *parent) :
     }
 
 
-    for (int i=0; i<34; i++)
+    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
         if (ui->tableWidget->item(i, 3) != 0)
         {
@@ -170,6 +178,11 @@ electromagn::electromagn(QWidget *parent) :
         if (ui->tableWidget->item(i, 4) != 0)
         {
             ui->tableWidget->item(i, 4)->setTextAlignment(Qt::AlignCenter);
+        }
+
+        if (ui->tableWidget->item(i, 5) != 0)
+        {
+            ui->tableWidget->item(i, 5)->setTextAlignment(Qt::AlignCenter);
         }
     }
 
@@ -184,19 +197,19 @@ electromagn::electromagn(QWidget *parent) :
     p4.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget->setPalette(p4);
 
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::yellow);
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::red);
-    dataLineColors.append(Qt::green);
-    dataLineColors.append(Qt::cyan);
-    dataLineColors.append(Qt::cyan);
+    dataLineColors_electromagn.append(Qt::red);
+    dataLineColors_electromagn.append(Qt::green);
+    dataLineColors_electromagn.append(Qt::cyan);
+    dataLineColors_electromagn.append(Qt::yellow);
+    dataLineColors_electromagn.append(Qt::red);
+    dataLineColors_electromagn.append(Qt::red);
+    dataLineColors_electromagn.append(Qt::green);
+    dataLineColors_electromagn.append(Qt::cyan);
+    dataLineColors_electromagn.append(Qt::cyan);
 
-    for (int i = 0; i < dataLineColors.size(); i++)
+    for (int i = 0; i < dataLineColors_electromagn.size(); i++)
     {
-         ui->tableWidget->item(i, 1)->setBackground(dataLineColors[i]);
+         ui->tableWidget->item(i, 1)->setBackground(dataLineColors_electromagn[i]);
     }
 
     connect(ui->tableWidget, &QTableWidget::cellClicked,this, &electromagn::setcolorincell);
@@ -1463,12 +1476,13 @@ void electromagn::setcolorincell(int row, int column)
 {
     if ((column == 1) && (row >= 0) && (row <= 8))
     {
-        //identf
         QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-        ui->tableWidget->item(row, column)->setBackground(chosenColor);
-        ui->plot->setDataLineColor(row, chosenColor);
-        dataLineColors[row] = chosenColor;
-        repaint();
+        if (chosenColor.isValid()) {
+            ui->tableWidget->item(row, column)->setBackground(chosenColor);
+            ui->plot->setDataLineColor(row, chosenColor);
+            dataLineColors_electromagn[row] = chosenColor;
+            repaint();
+        }
     }
 }
 
@@ -1516,6 +1530,96 @@ void electromagn::edit_graf()
     ui->plot->setDataLineOffset(8, Mc_offset);
     ui->plot->setDataLineScale(8, Mc_scale);
 
+    if (ui->tableWidget->item(0,2)->checkState())
+    {
+        ui->plot->enableDataLine(0, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(0, false);
+    }
+
+    if (ui->tableWidget->item(1,2)->checkState())
+    {
+        ui->plot->enableDataLine(1, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(1, false);
+    }
+
+    if (ui->tableWidget->item(2,2)->checkState())
+    {
+        ui->plot->enableDataLine(2, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(2, false);
+    }
+
+    if (ui->tableWidget->item(3,2)->checkState())
+    {
+        ui->plot->enableDataLine(3, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(3, false);
+    }
+
+    if (ui->tableWidget->item(4,2)->checkState())
+    {
+        ui->plot->enableDataLine(4, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(4, false);
+    }
+
+    if (ui->tableWidget->item(5,2)->checkState())
+    {
+        ui->plot->enableDataLine(5, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(5, false);
+    }
+
+    if (ui->tableWidget->item(6,2)->checkState())
+    {
+        ui->plot->enableDataLine(6, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(6, false);
+    }
+
+    if (ui->tableWidget->item(7,2)->checkState())
+    {
+        ui->plot->enableDataLine(7, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(7, false);
+    }
+
+    if (ui->tableWidget->item(8,2)->checkState())
+    {
+        ui->plot->enableDataLine(8, true);
+    }
+    else
+    {
+        ui->plot->enableDataLine(8, false);
+    }
+
+    ui->tableWidget->item(0,5)->setText(QString::number((model_el.u_dev_a + Ua_offset)*Ua_scale,'f',3));
+    ui->tableWidget->item(1,5)->setText(QString::number((model_el.u_dev_b + Ub_offset)*Ub_scale,'f',3));
+    ui->tableWidget->item(2,5)->setText(QString::number((model_el.u_dev_b + Uc_offset)*Uc_scale,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number((model_el.i_dev_a + Ia_offset)*Ia_scale,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number((model_el.i_dev_b + Ib_offset)*Ib_scale,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number((model_el.i_dev_c + Ic_offset)*Ic_scale,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number((model_el.omega + w_offset)*w_scale,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number((model_el.M + M_offset)*M_scale,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number((model_el.Mc + Mc_offset)*Mc_scale,'f',3));
 
     ui->plot->repaint();
 }

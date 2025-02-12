@@ -300,6 +300,11 @@ void identf::raschet_f()
     ui->plot->addPoint(2, key, model.L);
     ui->plot->addPoint(3, key, model.Lm);
 
+    ui->tableWidget->item(0,5)->setText(QString::number(model.R2,'f',3));
+    ui->tableWidget->item(1,5)->setText(QString::number(model.L,'f',3));
+    ui->tableWidget->item(2,5)->setText(QString::number(model.L,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number(model.Lm,'f',3));
+
     std::ofstream fout;
 
     fout.open(QString(base.identfFilename).toStdString(),std::ios::out | std::ios::app);
@@ -321,12 +326,15 @@ void identf::setcolorincell(int row, int column)
 {
     if ((column == 1) && (row >= 0) && (row <= 5))
     {
-        //identf
         QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-        ui->tableWidget->item(row, column)->setBackground(chosenColor);
-        ui->plot->setDataLineColor(row, chosenColor);
-        dataLineColors_identf[row] = chosenColor;
-        repaint();
+
+        if (chosenColor.isValid()) {
+            ui->tableWidget->item(row, column)->setBackground(chosenColor);
+            ui->plot->setDataLineColor(row, chosenColor);
+            dataLineColors_identf[row] = chosenColor;
+            repaint();
+        }
+        // Если пользователь нажал "Отмена", ничего не делаем
     }
 }
 
@@ -387,10 +395,10 @@ void identf::edit_graf()
         ui->plot->enableDataLine(3, false);
     }
 
-    ui->tableWidget->item(0,5)->setText(QString::number(model.R2,'f',3));
-    ui->tableWidget->item(1,5)->setText(QString::number(model.L,'f',3));
-    ui->tableWidget->item(2,5)->setText(QString::number(model.L,'f',3));
-    ui->tableWidget->item(3,5)->setText(QString::number(model.Lm,'f',3));
+    ui->tableWidget->item(0,5)->setText(QString::number((model.R2 + R2_offset)*R2_scale,'f',3));
+    ui->tableWidget->item(1,5)->setText(QString::number((model.L + L1_offset)*L1_scale,'f',3));
+    ui->tableWidget->item(2,5)->setText(QString::number((model.L + L2_offset)*L2_scale,'f',3));
+    ui->tableWidget->item(3,5)->setText(QString::number((model.Lm + Lm_offset)*Lm_scale,'f',3));
 
     ui->plot->repaint();
 }
