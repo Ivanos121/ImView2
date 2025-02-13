@@ -57,7 +57,7 @@ private:
 signals:
     void tick();
 
-private slots:
+public slots:
 
     void edit_graf();
 };

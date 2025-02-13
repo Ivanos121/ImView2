@@ -12314,8 +12314,17 @@ void MainWindow::actionaction_graph()
         }
         else if(ui->tabWidget->currentIndex() == 4)
         {
-            //ui->stackedWidget->hide();
+            ui->stackedWidget->hide();
             ui->widget_3->ui->widget->show();
+            ui->widget_3->ui->tableWidget->item(0,5)->setText(QString::number(model_el.u_dev_a,'f',3));
+            ui->widget_3->ui->tableWidget->item(1,5)->setText(QString::number(model_el.u_dev_b,'f',3));
+            ui->widget_3->ui->tableWidget->item(2,5)->setText(QString::number(model_el.u_dev_b,'f',3));
+            ui->widget_3->ui->tableWidget->item(3,5)->setText(QString::number(model_el.i_dev_a,'f',3));
+            ui->widget_3->ui->tableWidget->item(4,5)->setText(QString::number(model_el.i_dev_b,'f',3));
+            ui->widget_3->ui->tableWidget->item(5,5)->setText(QString::number(model_el.i_dev_c,'f',3));
+            ui->widget_3->ui->tableWidget->item(6,5)->setText(QString::number(model_el.omega,'f',3));
+            ui->widget_3->ui->tableWidget->item(7,5)->setText(QString::number(model_el.M,'f',3));
+            ui->widget_3->ui->tableWidget->item(8,5)->setText(QString::number(model_el.Mc,'f',3));
         }
         else if(ui->tabWidget->currentIndex() == 5)
         {
