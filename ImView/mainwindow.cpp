@@ -114,6 +114,31 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    updateWindowSize();
+
+    // QScreen *screen = QGuiApplication::primaryScreen();
+    // if (screen)
+    // {
+    //     // Получаем размеры экрана
+    //     QSize screenSize = screen->size();
+    //     // Устанавливаем размеры окна на 80% от размеров экрана
+    //     int width = static_cast<int>(screenSize.width() * 0.8);
+    //     int height = static_cast<int>(screenSize.height() * 0.8);
+
+    //     this->resize(width, height);
+
+    //     // Центрируем окно
+    //     int posX = (screenSize.width() - width) / 2;
+    //     int posY = (screenSize.height() - height) / 2;
+    //     this->move(posX, posY);
+    // }
+
+    // connect(screen, &QScreen::geometryChanged, this, [=]() {
+    //     // Обновите размеры и позицию окна
+    //     QSize newSize = screen->size();
+    //     this->resize(newSize);
+    // });
+
     ui->actionaction_graph->setCheckable(true);
     ui->action_gruph->setCheckable(true);
     ui->widget_2->ui->widget->hide();
@@ -12352,4 +12377,19 @@ void MainWindow::action_gruph()
     {
         ui->stackedWidget->setCurrentIndex(0);
     }
+}
+
+void MainWindow::updateWindowSize()
+{
+    // Получение размеров экрана
+    QScreen *screen = QGuiApplication::primaryScreen();
+    if (screen)
+    {
+        QSize screenSize = screen->size();
+        int width = static_cast<int>(screenSize.width() * 0.8);
+        int height = static_cast<int>(screenSize.height() * 0.8);
+        this->resize(width, height);
+        this->move((screenSize.width() - width) / 2, (screenSize.height() - height) / 2);
+    }
+
 }

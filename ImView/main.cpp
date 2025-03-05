@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "qscreen.h"
 #include "settings.h"
 
 #include <QApplication>
@@ -8,6 +9,7 @@
 #include <QuaZip-Qt5-1.4/quazip/JlCompress.h>
 #include <QTranslator>
 #include <QSettings>
+#include <QRect>
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +26,7 @@ int main(int argc, char *argv[])
     {
         QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
     }
+
 
 
 
@@ -50,6 +53,8 @@ int main(int argc, char *argv[])
         QString filename(argv[1]);
         w.LoadProject(filename);
     }
+
+
 
     w.show();
 

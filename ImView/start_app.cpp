@@ -7,6 +7,7 @@
 
 #include <QDesktopServices>
 #include <QFileDialog>
+#include <QScreen>
 #include <QSettings>
 #include <QSvgWidget>
 #include <QUrl>
@@ -261,7 +262,7 @@ Start_app::Start_app(QWidget *parent)
 
 Start_app::~Start_app()
 {
-    delete ui;
+    delete ui;    
 }
 
 void Start_app::click_open_file()
@@ -296,6 +297,7 @@ void Start_app::click_open_progect()
 
     QString str = save_progect.progect_1.path_1 + "/" + save_progect.progect_1.name_1;
     wf->LoadProject(str);
+    wf->updateWindowSize();
 }
 
 void Start_app::click_open_progect_2(const QModelIndex& idx)

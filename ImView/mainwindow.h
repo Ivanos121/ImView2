@@ -60,6 +60,7 @@ public:
     void loadFile(const QString &fileName);
     void updateRecentFileActions();
     void actionhelp();
+    void updateWindowSize();
 
 private:
     QString sessionFileName;
@@ -252,7 +253,7 @@ public:
     QStandardItem *item171, *item172, *item173, *item174, *item175,*item176, *item177, *item178, *item179, *item180;
     void changeEvent(QEvent *event) override;
 public slots:
-    void saveDataSQL();    
+    void saveDataSQL();
 };
 
 #endif // MAINWINDOW_H
